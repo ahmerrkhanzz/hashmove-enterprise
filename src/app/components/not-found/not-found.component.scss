@@ -1,0 +1,40 @@
+ /* CLIENT-SPECIFIC STYLES */
+
+ @import '../../../assets/scss/_variables';
+ /* CLIENT-SPECIFIC STYLES */
+
+ .no-result-found {
+   padding: 20px;
+
+   .no-result-svg {
+     text-align: center;
+     vertical-align: top;
+
+     img {
+       width: 400px;
+       height: 400px;
+     }
+   }
+
+   .no-result-message {
+     text-align: center;
+     padding: 0 3.5em .7em;
+     margin-top: 20px;
+
+     p {
+       font-size: 2rem;
+       font-weight: 500;
+       line-height: 1.1;
+       word-spacing: 3px;
+
+       small {
+         font-size: 1.2rem;
+
+         a {
+           color: inherit;
+           text-decoration: underline;
+         }
+       }
+     }
+   }
+ }

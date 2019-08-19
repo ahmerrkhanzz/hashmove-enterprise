@@ -1,0 +1,27 @@
+<svg id="f7905435-1486-49b3-baf9-4dca76d453f9" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .a2024788-efba-4438-b0be-f26b285b4fd6 {
+        fill: #00a1df;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g id="d1bd0fc5-aee7-4161-bcfc-9917552a4e20" data-name="truck">
+    <path id="3b886d42-d469-4fa8-a176-d1a6f9535320" data-name="&lt;Path&gt;" class="a2024788-efba-4438-b0be-f26b285b4fd6" d="M21.5,14h-2c0-4-2.5-6.5-6.5-6.5v-2A8.138,8.138,0,0,1,21.5,14Z"/>
+    <g id="dece99b0-ccfe-46cd-9e08-09c04af070eb" data-name="&lt;Group&gt;">
+      <path id="1e109160-3fc6-427d-a960-9408ecfded4d" data-name="&lt;Compound Path&gt;" class="a2024788-efba-4438-b0be-f26b285b4fd6" d="M6,16a3.5,3.5,0,1,0,3.5,3.5A3.5,3.5,0,0,0,6,16Zm0,5.25A1.75,1.75,0,1,1,7.75,19.5,1.75,1.75,0,0,1,6,21.25Z"/>
+    </g>
+    <g id="0a8baa5b-ca15-44f3-b7a0-e022331802c0" data-name="&lt;Group&gt;">
+      <g id="c0230789-57cf-47bc-a80f-830d7c300074" data-name="&lt;Group&gt;">
+        <path id="b3ca8f69-77be-4bef-880a-c916143eb129" data-name="&lt;Path&gt;" class="a2024788-efba-4438-b0be-f26b285b4fd6" d="M14,3H3.24A3.24,3.24,0,0,0,0,6.24V19H4.331a1.739,1.739,0,0,1,3.337,0H14Z"/>
+      </g>
+    </g>
+    <g id="e2c8b36e-a3d6-4f64-aece-7314231b6800" data-name="&lt;Group&gt;">
+      <path id="ab7af316-2d2b-4ee2-8291-e72c5310f1ec" data-name="&lt;Compound Path&gt;" class="a2024788-efba-4438-b0be-f26b285b4fd6" d="M18,16a3.5,3.5,0,1,0,3.5,3.5A3.5,3.5,0,0,0,18,16Zm0,5.25a1.75,1.75,0,1,1,1.75-1.75A1.75,1.75,0,0,1,18,21.25Z"/>
+    </g>
+    <g id="589008c7-8e5d-4302-9187-3d291cab846d" data-name="&lt;Group&gt;">
+      <path id="08fec5ba-4e9f-4b7f-b673-94d24fdb6a92" data-name="&lt;Compound Path&gt;" class="a2024788-efba-4438-b0be-f26b285b4fd6" d="M22,14v3H20.793a3.746,3.746,0,0,0-5.587,0H13.735l-.429-3H22m2-2H11l1,7h4.331a1.739,1.739,0,0,1,3.337,0H24V12Z"/>
+    </g>
+  </g>
+</svg>

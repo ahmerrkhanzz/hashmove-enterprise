@@ -1,0 +1,26 @@
+<svg id="50bc1bd9-6260-46ce-abc5-3554b4ea74d1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .\38 e809ae0-7b37-42e6-a85e-f361f1832f6d {
+        fill: #02bdb6;
+      }
+
+      .\31 c3de07a-0567-419f-859c-c2a6f340c18e {
+        fill: #02bdb6;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g id="43a13e74-76be-4e7c-a77a-222e086eb1dd" data-name="warehouse">
+    <g id="95598593-0b07-4049-99d8-9dde2c91ee8c" data-name="&lt;Group&gt;">
+      <path id="543a1ef8-9d63-4e8e-a43c-e33c391bf8c7" data-name="&lt;Path&gt;" class="8e809ae0-7b37-42e6-a85e-f361f1832f6d" d="M22,23v-.555A3.959,3.959,0,0,1,20,23Z"/>
+      <path id="76a7b445-ba52-4a5d-a2dc-da158acee007" data-name="&lt;Path&gt;" class="8e809ae0-7b37-42e6-a85e-f361f1832f6d" d="M2,23H4a3.959,3.959,0,0,1-2-.555Z"/>
+    </g>
+    <path id="e1fcf746-792d-4354-8bc6-17314b2a5e3d" data-name="&lt;Compound Path&gt;" class="1c3de07a-0567-419f-859c-c2a6f340c18e" d="M22.148,6.457,12,1,1.852,6.457A4,4,0,0,0,0,9.832V19a3.983,3.983,0,0,0,2,3.445V10H22V22.445A3.983,3.983,0,0,0,24,19V9.832A4,4,0,0,0,22.148,6.457ZM15,7H9V5h6Z"/>
+    <rect id="4f261f44-20ec-4ea9-90c5-9c79149c2390" data-name="&lt;Path&gt;" class="1c3de07a-0567-419f-859c-c2a6f340c18e" x="10" y="18" width="4" height="4"/>
+    <rect id="f420b0a4-076a-4ee1-91c5-b7e42da4e2e9" data-name="&lt;Path&gt;" class="1c3de07a-0567-419f-859c-c2a6f340c18e" x="5" y="18" width="4" height="4"/>
+    <rect id="8970c0b2-6fdc-4ebc-8cc6-3d4ad3f8c163" data-name="&lt;Path&gt;" class="1c3de07a-0567-419f-859c-c2a6f340c18e" x="5" y="12" width="4" height="4"/>
+    <rect id="7ba11457-86cf-4719-b707-7dd0b08eb954" data-name="&lt;Path&gt;" class="1c3de07a-0567-419f-859c-c2a6f340c18e" x="10" y="12" width="4" height="4"/>
+    <rect id="e6df87d8-dd93-41a6-9184-dc1ac2ad8c81" data-name="&lt;Path&gt;" class="1c3de07a-0567-419f-859c-c2a6f340c18e" x="15" y="18" width="4" height="4"/>
+  </g>
+</svg>

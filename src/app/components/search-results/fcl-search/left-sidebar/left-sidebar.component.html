@@ -1,0 +1,295 @@
+<div class="search-sidebar">
+  <h2 class="heading-leftsidebar pb-2">
+    <img src="../../../../../assets/images/icons/icon_filter.svg" alt="filter icon" class="icon-size-16 mb-1 mr-2">
+    Filter
+    your results
+  </h2>
+  <div class="leftSearchBar">
+    <!-- search-filter -->
+
+    <!-- Number of Stops -->
+    <div class="widgets">
+      <div class="widgets-box">
+
+        <!-- widget header -->
+        <div class="widgets-heading" (click)="toggleNumStops()">
+          <h3>Number Of Stops
+            <!-- icon dropdown -->
+            <i class="fa fa-caret-down" [ngClass]="buttonNumStops"></i>
+            <!-- icon dropdown -->
+          </h3>
+        </div>
+        <!-- widget header -->
+
+        <!-- widget-content -->
+
+        <div class="widget-content" *ngIf="showNumStops" [@enterAnimation]>
+
+          <!-- Number of Stops Start -->
+
+          <div class="NumberOfStops dash-stroke-top">
+            <!-- Sorting Filter -->
+            <div class="NumberOfStops-btn custom-btn">
+              <div class="btn-group" role="group" aria-label="...">
+                <a class="btn btn-default " href="javascript:;" [ngClass]="withoutStop === true? 'active': 'unactive'"
+                  (click)="noOfStopClick(0)">Direct</a>
+                <a class="btn btn-default " href="javascript:;" [ngClass]="oneStop === true? 'active': 'unactive'"
+                  (click)="noOfStopClick(1)">01</a>
+                <a class="btn btn-default " href="javascript:;" [ngClass]="twoStops === true? 'active': 'unactive'"
+                  (click)="noOfStopClick(2)">02</a>
+                <a class="btn btn-default " href="javascript:;" [ngClass]="twoPlusStops === true? 'active': 'unactive'"
+                  (click)="noOfStopClick(3)">02+</a>
+              </div>
+            </div>
+            <!--/ Sorting Filter -->
+          </div>
+
+          <!--/ Number of Stops End -->
+        </div>
+
+        <!--/ widget-content -->
+
+      </div>
+    </div>
+    <!-- /Number of Stops -->
+
+    <!-- Shipping Lines Start -->
+    <div class="widgets" *ngIf="!isNVOCC && carrierList.length > 1">
+      <div class="widgets-box">
+        <!-- widget header -->
+        <div class="widgets-heading">
+          <h3>Shipping Lines
+
+            <i class="fa fa-refresh ml-1 text-primary pointer" placement="top" ngbTooltip="Reset" (click)="onShipClick(-1)">
+            </i>
+            <!-- icon dropdown -->
+            <i class="fa fa-caret-down pointer" [ngClass]="buttonShipLine" (click)="toggleShipLines()">
+            </i>
+            <!-- icon dropdown -->
+          </h3>
+        </div>
+        <!-- widget header -->
+
+        <!-- widget-content -->
+
+        <div class="widget-content" *ngIf="showMoreShip" [@enterAnimation]>
+          <div class="shipping-btn custom-btn">
+
+            <div aria-label="..." class="shipping-btn-group animated fadeInDown" role="group">
+              <a *ngFor="let carrier of carrierList; let carIndex = index" class="btn btn-default btn-style-1 active col-xl-4 col-md-4 col-sm-4 ">
+                <img src="{{getUIImage(carrier.CarrierImage)}}" (click)="onShipClick(carIndex)" class="shipping-img"
+                  [ngClass]="carrier.isChecked? '':'grayscale-Active'" />
+              </a>
+            </div>
+
+          </div>
+        </div>
+        <!--/ widget-content -->
+      </div>
+    </div>
+    <!-- Shipping Lines End -->
+
+    <!-- Transit Time -->
+    <div class="widget" *ngIf="tempArrivalMinMax[0] > -1">
+      <div class="widgets-box range-slider">
+        <!-- widget header -->
+        <div class="widgets-heading" (click)="toggleEstimateTime()">
+          <h3>Transit Time
+            <!-- icon dropdown -->
+            <i class="fa fa-caret-down" [ngClass]="showEstimateTime ? 'Hide' : 'Show'">
+            </i>
+            <!-- icon dropdown -->
+            <br>
+            <small>
+              ( {{tempArrivalMinMax[0]}}
+              <span *ngIf="tempArrivalMinMax[0] > 1">Days</span>
+              <span *ngIf="tempArrivalMinMax[0] < 2">Day</span> - {{tempArrivalMinMax[1]}}
+              <span *ngIf="tempArrivalMinMax[1] > 1">Days</span>
+              <span *ngIf="tempArrivalMinMax[1] < 2">Day</span>)
+            </small>
+          </h3>
+        </div>
+        <div class="EstimateTimeSection">
+          <div class="widget-content" *ngIf="showEstimateTime" [@enterAnimation]>
+            <ion-range-slider #advancedSliderElement type="double" [ngbTooltip]="false" [step]="0.0001" [from]="arrivalRange[0]"
+              [to]="arrivalRange[1]" [min]="tempArrivalMinMax[0]" [max]="tempArrivalMinMax[1]" grid="false" grid_num="2"
+              decorate_both="false" from_shadow="false" (onChange)="onArrivalSelectedChange($event)" (onFinish)="onArrivalRangeChange(arrivalRange, $event)"></ion-range-slider>
+
+            <!-- <nouislider placement="top" ngbTooltip="{{arrivalRange[0]}} - {{arrivalRange[1]}}" [step]=1 [connect]="true" [min]="arrivalMinMax[0]"
+              [max]="arrivalMinMax[1]" [(ngModel)]="arrivalRange" [tooltips]="[ false, false ]" (change)="onArrivalRangeChange($event)"></nouislider> -->
+            <div class="row EstimateTimeSectionDays">
+              <div class="col-md-5 day-from">
+                <p>{{minArrival | number:'1.0-0'}}
+                  <span *ngIf="minArrival > 1">Days</span>
+                  <span *ngIf="minArrival< 2">Day</span>
+                </p>
+              </div>
+              <div class="col-md-2"></div>
+              <div class="col-md-5 day-to">
+                <p>{{maxArrival | number:'1.0-0'}}
+                  <span *ngIf="maxArrival > 1">Days</span>
+                  <span *ngIf="maxArrival< 2">Day</span>
+                </p>
+              </div>
+            </div>
+            <!-- widget header -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Transit Time -->
+
+    <!-- layove-ports -->
+    <div class="widgets" [hidden]="true">
+      <div class="widgets-box">
+        <!-- widget header -->
+        <div class="widgets-heading" (click)="toggleLayover()">
+          <h3>Layover Ports
+            <!-- icon dropdown -->
+            <i class="fa fa-caret-down" [ngClass]="showLayover ? 'Hide' : 'Show'"></i>
+            <!-- icon dropdown -->
+          </h3>
+        </div>
+        <!-- widget header -->
+
+        <!-- widget-content -->
+
+        <div class="widget-content animated fadeInUp" *ngIf="showLayover">
+          <!-- Search Input -->
+          <div class="custom-search-input">
+            <div class="input-group col-md-12">
+              <input class="search-query form-control" placeholder="Search" type="text">
+              <span class="input-group-btn">
+                <button class="search-btn" type="button">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+          </div>
+          <!--/ Search Input -->
+
+          <div [ngClass]="layoverScroll ? 'ps' : 'check-boxes-main'" style="position: relative; max-width: 100%; max-height: 250px;">
+            <input id="five" type="checkbox" checked='checked'>
+            <label for='five'>
+              <span></span>Colombo. Sri Lanka
+            </label>
+
+            <input id='six' type='checkbox' />
+            <label for='six'>
+              <span></span>Muscat, Oman
+            </label>
+
+            <input id='seven' type='checkbox' />
+            <label for='seven'>
+              <span></span>Karachi, Pakistan
+            </label>
+
+            <input id='eight' type='checkbox' />
+            <label for='eight'>
+              <span></span>On the floor
+            </label>
+          </div>
+
+          <!-- More Check boxes -->
+          <div class="more-checkboxes">
+            <a href="javascript:;" (click)="layoverScrollClass()">
+              <span>+314 More</span>
+            </a>
+          </div>
+          <!--/ More Check boxes -->
+        </div>
+        <!--/ widget-content -->
+      </div>
+    </div>
+    <!--/ layove-ports -->
+
+    <!-- Free Time at Port -->
+    <div class="widgets" *ngIf="tempFreeTimeMinMax[0] > 1">
+      <div class="widgets-box range-slider">
+        <!-- widget header -->
+        <div class="widgets-heading" (click)="toggleTime()">
+          <h3>Free Time AT PORT
+            <!-- icon dropdown -->
+            <i class="fa fa-caret-down" [ngClass]="toggleTimePort ? 'Hide' : 'Show'"></i>
+            <!-- icon dropdown -->
+            <br>
+            <small>
+              ( {{tempFreeTimeMinMax[0]}}
+              <span *ngIf="tempFreeTimeMinMax[0] > 1">Days</span>
+              <span *ngIf="tempFreeTimeMinMax[0] < 2">Day</span> - {{tempFreeTimeMinMax[1]}}
+              <span *ngIf="tempFreeTimeMinMax[1] > 1">Days</span>
+              <span *ngIf="tempFreeTimeMinMax[1] < 2">Day</span> )
+            </small>
+          </h3>
+        </div>
+        <!-- widget Content -->
+        <div class="FreeTimeSection">
+          <div class="widget-content" *ngIf="toggleTimePort" [@enterAnimation]>
+            <ion-range-slider #advancedSliderElement type="double" [step]="0.0001" [from]="freeTimeRange[0]" [to]="freeTimeRange[1]"
+              [min]="tempFreeTimeMinMax[0]" [max]="tempFreeTimeMinMax[1]" grid="false" grid_num="2" decorate_both="false"
+              from_shadow="false" (onChange)="onFreeTimeSelectedChange($event)" (onFinish)="onFreeTimeChange(arrivalRange, $event)"></ion-range-slider>
+            <div class="row FreeTimeSectionDays">
+              <div class="col-md-5 day-from">
+                <p>{{minFreeTime | number:'1.0-0'}}
+                  <span *ngIf="minFreeTime > 1">Days</span>
+                  <span *ngIf="minFreeTime < 2">Day</span>
+                </p>
+              </div>
+              <div class="col-md-2"></div>
+              <div class="col-md-5 day-to">
+                <p>{{maxFreeTime | number:'1.0-0'}}
+                  <span *ngIf="maxFreeTime > 1">Days</span>
+                  <span *ngIf="maxFreeTime < 2">Day</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- widget Content -->
+        </div>
+      </div>
+      <!-- search-free-time -->
+
+      <!-- More -->
+      <!-- <div class="widgets" *ngIf="!conditionalFilters">
+          <div class="widgets-box">
+            <div class="widgets-heading" (click)="toggleMore()">
+              <h3>More
+                <i class="fa fa-caret-down" [ngClass]="buttonMore"></i>
+              </h3>
+            </div>
+            <div class="MoreSection">
+              <div class="widget-content" *ngIf="showMore" [@enterAnimation]>
+
+                <div class="check-boxes-main">
+                  <input id="more1" type="checkbox" checked='checked' [checked]="isFreeCancelable" (change)="onFreeCancelable()" />
+
+                  <label for='more1'>
+                    <span></span>Free Cancellation
+                  </label>
+
+                  <input id='more2' type='checkbox' [checked]="isNoRestrictions" (change)="onNoRestrictions()" />
+
+                  <label for='more2'>
+                    <span></span>No Shipping Restriction
+                  </label>
+
+                  <input id='more3' type='checkbox' [checked]="isHashDeals" (change)="onHasDeals()" />
+                  <label for='more3'>
+                    <span></span>Has Deals
+                  </label>
+
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div> -->
+      <!--/ More -->
+
+      <!--/ Credit -->
+    </div>
+    <!-- Free Time at Port -->
+
+  </div>
+</div>

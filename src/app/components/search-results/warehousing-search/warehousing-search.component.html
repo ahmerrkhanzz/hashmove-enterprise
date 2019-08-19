@@ -1,0 +1,94 @@
+<app-search-header name="search"></app-search-header>
+<div class="container grey-bg warehousing" *ngIf="showResult">
+  <div class="row">
+    <div class="col-xl-3 col-md-12 col-sm-12 mt-5 inner-left-sidebar">
+      <div class="leftSideBar">
+        <app-hash-filters-forwarder-sidebar [providersResult]="mainsearchResult"></app-hash-filters-forwarder-sidebar>
+      </div>
+    </div>
+    <div class="col-xl-9 col-md-12 col-sm-12 mt-5 right-content">
+      <div class="row" *ngIf="mainsearchResult && mainsearchResult.length">
+        <div class="col-xl-5 col-md-12">
+          <h5>We found
+            <b>{{searchResult.length}} </b> results in {{searchCriteria.CityName}}
+            <!-- <br> selected route -->
+          </h5>
+        </div>
+        <div class="col-xl-7 col-md-12">
+          <div class="sort-filter">
+            <div class="switch-box">
+              <ui-switch size="small" [(ngModel)]="mapView" (change)="mapViewChange($event)"></ui-switch>
+              <label for="">Map View</label>
+            </div>
+            <app-currency-dropdown [selectedCurrency]="currentSelectedCurrency" [currencyList]="currencyFlags"
+              (selectedCurrencyEvent)="currencyFilter($event)">
+            </app-currency-dropdown>
+
+            <div ngbDropdown #sortDrop="ngbDropdown" class="sort-by">
+              <span id="dropdownsorter" ngbDropdownToggle class="pointer">SORT BY: {{selectedSortType | uppercase}}
+                ({{selectedSortText
+                | uppercase}})</span>
+              <div class="sortFilter animated fadeIn" ngbDropdownMenu aria-labelledby="dropdownsorter">
+                <div class="sort-item">
+                  <table class="table">
+                    <tr class="active">
+                      <td>Price</td>
+                      <td>
+                        <i class="fa fa-arrow-up " (click)="sorter('TotalPrice','desc', $event, 'Price');sortDrop.close()"
+                          ngbTooltip="High" placement="left"></i>
+                      </td>
+                      <td>
+                        <i class="fa fa-arrow-down active" (click)="sorter('TotalPrice','asc',$event, 'Price');sortDrop.close()"
+                          ngbTooltip="Low" placement="left"></i>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="hr-solid">
+      <div class="row">
+        <div [ngClass]="!mapView ? 'col-md-9' : 'col-md-12'">
+          <section *ngIf="!mapView">
+            <app-search-card [searchResult]="searchResult" (mapCardEmitter)="mapActionReciever($event)" *ngIf="searchResult && searchResult.length"></app-search-card>
+          </section>
+          <section *ngIf="mapView">
+            <div class="google-map-cards" *ngIf="searchResult && searchResult.length">
+              <hashmove-map [windowHeight]="'34.375rem'" [enableDataService]="false" [isWareHouseMap]="true"
+                [wareSearchResult]="searchResult" (onWarehouseClick)="onWarehouseClick($event)" (onGalleryClick)="onGalleryClick($event)"></hashmove-map>
+            </div>
+            <div class="images-carousel" *ngFor="let image of _albums; let i=index">
+              <img [src]="image.thumb" (click)="open(i)" />
+            </div>
+          </section>
+          <!-- <app-shipping-card></app-shipping-card> -->
+          <!-- <div class="d-flex justify-content-end" *ngIf="getTotalPages() > 1">
+            <p class="pager-info mr-3">Page {{config.currentPage}} of {{getTotalPages()}}</p>
+            <pagination-controls [id]="config.id" [maxSize]="maxSize" [directionLinks]="directionLinks" [autoHide]="autoHide"
+              [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel" [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+              [screenReaderPageLabel]="labels.screenReaderPageLabel" [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+              (pageChange)="onPageChange($event)"></pagination-controls>
+          </div> -->
+          <app-no-searchresult *ngIf="!searchResult || searchResult.length === 0"></app-no-searchresult>
+        </div>
+        <div class="col-md-3" *ngIf="!mapView">
+          <!-- <app-right-sidebar></app-right-sidebar> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container grey-bg no-search-container" *ngIf="!showResult">
+  <div class="row">
+    <div class="col-xl-3 col-md-12  col-sm-12 inner-left-sidebar"></div>
+    <div class="col-xl-9 col-md-12 col-sm-12 inner-page-right-content-area">
+      <div class="row">
+        <app-no-searchresult class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9"></app-no-searchresult>
+        <!-- <app-right-sidebar class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3 filters"></app-right-sidebar> -->
+      </div>
+    </div>
+  </div>
+</div>

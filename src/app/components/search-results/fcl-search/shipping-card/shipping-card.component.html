@@ -1,0 +1,166 @@
+<div class="hash-cards">
+  <app-selection-summary [data]="selectedProvider" [page]="'search'"></app-selection-summary>
+  <div class="shipping">
+    <div class="row shipping-highlights">
+      <div class="col-xl-6 col-md-12">
+        <h5>We found
+          <b>{{searchResult?.length}} </b> results for your
+          <br> selected route
+        </h5>
+      </div>
+      <div class="col-xl-6 col-md-12">
+        <div class="sort-filter">
+          <app-currency-dropdown [selectedCurrency]="currentSelectedCurrency" [currencyList]="currencyFlags"
+            (selectedCurrencyEvent)="currencyFilter($event)">
+          </app-currency-dropdown>
+
+          <!-- </div> -->
+          <div ngbDropdown #sortDrop="ngbDropdown" class="sort-by">
+            <span id="dropdownsorter" ngbDropdownToggle class="pointer">SORT BY: {{selectedSortType | uppercase}}
+              ({{selectedSortText | uppercase}})</span>
+            <div class="sortFilter animated fadeIn" ngbDropdownMenu aria-labelledby="dropdownsorter">
+              <div class="sort-item">
+                <table class="table">
+                  <tr class="active">
+                    <td>Price</td>
+                    <td>
+                      <i class="fa fa-arrow-up " (click)="sorter('TotalPrice','desc', $event, 'Price');sortDrop.close()"
+                        ngbTooltip="High" placement="left"></i>
+                    </td>
+                    <td>
+                      <i class="fa fa-arrow-down active" (click)="sorter('TotalPrice','asc',$event, 'Price');sortDrop.close()"
+                        ngbTooltip="Low" placement="left"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Transit Time</td>
+                    <td>
+                      <i class="fa fa-arrow-up" (click)="sorter('EtaInDays','desc', $event, 'Transit Time');sortDrop.close()"
+                        ngbTooltip="High" placement="left"></i>
+                    </td>
+                    <td>
+                      <i class="fa fa-arrow-down" (click)="sorter('EtaInDays','asc', $event, 'Transit Time');sortDrop.close()"
+                        ngbTooltip="Low" placement="left"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Cut Off</td>
+                    <td>
+                      <i class="fa fa-arrow-up" (click)="sorter('PortCutOffUtc','desc', $event, 'Cut Off');sortDrop.close()"
+                        ngbTooltip="High" placement="left"></i>
+                    </td>
+                    <td>
+                      <i class="fa fa-arrow-down" (click)="sorter('PortCutOffUtc','asc', $event, 'Cut Off');sortDrop.close()"
+                        ngbTooltip="Low" placement="left"></i>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <hr class="hr-solid">
+      </div>
+    </div>
+    <div class="row shipping-best mb-4" *ngIf="!isAllDecoupled">
+      <div class="best-route fastest-route" [ngClass]="(bestSelectedOption && bestSelectedOption.toLowerCase() === 'days'.toLowerCase())?'best-active':''">
+        <div class="card" (click)="quickSort('EtaInDays')" *ngIf="searchResult?.length > 0">
+          <div class="card-body">
+            <h5 class="card-title">Select Results for Fastest Route</h5>
+            <div class="card-text animate">
+              <!-- <img src="../../../assets/images/icons/Icons_Fast Route.svg" alt=""> -->
+              <svg class="fastest-route-animate" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+
+                <g data-name="fast_route">
+                  <rect data-name="&lt;Path&gt;" class="" x="13" y="5" width="2" height="8" />
+                  <rect data-name="&lt;Path&gt;" class="" x="14" y="11" width="7" height="2" />
+                  <path data-name="&lt;Path&gt;" class="" d="M10.667,2c-.225,0-.447.012-.667.034V4.067A4.61,4.61,0,0,1,10.667,4H22V15.333A4.672,4.672,0,0,1,17.333,20H10v2h7.333A6.667,6.667,0,0,0,24,15.333V2Z" />
+                  <rect data-name="&lt;Path&gt;" class="slide-1" y="5" width="8" height="2" />
+                  <rect data-name="&lt;Path&gt;" class="slide-2" x="2" y="11" width="6" height="2" />
+                  <rect data-name="&lt;Path&gt;" class="slide-3" x="4" y="17" width="4" height="2" />
+                </g>
+
+              </svg>
+              <strong>{{fastestRouteDays}}</strong>
+              <span class="fa fa-circle"></span>
+              <small>
+                <label>{{searchResultSummary.fastestRouteCurrency}}</label> {{searchResultSummary.fastestRoutePrice |
+                number: '1.2-2'}}
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="routing text-center" *ngIf="searchResult?.length > 0">
+        <p>
+          <strong>OR</strong>
+        </p>
+      </div>
+      <div class="best-route" [ngClass]="(bestSelectedOption && bestSelectedOption.toLowerCase() === 'price'.toLowerCase())?'best-active':''">
+        <div class="card" (click)="quickSort('TotalPrice')" *ngIf="searchResult?.length > 0">
+          <div class="card-body">
+            <h5 class="card-title">Select Results for Best Price</h5>
+            <div class="card-text route-circle">
+              <!-- <img src="../../../assets/images/icons/Icons_Best Price - blue.svg" alt=""> -->
+              <svg class="clockSpin best-route-circle" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g data-name="best_price">
+                  <path data-name="&lt;Compound Path&gt;" d="M12,23.409a1.994,1.994,0,0,1-1.355-.525L8.873,21.251l-2.439.329A2,2,0,0,1,4.2,19.96l-.41-2.225-2.095-1.06a2,2,0,0,1-.877-2.7L1.832,12,.817,10.021a2,2,0,0,1,.877-2.7L3.789,6.266,4.2,4.04A1.994,1.994,0,0,1,6.434,2.42l2.439.329,1.771-1.633a2.012,2.012,0,0,1,2.711,0l1.771,1.633,2.439-.329A2.008,2.008,0,0,1,19.8,4.04l.41,2.225,2.095,1.06a2,2,0,0,1,.877,2.7L22.168,12l1.015,1.979a2,2,0,0,1-.877,2.7l-2.095,1.059L19.8,19.96a2,2,0,0,1-2.234,1.62l-2.439-.329-1.771,1.633A2,2,0,0,1,12,23.409ZM8.876,19.25a1.992,1.992,0,0,1,1.354.531L12,21.413l1.771-1.633a2,2,0,0,1,1.624-.512l2.438.329.41-2.226a2.012,2.012,0,0,1,1.063-1.422l2.1-1.06-1.015-1.979a2,2,0,0,1,0-1.824L21.4,9.109,19.309,8.051a2.014,2.014,0,0,1-1.064-1.424L17.834,4.4l-2.439.328a2,2,0,0,1-1.624-.513L12,2.588,10.229,4.22A2,2,0,0,1,8.6,4.731L6.166,4.4l-.41,2.226A2.012,2.012,0,0,1,4.692,8.05L2.6,9.109l1.015,1.979a2,2,0,0,1,0,1.824L2.6,14.891l2.095,1.059a2.014,2.014,0,0,1,1.064,1.424l.41,2.224,2.439-.328A2.11,2.11,0,0,1,8.876,19.25Zm3.8-17.4L12,2.587h0Z" />
+                  <path data-name="&lt;Compound Path&gt;" d="M12,8a4,4,0,1,1-4,4,4,4,0,0,1,4-4m0-2a6,6,0,1,0,6,6,6,6,0,0,0-6-6Z" />
+                </g>
+              </svg>
+              <strong>
+                <label>{{searchResultSummary.bestRouteCurrency}}</label> {{searchResultSummary.bestRoutePrice | number:
+                '1.2-2'}}
+              </strong>
+              <span class="fa fa-circle"></span>
+              <small>{{bestRouteDays}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row shipping-alert" [hidden]="true">
+      <div class="col-12">
+        <div class="alert alert-warning hvr-icon-wobble-horizontal pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" id="9da47147-2af0-4541-9126-fe489cb71022" data-name="Layer 1" viewBox="0 0 24 24">
+            <g id="4770d30b-5f7a-489b-b03f-e33ae4f209ee" class="svg-color" data-name="plane">
+              <path id="e028be17-d5a5-4255-9439-886e15d376f8" data-name="&lt;Path&gt;" class="714c9074-16c5-4f8a-8fba-4219870be0a1"
+                d="M21.5,14H3.051a3,3,0,0,1-1.872-.656L0,12.4V10H21.5A2.292,2.292,0,0,1,24,12h0A2.292,2.292,0,0,1,21.5,14Z" />
+              <polygon id="c0ae1538-9799-4465-bf1f-29ca5182e666" data-name="&lt;Path&gt;" class="714c9074-16c5-4f8a-8fba-4219870be0a1"
+                points="5 11 0 11 0 7 2.474 7 5 11" />
+              <g id="c44fbcaf-c122-4795-b609-52d2b77a1d55" data-name="&lt;Group&gt;">
+                <polygon id="e514b53e-fa4f-4fa8-9244-c9ea5fd16ce8" data-name="&lt;Path&gt;" class="714c9074-16c5-4f8a-8fba-4219870be0a1"
+                  points="9.444 14 16.381 14 18 12 10.714 3 7 3 10.143 12 9.444 14" />
+                <polygon id="54171f07-8ed6-44b5-9571-7bbf36f3d3c3" data-name="&lt;Path&gt;" class="714c9074-16c5-4f8a-8fba-4219870be0a1"
+                  points="8.746 16 7 21 10.714 21 14.762 16 8.746 16" />
+              </g>
+            </g>
+          </svg>
+          <span>Air Freight on this route is also available (starting at {{currentSelectedCurrency?.sortedCountryName}}
+            12,506.00)
+          </span>
+          <a href="javascript:;">
+            <i class="fa fa-angle-right hvr-icon"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-9 col-md-12" *ngIf="searchResult && searchResult.length > 0">
+        <app-hash-search-card [searchResult]="searchResult"></app-hash-search-card>
+      </div>
+      <div class="col-xl-9 col-md-12" *ngIf="!searchResult || searchResult?.length === 0">
+        <app-no-searchresult></app-no-searchresult>
+      </div>
+      <div class="col-xl-3 col-md-12">
+        <div class="sticky-deals">
+          <!-- <app-right-sidebar></app-right-sidebar> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

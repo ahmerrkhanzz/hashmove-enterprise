@@ -1,0 +1,80 @@
+<div class="admin-page mt-4 mb-4">
+  <div class="container">
+    <h1>Polygon Mapping</h1>
+    <div class="card">
+      <div class="card-body">
+
+        <div>
+          <div class="city-form">
+            <div class="icon-input form-group row">
+              <label class="col-2 col-form-label">City</label>
+              <div class="col-5 input-group-prepend">
+                <div class="input-group-text" *ngIf="!city.imageName">
+                  <img src="../../../../assets/images/icons/flags/4x3/pk.svg" style="max-width:22px;max-height:16px;">
+                </div>
+                <div class="input-group-text" *ngIf="city.imageName">
+                  <img src="{{'../../../../assets/images/icons/flags/4x3/' + (city.imageName | lowercase) + '.svg'}}"
+                    style="max-width:22px;max-height:16px;">
+                </div>
+                <input [disabled]="isPlaced" #cityInput type="text" autocomplete="off" id="typeahead-basic"
+                  class="form-control" placeholder="Your city" [ngbTypeahead]="search2" [resultTemplate]="rt"
+                  [inputFormatter]="formatter" data-toggle="dropdown" (change)="onCityChange(city)" aria-haspopup="true"
+                  aria-expanded="false" />
+                <div class="card ports-loader" *ngIf="isCitySearching">
+                  <div class="card-body d-flex justify-content-center">
+                    <img src="../../../../assets/images/loader.gif" alt="loader">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ng-template #rt let-r="result" let-t="term">
+              <div class="d-inline-block icon-size-16 mr-2">
+                <img src="{{'../../../../assets/images/icons/flags/4x3/' + (r.imageName | lowercase) + '.svg'}}"
+                  style="max-width:100%;max-height:100%;">
+              </div>
+              {{r.title}}
+            </ng-template>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Enter Location</label>
+            <div class="col-5">
+              <input type="text" [disabled]="isPlaced" id="pac-input" class="form-control" placeholder="e.g: Karachi" />
+            </div>
+          </div>
+          <div class="form-group row" *ngIf="isPlaced">
+            <label class="col-2 col-form-label">Location Code</label>
+            <div class="col-5 input-group-prepend">
+              <div class="input-group-text">
+                <span>{{country.CountryCode | uppercase}} - </span>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="gLocCode" maxlength="4"
+                placeholder="Enter Location Code" style="text-transform:uppercase" />
+            </div>
+          </div>
+          <div class="icon-input form-group row" *ngIf="isPlaced">
+            <label class="col-2 col-form-label">Location Name</label>
+            <div class="col-5">
+              <input type="text" class="form-control" [(ngModel)]="gLocName" maxlength="100"
+                placeholder="Enter Location Name" />
+            </div>
+            <div class="col-5 row">
+              <div class="col" *ngIf="isPlaced">
+                <div class="btn-group">
+                  <button class="btn btn-primary btn-lg  full-width-btn hvr-sweep-to-right mr-2"
+                    (click)="savePolygon()">
+                    Save
+                  </button>
+                  <button class="btn btn-primary btn-lg pull-right full-width-btn hvr-sweep-to-right"
+                    (click)="onUndo()">
+                    Undo
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div #polyMap style="height: 800px;width:100%;" [hidden]="!isCityEntered"></div>
+    </div>
+  </div>

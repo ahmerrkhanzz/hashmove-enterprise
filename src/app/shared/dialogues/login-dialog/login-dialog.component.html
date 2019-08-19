@@ -1,0 +1,97 @@
+<!-- User login Modal -->
+<div class="UserLogin ">
+  <div class="user-modal animated fadeIn">
+    <div class="modal-header">
+      <h4 class="user-modal-title">Login</h4>
+
+      <!-- <a href="javascript:;" class="have-an-account hvr-icon-wobble-horizontal pull-right" (click)="registration()">
+        <span class="already-account">
+          Don't Have An Account?
+          <i class="fa fa-angle-right hvr-icon" aria-hidden="true"></i>
+        </span>
+      </a> -->
+      <!-- <a class="pointer crossIcon" (click)="closeModal()">
+        <img src="../../../../assets/images/icons/icon_close.svg" alt="close">
+      </a> -->
+    </div>
+    <div class="modal-body">
+      <form class="form-component" novalidate [formGroup]="loginForm" autocomplete="off" (ngSubmit)="loginUser(loginForm.value)">
+
+        <div *ngIf="savedUser">
+          <div class="user-profile-main gradient-border">
+            <img *ngIf="userAvatar" [src]="userAvatar" alt="user_icon">
+            <img *ngIf="!userAvatar" src="../../../../assets/images/icons/Icons_User.svg" alt="user_icon">
+          </div>
+          <h4 class="username">Hi, {{userName}}</h4>
+        </div>
+
+
+        <!-- input row -->
+        <div class="row form-group" [hidden]="savedUser">
+          <div class="col">
+            <label>Email</label>
+            <!-- <input type="email"  (focusout)="errorMessages()" (focus)="emailError=false" autocomplete="off" formControlName="loginUserID" class="form-control" [ngClass]="(emailError)?'user-invalid':''" -->
+            <input id="loginUserID" [autocomplete]="false" type="email" (focusout)="errorMessagesEmail()" (focus)="emailError=false"
+              formControlName="loginUserID" class="form-control" [ngClass]="(loginForm.controls['loginUserID'].errors && !loginForm.controls['loginUserID'].pristine && emailError)?'user-invalid':''"
+              placeholder="John@company.com" />
+            <span *ngIf="emailError">
+              <p class="animated fadeIn invalid-error" *ngIf="(loginForm.controls['loginUserID'].errors && !loginForm.controls['loginUserID'].pristine )">Please
+                enter valid information</p>
+            </span>
+
+          </div>
+        </div>
+        <!--/ input row -->
+
+
+        <!-- input row -->
+        <div class="row form-group">
+
+          <div class="col">
+            <label *ngIf="!savedUser">Password</label>
+            <i class="fa fa-eye pointer" [ngClass]="colorEye" (click)=confirmPassword($event)></i>
+            <input id="password" [autocomplete]="false" type="password" (focusout)="errorMessagePass()" (focus)="passError=false"
+              formControlName="password" class="form-control" placeholder="{{placeholder}}" [ngClass]="(loginForm.controls['password'].errors && !loginForm.controls['password'].pristine && passError)?'user-invalid':''" />
+
+            <span *ngIf="passError">
+              <p class="animated fadeIn invalid-error" *ngIf="(loginForm.controls['password'].errors && !loginForm.controls['password'].pristine )">Please
+                enter atleast 1 character</p>
+            </span>
+
+          </div>
+        </div>
+        <!--/ input row -->
+
+        <!-- button row -->
+        <div class="col login-btn">
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary pull-right full-width-btn hvr-sweep-to-right" [disabled]="isFormInValid || loading">Login
+              <i *ngIf="loading" class="fa fa-spinner fa-spin"></i></button>
+          </div>
+          <div class="forgot-password">
+            <a href="javascript:;" class="forgot-password hvr-icon-wobble-horizontal" (click)="forgetPassword()">Forgot
+              Password?
+              <!-- <i class="fa fa-angle-right hvr-icon" aria-hidden="true"></i> -->
+              <img src="../../../../assets/images/icons/icon_arrow_right.svg" alt="Arrow Icon" class="icon-svg hvr-icon">
+            </a>
+          </div>
+        </div>
+        <!--/ button row -->
+
+
+        <!-- not your account-->
+
+        <div *ngIf="savedUser" class="col-sm-12 not-your-account-main hvr-icon-wobble-horizontal">
+          <a href="javascript:;" class="not-your-account" (click)="notMyAccount()">Not {{userName}}?
+
+            <i class="fa fa-angle-right pull-right hvr-icon" aria-hidden="true"></i>
+          </a>
+        </div>
+        <!--/ not your account-->
+
+      </form>
+    </div>
+  </div>
+
+</div>
+<!--/ User login Modal -->

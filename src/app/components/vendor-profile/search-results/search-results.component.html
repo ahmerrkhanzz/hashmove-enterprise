@@ -1,0 +1,368 @@
+<div *ngIf="popupClosed">
+    <hr>
+    <div class="vendor-search" *ngIf="searchCriteria.searchMode === 'warehouse-lcl'">
+        <div class="row" *ngIf="searchResult && searchResult.length > 0">
+            <div class="col-xl-3 col-md-12 col-sm-12 mt-3 inner-left-sidebar ">
+                <div class="leftSideBar ">
+                    <app-hash-filters-forwarder-sidebar [providersResult]="mainsearchResult">
+                    </app-hash-filters-forwarder-sidebar>
+                </div>
+            </div>
+            <div class="col-xl-9 col-md-12 col-sm-12 mt-5 right-content"
+                *ngIf="searchResult && searchResult.length > 0">
+                <div class="row" *ngIf="searchResult">
+                    <div class="col-xl-5 col-md-12">
+                        <h5>We found
+                            <b>{{searchResult.length}} </b> results in {{searchCriteria.CityName}}
+                            <!-- <br> selected route -->
+                        </h5>
+                    </div>
+                    <div class="col-xl-7 col-md-12">
+                        <div class="sort-filter">
+                            <div class="switch-box">
+                                <ui-switch size="small" [(ngModel)]="mapView" (change)="mapViewChange($event)">
+                                </ui-switch>
+                                <label for="">Map View</label>
+                            </div>
+                            <app-currency-dropdown [selectedCurrency]="currentSelectedCurrency"
+                                [currencyList]="currencyFlags"
+                                (selectedCurrencyEvent)="currencyFilter($event, 'warehouse')">
+                            </app-currency-dropdown>
+                            <div ngbDropdown #sortDrop="ngbDropdown" class="sort-by">
+                                <span id="dropdownsorter" ngbDropdownToggle class="pointer">SORT BY: {{selectedSortType
+                                    |
+                                    uppercase}}
+                                    ({{selectedSortText
+                                    | uppercase}})</span>
+                                <div class="sortFilter animated fadeIn" ngbDropdownMenu
+                                    aria-labelledby="dropdownsorter">
+                                    <div class="sort-item">
+                                        <table class="table">
+                                            <tr class="active">
+                                                <td>Price</td>
+                                                <td>
+                                                    <i class="fa fa-arrow-up "
+                                                        (click)="sorterV2('TotalPrice','desc', $event, 'Price', 'carrier');sortDrop.close()"
+                                                        ngbTooltip="High" placement="left"></i>
+                                                </td>
+                                                <td>
+                                                    <i class="fa fa-arrow-down active"
+                                                        (click)="sorterV2('TotalPrice','asc',$event, 'Price', 'carrier');sortDrop.close()"
+                                                        ngbTooltip="Low" placement="left"></i>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div [ngClass]="!mapView ? 'col-md-9' : 'col-md-12'">
+                        <section>
+                            <section *ngIf="!mapView">
+                                <app-search-card [searchResult]="searchResult"
+                                    *ngIf="searchResult && searchResult.length"></app-search-card>
+                            </section>
+                            <section *ngIf="mapView">
+                                <div class="google-map-cards" *ngIf="searchResult && searchResult.length">
+                                    <hashmove-map [windowHeight]="'34.375rem'" [enableDataService]="false"
+                                        [isWareHouseMap]="true" [wareSearchResult]="searchResult"
+                                        (onWarehouseClick)="onWarehouseClick($event)"
+                                        (onGalleryClick)="onGalleryClick($event)"></hashmove-map>
+                                </div>
+                                <div class="images-carousel" *ngFor="let image of _albums; let i=index">
+                                    <img [src]="image.thumb" (click)="open(i)" />
+                                </div>
+                            </section>
+                        </section>
+                        <app-no-searchresult *ngIf="!searchResult || searchResult.length === 0"></app-no-searchresult>
+                    </div>
+                    <div class="col-md-3" *ngIf="!mapView">
+                        <!-- <app-right-sidebar></app-right-sidebar> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-sm-12" *ngIf="!searchResult">
+                <app-no-searchresult></app-no-searchresult>
+            </div>
+        </div>
+    </div>
+
+    <div class="vendor-search airline" *ngIf="searchCriteria.searchMode === 'air-lcl'">
+        <div class="row" *ngIf="searchResult && searchResult.length > 0">
+            <div class="col-xl-3 col-md-12 col-sm-12 mt-3 inner-left-sidebar">
+                <div class="leftSideBar">
+                    <app-hash-filters-sidebar [searchResult]="mainsearchResult" *ngIf="mainsearchResult">
+                    </app-hash-filters-sidebar>
+                </div>
+            </div>
+            <div class="col-xl-9 col-md-12 col-sm-12 mt-3 right-content">
+                <div class="we-found-section">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-12">
+                            <div class="">
+                                <h5>We found
+                                    <b>{{searchResult?.length}} </b>
+                                    results for your selected route
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-12">
+                            <div class="sort-filter">
+                                <app-currency-dropdown [selectedCurrency]="currentSelectedCurrency"
+                                    [currencyList]="currencyList"
+                                    (selectedCurrencyEvent)="currencyFilter($event, 'air')">
+                                </app-currency-dropdown>
+                                <div ngbDropdown #sortDrop="ngbDropdown" class="sort-by">
+                                    <span id="dropdownsorter" ngbDropdownToggle class="pointer">SORT BY:
+                                        {{selectedSortType | uppercase}}
+                                        ({{selectedSortText | uppercase}})</span>
+                                    <div class="sortFilter animated fadeIn" ngbDropdownMenu
+                                        aria-labelledby="dropdownsorter">
+                                        <div class="sort-item">
+                                            <table class="table">
+                                                <tr class="active">
+                                                    <td>Price</td>
+                                                    <td>
+                                                        <i class="fa fa-arrow-up "
+                                                            (click)="sorterV2('TotalPrice','desc', $event, 'Price', true, 'carrier');sortDrop.close()"
+                                                            ngbTooltip="High" placement="left"></i>
+                                                    </td>
+                                                    <td>
+                                                        <i class="fa fa-arrow-down active"
+                                                            (click)="sorterV2('TotalPrice','asc',$event, 'Price', true, 'carrier');sortDrop.close()"
+                                                            ngbTooltip="Low" placement="left"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Transit Time</td>
+                                                    <td>
+                                                        <i class="fa fa-arrow-up"
+                                                            (click)="sorterV2('EtaInDays','desc', $event, 'Transit Time', true, 'carrier');sortDrop.close()"
+                                                            ngbTooltip="High" placement="left"></i>
+                                                    </td>
+                                                    <td>
+                                                        <i class="fa fa-arrow-down"
+                                                            (click)="sorterV2('EtaInDays','asc', $event, 'Transit Time', true, 'carrier');sortDrop.close()"
+                                                            ngbTooltip="Low" placement="left"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cut Off</td>
+                                                    <td>
+                                                        <i class="fa fa-arrow-up"
+                                                            (click)="sorterV2('PortCutOffUtc','desc', $event, 'Cut Off', true, 'carrier');sortDrop.close()"
+                                                            ngbTooltip="High" placement="left"></i>
+                                                    </td>
+                                                    <td>
+                                                        <i class="fa fa-arrow-down"
+                                                            (click)="sorterV2('PortCutOffUtc','asc', $event, 'Cut Off', true, 'carrier');sortDrop.close()"
+                                                            ngbTooltip="Low" placement="left"></i>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-9 col-md-9 col-sm-12" *ngIf="searchResult && searchResult.length > 0">
+                        <app-hash-search-card [searchResult]="searchResult"></app-hash-search-card>
+                    </div>
+                    <div class="col-xl-3 col-md-3 col-sm-12" *ngIf="(searchResult && searchResult.length > 0)">
+                        <!-- <app-right-sidebar></app-right-sidebar> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!searchResult || searchResult.length === 0">
+            <div class="col-12">
+                <app-no-searchresult></app-no-searchresult>
+            </div>
+        </div>
+    </div>
+
+    <div class="vendor-search" *ngIf="searchCriteria.searchMode === 'sea-lcl' || searchCriteria.searchMode === 'truck-ftl'">
+        <div class="row" *ngIf="searchResult && searchResult.length > 0">
+            <div class="col-xl-3 col-md-12 col-sm-12 mt-3 inner-left-sidebar">
+                <div class="leftSideBar">
+                    <app-lcl-left-sidebar></app-lcl-left-sidebar>
+                </div>
+            </div>
+            <div class="col-xl-9 col-md-12 col-sm-12 mt-3 right-content">
+                <div class="we-found-section">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-12">
+                            <div class="">
+                                <h5>We found
+                                    <b>{{searchResult?.length}} </b> results for your selected route
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-12">
+                            <div class="sort-filter">
+                                <app-currency-dropdown [selectedCurrency]="currentSelectedCurrency"
+                                    [currencyList]="currencyList"
+                                    (selectedCurrencyEvent)="currencyFilter($event, 'lcl')">
+                                </app-currency-dropdown>
+                                <div ngbDropdown #sortDrop="ngbDropdown" class="sort-by">
+                                    <span id="dropdownsorter" ngbDropdownToggle class="pointer">SORT BY:
+                                        {{selectedSortType
+                                        | uppercase}}
+                                        ({{selectedSortText | uppercase}})</span>
+                                    <div class="sortFilter animated fadeIn" ngbDropdownMenu
+                                        aria-labelledby="dropdownsorter">
+                                        <div class="sort-item">
+                                            <table class="table">
+                                                <tr class="active">
+                                                    <td>Price</td>
+                                                    <td>
+                                                        <i class="fa fa-arrow-up "
+                                                            (click)="sorterV2('TotalPrice','desc', $event, 'Price', true, 'carrier');sortDrop.close()"
+                                                            ngbTooltip="High" placement="left"></i>
+                                                    </td>
+                                                    <td>
+                                                        <i class="fa fa-arrow-down active"
+                                                            (click)="sorterV2('TotalPrice','asc',$event, 'Price', true, 'carrier');sortDrop.close()"
+                                                            ngbTooltip="Low" placement="left"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Transit Time</td>
+                                                    <td>
+                                                        <i class="fa fa-arrow-up"
+                                                            (click)="sorterV2('EtaInDays','desc', $event, 'Transit Time', true, 'carrier');sortDrop.close()"
+                                                            ngbTooltip="High" placement="left"></i>
+                                                    </td>
+                                                    <td>
+                                                        <i class="fa fa-arrow-down"
+                                                            (click)="sorterV2('EtaInDays','asc', $event, 'Transit Time', true, 'carrier');sortDrop.close()"
+                                                            ngbTooltip="Low" placement="left"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cut Off</td>
+                                                    <td>
+                                                        <i class="fa fa-arrow-up"
+                                                            (click)="sorterV2('PortCutOffUtc','desc', $event, 'Cut Off', true, 'carrier');sortDrop.close()"
+                                                            ngbTooltip="High" placement="left"></i>
+                                                    </td>
+                                                    <td>
+                                                        <i class="fa fa-arrow-down"
+                                                            (click)="sorterV2('PortCutOffUtc','asc', $event, 'Cut Off', true, 'carrier');sortDrop.close()"
+                                                            ngbTooltip="Low" placement="left"></i>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="hr-solid">
+                <div class="row">
+                    <div class="col-xl-9 col-md-9 col-sm-12">
+                        <app-search-card [searchResult]="searchResult"></app-search-card>
+                    </div>
+                    <div class="col-xl-3 col-md-3 col-sm-12">
+                        <!-- <app-right-sidebar></app-right-sidebar> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!searchResult">
+            <div class="col-12">
+                <app-no-searchresult></app-no-searchresult>
+            </div>
+        </div>
+    </div>
+
+    <div class="vendor-search" *ngIf="searchCriteria.searchMode === 'sea-fcl'">
+        <div class="grey-bg">
+            <div class="row" *ngIf="searchResult && searchResult.length > 0">
+                <div class="col-xl-3 col-md-12 col-sm-12 mt-3 inner-left-sidebar">
+                    <div class="leftSideBar">
+                        <app-left-sidebar *ngIf="searchResult"></app-left-sidebar>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-md-12 col-sm-12 mt-3">
+                    <!-- <app-selection-summary [data]="selectedcarrier" [page]="'vendor'" *ngIf="showCard === 'carrier'"></app-selection-summary> -->
+                    <div *ngIf="searchResult?.length != 0" class="forwarders-filter">
+                        <div class="row">
+                            <div class="col-6">
+                                <h5>We have found
+                                    <b>
+                                        <span>{{searchResult?.length}} results</span>
+                                    </b> for your selection
+                                    <br>
+                                    <span *ngIf="dealCount > 0">
+                                        <strong>{{dealCount}}</strong> of them have deals</span>
+                                </h5>
+                            </div>
+                            <div class="col-6">
+                                <div class="sort-filter">
+                                    <app-currency-dropdown [selectedCurrency]="currentSelectedCurrency"
+                                        [currencyList]="currencyFlags"
+                                        (selectedCurrencyEvent)="currencyFilter($event, 'fcl')">
+                                    </app-currency-dropdown>
+                                    <div ngbDropdown #sortDrop="ngbDropdown" class="sort-by">
+                                        <span id="dropdownsorter" ngbDropdownToggle class="pointer">SORT BY:
+                                            {{selectedSortType |
+                                            uppercase}}
+                                            ({{selectedSortText | uppercase}})</span>
+                                        <div class="sortFilter animated fadeIn" ngbDropdownMenu
+                                            aria-labelledby="dropdownsorter">
+                                            <div class="sort-item">
+                                                <table class="table">
+                                                    <tr class="active">
+                                                        <td>Price</td>
+                                                        <td>
+                                                            <i class="fa fa-arrow-up "
+                                                                (click)="sorterV2('TotalPrice','asc',$event, 'Price', true, 'carrier');sortDrop.close()"
+                                                                ngbTooltip="High"></i>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-arrow-down active"
+                                                                (click)="sorterV2('TotalPrice','asc',$event, 'Price', true, 'carrier');sortDrop.close()"
+                                                                ngbTooltip="Low"></i>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-9 col-md-9 col-sm-12" *ngIf="searchResult">
+                            <app-hash-search-card [type]="'vendor'" [searchResult]="searchResult">
+                            </app-hash-search-card>
+                        </div>
+                        <div *ngIf="!searchResult">
+                            <app-no-searchresult></app-no-searchresult>
+                        </div>
+                        <div class="col-xl-3 col-md-3 col-sm-3 right-content">
+                            <!-- <app-right-sidebar class="filters"></app-right-sidebar> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="!searchResult || searchResult.length === 0">
+                <div class="col-12">
+                    <app-no-searchresult> </app-no-searchresult>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

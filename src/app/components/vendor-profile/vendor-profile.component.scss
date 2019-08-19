@@ -1,0 +1,69 @@
+@import "../../../assets/scss/_variables";
+.vendor {
+  &-title {
+    display: flex;
+    justify-content: space-between;
+    h6 {
+      font-size: $font-size-large+0.25rem;
+      font-family: $font-pragmatica;
+      font-weight: $font-weight-mid;
+      color: $text-color-default;
+      display: flex;
+      flex-direction: column;
+    }
+    .btn {
+      font-size: $font-size-large;
+      font-family: $font-proxima;
+      font-weight: $font-proxima-weight-semibold;
+      text-transform: uppercase;
+      padding: 0.45rem 2rem;
+      height: 40px;
+    }
+    .reviews {
+      font-size: $font-size-base;
+      font-family: $font-proxima;
+      font-weight: $font-proxima-weight-semibold;
+      color: $dark-grey-blue;
+      text-transform: uppercase;
+    }
+  }
+  &-customer-review {
+    .card {
+      background-color: #fdfdff;
+      &-body {
+        padding: 2.5rem 1.125rem;
+        height: 354px;
+        p.card-text {
+          font-size: $font-size-large + 0.125rem;
+          font-family: $font-proxima;
+          font-weight: $font-weight-mid;
+          max-height: 220px;
+          overflow: hidden;
+          color: $text-color-default;
+        }
+        .media {
+          img.profile-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+          }
+          &-body {
+            line-height: 1.3;
+            margin-top: 6px;
+            blockquote {
+              font-size: $font-size-large;
+              font-family: $font-proxima;
+              font-weight: $font-proxima-weight-semibold;
+              color: $text-color-default;
+            }
+            .flag-icon {
+              width: 20px;
+              height: 12px;
+              border: 1px solid $input-border;
+            }
+          }
+        }
+      }
+    }
+  }
+}

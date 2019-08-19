@@ -1,0 +1,18 @@
+<div class="user-modal animated fadeIn">
+  <div class="modal-header">
+    <h4 class="confirm-modal-title">Saved Booking</h4>
+    <a class="pointer crossIcon" (click)="closeModal()">
+      <img src="../../../../assets/images/icons/icon_close.svg" alt="close">
+    </a>
+  </div>
+  <div class="modal-body">
+    <p class="text-center"> Are you sure you want to continue booking? </p>
+    <div class="text-center">
+      <button *ngIf="!isRouting" class="btn btn-primary hvr-sweep-to-right" (click)="onConfirmClick()">Yes, I want to
+        continue my booking</button>
+      <div *ngIf="isRouting" class="col btn btn-primary">
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
+    </div>
+  </div>
+</div>

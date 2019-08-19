@@ -1,0 +1,353 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~ion-rangeslider/css/ion.rangeSlider.css";
+@import "~ion-rangeslider/css/ion.rangeSlider.skinHTML5.css";
+@import "./assets/fonts/fonts-hm.css";
+// @import url(ion.rangeSlider.css);
+// @import url(ion.rangeSlider.skinHTML5.css);
+@import "./assets/scss/_styles";
+// @import url("./assets/fonts/typekit-fonts.css");
+@import "~ngx-toastr/toastr.css";
+@import "~nouislider/distribute/nouislider.min.css";
+@import "~perfect-scrollbar/css/perfect-scrollbar.css";
+// lightBox
+.lightbox {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0% !important;
+  flex-direction: column-reverse;
+}
+
+body,
+html {
+  height: 100% !important;
+  .overlay-container {
+    position: absolute;
+  }
+  .toast-container {
+    .toast-warning {
+      background-color: #fdf6ec;
+      border: 1px solid #f89406;
+      color: black !important;
+      padding: 10px 15px 10px 65px;
+      font-size: $font-size-base;
+      background-image: unset;
+      .toast-close-button {
+        outline: 0;
+      }
+      .toast-message:before {
+        content: "";
+        width: 45px;
+        height: 100%;
+        background: #f89406;
+        background-image: url("./assets/images/icons/icon_info.svg");
+        background-size: 20px;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #f89406;
+      }
+      .toast-close-button {
+        color: dimgrey !important;
+      }
+    }
+    .toast-success {
+      background-color: #e9f7f7;
+      border: 1px solid #00bfb4;
+      color: black !important;
+      padding: 10px 15px 10px 65px;
+      font-size: $font-size-base;
+      background-image: unset; // @extend .toast-warning;
+      // background-color: #e9f7f7;
+      // border: 1px solid #00bfb4;
+      &:before {
+        content: "";
+        width: 45px;
+        height: 100%;
+        background: #00bfb4;
+        background-image: url("./assets/images/icons/icon_success.svg");
+        background-size: 20px;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #00bfb4;
+      }
+      .toast-close-button {
+        color: dimgrey !important;
+      }
+    }
+    .toast-error {
+      @extend .toast-warning;
+      background-color: #fae7e9;
+      border: 1px solid #d8242f;
+      .toast-message:before {
+        @extend .toast-message:before;
+        background: #d8242f;
+        color: #d8242f;
+        background-image: url("./assets/images/icons/icon_error_white.svg");
+        background-size: 20px;
+        background-position: 50%;
+        background-repeat: no-repeat;
+      }
+    }
+    .toast-info {
+      @extend .toast-warning;
+      background-color: #fff;
+      border: 1px solid #2f96b4;
+      .toast-message:before {
+        @extend .toast-message:before;
+        background: #2f96b4;
+        color: #2f96b4;
+        background-image: url("./assets/images/icons/icon_info.svg");
+        background-size: 20px;
+        background-position: 50%;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}
+
+.banner-heading {
+  font-size: $root-font-size + 4.25rem;
+  position: absolute;
+  z-index: 1;
+  top: 178px;
+  line-height: 1;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.v-none {
+  visibility: hidden;
+  overflow: hidden;
+  height: 0 !important;
+}
+
+// btn hover animation
+.hvr-ripple-out:before {
+  border: $secondary-color solid 6px;
+}
+
+$boxes-border: #d9d9d9;
+$active-tab: $color-topmenuactive;
+$unactive-tab1: #ececec;
+$unactive-tab2: #ffffff;
+$unactive-container-tab: #a5b2ba;
+$tabs-grey-border: #e3e4e6;
+$badge-border: #edeff1;
+$pickup-text: #555555;
+$pickup-border: #dedfe0;
+$active-tab-fontsize: $font-size-base;
+$shipping-nav-tabs-width: 100%;
+$calendar-month-name-fontcolor: #2b2b2b;
+$calendar-month-name-fontsize: 15px;
+$ngb-dp-weekday-fontcolor: #777777;
+$calendar-background-color: $white-color;
+$btn-light-fontsize: $font-size-medium;
+$shipping-box-shadow: #d9d9d9;
+$container-detail-text-color: #717171;
+$portValid-color: #c70606;
+$pickup-options-hover-color: #f7f8f9;
+$nav-tabs-box-shadow: #008bd4;
+$ngb-dp-month-border-color: #dfdfdf;
+$btn-outline-secondary-bgcolor: #ebeff2;
+$btn-outline-secondary-bordercolor: #d5dade;
+$color-plus-minus: #adadad;
+.ngb-dp-months {
+  padding: 0.9375rem;
+  .ngb-dp-month:first-child .ngb-dp-week {
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+    padding-right: 1.25rem;
+    border-radius: 0rem;
+  }
+  .ngb-dp-month {
+    padding: 0.3125rem;
+    border-bottom: 1px solid $ngb-dp-month-border-color;
+    .ngb-dp-month-name {
+      font-size: $calendar-month-name-fontsize;
+      color: $calendar-month-name-fontcolor !important;
+      background-color: $calendar-background-color !important;
+    }
+    .ngb-dp-weekday {
+      color: $ngb-dp-weekday-fontcolor !important;
+      font-style: normal !important;
+      background-color: $calendar-background-color !important;
+      border-bottom: 0px solid rgba(0, 0, 0, 0.125);
+    }
+    .ngb-dp-week {
+      .ngb-dp-day[_ngcontent-c10],
+      .ngb-dp-weekday[_ngcontent-c10],
+      .ngb-dp-week-number[_ngcontent-c10] {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+      .btn-light {
+        border-radius: 10px 0px !important;
+        font-size: $btn-light-fontsize;
+        &.bg-primary.text-white {
+          background: $primary-color !important;
+        }
+      }
+      .btn-light:not(:disabled):not(.disabled).active,
+      .btn-light:not(:disabled):not(.disabled):active,
+      .show>.btn-light.dropdown-toggle,
+      .btn-light:hover,
+      .btn-light:not(:disabled):not(.disabled).active:focus,
+      .btn-light:not(:disabled):not(.disabled):active:focus,
+      .show>.btn-light.dropdown-toggle:focus {
+        background-color: $btn-disable-background;
+        color: $btn-disable-color;
+        &:hover {
+          background-color: #d2d2d238 !important;
+          color: $text-color-default !important;
+        }
+        & {
+          background-color: $btn-disable-background;
+          color: $btn-disable-color;
+        }
+      }
+    }
+  }
+  .ngb-dp-weekdays {
+    border-bottom: 0px solid rgba(0, 0, 0, 0.125);
+  }
+  .bg-light {
+    background-color: $calendar-background-color !important;
+    color: $ngb-dp-weekday-fontcolor !important;
+  }
+}
+
+.pac-item {
+  .pac-icon.pac-icon-marker {
+    background-image: url("./assets/images/icons/Icons_Location.svg") !important;
+    background-size: auto;
+    width: 11px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-position: 0;
+  }
+  &.pac-item-selected,
+  &:hover {
+    .pac-icon.pac-icon-marker {
+      background-image: url("./assets/images/icons/Icons_Location_blue.svg") !important;
+    }
+  }
+}
+
+.tooltip {
+  z-index: 99999 !important;
+  &-inner {
+    z-index: 99999 !important;
+    .custom-tooltip1 {
+      z-index: 99999 !important;
+    }
+  }
+}
+
+.air-info-tooltip {
+  //  left: calc(15.5% - 0.4rem) !important;
+  transition: all 0.3s ease;
+  opacity: 1 !important;
+  .arrow {
+    left: calc(49% - 0.4rem) !important;
+    &::before {
+      border-top-color: $white-color;
+    }
+  }
+  .tooltip-inner {
+    background-color: transparent;
+    max-width: 43.75rem !important;
+    padding-bottom: 0;
+    .custom-tooltip1 {
+      box-shadow: 0px 0px 5px #ddd;
+      background-color: $white-color !important;
+      color: $text-color-default !important;
+      padding: 0.5rem;
+      font-size: 0.725rem;
+    }
+  }
+}
+
+.gradient-tabs {
+  ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center !important;
+    border: 0;
+    .nav-item {
+      .nav-link {
+        padding: 0.8125rem 0rem;
+        background: $unactive-tab1;
+        background: linear-gradient( 180deg, $unactive-tab1 35%, $unactive-tab2 100%) !important;
+        color: $unactive-container-tab;
+        text-align: center;
+        padding: 0.75rem 1.8rem;
+        text-transform: uppercase;
+        &.disabled {
+          cursor: auto;
+        }
+        svg {
+          position: relative;
+          top: 1px;
+          width: 25px;
+          height: 25px;
+          margin-right: 5px;
+          display: inline-block;
+        }
+        span {
+          font-size: $font-size-medium;
+          font-family: $font-proxima;
+          font-weight: $font-proxima-weight-semibold;
+          color: $dark-grey-blue !important;
+        }
+        .container-svg {
+          fill: $unactive-container-tab;
+        }
+        &.active {
+          background: $shipping-active-color !important;
+          color: $white-color;
+          border-top: 1px solid #30ccee !important;
+          transition: 0.5s;
+          background: -moz-linear-gradient( 90deg, rgb(0, 0, 0) 0%, rgb(255, 255, 255) 100%);
+          background: -webkit-linear-gradient( 90deg, rgb(0, 0, 0) 0%, rgb(255, 255, 255) 100%);
+          background: -ms-linear-gradient( 90deg, rgb(0, 0, 0) 0%, rgb(255, 255, 255) 100%);
+          box-shadow: inset 0px -8px 6px 0px #0085d2, inset 0px 1px 6px 0px #30ccee;
+          .container-svg {
+            fill: $white-color;
+          }
+        }
+        &.active {
+          span {
+            color: $color-white !important;
+          }
+        }
+      }
+      &:first-child {
+        a {
+          border-radius: 5px 0 0 5px;
+        }
+      }
+      &:last-child {
+        a {
+          border-radius: 0 5px 5px 0;
+        }
+        svg {
+          position: relative;
+          top: 4px;
+        }
+        span {
+          top: 5px !important;
+        }
+      }
+    }
+  }
+}

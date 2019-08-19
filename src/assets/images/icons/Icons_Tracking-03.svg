@@ -1,0 +1,29 @@
+<svg id="56de68f2-57ad-4304-9b56-00fddc182cc0" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
+  <defs>
+    <style>
+      .\31 adff1fc-7a50-455b-9bc1-27f049579bcf {
+        fill: #00a2df;
+      }
+
+      .\30 1f00a4d-14a6-4276-aeae-206c449d075f {
+        fill: #fff;
+      }
+
+      .\37 d71a213-08a7-410d-b618-3ec391e415c7 {
+        opacity: 0.15;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g>
+    <path id="bb7b6e12-d7d8-4a2a-83bc-9c861e4a6093" data-name="&lt;Compound Path&gt;" class="1adff1fc-7a50-455b-9bc1-27f049579bcf" d="M22,34.25c11.852,0,19.164,2.557,19.972,4-.808,1.443-8.12,4-19.972,4s-19.164-2.557-19.972-4c.808-1.443,8.12-4,19.972-4m0-2c-12.15,0-22,2.686-22,6s9.85,6,22,6,22-2.686,22-6-9.85-6-22-6Z"/>
+    <rect id="70e41031-4e3a-40f6-8cae-95ffce594423" data-name="&lt;Rectangle&gt;" class="01f00a4d-14a6-4276-aeae-206c449d075f" x="10" y="32" width="24" height="4"/>
+    <path id="18fe6820-9ecc-49b9-882a-74c5d60b982e" data-name="&lt;Compound Path&gt;" class="1adff1fc-7a50-455b-9bc1-27f049579bcf" d="M22,4A13.015,13.015,0,0,1,35,17c0,4.829-7.33,12.984-13,18.045C16.329,29.983,9,21.829,9,17A13.015,13.015,0,0,1,22,4m0-3A16,16,0,0,0,6,17c0,8.837,16,22,16,22S38,25.837,38,17A16,16,0,0,0,22,1Z"/>
+    <path id="e763395e-b041-42a5-a218-afaa81080b30" data-name="&lt;Compound Path&gt;" class="1adff1fc-7a50-455b-9bc1-27f049579bcf" d="M22,14a2,2,0,1,1-2,2,2,2,0,0,1,2-2m0-3a5,5,0,1,0,5,5,5,5,0,0,0-5-5Z"/>
+    <g id="00e73e2d-3355-4bdd-b558-eeb12eea7292" data-name="&lt;Group&gt;" class="7d71a213-08a7-410d-b618-3ec391e415c7">
+      <g id="d6485fe5-fabe-4ed8-8bfa-3e301aed975d" data-name="&lt;Group&gt;">
+        <path id="30ac8e3c-9a14-46aa-bc74-67a2ad5b3cc2" data-name="&lt;Compound Path&gt;" class="1adff1fc-7a50-455b-9bc1-27f049579bcf" d="M25,4A12.82,12.82,0,0,0,12,16.632C12,23.608,25,34,25,34S38,23.608,38,16.632A12.82,12.82,0,0,0,25,4ZM22,21a5,5,0,1,1,5-5A5,5,0,0,1,22,21Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

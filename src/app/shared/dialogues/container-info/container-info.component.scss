@@ -1,0 +1,29 @@
+@import "../../../../assets/scss/_variables";
+
+.add-container {
+  .modal-header {
+    .modal-title {
+      font-size: 1.25rem;
+      font-family: $font-proxima;
+      font-weight: $font-proxima-weight-semibold;
+
+      .small-text {
+        font-size: $font-size-medium;
+        font-family: $font-proxima;
+      }
+    }
+  }
+
+  .modal-label {
+    font-size: $font-size-medium;
+    color: $color-topmenu;
+    font-family: $font-proxima;
+    font-weight: $font-weight-mid;
+    text-transform: uppercase;
+  }
+  .submit-btn {
+    width: 200px;
+    height: 47px;
+    text-transform: uppercase;
+  }
+}

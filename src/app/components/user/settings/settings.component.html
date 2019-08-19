@@ -1,0 +1,49 @@
+<div class="settings">
+  <h3 class="setting-title">Settings</h3>
+  <div class="settings-content">
+    <ngb-tabset (tabChange)="onTabChange($event)" [destroyOnHide]="false">
+      <ngb-tab title="MY PROFILE" id="settings-profile">
+        <ng-template ngbTabContent>
+          <div *ngIf="userProfile" class="fadeIn">
+            <app-profile-settings
+              [companySizeList]="companySizeList"
+              [companyTypeList]="companyTypeList"
+              [countryList]="countryList"
+              [currencyList]="currencyList"
+              [departmentList]="departmentList"
+              [shippingFreg]="shippingFreg"
+              [userProfile]="userProfile"
+              [cityList]="cityList"
+              [regionList]="regionList"
+              (onProfileUpdate)="profileUpdateEvent($event)"></app-profile-settings>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="DOCUMENT MANAGER" id="settings-documents" [disabled]="!this.userProfile" *ngIf="this.loggedInUser.IsAdmin || !this.loggedInUser.IsCorporateUser">
+        <ng-template ngbTabContent>
+          <div class="settings-content-info" id="settings-document-manager" *ngIf="(userProfile?.UserDocumentSetttings)">
+            <h2>Document Manager</h2>
+            <div class="settings-documents">
+              <!-- Accordion-->
+              <div>
+                <app-document-settings [userDocument]="userProfile.UserDocumentSetttings" ></app-document-settings>
+              </div>
+              <!--/ Accordion -->
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <!-- <ngb-tab title="NOTIFICATIONS" id="settings-notification" [disabled]="!this.userProfile">
+        <ng-template ngbTabContent>
+          <div *ngIf="(userProfile?.UserNotificationSetting && userProfile?.UserNotificationSetting)">
+            <app-notification-settings
+             [userNotificationSettings]="userProfile?.UserNotificationSetting"
+             [cityList]="cityList"
+             [serviceTypeList]="serviceTypeList">
+            </app-notification-settings>
+          </div>
+        </ng-template>
+      </ngb-tab> -->
+    </ngb-tabset>
+  </div>
+</div>

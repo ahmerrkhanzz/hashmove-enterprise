@@ -1,0 +1,47 @@
+<svg id="5ac9c91b-9215-4d1b-836c-10b7e5eba856" data-name="Layer 1" width="24px" height="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .\36 2e4c667-f018-4b6d-a2dc-2dbd7b14bd37 {
+        fill: #738593;
+      }
+
+      .e4e87948-3719-4dff-b4f7-63009d7d325f {
+        fill: none;
+        stroke: #738593;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+      .move{
+        animation: dash 2s cubic-bezier(1, 0.68, 0.41, 1.17) infinite;
+        animation-duration: 1.8s;
+        animation-timing-function: ease;
+      }
+      .animate-layer{
+        animation-delay: 0.5s;
+      }
+      .animate-layer2{
+        animation-delay: 0.8s;
+      }
+      .animate-layer3{
+        animation-delay: 1s;
+      }
+      
+      @keyframes dash {
+        0% {
+          transform:translateX(8px); 
+        }
+        100%{
+          transform:translateX(-1px);
+        }
+      }
+    </style>
+  </defs>
+  <g id="9122d4c7-b949-4e41-9d69-a4ddc8513547" data-name="temperature">
+    <path class="62e4c667-f018-4b6d-a2dc-2dbd7b14bd37" d="M12,16a3,3,0,1,1-3,3,3,3,0,0,1,3-3m0-2a5,5,0,1,0,5,5,5,5,0,0,0-5-5Z"/>
+    <line class="e4e87948-3719-4dff-b4f7-63009d7d325f" x1="12" y1="15" x2="12"/>
+    <line class="e4e87948-3719-4dff-b4f7-63009d7d325f animate-layer move" x1="16" y1="1" x2="24" y2="1"/>
+    <line class="e4e87948-3719-4dff-b4f7-63009d7d325f animate-layer2 move" x1="16" y1="6" x2="22" y2="6"/>
+    <line class="e4e87948-3719-4dff-b4f7-63009d7d325f animate-layer3 move" x1="16" y1="11" x2="20" y2="11"/>
+    <circle class="62e4c667-f018-4b6d-a2dc-2dbd7b14bd37" cx="12" cy="19" r="2"/>
+  </g>
+</svg>

@@ -1,0 +1,27 @@
+<svg id="32f8a433-64e5-43f7-a4fd-8a0ea09ff330" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 150.66">
+  <defs>
+    <style>
+      .e35c3620-a4c3-4af7-961b-6b043a63edae {
+        fill: #1c9af9;
+      }
+
+      .f7a339fb-0291-43d8-8f8f-11e6aa08f643 {
+        fill: url(#f8990c16-941b-4809-96d3-2b152a3c6b77);
+      }
+    </style>
+    <linearGradient id="f8990c16-941b-4809-96d3-2b152a3c6b77" x1="121.1" y1="60.81" x2="88.18" y2="90.84" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#364244"/>
+      <stop offset="0.1" stop-color="#2a4f5d"/>
+      <stop offset="0.27" stop-color="#1b617e"/>
+      <stop offset="0.44" stop-color="#0f6f97"/>
+      <stop offset="0.61" stop-color="#0779aa"/>
+      <stop offset="0.8" stop-color="#027fb4"/>
+      <stop offset="1" stop-color="#0081b8"/>
+    </linearGradient>
+  </defs>
+  <title></title>
+  <g id="50399ba2-580a-4f12-a72c-68469ab8614f" data-name="container">
+    <rect id="445eb1b5-d891-49b6-ab26-f04f2bc697b6" data-name="&lt;Path&gt;" class="e35c3620-a4c3-4af7-961b-6b043a63edae" x="76.47" y="68.56" width="47.29" height="22.65" rx="0.55" ry="0.55"/>
+    <rect id="86024ffd-8cf1-4eb3-a05f-ea9fdc7c6712" data-name="&lt;Rectangle&gt;" class="f7a339fb-0291-43d8-8f8f-11e6aa08f643" x="76.24" y="69.88" width="46.2" height="21.56"/>
+  </g>
+</svg>

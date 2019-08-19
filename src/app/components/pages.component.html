@@ -1,0 +1,7 @@
+<app-header *ngIf="header"></app-header>
+<div class="main" [ngClass]="header ? '' : 'main-bg'" [ngStyle]="{'background-image':'url('+ getUIImage(customerSettings?.customerPrimaryBGImage) +')'}">
+    <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer>
+<app-cookie-bar *ngIf="isCookeStored"></app-cookie-bar>
+<!-- <app-search-footer *ngIf="!homeFooter"></app-search-footer> -->

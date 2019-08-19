@@ -1,0 +1,16 @@
+<svg id="969970e9-5f21-4072-86a7-6672decd15e6" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .c06d2a3e-2056-48b9-8ea4-a92f4739f949 {
+        fill: #00a2df;
+      }
+    </style>
+  </defs>
+  <title>icon</title>
+  <g id="0d761291-d7c4-42bf-9433-98aad825bfb6" data-name="add">
+    <g id="bede06dd-acf7-4be6-a923-734e194ecf5e" data-name="sucess">
+      <path class="c06d2a3e-2056-48b9-8ea4-a92f4739f949" d="M8,2A6,6,0,1,1,2,8,6.007,6.007,0,0,1,8,2M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0Z"/>
+    </g>
+    <polygon class="c06d2a3e-2056-48b9-8ea4-a92f4739f949" points="11 7 9 7 9 5 7 5 7 7 5 7 5 9 7 9 7 11 9 11 9 9 11 9 11 7"/>
+  </g>
+</svg>

@@ -1,0 +1,162 @@
+<!-- New work Start -->
+<section class="bookings">
+  <div class="row">
+    <div class="col-xl-8 col-lg-8 col-md-8 col-12">
+      <h4 class="bookings-title">Bookings</h4>
+      <!-- <small class="bookings-count">You've {{currentBookings?.length}} Current bookings</small> -->
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-12 bookings-start-btn d-flex align-items-center text-right">
+      <a href="javascript:;" class="pull-right hvr-icon-forward w-100" (click)="newSearch()">
+        <span class="link-hover-1">Start a new booking </span>
+        <i class="fa fa-angle-right hvr-icon"></i>
+      </a>
+    </div>
+  </div>
+  <ngb-tabset #bookingsTab="ngbTabset" [activeId]="activeIdString">
+    <ngb-tab id="tab-current">
+      <ng-template ngbTabTitle>Current Bookings
+        <span class="badge badge-primary pull-right" *ngIf="currentBookings && currentBookings.length > 0">{{currentBookings?.length}}</span>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <!-- <div class="row mt-4 animated bounceInDown" style="overflow:hidden;position: relative;z-index:1;" *ngIf="currentBookings && currentBookings.length > 0">
+          <div class="col-12 map">
+            <hashmove-map></hashmove-map>
+          </div>
+        </div> -->
+        <div class="row mt-3 animated bounceInDown" style="overflow:hidden;min-height: 10rem">
+          <div class="col-12">
+            <app-loader-main *ngIf="isSettingData"></app-loader-main>
+            <div *ngIf="!isSettingData">
+              <div *ngFor="let current of currentBookings | paginate: currentBookingConfig">
+                <app-booking-card [bookings]="current"></app-booking-card>
+              </div>
+              <div class="card" *ngIf="!currentBookings || currentBookings.length === 0">
+                <p class="text-center m-0">
+                  There are currently no active bookings.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="paginationBox text-right mt-3 pull-right col-12"
+            *ngIf="currentBookings && currentBookings.length > currentBookingConfig.itemsPerPage && !isSettingData">
+            <div class="d-flex justify-content-end">
+              <p class="pager-info mr-3">Page {{currentBookingConfig.currentPage}} of {{getCurrentPages()}}</p>
+              <pagination-controls [id]="currentBookingConfig.id" [maxSize]="maxSize" [directionLinks]="directionLinks"
+                [autoHide]="autoHide" [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"
+                (pageChange)="onPageChange($event, 'current')"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="tab-saved">
+      <ng-template ngbTabTitle>Saved Bookings
+        <span class="badge badge-primary pull-right" *ngIf="savedBookings && savedBookings.length > 0">{{savedBookings?.length}}</span>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <!-- <div class="row mt-4">
+          <div class="col-12">
+            <img src="../../../../assets/images/map.png" alt="Google Map" width="100%">
+          </div>
+        </div> -->
+        <div class="row mt-3 animated bounceInDown">
+          <div class="col-12" *ngIf="savedBookings && savedBookings.length > 0">
+            <div class="animated bounceInDown" *ngFor="let savedBooking of savedBookings | paginate: savedBookingConfig">
+              <app-booking-card [bookings]="savedBooking" (bookingRemove)="removeBooking($event)"></app-booking-card>
+            </div>
+          </div>
+          <div class="col-12" *ngIf="!savedBookings || savedBookings.length === 0">
+            <div class="card">
+              <p class="text-center m-0">
+                You don't have any bookings yet.
+              </p>
+            </div>
+          </div>
+          <div class="paginationBox text-right mt-3 pull-right col-12" *ngIf="savedBookings && savedBookings.length > savedBookingConfig.itemsPerPage">
+            <div class="d-flex justify-content-end">
+              <p class="pager-info mr-3">Page {{savedBookingConfig.currentPage}} of {{getSavedPages()}}</p>
+              <pagination-controls [id]="savedBookingConfig.id" [maxSize]="maxSize" [directionLinks]="directionLinks" [autoHide]="autoHide"
+                [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel" (pageChange)="onPageChange($event, 'saved')"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="tab-special" *ngIf="specialBookings && specialBookings.length">
+      <ng-template ngbTabTitle>Special Requests
+        <span class="badge badge-primary pull-right" *ngIf="specialBookings && specialBookings.length > 0">{{specialBookings?.length}}</span>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <!-- <div class="row mt-4">
+          <div class="col-12">
+            <img src="../../../../assets/images/map.png" alt="Google Map" width="100%">
+          </div>
+        </div> -->
+        <div class="row mt-3 animated bounceInDown">
+          <div class="col-12" *ngIf="specialBookings && specialBookings.length > 0">
+            <div class="animated bounceInDown" *ngFor="let specialBooking of specialBookings | paginate : totalBookingConfig">
+              <app-booking-card [bookings]="specialBooking"></app-booking-card>
+            </div>
+
+            <!-- <pagination-controls [id]="config.id" [maxSize]="maxSize" [directionLinks]="directionLinks" [autoHide]="autoHide" [previousLabel]="labels.previousLabel"
+              [nextLabel]="labels.nextLabel" (pageChange)="onPageChange($event)"></pagination-controls> -->
+          </div>
+          <div class="col-12" *ngIf="!specialBookings || specialBookings.length === 0">
+            <div class="card">
+              <p class="text-center m-0">
+                You don't have any bookings yet.
+              </p>
+            </div>
+          </div>
+          <div class="paginationBox text-right mt-3 pull-right col-12" *ngIf="specialBookings && specialBookings.length > totalBookingConfig.itemsPerPage">
+            <div class="d-flex justify-content-end">
+              <p class="pager-info mr-3">Page {{totalBookingConfig.currentPage}} of {{getTotalSpecialPages()}}</p>
+              <pagination-controls [id]="totalBookingConfig.id" [maxSize]="maxSize" [directionLinks]="directionLinks" [autoHide]="autoHide"
+                [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel" (pageChange)="onPageChange($event, 'total')"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="tab-past">
+      <ng-template ngbTabTitle>Total Bookings
+        <!-- <span class="badge badge-primary pull-right" *ngIf="bookingList && bookingList.length > 0">{{bookingList?.length}}</span> -->
+      </ng-template>
+      <ng-template ngbTabContent>
+        <!-- <div class="row mt-4">
+          <div class="col-12">
+            <img src="../../../../assets/images/map.png" alt="Google Map" width="100%">
+          </div>
+        </div> -->
+        <div class="row mt-3 animated bounceInDown">
+          <div class="col-12" *ngIf="bookingList && bookingList.length > 0">
+            <div class="animated bounceInDown" *ngFor="let allBooking of totalBookings | paginate : totalBookingConfig">
+              <app-booking-card [bookings]="allBooking"></app-booking-card>
+            </div>
+
+            <!-- <pagination-controls [id]="config.id" [maxSize]="maxSize" [directionLinks]="directionLinks" [autoHide]="autoHide" [previousLabel]="labels.previousLabel"
+              [nextLabel]="labels.nextLabel" (pageChange)="onPageChange($event)"></pagination-controls> -->
+          </div>
+          <div class="col-12" *ngIf="!bookingList || bookingList.length === 0">
+            <div class="card">
+              <p class="text-center m-0">
+                You don't have any bookings yet.
+              </p>
+            </div>
+          </div>
+          <div class="paginationBox text-right mt-3 pull-right col-12" *ngIf="bookingList && bookingList.length > totalBookingConfig.itemsPerPage">
+            <div class="d-flex justify-content-end">
+              <p class="pager-info mr-3">Page {{totalBookingConfig.currentPage}} of {{getTotalPages()}}</p>
+              <pagination-controls [id]="totalBookingConfig.id" [maxSize]="maxSize" [directionLinks]="directionLinks" [autoHide]="autoHide"
+                [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel" (pageChange)="onPageChange($event, 'total')"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</section>
+<!--/ New work End -->
+
+
+

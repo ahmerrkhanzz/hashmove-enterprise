@@ -1,0 +1,84 @@
+<div class="document">
+  <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
+    <ngb-panel *ngFor="let document of userDocument; let doc_index = index" [id]="'static-' + doc_index ">
+      <ng-template ngbPanelTitle>
+        <div class="accordion" (click)="onDocumentClick(document,doc_index)">
+          <div class="row">
+            <div class="col-xl-6 col-sm-12 text-left">
+              <h2 class="accordion-title">
+                <span class="docTitle" (click)="downloadAction(document.DocumentFileName, acc,'static-', doc_index)">{{document.DocumentTypeName}}</span>
+                <!-- <span *ngIf="document.DocumentFileName" (click)="downloadAction(document.DocumentFileName, acc,'static-', doc_index)" class="fa fa-cloud-download"></span> -->
+              </h2>
+              <p class="accordion-time" *ngIf="document.DocumentUploadDate">
+                Uploaded on {{document.DocumentUploadDate | date : "d MMM, yyyy"}} {{document.DocumentUploadDate | date
+                :
+                "H:mm"}}
+              </p>
+              <!-- No Expiry Fields Available yet -->
+            </div>
+
+            <!-- <div class="col-xl-6 col-sm-12 text-right" [ngClass]="{'active': selectedItem === 'item3'}" (click)="selectedItem = 'item3'"> -->
+            <div class="col-xl-6 col-sm-12 text-right">
+              <span class="badge badge-pill hashmove-badge-danger mr-4 mt-2" *ngIf="document?.ExpiryStatusCode === 'EXPIRING-RED'">{{document?.ExpiryStatusMessage}}</span>
+              <span class="badge badge-pill hashmove-badge-warning mr-4 mt-2" *ngIf="document?.ExpiryStatusCode === 'EXPIRING-YEL'">{{document?.ExpiryStatusMessage}}</span>
+              <span class="badge badge-pill hashmove-badge-primary-grey mr-4 mt-2" *ngIf="document?.ExpiryStatusCode === 'EXPIRING-BLK'">{{document?.ExpiryStatusMessage}}</span>
+              <a href="javascript:;" class="btn btn-outline-primary pull-right col-5 hvr-sweep-to-right" *ngIf="!document.ShowUpload">
+                {{ (document.DocumentFileName) ? 'Upload Again' : 'Upload'}}
+              </a>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="row" [@enterAnimation]>
+          <div class="col-12 card-wrapper">
+            <div class="settings-documents-foam">
+              <div class="row">
+                <!-- <a href="{{'http://10.20.1.125:100' + document.DocumentFileName}}" target="_blank">asdasd</a> -->
+                <div class="col mb-3" *ngFor="let doc_control of document.MetaInfoKeysDetail; let controlIndex = index">
+
+                  <form>
+                    <input *ngIf="doc_control.DataType.toLowerCase() === 'datetime'" type="text" class="form-control settings-documents-foam-field"
+                      name="{{doc_control.KeyName.toLowerCase()}}" [displayMonths]="displayMonths" [navigation]="navigation"
+                      onkeypress="return false" [outsideDays]="outsideDays" [showWeekNumbers]="showWeekNumbers"
+                      ngbDatepicker [minDate]="minDate" #d="ngbDatepicker" placeholder="{{doc_control.KeyNameDesc}}"
+                      (click)="d.toggle()" (dateSelect)="dateChangeEvent($event, controlIndex)" [(ngModel)]="doc_control.DateModel">
+                  </form>
+
+                  <input *ngIf="doc_control.DataType.toLowerCase() === 'text'" type="text" value="{{doc_control.KeyValue}}"
+                    class="form-control settings-documents-foam-field" name="{{doc_control.KeyName.toLowerCase()}}"
+                    [maxLength]="doc_control.FieldLength" (keypress)="onKeyPress($event, controlIndex)" placeholder="{{doc_control.KeyNameDesc}}"
+                    [required]="doc_control.isIsMandatory">
+
+                  <input *ngIf="doc_control.DataType.toLowerCase() === 'number'" type="number" value="{{doc_control.KeyValue}}"
+                    class="form-control settings-documents-foam-field" name="{{doc_control.KeyName.toLowerCase()}}"
+                    [maxLength]="doc_control.FieldLength" (keypress)="onKeyPress($event, controlIndex)" placeholder="{{doc_control.KeyNameDesc}}"
+                    [required]="doc_control.isIsMandatory">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <!-- File Upload -->
+                  <div class="uploader">
+                    <app-drag-drop [existingFile]="document.DocumentName" [allowedExtension]="['pdf', 'jpg', 'jpeg', 'xlsx', 'xls', 'doc', 'docx', 'png', 'txt']"
+                      (FileDropEvent)="customDragCheck($event)" (InvalidFileEvent)="fileSelectFailedEvent($event)">
+                    </app-drag-drop>
+                    <button href="javascript:;" type="" class="btn btn-primary col-12 hvr-sweep-to-right mt-4 text-uppercase"
+                      (click)="uploadDocument(acc,'static-', doc_index)">Upload</button>
+                    <a href="javascript:;" class="col-12 text-center uploader-cancel-btn" (click)="document.ShowUpload = false;acc.toggle('static-' + doc_index );">Cancel</a>
+                    <!-- <app-loader-main *ngIf="loading"></app-loader-main> -->
+                  </div>
+                  <!--/ File Uploader -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+  <p class="pull-right mt-2 doc-message">
+    (supported types: pdf, jpg, jpeg, xlsx, doc, docx, png and txt. Maximum size per document: 10MB)
+  </p>
+
+</div>

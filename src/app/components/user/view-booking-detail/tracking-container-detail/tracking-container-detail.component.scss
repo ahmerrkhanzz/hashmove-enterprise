@@ -1,0 +1,26 @@
+@import "../../../../../assets/scss/_variables";
+.tracking-table {
+  border: 1px solid $grey-border;
+  background: $white-color;
+  thead {
+    th {
+      border-bottom: 0px !important;
+      font-family: $font-proxima;
+      color: $dark-grey-blue;
+      font-size: $font-size-medium;
+      font-weight: $font-weight-normal;
+      text-transform: uppercase;
+    }
+  }
+  tbody {
+    td {
+      border-top: 1px solid $grey-border;
+      color: $secondary-text-color;
+      font-family: $font-proxima;
+      font-size: $font-size-large;
+      font-weight: $font-weight-normal;
+      text-transform: uppercase;
+      padding: 1.25rem 1rem;
+    }
+  }
+}

@@ -1,0 +1,112 @@
+@import '../../../../../assets/scss/_variables';
+.options-box {
+  background: $color-white;
+  padding: 20px;
+  border: 1px solid $theme-border-grey;
+  float: left;
+  width: 100%;
+  p {
+    font-size: $font-size-medium;
+    color: $secondary-text-color;
+    font-family: $font-proxima;
+    font-weight: $font-weight-normal;
+    margin-bottom: 5px;
+    strong {
+      font-weight: 700;
+    }
+  }
+  a {
+    text-transform: uppercase;
+    font-family: $font-proxima;
+    font-size: $font-size-base;
+    font-weight: $font-proxima-weight-semibold;
+    color: $color-topmenu;
+    margin-bottom: 20px;
+    display: inline-block;
+    .fa {
+      font-weight: $font-proxima-weight-semibold;
+      margin-left: 7px;
+      font-size: 16px;
+      margin-top: 0px;
+      float: right;
+    }
+  }
+}
+
+.deals-box {
+  float: left;
+  width: 100%;
+  position: relative; // top: 30px;
+  top: 2px;
+  h4 {
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    top: -13px;
+    border-radius: 20px;
+    color: $color-white;
+    text-transform: uppercase;
+    width: 100%;
+    span {
+      width: 100px;
+      background: rgba(#000, 0.7);
+      background-color: rgba(#000, 0.7);
+      padding: 6px 16px;
+      font-size: $font-size-base;
+      border-radius: 20px;
+    }
+  }
+  .img-container {
+    float: left;
+    width: 100%;
+    position: relative;
+    height: 220px;
+    background: url('../../../../../assets/images/banner1.jpg') no-repeat top center / cover;
+    &-overlay {
+      background: rgba(#000, 0.42);
+      position: relative;
+      height: 220px;
+    }
+    img {
+      width: 100%
+    }
+    .deal-text {
+      position: absolute;
+      bottom: 10px;
+      left: 15px;
+      color: $color-white;
+      font-size: 13px;
+      font-weight: 700;
+      width: 115px;
+      a {
+        color: $color-white;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-top: 10px;
+      }
+    }
+  }
+  .carousel-indicators {
+    bottom: -31px;
+    &:focus {
+      outline: 0px;
+    }
+    li {
+      border-radius: 50%;
+      width: 8px;
+      height: 8px;
+      background-color: $input-border;
+      &.active {
+        background-color: $primary-color;
+      }
+    }
+  }
+  .carousel-inner {
+    border-radius: 4px;
+    outline: 0;
+  }
+  .carousel-control-prev,
+  .carousel-control-next {
+    display: none;
+  }
+}

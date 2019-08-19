@@ -1,0 +1,33 @@
+.no-scrolling {
+
+  .slimscroll-bar,
+  .slimscroll-grid {
+    display: none !important;
+  }
+}
+
+.truck {
+  .container-boxes {
+    .lcl-counter {
+      &.counter {
+        height: 1px;
+        overflow: hidden;
+
+        /deep/.shipping-counter-selected {
+          .ng-scroll-view {
+            max-height: 92px;
+          }
+        }
+      }
+    }
+
+    &.active-container {
+      .lcl-counter {
+        &.counter {
+          height: auto;
+          min-height: 265px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,384 @@
+@import '../../../../assets/scss/_variables';
+.settings {
+  margin-top: 1.5rem;
+  &-title {
+    font-weight: $font-weight-mid;
+    font-size: $font-size-large + $font-size-large;
+    color: $text-color-default;
+    font-family: $font-pragmatica;
+  }
+  &-content {
+    .nav {
+      margin-top: 0.75rem;
+      &-item {
+        // width: 30%;
+        flex: auto;
+        text-align: center;
+        a {
+          background-color: transparent;
+          border: 0px;
+          font-family: $font-proxima;
+          font-size: $font-size-medium;
+          font-weight: $font-proxima-weight-semibold;
+          color: #b2bbc3;
+          &.active {
+            border-bottom: 2px solid $primary-color;
+            color: $primary-color;
+          }
+        }
+      }
+    }
+    &-info {
+      margin-bottom: 1.25rem;
+      h2 {
+        font-size: $font-size-large + .25rem;
+        font-family: $font-pragmatica;
+        color: $text-color-default;
+        font-weight: $font-weight-mid;
+        margin: 2.5rem 0 1rem;
+      }
+      .card {
+        &-body {
+          .form-component {
+            margin: 25px 0px;
+            padding: 0 1rem;
+            .check-boxes-main {
+              input[type="checkbox"] {
+                display: none;
+              }
+            }
+            .form-group {
+              margin-bottom: 10px;
+              label {
+                font-size: 15px;
+                font-weight: $font-weight-normal; // margin-bottom: 15px;
+              }
+              input,
+              select {
+                height: 50px;
+                border: 1px solid $input-border;
+                color: $text-color-default;
+                font-size: $font-size-medium;
+                padding-left: 15px;
+                font-weight: 100;
+                &.fieldError {
+                  border-color: $danger-color;
+                  transition: ease-in .8s;
+                }
+              }
+              input[autocomplete=new-password] {
+                padding-right: 45px;
+              }
+              input:focus,
+              select:focus {
+                border-color: $primary-color;
+                transition: ease-in .8s;
+              }
+              .icon-input {
+                .input-group-prepend {
+                  .input-group-text {
+                    background: $white-color;
+                    border-right: 0;
+                    height: 20px;
+                    position: absolute;
+                    top: 12px;
+                    border: 0;
+                    display: inline-grid;
+                    background: transparent;
+                    img {
+                      border: 1px solid $grey-border !important;
+                    }
+                  }
+                  input {
+                    padding-left: 45px;
+                  }
+                }
+                .number-select {
+                  font-weight: $font-weight-mid;
+                  color: $text-color-default;
+                  text-shadow: 1px 0px $text-color-default;
+                  padding: 0px;
+                  border-right: 0px;
+                  outline: 0px !important;
+                  height: 20px;
+                  position: absolute;
+                  top: 15px;
+                  left: 54px;
+                  border: 0;
+                  background: transparent;
+                }
+                .dropdown-menu {
+                  padding: 0px;
+                  border: 1px solid $secondary-color;
+                  ul {
+                    max-height: 180px;
+                    overflow-y: auto;
+                    position: relative;
+                    max-width: 115px;
+                    overflow-x: hidden;
+                    height: 180px;
+                    .list-group-item {
+                      padding: 5px 12px;
+                      border: unset;
+                      &:hover {
+                        background: $inner-background-color;
+                        cursor: pointer;
+                      }
+                      img {
+                        margin-right: 10px;
+                        border: 1px solid $grey-border !important;
+                      }
+                    }
+                  }
+                  &.show {
+                    max-height: 260px;
+                    overflow-y: auto;
+                  }
+                  button.dropdown-item {
+                    cursor: pointer;
+                    &.active {
+                      background: $primary-grey
+                    }
+                  }
+                }
+              }
+              .select-number {
+                .input-group-prepend {
+                  .input-group-text {
+                    background: $white-color;
+                    border-right: 0;
+                  }
+                }
+                input:focus,
+                select:focus,
+                input.fieldError {
+                  border-color: $input-border !important;
+                  transition: ease-in .8s;
+                }
+                .control-phone {
+                  padding-left: 0;
+                  border-left: 0;
+                  box-shadow: none !important;
+                }
+                span {
+                  font-size: $font-size-medium;
+                }
+                .country-section {
+                  border: 0px;
+                  background: transparent;
+                }
+                ng-scrollbar {
+                  margin-bottom: 0rem;
+                  min-height: 367px;
+                  width: 7.2rem;
+                  background: $white-color;
+                  position: absolute;
+                  z-index: 999;
+                  top: 10px;
+                  border: 1px solid $primary-color;
+                  -webkit-box-shadow: 0px 0px 10px 0px $primary-color;
+                  box-shadow: 0px 0px 10px 0px $primary-color;
+                  left: -10px;
+                  ul {
+                    border: 0px;
+                    li.list-group-item {
+                      border: 0px;
+                      padding: 0.625rem !important;
+                      cursor: pointer;
+                      img {
+                        border: 1px solid $grey-border;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            .form-group {
+              label {
+                font-family: $font-proxima;
+                font-size: $font-size-large;
+                font-weight: $font-weight-normal;
+                color: $text-color-default;
+                padding-top: 15px;
+              }
+              select {
+                height: 50px;
+              }
+            }
+            .profile {
+              label {
+                padding-top: 3% !important;
+              }
+            }
+            .sub-heading {
+              font-family: $font-proxima;
+              font-size: $font-size-medium;
+              color: $dark-grey-blue;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              font-weight: $font-proxima-weight-semibold;
+            }
+            .btn-dashboard {
+              button {
+                color: $btn-grey-color;
+                background: transparent;
+                border: 0px;
+                font-family: $font-proxima;
+                font-weight: $font-proxima-weight-semibold;
+                font-size: $font-size-large;
+                text-transform: capitalize;
+                padding: 0;
+                img {
+                  margin-right: 8px;
+                  margin-top: -2px;
+                }
+                &:first-child {
+                  color: $secondary-color;
+                  margin-right: 45px;
+                }
+              }
+            }
+            .gradient-border-image {
+              position: relative;
+              padding: 5px;
+              width: 85px;
+              overflow: hidden;
+              border-radius: 50% !important;
+              height: 85px;
+              border-right: 3px solid $secondary-color;
+              border-left: 3px solid $primary-color; //border-bottom: 3px solid $secondary-color;
+              border-bottom: 3px solid $secondary-color;
+              border-top: 3px solid $primary-color;
+              border-right-width: 2px;
+              border-right-style: solid;
+              -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+              background-position: 0 0, 0 100%;
+              background-repeat: no-repeat;
+              background-size: 100% 20px;
+              transition: all 0.5s ease;
+              img {
+                border-radius: 100%;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
+              &:hover {
+                transition: all 0.5s ease;
+                &:after {
+                  content: " ";
+                  width: 70px;
+                  height: 70px;
+                  position: absolute;
+                  background: url('../../../../assets/images/icons/icon_camera_white.svg') no-repeat;
+                  background-color: rgba(0, 0, 0, 0.5);
+                  top: 5px;
+                  left: 5px;
+                  right: 0;
+                  border-radius: 50%;
+                  bottom: 0px;
+                  background-size: 20px;
+                  background-position: center;
+                }
+              }
+            }
+            .selection-cotainer {
+              padding: 0.6rem 0;
+            }
+          }
+        }
+      }
+      .delete-account {
+        margin: 2.2rem 0;
+        h3 {
+          font-family: $font-proxima;
+          font-weight: $font-proxima-weight-semibold;
+          font-size: $font-size-medium;
+          display: inline-block;
+          color: $danger-color;
+          text-transform: uppercase;
+        }
+        .icon-delete {
+          width: 16px;
+          margin-bottom: 0.375rem;
+          margin-right: 0.125rem;
+        }
+        p {
+          padding-left: 30px;
+          font-size: $font-size-medium;
+          font-family: $font-proxima;
+          color: $secondary-text-color;
+        }
+      }
+      .notifications {
+        .list-group {
+          &-item {
+            border: unset !important;
+            background: transparent;
+            border-bottom: 1px dashed $grey-border !important;
+            .check-boxes-main {
+              label {
+                font-size: $font-size-large;
+              }
+            }
+            p {
+              border-bottom: 0px solid !important;
+              border-top: 0px solid;
+              color: $dark-grey-blue;
+              text-align: left;
+              font-weight: $font-weight-mid;
+            }
+            h6 {
+              color: $dark-grey-blue;
+              text-transform: uppercase;
+              font-size: $font-size-medium;
+              margin-bottom: .6rem;
+            }
+            &:first-child,
+            &:last-child {
+              border: 0px !important;
+              padding-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  .btn-update {
+    width: 20%;
+    font-size: 1.2rem;
+  }
+}
+
+@media #{$mobile} {
+  .settings {
+    .nav {
+      &-item {
+        width: 100%;
+        height: 30px;
+        text-align: left;
+        .nav-link {
+          height: auto !important;
+        }
+      }
+    }
+  }
+}
+
+.formError {
+  width: 100%;
+  p {
+    margin-top: 8px;
+    margin-bottom: 0px;
+    color: $danger-color;
+    font-size: $font-size-medium;
+    font-family: $font-proxima;
+    font-weight: $font-weight-mid;
+    text-transform: capitalize;
+    .send-confirmation {
+      color: $secondary-color;
+      $font-family: $font-proxima;
+      margin-left: 0.57rem;
+    }
+  }
+}

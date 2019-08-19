@@ -1,0 +1,191 @@
+<div class="user">
+  <div class="row">
+    <h4 class="user-title col-xl-6 col-sm-12">
+      Users
+    </h4>
+    <div class="col-xl-6 col-sm-12 user-add-btn" *ngIf="hasDeleteRights">
+      <a href="javascript:;" class="pull-right hvr-icon-forward link-hover-1" (click)="openRegister()">
+        <span class="link-hover-1">Add a new user</span>
+        <i class="fa fa-angle-right hvr-icon"></i>
+      </a>
+    </div>
+    <hr class="hr-solid mt-2">
+  </div>
+  <div class="responsive-table">
+    <div class="card mt-4 user-admin">
+      <div class="card-header">
+        <div class="user-admin-info">
+          <div class="admin-info">
+            Admin
+            <span class="badge badge-secondary" *ngIf="adminUsers?.length">{{adminUsers.length}} / 5</span>
+          </div>
+          <div class="company-info">
+            <img src="../../../../assets/images/icons/icon_info2_blue.svg" alt="info icon" class="icon-size-16"> You’re a part of
+            <span>{{dashboardData.CompanyName}}</span>. Your super admin is <b>{{dashboardData.AdminFirstName}} {{dashboardData.AdminLastName}}</b>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="table mb-0">
+          <tbody>
+            <tr *ngFor="let user of adminUsers">
+              <td>
+                <div class="row">
+                  <div class="col-2 pl-0">
+                    <div class="user-profile d-inline-block">
+                      <img [src]="user.userImage" alt="profile" *ngIf="user.userImage">
+                      <img src="../../../../assets/images/icons/Icons_User.svg" alt="profile" *ngIf="!user.userImage">
+                    </div>
+                  </div>
+                  <div class="col-10 pl-0">
+                    <label class="d-block mb-0">{{user.firstName}} {{user.lastName}}
+                    </label>
+                    <small class="d-inline-block">Joined: {{user.regDate | date}}</small>
+                    <a href="javascript:;">
+                    </a>
+                  </div>
+                </div>
+              </td>
+              <td class="user-info">
+                <div class="flag-icon-20-14 d-inline-block">
+                  <img [src]="'../../../../assets/images/icons/flags/4x3/' + (user.countryCode | lowercase) + '.svg'" alt="{{user.countryCode + '-flags'}} "
+                    class="mw-100 mh-100 border ">
+                </div>
+                <span class="user-info-cty-name"> {{user.countryName}}, {{user.countryCode}}</span>
+              </td>
+              <td class="user-info">
+                <button class="btn btn-outline-primary hvr-sweep-to-right text-uppercase pull-right user-btn" placement="bottom" [ngbPopover]="contact">Contact</button>
+                <ng-template #contact>
+                  <div class="contact-popup fadeIn animated">
+                    <a href="{{'mailto:' + user.emailAddress}}">
+                      <img src="../../../../assets/images/icons/icon_email.svg" alt="mail_Icon" class="icon-size-16">
+                      <span>{{user.emailAddress}}</span>
+                    </a>
+                    <p>
+                      <img src="../../../../assets/images/icons/mob-icon.svg" alt="Contact_Icon" class="icon-size-16">
+                      <strong style="vertical-align: middle;">{{user.countryPhoneCode+''+user.phoneNumber}}</strong>
+                    </p>
+                  </div>
+                </ng-template>
+              </td>
+              <td>
+                <div *ngIf="userObj.IsAdmin">
+                  <div ngbDropdown class="d-inline-block user-table-dropdown" *ngIf="user.userID !== superAdmin[0].userID">
+                    <div ngbDropdownToggle id="dropdownBasic1 ">
+                      <img src="../../../assets/images/icons/menu.svg " alt="menu " class="icon-size-16 ">
+                    </div>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class=" ">
+                      <button class="dropdown-item text-danger" (click)="removeAdmin(userObj.UserID, user.userID)">Remove Admin
+                      </button>
+                      <button class="dropdown-item text-danger ">Remove User</button>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- user count & search -->
+  <div class="row" *ngIf="userInfo?.length">
+    <div class="col-xl-4 col-md-6 col-sm-12 position-relative ">
+      <input type="text " name="userSearch " id=" " class="user-search " placeholder="Search User " [(ngModel)]="searchUser">
+      <img src="../../../../assets/images/icons/icon_search.svg " alt=" " class="user-search-icon icon-size-14 ">
+    </div>
+    <div class="col-xl-8 col-md-6 col-sm-12 d-flex justify-content-end ">
+      <div ngbDropdown class="d-flex sort-name-dropdown pull-right ">
+        <button class="btn btn-primary p-0 " id="dropdownBasic2 " ngbDropdownToggle>Sort By: {{currentSort | uppercase}}
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic2 ">
+          <button class="dropdown-item" (click)="sortUsers('firstName', 'Name')">Name</button>
+          <button class="dropdown-item" (click)="sortUsers('countryName', 'Location')">Location</button>
+          <button class="dropdown-item" (click)="sortUsers('regDate', 'Joined Date')">Joined Date</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ user count & search -->
+
+  <div class="row" *ngIf="userInfo?.length">
+    <div class="col-md-12 responsive-table">
+      <table class="table user-table mb-0">
+        <thead class="thead-light ">
+          <tr>
+            <th scope="col ">Name</th>
+            <th scope="col ">Location</th>
+            <th scope="col ">Bookings</th>
+            <th scope="col ">Action</th>
+            <th scope="col "></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of userInfo | search : searchUser | paginate: userPaginationConfig ">
+            <td>
+              <div class="row">
+                <div class="col-2 pr-0">
+                  <div class="user-profile d-inline-block ">
+                    <img [src]="user.userImage " alt="profile " *ngIf="user.userImage ">
+                    <img src="../../../../assets/images/icons/Icons_User.svg" alt="profile" *ngIf="!user.userImage">
+                  </div>
+                </div>
+                <div class="col-10 ">
+                  <label class="d-block mb-0 ">{{user.firstName}} {{user.lastName}}
+                  </label>
+                  <small class="d-inline-block ">Joined: {{user.regDate | date}}</small>
+                </div>
+              </div>
+            </td>
+            <td class="user-info ">
+              <div class="flag-icon-20-14 d-inline-block ">
+                <img [src]=" '../../../../assets/images/icons/flags/4x3/' + (user.countryCode | lowercase) + '.svg'
+                  " alt="{{user.countryCode + '-flags'}} " class="mw-100 mh-100 border ">
+              </div>
+              <span class="user-info-cty-name"> {{user.countryName}}, {{user.countryCode}}</span>
+            </td>
+            <td class="user-info">
+              <p>{{user.totalBookings || '0'}}</p>
+            </td>
+            <td class="user-info ">
+              <button class="btn btn-outline-primary hvr-sweep-to-right text-uppercase pull-right user-btn" placement="bottom" [ngbPopover]="contact">Contact</button>
+              <ng-template #contact>
+                <div class="contact-popup fadeIn animated">
+                  <a href="{{'mailto:' + user.emailAddress}}">
+                    <img src="../../../../assets/images/icons/icon_email.svg" alt="mail_Icon" class="icon-size-16">
+                    <span>{{user.emailAddress}}</span>
+                  </a>
+                  <p>
+                    <img src="../../../../assets/images/icons/mob-icon.svg" alt="Contact_Icon" class="icon-size-16">
+                    <strong style="vertical-align: middle;">{{user.countryPhoneCode+''+user.phoneNumber}}</strong>
+                  </p>
+                </div>
+              </ng-template>
+            </td>
+            <td>
+              <div ngbDropdown class="d-inline-block user-table-dropdown" *ngIf="userObj.IsAdmin">
+                <div ngbDropdownToggle id="dropdownBasic1 ">
+                  <img src="../../../assets/images/icons/menu.svg " alt="menu " class="icon-size-16 ">
+                </div>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1 " class="animated fadeIn">
+                  <button *ngIf="user.isAdmin === false" class="dropdown-item" (click)="makeAdmin(userObj.UserID, user.userID)">Make Admin</button>
+                  <button class="dropdown-item text-danger ">Remove User</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="(userInfo | search: searchUser)?.length===0 ">
+            <td>
+              <p>No user found for the search criteria</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="paginationBox text-right mt-3 pull-right col-12 " *ngIf="userInfo && userInfo.length> userPaginationConfig.itemsPerPage">
+    <pagination-controls [id]="userPaginationConfig.id" [maxSize]="maxSize" [directionLinks]="directionLinks" [autoHide]="autoHide"
+      [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel" (pageChange)="onPageChange($event)"></pagination-controls>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+@import "../../../assets/scss/_variables";
+.login {
+  &-info {
+    text-align: center;
+    margin: 3rem auto;
+    img {
+      width: var(--customerPrimaryLogoWidth);
+      margin-bottom: 1rem;
+    }
+    font-family: $font-proxima;
+    color: $white-color;
+  }
+}

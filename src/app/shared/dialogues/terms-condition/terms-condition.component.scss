@@ -1,0 +1,73 @@
+@import "../../../../assets/scss/variables";
+.termsAndCondition {
+  .modal-header {
+    padding: 15px 32px;
+    background: $modal-header-background;
+    display: flex;
+    h4 {
+      margin: 0px;
+      text-shadow: 0px 0px $text-color-default;
+      font-size: $font-size-large + 0.125rem;
+      margin-top: 4px;
+      font-weight: $font-weight-normal;
+    }
+    a.crossIcon {
+      position: absolute;
+      right: 8px;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .modal-body {
+    padding: 25px 32px;
+    /deep/.list {
+      list-style: none;
+      padding: 0 1.30rem;
+      p{
+        border: 0px;
+        color: $secondary-text-color;
+        font-family: $font-proxima;
+        font-weight: $font-weight-normal;
+        font-size: $font-size-large;
+        margin-bottom: 1.5rem;
+        line-height: 1;
+        // &:before {
+        //   font-size: $font-size-large + 0.25rem;
+        //   content: "\2022";
+        //   color: $primary-color;
+        //   font-weight: bold;
+        //   display: inline-block;
+        //   width: 1em;
+        //   margin-left: -1em;
+        // }
+      }
+    }
+    .btn {
+      height: 48px;
+      font-size: $font-size-medium;
+      font-weight: $font-proxima-weight-semibold;
+      text-transform: uppercase;
+      font-family: $font-proxima;
+      &.disable {
+        // cursor: no-drop;
+        border: 0;
+        background: $btn-disable-background !important;
+        color: $btn-disable-color !important;
+        border-radius: 2px;
+        box-shadow: none !important;
+        &:before {
+          background: $btn-disable-background !important;
+          color: $btn-disable-color !important;
+        }
+      }
+    }
+  }
+}
+
+.termsAndConditionUnactive {
+  display: none;
+}

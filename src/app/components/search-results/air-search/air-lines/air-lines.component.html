@@ -1,0 +1,99 @@
+<div class="we-found-section">
+    <app-selection-summary [data]="selectedProvider" [page]="'search'"></app-selection-summary>
+    <div class="row">
+        <div class="col-xl-6 col-md-12">
+            <div class="">
+                <h5>We found
+                    <b>{{totalSearchCount}} </b> results for your
+                    <br> selected route
+                </h5>
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-12">
+            <div class="sort-filter">
+                <app-currency-dropdown [selectedCurrency]="currentSelectedCurrency" [currencyList]="currencyList"
+                    (selectedCurrencyEvent)="currencyFilter($event)">
+                </app-currency-dropdown>
+                <div ngbDropdown #sortDrop="ngbDropdown" class="sort-by">
+                    <span id="dropdownsorter" ngbDropdownToggle class="pointer">SORT BY: {{selectedSortType
+                        | uppercase}}
+                        ({{selectedSortText | uppercase}})</span>
+                    <div class="sortFilter animated fadeIn" ngbDropdownMenu aria-labelledby="dropdownsorter">
+                        <div class="sort-item">
+                            <table class="table">
+                                <tr class="active">
+                                    <td>Price</td>
+                                    <td>
+                                        <i class="fa fa-arrow-up " (click)="sorter('TotalPrice','desc', $event, 'Price', true);sortDrop.close()"
+                                            ngbTooltip="High" placement="left"></i>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-arrow-down active" (click)="sorter('TotalPrice','asc',$event, 'Price', true);sortDrop.close()"
+                                            ngbTooltip="Low" placement="left"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Transit Time</td>
+                                    <td>
+                                        <i class="fa fa-arrow-up" (click)="sorter('EtaInDays','desc', $event, 'Transit Time', true);sortDrop.close()"
+                                            ngbTooltip="High" placement="left"></i>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-arrow-down" (click)="sorter('EtaInDays','asc', $event, 'Transit Time', true);sortDrop.close()"
+                                            ngbTooltip="Low" placement="left"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Cut Off</td>
+                                    <td>
+                                        <i class="fa fa-arrow-up" (click)="sorter('PortCutOffUtc','desc', $event, 'Cut Off', true);sortDrop.close()"
+                                            ngbTooltip="High" placement="left"></i>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-arrow-down" (click)="sorter('PortCutOffUtc','asc', $event, 'Cut Off', true);sortDrop.close()"
+                                            ngbTooltip="Low" placement="left"></i>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-12">
+        <hr class="hr-solid">
+        <div class="search-result-route">
+            <div class="row">
+                <div class="best-route fastest-route" (click)="bestRouteChange('days')">
+                    <app-best-route [isActive]="bestSelectedOption && bestSelectedOption.toLowerCase() === 'days'"
+                        [selectedOption]="'days'" [searchResult]="searchResult" (searchEmit)="recieveBestRouteChange($event)"></app-best-route>
+                </div>
+                <div class="routing text-center">
+                    <p>
+                        <strong>OR</strong>
+                    </p>
+                </div>
+                <div class="best-route" (click)="bestRouteChange('price')">
+                    <app-best-route [isActive]="bestSelectedOption && bestSelectedOption.toLowerCase() === 'price'"
+                        [selectedOption]="'price'" [searchResult]="searchResult" (searchEmit)="recieveBestRouteChange($event)"></app-best-route>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-9 col-md-9 col-sm-12" *ngIf="searchResult && searchResult.length > 0">
+        <app-hash-search-card [searchResult]="searchResult" [type]="'air'"></app-hash-search-card>
+    </div>
+    <div class="col-xl-9 col-md-9 col-sm-12" *ngIf="!searchResult || (searchResult.length === 0)">
+        <app-no-searchresult></app-no-searchresult>
+    </div>
+    <div class="col-xl-3 col-md-3 col-sm-12">
+        <!-- <app-right-sidebar></app-right-sidebar> -->
+    </div>
+</div>

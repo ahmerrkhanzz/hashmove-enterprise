@@ -1,0 +1,350 @@
+@import "../../../../assets/scss/_variables";
+.bookings {
+  .map {
+    height: 440px;
+  }
+  .nav {
+    margin-top: 2rem;
+    &-item {
+      flex: auto;
+      text-align: center;
+      background: transparent;
+      background-color: transparent;
+      a {
+        background-color: transparent;
+        border: 0px;
+        text-transform: uppercase;
+        font-family: $font-proxima;
+        font-size: $font-size-medium;
+        font-weight: $font-proxima-weight-semibold;
+        color: $dark-grey-blue;
+        span.badge-primary {
+          background: $dark-grey-blue;
+          font-weight: normal;
+          float: right;
+          margin-top: 1px;
+          font-family: $font-proxima;
+          font-weight: $font-weight-mid;
+          border-radius: 20px;
+          font-size: 0.8125rem !important;
+          min-width: 22px;
+          min-height: 20px;
+          line-height: 12px;
+          padding: 5px;
+          border: 0;
+        }
+        &.active {
+          border-bottom: 2px solid $primary-color;
+          color: $primary-color;
+          height: 44px;
+          span.badge-primary {
+            background: $primary-color;
+          }
+        }
+      }
+    }
+    &-link {
+      background: transparent !important;
+    }
+  }
+  h4 {
+    font-size: $font-size-large + $font-size-large;
+    font-family: $font-pragmatica;
+    font-weight: $font-weight-mid;
+    color: $text-color-default;
+    margin-bottom: 0px;
+  }
+  .col-xl-3.mt-1,
+  .col.mt-1 {
+    .bookings-route {
+      display: flex;
+      word-break: break-word;
+      .ports {
+        &-label {
+          line-height: 1.2;
+          margin-bottom: 0.3rem;
+        }
+      }
+    }
+  }
+  &-count {
+    font-size: $font-size-base;
+    font-family: $font-proxima;
+    color: $secondary-text-color;
+    font-weight: $font-weight-normal;
+    text-transform: uppercase;
+  }
+  &-price {
+    border-right: 1px dashed $grey-border;
+    border-left: 1px dashed $grey-border;
+    strong {
+      display: block;
+      font-size: $font-size-large + $font-size-large;
+      font-weight: $font-weight-mid;
+      text-align: center;
+      font-family: $font-pragmatica;
+    }
+    small {
+      padding: 0 15px;
+      display: block;
+      font-size: 0.7rem;
+      font-weight: $font-weight-normal;
+      margin-bottom: -4px;
+    }
+  }
+  &-actions {
+    a {
+      font-size: $font-size-base;
+      font-family: $font-pragmatica;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: $text-grey;
+      display: block;
+      padding-bottom: 10px;
+      outline: 0;
+      span {
+        position: relative;
+        color: #02bdb6;
+        text-decoration: none;
+        line-height: 24px;
+        width: auto;
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+          transition: transform 0.5s ease;
+        }
+        &.link-hover-1 {
+          padding-top: 10px;
+          &:before {
+            top: 27px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: darken(#02bdb6, 3%);
+            transform: scaleX(0);
+          }
+          &:hover:before {
+            transform: scaleX(1);
+          }
+        }
+      }
+      &.text-primary {
+        color: $secondary-color !important;
+        & .fa {
+          font-size: $font-size-medium;
+          font-weight: $font-proxima-weight-semibold;
+        }
+      }
+      &.text-primary {
+        color: $danger-color;
+      }
+      &.text-danger {
+        span {
+          position: relative;
+          color: #dc3545;
+          text-decoration: none;
+          line-height: 24px;
+          width: auto;
+          &:before,
+          &:after {
+            content: "";
+            position: absolute;
+            transition: transform 0.5s ease;
+          }
+          &.link-hover-1 {
+            padding-top: 10px;
+            &:before {
+              top: 27px;
+              left: 0;
+              bottom: 0;
+              width: 100%;
+              height: 1px;
+              background: darken(#dc3545, 3%);
+              transform: scaleX(0);
+            }
+            &:hover:before {
+              transform: scaleX(1);
+            }
+          }
+        }
+      }
+    }
+  }
+  &-route {
+    &-number {
+      line-height: 0.6;
+      padding-top: 3px;
+      a {
+        font-size: $font-size-large;
+        font-family: $font-proxima;
+        font-weight: $font-proxima-weight-semibold;
+        color: $primary-color;
+      }
+    }
+    small {
+      font-family: $font-proxima;
+      font-size: $font-size-base;
+      color: $text-grey;
+      font-weight: $font-weight-normal;
+    }
+    .ports {
+      font-family: $font-proxima;
+      font-size: $font-size-base;
+      &-location-icon {
+        margin-top: 0px;
+        margin-right: 10px;
+      }
+      &-direction {
+        margin: 0 20px;
+        margin-left: 0px;
+      }
+      &-label {
+        font-size: $font-size-medium;
+        color: $text-color-default;
+        margin-bottom: 0;
+        font-weight: $font-proxima-weight-semibold;
+        font-family: $font-proxima;
+        &-grey {
+          color: $dark-grey-blue;
+          display: block;
+          font-family: $font-proxima;
+          font-weight: $font-proxima-weight-semibold;
+          text-transform: uppercase;
+          font-size: $font-size-base;
+          margin-bottom: 0;
+        }
+      }
+      img.detail-icon {
+        margin-right: 5px;
+        float: left;
+      }
+      small {
+        font-size: $font-size-medium;
+        color: $text-color-default;
+        font-weight: $font-weight-mid;
+        font-family: $font-proxima;
+        vertical-align: bottom;
+        line-height: 1.2;
+        max-width: 66px;
+        text-align: left;
+      }
+      .d-flex {
+        display: grid !important;
+        small {
+          max-width: 100% !important;
+          margin-top: 9px;
+        }
+      }
+    }
+  }
+  &-start-btn {
+    a {
+      font-size: $font-size-large;
+      color: $secondary-color;
+      font-family: $font-proxima;
+      font-weight: $font-weight-mid;
+      span {
+        position: relative;
+        text-decoration: none;
+        line-height: 24px;
+        width: auto;
+        &:before,
+        &:after {
+          color: $secondary-color;
+          content: "";
+          position: absolute;
+          transition: transform 0.5s ease;
+        }
+        &.link-hover-1 {
+          padding-top: 10px;
+          &:before {
+            top: 30px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: darken(#02bdb6, 3%);
+            transform: scaleX(0);
+          }
+          &:hover:before {
+            transform: scaleX(1);
+          }
+        }
+      }
+      i {
+        margin-left: 0.35rem;
+      }
+    }
+  }
+  &-continue-btn {
+    border-radius: 4px;
+    max-width: 180px;
+    padding: 0.7rem 1.25rem;
+  }
+  .tab-content {
+    overflow: hidden;
+  }
+  .card {
+    border: 1px solid #eff2f5;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    transition: 0.8s;
+  }
+  button.gm-ui-hover-effect {
+    display: block !important;
+  }
+}
+
+.user-dashborad-booking-section {
+  margin-top: 25px;
+  h3 {
+    font-weight: $font-weight-mid;
+    font-size: $font-size-large + 1;
+    font-family: $font-proxima;
+  }
+  .user-info {
+    font-size: $font-size-base;
+    color: $text-grey;
+    font-family: $font-proxima;
+    text-transform: uppercase;
+  }
+}
+
+.remove-focus {
+  user-select: none;
+}
+
+.isBlur {
+  .grey-placeholder {
+    display: none;
+  }
+  .timeline-wrapper {
+    display: block;
+  }
+}
+
+.isNotBlur {
+  .timeline-wrapper {
+    display: none;
+  }
+  .grey-placeholder {
+    display: inherit;
+  }
+}
+
+@media #{$mobile} {
+  .bookings {
+    .nav {
+      &-item {
+        width: 100%;
+        height: 30px;
+        text-align: left;
+        .nav-link {
+          height: auto !important;
+        }
+      }
+    }
+  }
+}

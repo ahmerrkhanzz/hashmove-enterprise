@@ -1,0 +1,62 @@
+<div class="forwarders mt-3 pt-3">
+  <div *ngIf="mainProvidersData?.length > 0" class="forwarders-filter mt-1">
+    <div class="row">
+      <div class="col-6">
+        <h5 >We have found
+          <b>{{recordCount}} Freight Forwarders</b> for your selection
+          <br>
+          <span *ngIf="dealCount > 0">
+            <strong>{{dealCount}}</strong> of them have deals</span>
+        </h5>
+      </div>
+      <div class="col-6">
+        <div class="sort-filter">
+          <a href="javascript:;" class="download-btn mr-4 mt-1" (click)="Download()">
+            <img src="../../../../../assets/images/icons/download-solid.svg" alt="hashmove download icon" class="icon-size-14 mb-1 mr-1">
+            Download
+          </a>
+          <app-currency-dropdown [selectedCurrency]="currentSelectedCurrency" [currencyList]="currencyFlags"
+            (selectedCurrencyEvent)="currencyFilter($event)">
+          </app-currency-dropdown>
+          <div ngbDropdown #sortDrop="ngbDropdown" class="sort-by">
+            <span id="dropdownsorter" ngbDropdownToggle class="pointer">SORT BY: {{selectedSortType | uppercase}}
+              ({{selectedSortText | uppercase}})</span>
+            <div class="sortFilter animated fadeIn" ngbDropdownMenu aria-labelledby="dropdownsorter">
+              <div class="sort-item">
+                <table class="table">
+                  <tr class="active">
+                    <td>Price</td>
+                    <td>
+                      <i class="fa fa-arrow-up " (click)="sorter('TotalPrice','desc', $event, 'Price');sortDrop.close()"
+                        ngbTooltip="High"></i>
+                    </td>
+                    <td>
+                      <i class="fa fa-arrow-down active" (click)="sorter('TotalPrice','asc',$event, 'Price');sortDrop.close()"
+                        ngbTooltip="Low"></i>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr *ngIf="providersData?.length > 0">
+  <div class="row">
+    <div class="col-xl-9 col-md-9 col-md-12" *ngIf="providersData && providersData?.length >0">
+      <app-search-card [searchResult]="sortedProvidersData" [haveRecProviders]="haveRecProviders"></app-search-card>
+      <app-notify-vendor *ngIf="haveRecProviders && searchCriteria.containerLoad !== 'FTL'"></app-notify-vendor>
+    </div>
+    <div class="col-xl-9 col-md-9 col-md-12" *ngIf="!providersData || providersData?.length === 0">
+      <app-no-searchresult></app-no-searchresult>
+      <app-notify-vendor *ngIf="searchCriteria.containerLoad !== 'FTL'"></app-notify-vendor>
+    </div>
+    <div class="col-xl-3 col-md-3 col-md-12">
+        <div class="sticky-deals">
+      <!-- <app-right-sidebar></app-right-sidebar> -->
+      </div>
+    </div>
+  </div>
+</div>

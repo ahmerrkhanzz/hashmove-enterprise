@@ -1,0 +1,20 @@
+<div class="user-modal animated fadeIn">
+  <div class="modal-header">
+    <h4 class="confirm-modal-title">Document Upload</h4>
+    <a class="pointer crossIcon" (click)="closeModal('close')">
+      <img src="../../../../assets/images/icons/icon_close.svg" alt="close">
+    </a>
+  </div>
+  <div class="modal-body">
+    <app-drag-drop [allowedExtension]="['pdf', 'jpg', 'jpeg', 'xlsx', 'xls', 'doc', 'docx', 'png', 'txt']"
+      (FileDropEvent)="customDragCheck($event)" (InvalidFileEvent)="fileSelectFailedEvent($event)" [existingFile]="prevFileName">
+    </app-drag-drop>
+    <!-- <p class="text-center">Are you sure you want to save the booking and discard payments?</p> -->
+    <div class="text-center">
+      <button *ngIf="!isSending" class="col btn btn-primary hvr-sweep-to-right w-100 mt-3" (click)="onConfirmClick()">Upload</button>
+      <button *ngIf="isSending" class="col btn btn-primary hvr-sweep-to-right w-100 mt-3">
+        <i class="fa fa-spinner fa-spin"></i>
+      </button>
+    </div>
+  </div>
+</div>

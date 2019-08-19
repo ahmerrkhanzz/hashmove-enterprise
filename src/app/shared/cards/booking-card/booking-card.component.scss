@@ -1,0 +1,307 @@
+@import "../../../../assets/scss/_variables";
+
+.booking-card {
+    .card {
+        border: 1px solid $booking-card-border;
+
+        &-header {
+            background: $white-color;
+            align-items: center;
+            border-bottom: 1px solid $booking-card-border;
+            padding: 0.4rem 1.125rem 0.4rem 4.5rem;
+            max-height: 46px;
+
+            h5 {
+                font-size: $font-size-large;
+                color: $primary-color;
+                font-family: $font-proxima;
+                font-weight: $font-proxima-weight-semibold;
+            }
+
+            p {
+                line-height: 1;
+                font-size: $font-size-base;
+                color: $text-grey;
+                font-family: $font-proxima;
+                font-weight: $font-weight-normal;
+
+                .special-request-badge {
+                    position: relative;
+                    top: -8px;
+                }
+
+                &.special-request-text {
+                    margin-top: -5px;
+                }
+            }
+
+            &-icon {
+                position: absolute;
+                z-index: 1;
+
+                &:after {
+                    content: " ";
+                    width: 0;
+                    height: 0;
+                    border-top: 22px solid transparent;
+                    border-bottom: 22px solid transparent;
+                    border-left: 10px solid $secondary-color;
+                    position: absolute;
+                    left: 48px;
+                    top: 0px;
+                    z-index: -1;
+                }
+
+                &:before {
+                    content: " ";
+                    width: 48px;
+                    height: 45px;
+                    position: absolute;
+                    background: $secondary-color;
+                    left: 0;
+                    top: 0px;
+                    z-index: -1;
+                }
+
+                img.icon-size-24 {
+                    position: relative;
+                    top: 10px;
+                    left: 14px;
+                }
+            }
+        }
+
+        &-body {
+            min-height: 150px;
+            .right-arrow {
+                transition: all 0.7s ease;
+
+                &:before {
+                    content: "";
+                    height: 70px;
+                    width: 1px;
+                    background: #6c757d2b;
+                    position: absolute;
+                    transform: rotate(35deg);
+                    top: 51px;
+                    right: 48px;
+                    z-index: 999;
+                    transition: all 0.7s ease;
+                }
+
+                &:after {
+                    content: "";
+                    height: 70px;
+                    width: 1px;
+                    background: #6c757d2b;
+                    position: absolute;
+                    transform: rotate(-35deg);
+                    top: -6px;
+                    z-index: 999;
+                    right: 48px;
+                    transition: all 0.7s ease;
+                }
+            }
+
+            .border-right {
+                border-right: 1px solid $grey-border;
+            }
+        }
+
+        .booking-detail {
+            &-title {
+                color: $dark-grey-blue;
+                font-size: $font-size-base;
+                font-family: $font-proxima;
+                font-weight: $font-weight-mid;
+                text-transform: uppercase;
+            }
+
+            h4 {
+                // cursor: pointer;
+                font-size: $font-size-large;
+                font-family: $font-proxima;
+                font-weight: $font-weight-mid;
+                color: $text-color-default;
+                line-height: 1;
+
+                &.text-truncate {
+                    max-width: 180px;
+                }
+
+                .flag-icon-20-14 {
+                    margin-top: -2px;
+                }
+            }
+
+            small {
+                font-family: $font-proxima;
+                color: $secondary-text-color;
+                font-weight: $font-weight-mid;
+                font-size: $font-size-medium;
+            }
+
+            .list-group {
+                &-item {
+                    padding: 0;
+                    border: 0;
+                    font-size: $font-size-medium;
+                    font-weight: $font-weight-mid;
+                    font-family: $font-proxima;
+
+                    img {
+                        align-self: flex-start;
+                        margin-top: 2px;
+                    }
+                }
+            }
+
+            .provider {
+                &-logo {
+                    width: 54px;
+                    height: 40px;
+                    border: 1px solid $grey-border;
+                    padding: 2px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+
+                &-cargo {
+                    a {
+                        font-family: $font-proxima;
+                        color: $dark-grey-blue;
+                        font-size: $font-size-medium;
+                        text-decoration: underline;
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            .SpecialRequest {
+                margin-bottom: 2rem;
+
+                .line-through {
+                    text-decoration: line-through;
+                }
+            }
+
+            &-logs {
+                position: absolute;
+                right: 1rem;
+                top: 40%;
+
+                a {
+                    font-family: $font-proxima;
+                    color: $color-topmenu;
+                    font-size: $font-size-medium;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        &:hover {
+            border: 1px solid $secondary-color;
+
+            .icon-size-24 {
+                animation: LeftToRight 0.7s ease both;
+            }
+
+            .right-arrow {
+
+                &:before,
+                &:after {
+                    background: $secondary-color !important;
+                }
+            }
+        }
+
+        &.AIR {
+            &:hover {
+                border: 1px solid $primary-color;
+
+                .right-arrow {
+
+                    &:before,
+                    &:after {
+                        background: $primary-color !important;
+                    }
+                }
+            }
+
+            .card-header-icon {
+                &:after {
+                    border-left: 10px solid $primary-color;
+                }
+
+                &:before {
+                    background: $primary-color;
+                }
+
+                img {
+                    transform: rotate(-12deg) !important;
+                }
+            }
+
+            &:hover {
+                .card-header-icon {
+                    img {
+                        animation: airAnimation 0.7s ease both !important; // transform: rotate(0deg) !important;
+                    }
+                }
+            }
+        }
+
+        &.WAREHOUSE {
+            &:hover {
+                border: 1px solid $dark-grey-blue;
+
+                .right-arrow {
+
+                    &:before,
+                    &:after {
+                        background: $dark-grey-blue !important;
+                    }
+                }
+            }
+
+            .card-header-icon {
+                &:after {
+                    border-left: 10px solid $dark-grey-blue;
+                }
+
+                &:before {
+                    background: $dark-grey-blue;
+                }
+            }
+        }
+    }
+
+    &-status {
+        margin-top: 2px;
+
+        label {
+            color: $dark-grey-blue;
+            font-size: $font-size-base;
+            font-family: $font-proxima;
+            font-weight: $font-proxima-weight-semibold;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: row;
+            font-family: $font-proxima;
+            font-size: $font-size-medium;
+            justify-content: flex-end;
+
+            a {
+                font-weight: bold;
+            }
+        }
+    }
+}

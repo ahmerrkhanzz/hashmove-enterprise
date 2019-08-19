@@ -1,0 +1,112 @@
+<!-- User login Modal -->
+<div class="shareInfo">
+  <div class="user-modal animated fadeIn">
+    <div class="modal-header">
+      <h4 class="user-modal-title">Share Booking</h4>
+      <a class="pointer crossIcon" (click)="closeModal()">
+        <img src="../../../../assets/images/icons/icon_close.svg" alt="close">
+      </a>
+    </div>
+    <div class="modal-body">
+      <!-- <form class="form-component" autocomplete="off" novalidate [formGroup]="shareDetailForm"
+        (ngSubmit)="shareInfo(shareDetailForm.value)">
+
+        <div class="row form-group" *ngIf="false">
+          <div class="col">
+            <label>To Email</label>
+            <input type="email" autocomplete="nope" (focusout)="errorMessages()" (focus)="toemailError=false"
+              [ngClass]="(toemailError)? 'fieldError': ''" class="form-control" placeholder="To email*"
+              formControlName="toEmail">
+            <span class="animated fadeIn" *ngIf="toemailError">
+              <p class="formError animated fadeIn"
+                *ngIf="shareDetailForm.controls['toEmail'].hasError('required') && (shareDetailForm.controls.toEmail.dirty || shareDetailForm.controls.toEmail.touched)">
+                This field is required!</p>
+              <p class="formError animated fadeIn"
+                *ngIf="shareDetailForm.controls['toEmail'].hasError('pattern') && (shareDetailForm.controls.toEmail.dirty || shareDetailForm.controls.toEmail.touched)">
+                Please enter valid information</p>
+              <p class="formError animated fadeIn"
+                *ngIf="shareDetailForm.controls['toEmail'].hasError('maxlength') && (shareDetailForm.controls.toEmail.dirty || shareDetailForm.controls.toEmail.touched)">
+                Email should not exceed from 320 characters</p>
+            </span>
+          </div>
+        </div>
+
+        <div class="row form-group" *ngIf="false">
+          <div class="col">
+            <label>From Email</label>
+            <input type="email" autocomplete="nope" (focusout)="errorMessages()" (focus)="fromemailError=false"
+              [ngClass]="(fromemailError)? 'fieldError': ''" class="form-control fromEmail" placeholder="From email*"
+              formControlName="fromEmail">
+            <span class="animated fadeIn" *ngIf="fromemailError">
+              <p class="formError animated fadeIn"
+                *ngIf="shareDetailForm.controls['fromEmail'].hasError('required') && (shareDetailForm.controls.fromEmail.dirty || shareDetailForm.controls.fromEmail.touched)">
+                This field is required!</p>
+              <p class="formError animated fadeIn"
+                *ngIf="shareDetailForm.controls['fromEmail'].hasError('pattern') && (shareDetailForm.controls.fromEmail.dirty || shareDetailForm.controls.fromEmail.touched)">
+                Please enter valid information</p>
+              <p class="formError animated fadeIn"
+                *ngIf="shareDetailForm.controls['fromEmail'].hasError('maxlength') && (shareDetailForm.controls.fromEmail.dirty || shareDetailForm.controls.fromEmail.touched)">
+                Email should not exceed from 320 characters</p>
+            </span>
+          </div>
+        </div>
+
+        <div class="row form-group" *ngIf="false">
+          <div class="col">
+            <label>Subject</label>
+            <input type="text" class="form-control text-truncate" (focusout)="errorMessages()"
+              (focus)="subjectError=false" [ngClass]="(subjectError)? 'fieldError': ''" placeholder="Subject*"
+              formControlName="subject">
+            <span class="animated fadeIn" *ngIf="subjectError">
+              <p class="formError animated fadeIn"
+                *ngIf="shareDetailForm.controls['subject'].hasError('required') && (shareDetailForm.controls.subject.dirty || shareDetailForm.controls.subject.touched)">
+                This field is required!</p>
+              <p class="formError animated fadeIn"
+                *ngIf="shareDetailForm.controls['subject'].hasError('maxlength') && (shareDetailForm.controls.subject.dirty || shareDetailForm.controls.subject.touched)">
+                Subject should not exceed from 200 characters</p>
+            </span>
+          </div>
+        </div>
+
+        <div class="row form-group" *ngIf="false">
+          <div class="col">
+            <label>Note</label>
+            <textarea class="form-control" rows="4" placeholder="Message*" (focusout)="errorMessages()"
+              (focus)="noteError=false" [ngClass]="(noteError)? 'fieldError': ''" formControlName="note"></textarea>
+            <span class="animated fadeIn" *ngIf="noteError">
+              <p class="formError animated fadeIn"
+                *ngIf="shareDetailForm.controls['note'].hasError('required') && (shareDetailForm.controls.note.dirty || shareDetailForm.controls.note.touched)">
+                This field is required!</p>
+              <p class="formError animated fadeIn"
+                *ngIf="shareDetailForm.controls['note'].hasError('maxlength') && (shareDetailForm.controls.note.dirty || shareDetailForm.controls.note.touched)">
+                Message should not exceed from 1000 characters</p>
+            </span>
+          </div>
+        </div>
+
+        <div class="row share-btn">
+          <div class="col">
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary pull-right full-width-btn"
+                [disabled]="shareDetailForm.invalid || loading"
+                [ngClass]="(shareDetailForm.invalid)?'':'hvr-sweep-to-right'">
+                Send
+                <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </form> -->
+
+      <div class="row form-group">
+        <div class="col text-center">
+          <input type="text" class="form-control" [(ngModel)]="shareObjectInfo.url" #shareURL>
+          <button (click)="copyURL(shareURL)" class="btn btn-primary mt-2">{{copyBtnText}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!--/ User login Modal -->

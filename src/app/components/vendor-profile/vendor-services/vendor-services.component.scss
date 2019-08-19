@@ -1,0 +1,66 @@
+@import "../../../../assets/scss/_variables";
+.vendor-services {
+  .card {
+    // height:350px !important;
+    &-title {
+      font-size: $font-size-medium;
+      color: $dark-grey-blue;
+      text-transform: uppercase;
+      font-family: $font-proxima;
+      font-weight: $font-weight-mid;
+    }
+  }
+  &-tags {
+    .badge.badge-pill {
+      background: $white-color;
+      padding: 0 1rem;
+      color: $text-color-default;
+      font-size: $font-size-large !important;
+      font-weight: $font-weight-mid;
+      border: 1px solid $primary-color;
+      text-transform: capitalize;
+      height: 40px;
+      line-height: 2.3;
+      img {
+        margin-right: 10px;
+      }
+    }
+  }
+  .affiliation {
+    .list-group {
+      &-item {
+        border: 0px;
+        padding: 0;
+        background: none;
+      }
+    }
+    &-logo {
+      .col-2 {
+        height: 50px;
+        display: flex;
+        align-items: center;
+        border: 1px solid $input-border;
+        transition: all ease-in 0.4s;
+        margin: 4px 8px 4px 0;
+        padding: 0px;
+        align-items: center;
+        justify-content: center;
+
+        a {
+          height: 3.125rem;
+          width: 4rem;
+          padding: 2px;
+
+          img {
+          height: 100%;
+          object-fit: contain;
+        }
+        }
+        
+        &:hover {
+          border: 1px solid $primary-color;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,104 @@
+<!-- Settings Notification - Booking -->
+<div class="settings-content-info" *ngFor="let distNotif of notificationDistinctList">
+  <h2>{{distNotif.UserNotTypeCatDesc}}</h2>
+  <div class="card">
+    <div class="card-body">
+
+      <div class="notifications">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="row">
+              <p class="col-8"></p>
+              <p class="col-2">Via Email</p>
+              <p class="col-2">Via SMS</p>
+            </div>
+          </li>
+          <li class="list-group-item" *ngFor="let bookNotif of this.notificationList | filter :'UserNotTypeCat' : distNotif.UserNotTypeCat; let bookkNotifIndex = index">
+            <div class="row">
+              <span class="col-8">{{bookNotif.UserNotTypeDesc}}</span>
+              <div class="col-2">
+                <div class="switch-box">
+                  <ui-switch id="1" [checked]="bookNotif.IsEmail" (change)="notifClicked(distNotif.UserNotTypeCat, bookNotif.UserNotTypeID, true, false, bookNotif)"
+                    size="small"></ui-switch>
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="switch-box">
+                  <ui-switch id="2" [checked]="bookNotif.IsSms" (change)="notifClicked(distNotif.UserNotTypeCat, bookNotif.UserNotTypeID, false, true, bookNotif)"
+                    size="small"></ui-switch>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item" *ngIf="distNotif.UserNotTypeCat.toLowerCase() === 'deals'">
+            <div class="row">
+              <div class="col">
+                <div class="check-boxes-main">
+                  <input id="shipOne1" type="checkbox" [checked]="(userNotificationSettings && userNotificationSettings.IsNotifyAllDeals)? true: false"
+                    (click)="changeAllDeals()">
+                  <label for="shipOne1">
+                    <span></span>
+                    All Deals </label>
+                </div>
+                <br>
+
+                <div *ngFor="let service of serviceTypeList">
+                  <h6 class="sub-heading">For {{service.serviceTypeDesc}}</h6>
+                  <span *ngFor="let route of notificationDealsList | filter :'ServiceTypeName' : service.serviceTypeName; let routeIndex = index">
+                    <span class="badge hashmove-badge-primary-grey">{{route.CountryName}} &nbsp;
+                      <img class="pointer" src="../../../assets/images/icons/icon_close.svg" alt="route.serviceTypeName" width="14" height="14" (click)="removeCountry(route.CountryID, service.serviceTypeID)">
+                    </span> &nbsp;
+
+                  </span>
+                  <!-- <span class="badge badge-add pointer" (click)="addCityCountryShip(routePicker, service.serviceTypeName, service.serviceTypeID)">Add City / Country</span> -->
+                  <span class="badge hashmove-badge-active pointer" (click)="addCityCountryShip(routePicker, service.serviceTypeName, service.serviceTypeID)">Add City / Country</span>
+                  <br>
+                  <br>
+                </div>
+              </div>
+            </div>
+            <ng-template #routePicker let-c="close">
+              <div class="modal-header">
+                <h4 class="modal-title">For {{addRouteType}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="c('close')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body settings-add-route">
+
+                <div class="icon-input">
+                  <div class="input-group-prepend">
+                    <input type="text" autocomplete="nope" id="typeahead-route" class="form-control" placeholder="Your city" [ngbTypeahead]="routeSearch"
+                      [resultTemplate]="rt" [inputFormatter]="routeFormatter" data-toggle="dropdown" (ngModelChange)="routeFlag(routeCity,'route')"
+                      aria-haspopup="true" aria-expanded="false">
+                  </div>
+
+                </div>
+                <ng-template #rt let-r="result" let-t="term">
+                  <img src="{{'../../../../assets/images/icons/flags/4x3/' + (r.imageName | lowercase) + '.svg'}}" width="16" height="16"> {{r.title}}
+                </ng-template>
+
+                <div class="badge-container">
+
+                  <span *ngFor="let notif of notificationDealsList | filter :'ServiceTypeName' : addRouteType">
+                    <span class="badge hashmove-badge-primary-grey pointer">{{notif.CountryName}} &nbsp;</span>
+                  </span>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-outline-dark" (click)="change()">Change</button> -->
+                <button type="button" class="btn btn-outline-dark" (click)="c('select')">Done</button>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ Settings Notification - Shipping -->
+<div class="text-right ">
+  <button type="button" class="btn btn-primary btn-update hvr-sweep-to-right" (click)="_updateNotification()">
+    Update
+  </button>
+</div>

@@ -1,0 +1,37 @@
+export interface CustomerSettings {
+    customerCode: string
+    customerFooterColor: string
+    customerFooterTextColor: string
+    customerForeColorPrimary: string
+    customerForeColorSecondary: string
+    customerID: number
+    customerPortalTitle: string
+    customerPrimaryBGImage: string
+    customerPrimaryColor: string
+    customerPrimaryGradientColor: string
+    customerPrimaryLogo: string
+    customerSecondarGradientColor: string
+    customerSecondaryBGImage: string
+    customerSecondaryColor: string
+    customerSecondaryLogo: string
+    customerType: string
+    cutomerBannerTabsOverlay: string
+    isAirCityRequired: boolean
+    isAirDoorRequired: boolean
+    isAirPortRequired: boolean
+    isBookShipmentRequired: boolean
+    isBookWarehouseRequired: boolean
+    isGroundCityRequired: boolean
+    isGroundDoorRequired: boolean
+    isGroundPortRequired: boolean
+    isPartnerWithUsRequired: boolean
+    isSeaCityRequired: boolean
+    isSeaDoorRequired: boolean
+    isSeaPortRequired: boolean
+    isTrackShipmentRequired: boolean
+    portalName: string
+    customerPrimaryLogoHeight: string
+    customerPrimaryLogoWidth: string
+    customerSecondaryLogoHeight: string
+    customerSecondaryLogoWidth: string
+}

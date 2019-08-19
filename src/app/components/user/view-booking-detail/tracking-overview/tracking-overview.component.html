@@ -1,0 +1,119 @@
+<div class="row" *ngIf="!isContDtl">
+  <div class="col text-right">
+    <div ngbDropdown class="d-inline-block tracking-overview-dropdown">
+      <button class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>{{selectedOption}}</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="animated fadeIn"
+        style="width: 175px;border-radius: 4px;">
+        <button class="dropdown-item" (click)="onContainerClick('All Containers', 'all')">All Containers</button>
+        <button class="dropdown-item" *ngFor="let container of constainerList"
+          (click)="onContainerClick(container.ContainerNo, 'cont')">{{container.ContainerNo}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="isContDtl && containerMapData?.lat > 0">
+  <div class="col">
+    <hashmove-map [windowHeight]="'20.375rem'" [enableDataService]="false" [isSingleContainer]="true"
+      [singleContData]="containerMapData">
+    </hashmove-map>
+  </div>
+</div>
+<div class="tracking-overview">
+  <h5 class="mb-4">Overview</h5>
+  <div class="row">
+    <div class="col" *ngIf="isTemperature">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mt-4">
+            <img src="../../../../../assets/images/icons/icon_temperature_animated.svg" class="icon-size-24 mr-3">
+            Temperature
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="card-body-detail">
+            <div class="row">
+              <div class="col mt-4">
+                <h6 class="card-body-detail-title">Total Alerts</h6>
+                <p class="card-body-detail-value">{{totalTempAlertCount}}</p>
+              </div>
+              <div class="col mt-4">
+                <h6 class="card-body-detail-title">Performance</h6>
+                <p class="card-body-detail-value pull-left mr-2">{{totalTempAlertPercent | number : '1.2-2'}}%</p>
+                <span class="badge" [ngStyle]="{'background-color':tempColor, 'color':'#fff'}">{{tempStatusName}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col" *ngIf="isHumidity">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mt-4">
+            <img src="../../../../../assets/images/icons/icon_humidity_animated.svg" class="icon-size-24 mr-3"> Humidity
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="card-body-detail">
+            <div class="row">
+              <div class="col mt-4">
+                <h6 class="card-body-detail-title">Total Alerts</h6>
+                <p class="card-body-detail-value">{{totalHumidAlertCount}}</p>
+              </div>
+              <div class="col mt-4">
+                <h6 class="card-body-detail-title">Performance</h6>
+                <p class="card-body-detail-value pull-left mr-2">{{totalHumidAlertPercent | number : '1.2-2'}}%</p>
+                <span class="badge"
+                  [ngStyle]="{'background-color':humidColor, 'color':'#fff'}">{{humidStatusName}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="quality-monitoring" *ngIf="(isHumidity || isTemperature) && !isContDtl">
+  <h5>Performance &#37;</h5>
+
+  <div class="card card-accent-info mb-4">
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col m-3">
+          <div echarts [options]="optionTemperature" class="demo-chartX"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="quality-monitoring" *ngIf="isContDtl">
+  <h5>Graph of Temperature &#176;C Change</h5>
+  <div class="card card-accent-info mb-4">
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col m-3">
+          <div echarts [options]="optionTemperature2" class="demo-chartX"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <h5>Graph of Humidity &#37; Change</h5>
+  <div class="card card-accent-info">
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col m-3">
+          <div echarts [options]="optionHumidty2" class="demo-chartX"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

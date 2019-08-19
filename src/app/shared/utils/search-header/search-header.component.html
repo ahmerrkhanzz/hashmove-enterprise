@@ -1,0 +1,246 @@
+<div class="results-header" [ngClass]="(page === 'vendor' ? 'vendor' : '')">
+  <div class="container">
+    <div class="row">
+      <div class="col-9">
+        <ul class="nav route">
+          <li class="nav-item" *ngIf="searchCriteria.searchMode !== 'warehouse-lcl'">
+            <div class="route-destination"
+              [ngbTooltip]="(searchCriteria.pickupPortType ==='GROUND')?searchCriteria.SearchCriteriaPickupGroundDetail?.Address + ((hashmoveLocation?.PolName?.length > 0)?'(' + hashmoveLocation?.PolName + ')':''):''"
+              placement="bottom" *ngIf="searchCriteria.deliveryPortType !== 'CITY'">
+              <img src="{{'../../../assets/images/icons/flags/4x3/' + pickupCountry + '.svg'}}" alt="">
+              {{(searchCriteria.pickupPortType
+              ==='GROUND')?searchCriteria.pickupPortName:searchCriteria.pickupPortCode}}
+            </div>
+            <div class="route-destination"
+              [ngbTooltip]="searchCriteria.userPickup.name"
+              placement="bottom" *ngIf="searchCriteria.pickupPortType === 'CITY'">
+              <img src="{{'../../../assets/images/icons/flags/4x3/' + searchCriteria.userPickup.imageName.toLowerCase() + '.svg'}}" alt="">
+              {{searchCriteria.userPickup.name}}
+            </div>
+            <div class="route-arrows">
+              <img src="../../../assets/images/icons/Icons_Route_White.svg" alt="" class="opacity0.8">
+            </div>
+            <div class="route-destination"
+              [ngbTooltip]="(searchCriteria.deliveryPortType ==='GROUND')?searchCriteria.SearchCriteriaDropGroundDetail?.Address + ((hashmoveLocation?.PodName?.length > 0)?'(' + hashmoveLocation?.PodName + ')':''):''"
+              placement="bottom" *ngIf="searchCriteria.deliveryPortType !== 'CITY'">
+              <img src="{{'../../../assets/images/icons/flags/4x3/' + deliverCountry + '.svg'}}" alt="">
+              {{(searchCriteria.deliveryPortType ==='GROUND')?searchCriteria.deliveryPortName:searchCriteria.deliveryPortCode}}
+            </div>
+            <div class="route-destination"
+              [ngbTooltip]="searchCriteria.userDelivery.name"
+              placement="bottom" *ngIf="searchCriteria.deliveryPortType === 'CITY'">
+              <img src="{{'../../../assets/images/icons/flags/4x3/' + searchCriteria.userDelivery.imageName.toLowerCase() + '.svg'}}" alt="">
+              {{searchCriteria.userDelivery.name}}
+            </div>
+          </li>
+          <li class="nav-item" *ngIf="searchCriteria.searchMode === 'warehouse-lcl'">
+            <div class="route-destination">
+              <img src="../../../../assets/images/icons/Icons_Location_blue.svg" alt="">
+              {{searchCriteria.CityName}}
+            </div>
+          </li>
+          <li class="nav-item">
+            <span *ngIf="!searchCriteria.storageType || searchCriteria?.storageType === 'shared'">
+              <svg id="88507c10-0da4-4b2d-a21a-0c5f629058b3" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <defs>
+                  <style>
+                    .\37 aed6998-0fd9-4022-9f2b-430573c5b675 {
+                      fill: var(--customerSecondaryColor);
+                      opacity: 0.8;
+                    }
+                  </style>
+                </defs>
+
+                <g id="2a77a8c1-03cb-4b0b-9400-6f49a695fb1a" data-name="calendar">
+                  <path id="f9e755db-d1c7-4c2d-8f2e-755558f034ad" data-name="&lt;Compound Path&gt;"
+                    class="7aed6998-0fd9-4022-9f2b-430573c5b675"
+                    d="M20,5V19a2,2,0,0,1-2,2H4V7A2,2,0,0,1,6,5H20m2-2H6A4,4,0,0,0,2,7V23H18a4,4,0,0,0,4-4V3Z" />
+                  <rect id="19ccffe0-336e-4cfa-affc-0859ccf0a517" data-name="&lt;Path&gt;"
+                    class="7aed6998-0fd9-4022-9f2b-430573c5b675" x="4" y="5" width="16" height="6" />
+                  <rect id="7556a7af-5b4a-4295-8b83-c429d2c26994" data-name="&lt;Path&gt;"
+                    class="7aed6998-0fd9-4022-9f2b-430573c5b675" x="7" y="2" width="2" height="5" />
+                  <rect id="6e3c8240-0c19-4341-aeed-3262c4d91dee" data-name="&lt;Path&gt;"
+                    class="7aed6998-0fd9-4022-9f2b-430573c5b675" x="15" y="2" width="2" height="5" />
+                </g>
+              </svg>
+              {{PickupDate | date : "d MMM, yyyy" }}
+              <span *ngIf="DeliveryDate">
+                -
+                {{DeliveryDate | date : "d MMM, yyyy" }}
+              </span>
+            </span>
+
+            <span *ngIf="searchCriteria.storageType === 'full'">
+              <svg id="daf2a9d0-ed1e-40c3-8dc2-534f350396d2" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16">
+                <defs>
+                  <style>
+                    .bf3de19e-df40-4e76-a7cd-2f9395b9693a {
+                      fill: var(--customerSecondaryColor);
+                    }
+                  </style>
+                </defs>
+                <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="16 10 10 16 16 16 16 10" />
+                <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="0 6 6 0 0 0 0 6" />
+                <rect class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" x="7.317" y="-2.63" width="1.367" height="21.261"
+                  transform="translate(-3.314 8) rotate(-45)" />
+                <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="2 14 2 9 0 9 0 16 7 16 7 14 2 14" />
+                <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="14 2 14 6 16 6 16 0 10 0 10 2 14 2" />
+              </svg>
+              <span *ngIf="searchCriteria.storageType === 'full'" [innerHTML]="searchCriteria?.spaceReqString">
+              </span>
+            </span>
+          </li>
+          <li class="nav-item icons pl-4">
+            <div *ngIf="searchCriteria.searchMode === 'sea-fcl' && searchCriteria.containerLoad === 'FCL'">
+              <svg id="3e0bd723-1f5e-404f-9c9e-f9fa6a56c26b" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <defs>
+                  <style>
+                    .\37 50c96f3-85fa-4da3-ae5f-980e0f5745ce {
+                      fill: var(--customerSecondaryColor);
+                      opacity: 0.8;
+                    }
+                  </style>
+                </defs>
+
+                <g id="6744cc39-0259-4947-99c3-524da0baf146" data-name="container">
+                  <path id="a13d3843-8cbe-44ec-8bff-9c9271c255f7" data-name="&lt;Compound Path&gt;"
+                    class="750c96f3-85fa-4da3-ae5f-980e0f5745ce" d="M22,10V22H2V10H22m2-2H0V24H24V8Z" />
+                  <rect id="3bc9a61b-e64a-4a26-a0db-69d1ce9d6b6e" data-name="&lt;Path&gt;"
+                    class="750c96f3-85fa-4da3-ae5f-980e0f5745ce" x="5" y="11" width="2" height="10" />
+                  <rect id="15063ed6-0b45-423b-a60a-fb9e8a38780a" data-name="&lt;Path&gt;"
+                    class="750c96f3-85fa-4da3-ae5f-980e0f5745ce" x="11" y="11" width="2" height="10" />
+                  <rect id="435b81d5-b0c3-4dda-b6bf-ec8fa8fd643e" data-name="&lt;Path&gt;"
+                    class="750c96f3-85fa-4da3-ae5f-980e0f5745ce" x="17" y="11" width="2" height="10" />
+                  <rect id="0dc9424e-7fc7-46da-a1ac-89446f588598" data-name="&lt;Path&gt;"
+                    class="750c96f3-85fa-4da3-ae5f-980e0f5745ce" x="5.229" y="5" width="7.543" height="2"
+                    transform="translate(-1.607 8.121) rotate(-45)" />
+                  <rect id="713c3bf1-8eef-4a1e-a553-96a0cf70b1ea" data-name="&lt;Path&gt;"
+                    class="750c96f3-85fa-4da3-ae5f-980e0f5745ce" x="14" y="2.229" width="2" height="7.543"
+                    transform="translate(0.15 12.363) rotate(-44.995)" />
+                  <rect id="9e10ba48-acd1-4fa3-a431-1799e0b0691c" data-name="&lt;Path&gt;"
+                    class="750c96f3-85fa-4da3-ae5f-980e0f5745ce" x="11" width="2" height="4" />
+                </g>
+              </svg>
+              <span *ngIf="containersQty > 1 ; else: temp">
+                {{searchCriteria.containerLoad}} {{containersQty + " x Containers"}}
+              </span>
+              <ng-template #temp>
+                {{searchCriteria.containerLoad}} {{containersQty + " x Container"}}
+              </ng-template>
+            </div>
+
+            <div *ngIf="searchCriteria.searchMode === 'truck-ftl' && searchCriteria.containerLoad === 'FTL'">
+              <img src="../../../../assets/images/icons/Icons_Cargo_Truck_white.svg" alt="" class="opacity0.8">
+              <span *ngIf="containersQty > 1 ; else: temp">
+                {{searchCriteria.containerLoad}} {{containersQty + " x Trucks"}}
+              </span>
+              <ng-template #temp>
+                {{searchCriteria.containerLoad}} {{containersQty + " x Truck"}}
+              </ng-template>
+            </div>
+
+            <div *ngIf="searchCriteria.containerLoad === 'LCL' && (searchCriteria.searchMode === 'sea-lcl' || searchCriteria.searchMode === 'air-lcl')">
+              <svg  id="ee0cf102-a966-4a3f-95ef-2d85d2845fce"
+                data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <defs>
+                  <style>
+                    .\33 24b713b-d0fb-4a53-8548-411c4a22720a {
+                      fill: var(--customerSecondaryColor);
+                    }
+                  </style>
+                </defs>
+                <g id="77a57afb-dc84-48f7-bcef-1ea8af6a0a74" data-name="box">
+                  <path id="b7ad858c-ef80-4b01-8e89-887b6e7eba38" data-name="&lt;Compound Path&gt;"
+                    class="container-svg 324b713b-d0fb-4a53-8548-411c4a22720a"
+                    d="M12,2.236l10,5v9.528l-10,5-10-5V7.236l10-5M12,0,0,6V18l12,6,12-6V6L12,0Z" />
+                  <polygon id="3d2841e7-73c0-49f4-a43e-30e1679abe1b" data-name="&lt;Path&gt;"
+                    class="container-svg 324b713b-d0fb-4a53-8548-411c4a22720a"
+                    points="12 12.504 0.5 7.316 1.334 5.496 12 10.307 22.666 5.496 23.5 7.316 12 12.504" />
+                  <rect id="221b7dca-da17-44bc-bf0a-eaf6705915cb" data-name="&lt;Path&gt;"
+                    class="container-svg 324b713b-d0fb-4a53-8548-411c4a22720a" x="11" y="11" width="2" height="12" />
+                </g>
+              </svg>
+              <span>
+                <span *ngIf="searchCriteria?.searchMode === 'sea-lcl'">{{searchCriteria?.containerLoad}}</span>
+                <!-- <span *ngIf="searchCriteria?.searchMode === 'air-lcl'">AIR</span> -->
+                <span *ngIf="!searchCriteria?.totalChargeableWeight && searchCriteria.searchMode !== 'air-lcl'">
+                  {{(containersQty | floatNumbers)}} CBM</span>
+                <span *ngIf="searchCriteria?.totalChargeableWeight > 0">
+                  {{searchCriteria?.totalChargeableWeight | number:'1.2-2'}} KG</span>
+                <span *ngIf="searchCriteria?.chargeableWeight">
+                  {{searchCriteria?.chargeableWeight | number:'1.2-2'}} KG</span>
+
+              </span>
+            </div>
+
+            <div *ngIf="searchCriteria.searchMode === 'warehouse-lcl'">
+              <svg *ngIf="searchCriteria.storageType === 'shared'" id="daf2a9d0-ed1e-40c3-8dc2-534f350396d2"
+                data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <defs>
+                  <style>
+                    .bf3de19e-df40-4e76-a7cd-2f9395b9693a {
+                      fill: var(--customerSecondaryColor);
+                    }
+                  </style>
+                </defs>
+                <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="16 10 10 16 16 16 16 10" />
+                <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="0 6 6 0 0 0 0 6" />
+                <rect class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" x="7.317" y="-2.63" width="1.367" height="21.261"
+                  transform="translate(-3.314 8) rotate(-45)" />
+                <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="2 14 2 9 0 9 0 16 7 16 7 14 2 14" />
+                <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="14 2 14 6 16 6 16 0 10 0 10 2 14 2" />
+              </svg>
+              <svg *ngIf="searchCriteria.storageType === 'full'" id="88507c10-0da4-4b2d-a21a-0c5f629058b3"
+                data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <defs>
+                  <style>
+                    .\37 aed6998-0fd9-4022-9f2b-430573c5b675 {
+                      fill: var(--customerSecondaryColor);
+                      opacity: 0.8;
+                    }
+                  </style>
+                </defs>
+
+                <g id="2a77a8c1-03cb-4b0b-9400-6f49a695fb1a" data-name="calendar">
+                  <path id="f9e755db-d1c7-4c2d-8f2e-755558f034ad" data-name="&lt;Compound Path&gt;"
+                    class="7aed6998-0fd9-4022-9f2b-430573c5b675"
+                    d="M20,5V19a2,2,0,0,1-2,2H4V7A2,2,0,0,1,6,5H20m2-2H6A4,4,0,0,0,2,7V23H18a4,4,0,0,0,4-4V3Z" />
+                  <rect id="19ccffe0-336e-4cfa-affc-0859ccf0a517" data-name="&lt;Path&gt;"
+                    class="7aed6998-0fd9-4022-9f2b-430573c5b675" x="4" y="5" width="16" height="6" />
+                  <rect id="7556a7af-5b4a-4295-8b83-c429d2c26994" data-name="&lt;Path&gt;"
+                    class="7aed6998-0fd9-4022-9f2b-430573c5b675" x="7" y="2" width="2" height="5" />
+                  <rect id="6e3c8240-0c19-4341-aeed-3262c4d91dee" data-name="&lt;Path&gt;"
+                    class="7aed6998-0fd9-4022-9f2b-430573c5b675" x="15" y="2" width="2" height="5" />
+                </g>
+              </svg>
+              <span *ngIf="searchCriteria.storageType === 'shared'">
+                <span
+                  *ngIf="((searchCriteria.searchBy ==='by_unit' || searchCriteria.searchBy ==='by_vol_weight'));else elseShared">
+                  {{searchCriteria.CBM}} CBM
+                </span>
+                <ng-template #elseShared>
+                  {{searchCriteria.SQFT}} ft<sup>2</sup>
+                </ng-template>
+              </span>
+              <span class="" *ngIf="searchCriteria.storageType === 'full'">Lease Term: {{searchCriteria?.minimumLeaseTermString}}
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col-3 actions">
+        <a href="javascript:;" *ngIf="(name === 'search') && (page !== 'vendor')" class="text-success"
+          (click)="modify()">MODIFY SEARCH</a>
+        <a href="javascript:;" *ngIf="name === 'booking' && buttons && !(orderSummary?.BookingType === 'specialrequest')" class="text-success mr-2"
+          (click)="saveBooking()">SAVE
+          BOOKING
+        </a>
+        <a href="javascript:;" *ngIf="name === 'booking' && buttons" class="text-default"
+          (click)="onCancelClicked()">CANCEL</a>
+      </div>
+    </div>
+  </div>
+</div>

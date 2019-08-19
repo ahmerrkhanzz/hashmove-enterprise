@@ -1,0 +1,377 @@
+<div class="row">
+  <div class="col-md-12">
+    <span *ngIf="customerProviders.length"
+      class="badge badge-secondary card-badge isMyProvider-badge text-uppercase">Preferred Providers</span>
+    <div class="hash-search {{cardClass}}" *ngFor="let item of searchResult | paginate: config;let i = index"
+      [ngClass]="{'isMyProvider': item.IsCustomerRecommended, 'isMyProvider-last': item.IsCustomerRecommended && item.composeiteKey === lastElem.composeiteKey, 'isMyProvider-single': item.IsCustomerRecommended && customerProviders.length === 1}">
+      <!-- shipping news -->
+      <div class="shipping-news">
+        <div class="card mb-4" [ngClass]="item.DiscountPrice ? 'isDiscount' : ''">
+          <div class="card-body">
+            <div class="flex-badges">
+              <span class="badge badge-success card-badge" *ngIf="item.DiscountPrice">Up to {{item.DealDet}} Off</span>
+              <span class="badge badge-secondary card-badge" *ngIf="item.IsRecommended">Recommended</span>
+            </div>
+            <div class="row mt-1">
+              <div class="col-sm-12 mt-1" [ngClass]="cardClass === 'lcl' ? 'col-md-6' : 'col-md-9'">
+                <div class="shipping-news-company mt-0">
+                  <div class="logo">
+                    <img *ngIf="cardClass === 'lcl' || cardClass === 'fcl'"
+                      src="{{getProviderImage(item.ProviderImage)}}" alt="" />
+                    <div class="gallery-section" *ngIf="cardClass === 'warehousing'">
+                      <div class="images-carousel" *ngFor="let image of item.WHParsedMedia; let i=index">
+                        <img [src]="image.thumb" (click)="open(i, item.WHParsedMedia)" />
+                        <div class="gallery-section-item d-flex justify-content-center align-items-center"
+                          (click)="open(i, item.WHParsedMedia)">
+                          <img src="../../../../assets/images/icons/icon_pictures.svg" alt="" class="icon-size-14 mr-1">
+                          {{item.WHParsedMedia.length}}
+                        </div>
+                      </div>
+                      <div class="video-icon" *ngIf="item.videoURL" (click)="openVideo(item.videoURL)">
+                        <a href="javascript:;">
+                          <i class="fa fa-play"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <h5 class="card-title">
+                  <span *ngIf="cardClass === 'lcl' || cardClass === 'fcl'">{{item.ProviderName}}</span>
+                  <span *ngIf="cardClass === 'warehousing'">{{item.WHName}}</span>
+                  <div class="warehousing-provider-icon">
+                    <img src="{{getProviderImage(item.ProviderImage)}}" alt="">
+                  </div>
+                </h5>
+                <span class="badge badge-primary mb-2"
+                  *ngIf="item.ProviderBusYear && (cardClass === 'lcl' || cardClass === 'fcl')">{{item.ProviderBusYear}}
+                  YR
+                </span>
+                <span *ngIf="item.IsNAFLProvider && cardClass === 'fcl'" class="badge-image">
+                  <img alt="" src="../../../../assets/images/logos/Nafl.png" class="isNafl">
+                </span>
+                <span
+                  *ngIf="item.IsPremiumProvider && (cardClass === 'fcl' || searchCriteria.searchMode === 'truck-ftl')"
+                  class="badge-image">
+                  <img alt="" src="../../../../assets/images/logos/verified-logo.jpg" class="isNafl">
+                </span>
+                <div class="warehousing-content">
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <img src="../../../../assets/images/icons/Icons_Location-grey.svg" alt="icon"
+                        class="icon-size-16 mr-2">
+                      <a href="javascript:;" class="grey-anc-btn hvr-icon-forward" (click)="cardMapCallBack(item.WHID)">
+                        <div class="text-truncate" style="max-width: 220px;max-lines: 2" [ngbTooltip]="item.WHAddress">
+                          {{item.WHAddress}}
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                  <div class="address mt-1">
+                    <img src="../../../../assets/images/icons/icon_grid.svg" alt="icon" class="icon-size-14 mr-2">
+                    {{item.WHAreaInSQFT | number: '1.0-0'}} ft
+                    <sup>2</sup>
+                  </div>
+                  <div class="address mt-1">
+                    {{item?.WHDesc}}
+                  </div>
+
+                  <div class="icons mt-2" *ngIf="searchCriteria.searchMode === 'warehouse-lcl'">
+                    <span class="hvr-icon-pulse-shrink" placement="top"
+                      ngbTooltip="{{item?.IsBondedWarehouse ? 'Bonded Warehouse' : ''}}">
+                      <img *ngIf="item?.IsBondedWarehouse"
+                        src="../../../../assets/images/icons/icon_bond_warehouse_green.svg" alt="" class="hvr-icon">
+                      <img *ngIf="!item?.IsBondedWarehouse"
+                        src="../../../../assets/images/icons/icon_bond_warehouse_grey_D.svg" alt="" class="hvr-icon">
+                    </span>
+                    <span class="hvr-icon-pulse-shrink" placement="top"
+                      ngbTooltip="{{item?.IsTransportAvailable ? 'Transport Available' : ''}}">
+                      <img *ngIf="item?.IsTransportAvailable"
+                        src="../../../../assets/images/icons/Icons_Cargo Truck_orange.svg" alt="footer icon"
+                        class="hvr-icon">
+                      <img *ngIf="!item?.IsTransportAvailable"
+                        src="../../../../assets/images/icons/Icons_Cargo Truck_Gray_D.svg" alt="footer icon"
+                        class="hvr-icon">
+                    </span>
+                  </div>
+
+                </div>
+                <!-- Shipping lines with dropdown menu -->
+
+                <div class="custom-group-dropdown pt-3" *ngIf="cardClass === 'fcl'">
+                  <div class="btn-group " ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                    <button class="btn btn-outline-primary btn-block dropdown-toggle-split"
+                      (click)="getShippingLines(item, i)" ngbDropdownToggle>
+                      Shipping with {{item.NoOfCarrier}}
+                      <span *ngIf="searchCriteria.searchMode === 'sea-fcl'">shipping</span>
+                      <span *ngIf="searchCriteria.searchMode === 'air-lcl'">airlines</span>
+                      lines
+                    </button>
+                    <ul class="dropdown-menu" ngbDropdownMenu>
+                      <ng-scrollbar [trackX]="false" barclass="main-bar">
+                        <div style="max-height:300px;">
+                          <li *ngIf="loading" class="loader">
+                            <app-loader-main></app-loader-main>
+                          </li>
+                          <li class="dropdown-item" *ngFor="let shippingLine of shippingLines">
+                            <div class="provider-icon d-inline-block">
+                              <img alt="" src="{{getCarrierImage(shippingLine.CarrierImage)}}">
+                            </div>
+                            <div class="provider-title">
+                              {{shippingLine.CarrierName}}
+                            </div>
+                            <span class="provider-price pull-right">{{item.CurrencyCode}}
+                              {{shippingLine.MinTotalPrice | number: '1.2-2'}}</span>
+                          </li>
+                        </div>
+                      </ng-scrollbar>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-sm-12 seperator-l" [ngClass]="cardClass === 'lcl' ? 'col-md-6' : 'col-md-3'">
+                <div class="row" *ngIf="cardClass !== 'fcl'">
+                  <div class="col-xl-7 col-sm-12 " [ngClass]="cardClass === 'warehousing' ? 'd-none' : ''">
+                    <div class="warehouse-content mt-2">
+                      <label class="card-text country-code">{{item.CurrencyCode}}</label>
+                      <div *ngIf="item.DiscountPrice">
+                        <strong class="card-text country-price text-truncate" placement="top"
+                          ngbTooltip="{{item.CurrencyCode}} {{item.DiscountPrice | number: '1.2-2'}}"
+                          *ngIf="item.DiscountPrice">{{item.DiscountPrice | number: '1.2-2'}}
+                        </strong>
+                        <strong class="card-text country-price old-price text-truncate" placement="top"
+                          ngbTooltip="{{item.CurrencyCode}} {{item.TotalPrice | number: '1.2-2'}}"
+                          *ngIf="item.TotalPrice">{{item.TotalPrice | number: '1.2-2'}}</strong>
+                      </div>
+                      <div *ngIf="!item.DiscountPrice">
+                        <strong class="card-text country-price text-truncate" placement="top"
+                          ngbTooltip="{{item.CurrencyCode}} {{item.TotalPrice | number: '1.2-2'}}">
+                          {{item.TotalPrice | number: '1.2-2'}}</strong>
+                      </div>
+                      <small *ngIf="!item.DiscountPrice && searchCriteria.searchMode !== 'truck-ftl'"
+                        id="{{'provider'+i+'x'}}">{{item.CurrencyCode}}
+                        {{lclPricePerCBM(item.TotalPrice) | number: '1.2-2'}} x {{lclQunatitySum | number:
+                            '1.2-2'}} {{commonUnit}}
+                      </small>
+                      <small *ngIf="item.DiscountPrice && searchCriteria.searchMode !== 'truck-ftl'"
+                        id="{{'provider'+i+'x'}}">{{item.CurrencyCode}}
+                        {{lclPricePerCBM(item.DiscountPrice) | number: '1.2-2'}} x {{lclQunatitySum |
+                            number: '1.2-2'}} {{commonUnit}}
+                      </small>
+                      <div class="additional-charges && searchCriteria.searchMode !== 'truck-ftl'"
+                        *ngIf="lclQunatitySum > 3">
+                        <img src="../../../../assets/images/icons/icon_info2 - grey.svg" alt="info"
+                          class="icon-size-16">
+                        <p>Additional charges may apply</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-5 col-sm-12 hash-search-right p-0"
+                    [ngClass]="cardClass === 'lcl' ? 'text-center' : ''">
+                    <a href="javascript:;" class="share-btn" *ngIf="false"
+                      (click)="shareShippingInfo('', item, 'provider'+i+'x', dateDifference)">
+                      <svg class="dad0eedd-3f58-4190-b99e-682be04a5685 forwarders-share-icon icon-size-16"
+                        data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <defs>
+                          <style>
+                            .\32 57445dd-43e8-4251-8231-74686b6f6f2a {
+                              fill: #abb6be;
+                              width: 16px;
+                            }
+
+                            .dad0eedd-3f58-4190-b99e-682be04a5685:hover .\32 57445dd-43e8-4251-8231-74686b6f6f2a {
+
+                              fill: #02b9b2;
+                              transition: 2s;
+                            }
+                          </style>
+                        </defs>
+                        <g>
+                          <circle class="257445dd-43e8-4251-8231-74686b6f6f2a" cx="13" cy="3" r="3" />
+                          <circle class="257445dd-43e8-4251-8231-74686b6f6f2a" cx="13" cy="13" r="3" />
+                          <circle class="257445dd-43e8-4251-8231-74686b6f6f2a" cx="3" cy="8" r="3" />
+                          <g>
+                            <polygon class="257445dd-43e8-4251-8231-74686b6f6f2a"
+                              points="14 3.078 13.066 1.568 4 6.556 5.839 7.568 14 3.078" />
+                            <polygon class="257445dd-43e8-4251-8231-74686b6f6f2a"
+                              points="4 10.012 13.066 15 14 13.49 5.839 9 4 10.012" />
+                          </g>
+                        </g>
+                      </svg>
+                    </a>
+                    <div class="warehousing-content">
+                      <label class="card-text country-code">{{item.CurrencyCode}}</label>
+                      <div *ngIf="item.DiscountPrice">
+                        <strong class="card-text country-price text-truncate" placement="top"
+                          ngbTooltip="{{item.CurrencyCode}} {{item.DiscountPrice | number: '1.2-2'}}"
+                          *ngIf="item.DiscountPrice">{{item.DiscountPrice | number: '1.2-2'}}
+                        </strong>
+                        <strong class="card-text country-price old-price text-truncate" placement="top"
+                          ngbTooltip="{{item.CurrencyCode}} {{item.TotalPrice | number: '1.2-2'}}"
+                          *ngIf="item.TotalPrice">{{item.TotalPrice | number: '1.2-2'}}</strong>
+                      </div>
+                      <div *ngIf="!item.DiscountPrice">
+                        <strong class="card-text country-price text-truncate" placement="top"
+                          ngbTooltip="{{item.CurrencyCode}} {{item.TotalPrice | number: '1.2-2'}}">
+                          {{item.TotalPrice | number: '1.2-2'}}</strong>
+                      </div>
+                      <small *ngIf="searchCriteria?.storageType === 'shared'" class="font-italic">Price for
+                        {{dateDifference}} {{(dateDifference > 1)?'days':'day'}}</small>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 promo-caption">
+                        <p *ngIf="searchCriteria?.storageType === 'shared'">
+                          <svg aria-hidden="true" data-prefix="far" data-icon="smile"
+                            class="svg-inline--fa fa-smile fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 496 512">
+                            <path fill="currentColor"
+                              d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 448c-110.3 0-200-89.7-200-200S137.7 56 248 56s200 89.7 200 200-89.7 200-200 200zm-80-216c17.7 0 32-14.3 32-32s-14.3-32-32-32-32 14.3-32 32 14.3 32 32 32zm160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32-32 14.3-32 32 14.3 32 32 32zm4 72.6c-20.8 25-51.5 39.4-84 39.4s-63.2-14.3-84-39.4c-8.5-10.2-23.7-11.5-33.8-3.1-10.2 8.5-11.5 23.6-3.1 33.8 30 36 74.1 56.6 120.9 56.6s90.9-20.6 120.9-56.6c8.5-10.2 7.1-25.3-3.1-33.8-10.1-8.4-25.3-7.1-33.8 3.1z">
+                            </path>
+                          </svg> Book now and pay after {{item?.CreditDays}} days! </p>
+                        <span *ngIf="searchCriteria?.storageType === 'full'">{{(searchCriteria.minimumLeaseTerm
+                              <12)? 'Monthly': 'Yearly'}}</span>
+                      </div>
+                    </div>
+                    <button *ngIf="cardClass === 'warehousing'"
+                      class="btn btn-primary book-btn btn-block hvr-sweep-to-right mb-1"
+                      (click)="onTermsClick(item, 'action')">Proceed</button>
+                    <button *ngIf="cardClass === 'lcl'"
+                      class="btn btn-primary book-btn btn-block hvr-sweep-to-right mb-1 mr-2"
+                      [ngClass]="(searchCriteria.searchMode === 'truck-ftl' && item.CreditDays) ? 'mt-0' : ''"
+                      (click)="onTermsClick(item, 'action')">Proceed</button>
+                    <a href="javascript:;" (click)="onTermsClick(item, 'view')"
+                      class="termsBtn col-12 mt-2 p-0 d-flex justify-content-center">Terms & Conditions</a>
+                    <a href="javascript:;" (click)="onSpecialPrice(item)"
+                      class="termsBtn col-12 mt-2 p-0 d-flex justify-content-center">
+                      <!-- <img *ngIf="searchCriteria.searchMode === 'warehouse-lcl' || searchCriteria.searchMode === 'sea-lcl' || searchCriteria.searchMode === 'truck-ftl'" src="../../../../assets/images/icons/icon_info2.svg" alt="Request Special Price"
+                        class="icon-size-14 mr-1"> -->
+                      Request Special Price
+                    </a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 mb-2" *ngIf="cardClass === 'fcl'">
+                    <a href="javascript:;" *ngIf="false" class="share-btn" (click)="shareShippingInfo('', item, 'provider'+i+'x')">
+                      <svg class="dad0eedd-3f58-4190-b99e-682be04a5685 forwarders-share-icon icon-size-14" data-name="Layer 1"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <defs>
+                          <style>
+                            .\32 57445dd-43e8-4251-8231-74686b6f6f2a {
+                              fill: #abb6be;
+                              width: 16px;
+                            }
+
+                            .dad0eedd-3f58-4190-b99e-682be04a5685:hover .\32 57445dd-43e8-4251-8231-74686b6f6f2a {
+
+                              fill: #02b9b2;
+                              transition: 2s;
+                            }
+                          </style>
+                        </defs>
+                        <g>
+                          <circle class="257445dd-43e8-4251-8231-74686b6f6f2a" cx="13" cy="3" r="3" />
+                          <circle class="257445dd-43e8-4251-8231-74686b6f6f2a" cx="13" cy="13" r="3" />
+                          <circle class="257445dd-43e8-4251-8231-74686b6f6f2a" cx="3" cy="8" r="3" />
+                          <g>
+                            <polygon class="257445dd-43e8-4251-8231-74686b6f6f2a"
+                              points="14 3.078 13.066 1.568 4 6.556 5.839 7.568 14 3.078" />
+                            <polygon class="257445dd-43e8-4251-8231-74686b6f6f2a"
+                              points="4 10.012 13.066 15 14 13.49 5.839 9 4 10.012" />
+                          </g>
+                        </g>
+                      </svg>
+                    </a>
+                  </div>
+                  <div class="col-sm-12 " *ngIf="cardClass === 'fcl'">
+                    <div class="fcl-content">
+                      <h5 class="mr-2 mb-1">Starting From</h5>
+                      <div *ngIf="!item.DiscountPrice">
+                        <strong class="card-text text-truncate mr-2" placement="top"
+                          ngbTooltip="{{item.CurrencyCode}} {{item.MinTotalPrice | number: '1.2-2'}}">
+                          <span class="country-code text-truncate">{{item.CurrencyCode}} </span>
+                          {{item.MinTotalPrice | number: '1.2-2'}}
+                        </strong>
+                      </div>
+                      <!-- <h5>To</h5>
+                      <div *ngIf="!item.DiscountPrice">
+                        <strong class="card-text text-truncate" placement="top"
+                          ngbTooltip="{{item.CurrencyCode}} {{item.MaxTotalPrice | number: '1.2-2'}}">
+                          <span class="country-code">{{item.CurrencyCode}} </span>
+                          {{item.MaxTotalPrice | number: '1.2-2'}}
+                        </strong>
+                      </div> -->
+                      <div class="row" *ngIf="item.CreditDays">
+                        <div class="col-12 promo-caption">
+                          <p>
+                            <svg aria-hidden="true" data-prefix="far" data-icon="smile"
+                              class="svg-inline--fa fa-smile fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 496 512">
+                              <path fill="currentColor"
+                                d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 448c-110.3 0-200-89.7-200-200S137.7 56 248 56s200 89.7 200 200-89.7 200-200 200zm-80-216c17.7 0 32-14.3 32-32s-14.3-32-32-32-32 14.3-32 32 14.3 32 32 32zm160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32-32 14.3-32 32 14.3 32 32 32zm4 72.6c-20.8 25-51.5 39.4-84 39.4s-63.2-14.3-84-39.4c-8.5-10.2-23.7-11.5-33.8-3.1-10.2 8.5-11.5 23.6-3.1 33.8 30 36 74.1 56.6 120.9 56.6s90.9-20.6 120.9-56.6c8.5-10.2 7.1-25.3-3.1-33.8-10.1-8.4-25.3-7.1-33.8 3.1z">
+                              </path>
+                            </svg> Enjoy {{item.CreditDays}} days net credit
+                            <br>from the supplier! </p>
+                        </div>
+                      </div>
+                      <button *ngIf="searchCriteria?.searchMode === 'sea-fcl'"
+                        class="btn btn-primary btn-block book-btn hvr-sweep-to-right mb-1"
+                        (click)="onTermsClick(item, 'action')">Proceed</button>
+                      <button *ngIf=" searchCriteria?.searchMode === 'air-lcl'"
+                        class="btn btn-primary btn-block book-btn hvr-sweep-to-right mb-1"
+                        (click)="onTermsClick(item, 'action')">Proceed</button>
+                      <a href="javascript:;" (click)="onTermsClick(item, 'view')"
+                        class="termsBtn col-12 mt-2 p-0 d-flex justify-content-center">Terms & Conditions</a>
+                      <a href="javascript:;" *ngIf="searchCriteria.searchMode === 'warehouse-lcl' || searchCriteria.searchMode === 'sea-lcl' || searchCriteria.searchMode === 'truck-ftl'"
+                       (click)="onSpecialPrice(item)"
+                        class="termsBtn col-12 mt-2 p-0 d-flex justify-content-center">
+                        <img src="../../../../assets/images/icons/icon_info2.svg" alt="Request Special Price"
+                          class="icon-size-14 mr-1">
+                        Request Special Price
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer text-muted"
+            *ngIf="(cardClass === 'lcl' && item?.IsAnyRestriction && item?.IsTrending)">
+            <div class="icons" *ngIf="cardClass === 'lcl'">
+              <span *ngIf="item?.IsAnyRestriction" class="mr-3">
+                <i class="fa fa-ban text-danger"></i>
+                <label for="">Restrictions</label>
+              </span>
+              <span *ngIf="item?.IsTrending">
+                <img src="../../../../assets/images/icons/trending.png" alt="">
+                <label for="">Trending</label>
+              </span>
+            </div>
+            <div *ngIf="searchCriteria.searchMode === 'warehouse-lcl'"
+              class="route-details hvr-icon-down warehousing-content" (click)="toggleDetail()">
+              <span>
+                <a class="text-muted" href="{{item.ProviderWebAdd}}" target="_blank">About {{item.WHName}}</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="view-providers text-center"
+        *ngIf="(item.IsCustomerRecommended && customerProviders.length < 5) && (item.ProviderID === lastElem.ProviderID) && nonRecommendedResults.length">
+        <label>View All Providers</label>
+        <img src="../../../../assets/images/icons/icon_arrow_down.svg" alt="" class="icon-size-12 ml-2">
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="d-flex justify-content-end" *ngIf="getTotalPages() > 1">
+      <p class="pager-info mr-3">Page {{config.currentPage}} of {{getTotalPages()}}</p>
+      <pagination-controls [id]="config.id" [maxSize]="maxSize" [directionLinks]="directionLinks" [autoHide]="autoHide"
+        [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"
+        [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+        [screenReaderPageLabel]="labels.screenReaderPageLabel"
+        [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel" (pageChange)="onPageChange($event)">
+      </pagination-controls>
+    </div>
+  </div>
+</div>

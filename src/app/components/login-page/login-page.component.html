@@ -1,0 +1,12 @@
+<div class="container login">
+    <div class="row">
+        <div class="col align-self-center">
+            <div class="login-info mb-0 mt-3" [ngStyle]="{'color':headingColor}">
+                <img class="mt-4" src="{{getUIImage(customerSettings?.customerPrimaryLogo)}}" alt="">
+                <h3>{{customerSettings?.customerPortalTitle}}</h3>
+            </div>
+            <app-login-dialog *ngIf="isLogin" (onForgetPassClick)="compEventListener($event)"></app-login-dialog>
+            <app-forgot-password *ngIf="!isLogin" (onLoginClick)="compEventListener($event)"></app-forgot-password>
+        </div>
+    </div>
+</div>

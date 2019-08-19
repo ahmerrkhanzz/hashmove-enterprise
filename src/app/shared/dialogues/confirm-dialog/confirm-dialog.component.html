@@ -1,0 +1,17 @@
+<div class="user-modal animated fadeIn">
+  <div class="modal-header">
+    <h4 class="confirm-modal-title">{{messageData.messageTitle}}</h4>
+    <a class="pointer crossIcon" (click)="closeModal('cancel')">
+      <img src="../../../../assets/images/icons/icon_close.svg" alt="close">
+    </a>
+  </div>
+  <div class="modal-body">
+    <p>{{messageData.messageContent}}</p>
+    <div class="text-center">
+      <button *ngIf="!isRouting" class="btn btn-danger hvr-sweep-to-right" (click)="onConfirmClick('confirm')" type="button">{{messageData.buttonTitle}}</button>
+      <div *ngIf="isRouting" class="col btn btn-danger">
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
+    </div>
+  </div>
+</div>

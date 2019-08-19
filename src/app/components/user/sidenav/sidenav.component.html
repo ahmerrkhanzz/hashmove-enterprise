@@ -1,0 +1,226 @@
+<div class="user-dashboard-leftsidebar">
+
+
+  <div class="navbar-nav nav-left">
+
+    <div class="leftsidebar-main">
+      <h3>
+        <!-- <app-placeholder [heading]="'single-heading'"></app-placeholder> -->
+        <span class="grey-placeholder">Main</span>
+      </h3>
+      <ul class="nav flex-column leftsidebar-column">
+        <li>
+          <!-- <app-placeholder [heading]="'sidenav'"></app-placeholder> -->
+          <a href="javascript:void(0)" class="nav-link grey-placeholder" (click)="tonavigate('/user/dashboard')"
+            [ngClass]="getClass('/user/dashboard')">
+            <i class="icon-svg">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="1baabaa8-6727-4ed0-8ff0-af9057ae92cc" data-name="Layer 1"
+                viewBox="0 0 24 24">
+                <g id="0daead80-9cd9-45c5-893d-b367846497f6" data-name="dashboard">
+                  <path class="a2427113-381a-4295-bc05-68927555d6bc" d="M9,2v9H2V2H9m2-2H2A2,2,0,0,0,0,2V13H9a2,2,0,0,0,2-2V0Z" />
+                  <path class="a2427113-381a-4295-bc05-68927555d6bc" d="M9,17v5H2V17H9m2-2H2a2,2,0,0,0-2,2v7H9a2,2,0,0,0,2-2V15Z" />
+                  <path class="a2427113-381a-4295-bc05-68927555d6bc" d="M22,2V7H15V2h7m2-2H15a2,2,0,0,0-2,2V9h9a2,2,0,0,0,2-2V0Z" />
+                  <path class="a2427113-381a-4295-bc05-68927555d6bc" d="M22,13v9H15V13h7m2-2H15a2,2,0,0,0-2,2V24h9a2,2,0,0,0,2-2V11Z" />
+                </g>
+              </svg>
+            </i>
+            <span class="menu-text">
+              Dashboard
+            </span>
+          </a>
+        </li>
+        <li>
+          <!-- <app-placeholder [heading]="'sidenav'"></app-placeholder> -->
+          <a href="javascript:void(0)" class="nav-link grey-placeholder" (click)="tonavigate('/user/bookings')"
+            [ngClass]="getClass('/user/bookings', 'booking-detail')">
+            <i class="icon-svg">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="e44d6743-0a22-494c-8fef-fdb82a3ce8d4" data-name="Layer 1"
+                viewBox="0 0 24 24">
+                <defs>
+                  <style>
+                    .b6b9849e-9085-4729-94e4-dcc6a57ad25c {
+                      fill: #fff;
+                    }
+
+                    .e8197418-ac9c-4514-94d4-b7c285ea457b {
+                      fill: #fff;
+                    }
+                  </style>
+                </defs>
+                <g id="c96cc7b4-7b50-466a-b580-52b0e44fe2a3" data-name="total_booking">
+                  <g id="5548d762-2e90-4c17-a58b-2b3f06316be3" data-name="summary">
+                    <path class="beacf530-5e58-46ba-b8e5-c396dcf6e995" d="M16,2V20a2,2,0,0,1-2,2H2V4A2,2,0,0,1,4,2H16m2-2H4A4,4,0,0,0,0,4V24H14a4,4,0,0,0,4-4V0Z" />
+                  </g>
+                  <g>
+                    <circle class="b6b9849e-9085-4729-94e4-dcc6a57ad25c" cx="16" cy="12" r="7" />
+                    <path class="beacf530-5e58-46ba-b8e5-c396dcf6e995" d="M16,6a6,6,0,1,1-6,6,6.007,6.007,0,0,1,6-6m0-2a8,8,0,1,0,8,8,8,8,0,0,0-8-8Z" />
+                  </g>
+                  <g id="b4ba13e3-dae3-4e2b-90bb-2e50ac1d3cd4" data-name="&lt;Group&gt;">
+                    <polygon class="e8197418-ac9c-4514-94d4-b7c285ea457b" points="18.469 9 15.2 12.098 13.531 10.516 12 11.967 15.2 15 20 10.451 18.469 9" />
+                    <polygon class="beacf530-5e58-46ba-b8e5-c396dcf6e995" points="18.469 9 15.2 12.098 13.531 10.516 12 11.967 15.2 15 20 10.451 18.469 9" />
+                  </g>
+                </g>
+              </svg>
+            </i>
+            <span class="menu-text">
+              Bookings
+            </span>
+            <span class="badge badge-primary" *ngIf="currentBookingsCount > 0">{{currentBookingsCount}}</span>
+          </a>
+        </li>
+        <!-- <li>
+          <a href="javascript:void(0)" class="nav-link grey-placeholder" (click)="tonavigate('/user/billing')"
+            [ngClass]="getClass('/user/billing')">
+            <i class="icon-svg">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="c81dd9e7-2f3e-464d-9f69-1c124011dc06" data-name="Layer 1"
+                viewBox="0 0 24 24">
+                <defs>
+                  <style>
+                    .\38 7ef366a-76c7-4540-9e54-a1d9d90e1a4d {
+                      fill: none;
+                      stroke: #00a2df;
+                      stroke-miterlimit: 10;
+                      stroke-width: 2px;
+                    }
+                  </style>
+                </defs>
+                <g id="ff7f9fcb-191b-4db9-8a83-9370a3d02b10" data-name="billing">
+                  <path class="ed727c19-e8ed-499d-bd34-a8a917915c1a" d="M19,2V20.263L18,19.6l-1.109.74L15,21.6l-1.891-1.26L12,19.6l-1.109.74L9,21.6l-1.891-1.26L6,19.6l-1,.667V4A2,2,0,0,1,7,2H19m2-2H7A4,4,0,0,0,3,4V24l3-2,3,2,3-2,3,2,3-2,3,2V0Z" />
+                  <line class="87ef366a-76c7-4540-9e54-a1d9d90e1a4d" x1="11" y1="16" x2="17" y2="16" />
+                  <line class="87ef366a-76c7-4540-9e54-a1d9d90e1a4d" x1="11" y1="11" x2="17" y2="11" />
+                  <line class="87ef366a-76c7-4540-9e54-a1d9d90e1a4d" x1="11" y1="6" x2="17" y2="6" />
+                  <line class="87ef366a-76c7-4540-9e54-a1d9d90e1a4d" x1="9" y1="16" x2="7" y2="16" />
+                  <line class="87ef366a-76c7-4540-9e54-a1d9d90e1a4d" x1="9" y1="11" x2="7" y2="11" />
+                  <line class="87ef366a-76c7-4540-9e54-a1d9d90e1a4d" x1="9" y1="6" x2="7" y2="6" />
+                </g>
+              </svg>
+            </i>
+            <span class="menu-text">
+              Billing
+            </span>
+          </a>
+        </li> -->
+        <li>
+          <!-- <app-placeholder [heading]="'sidenav'"></app-placeholder> -->
+          <a href="javascript:void(0)" class="nav-link grey-placeholder" (click)="tonavigate('/user/reports')"
+            [ngClass]="getClass('/user/reports')">
+            <i class="icon-svg">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="938364f1-cee0-4e40-a2b2-7b06fbf0c4b6" data-name="Layer 1"
+                viewBox="0 0 24 24">
+
+                <g id="cc013ae8-f8be-41bb-bb66-30c1744f3b3a" data-name="analytics">
+                  <path class="12f18174-89eb-418f-970b-b8b03e643295" d="M3,20a1,1,0,1,1-1,1,1,1,0,0,1,1-1m0-2a3,3,0,1,0,3,3,3,3,0,0,0-3-3Z" />
+                  <path class="12f18174-89eb-418f-970b-b8b03e643295" d="M7,10a1,1,0,1,1-1,1,1,1,0,0,1,1-1M7,8a3,3,0,1,0,3,3A3,3,0,0,0,7,8Z" />
+                  <rect class="12f18174-89eb-418f-970b-b8b03e643295" x="2.307" y="15" width="5.385" height="2.001"
+                    transform="translate(-11.712 14.699) rotate(-68.193)" />
+                  <path class="12f18174-89eb-418f-970b-b8b03e643295" d="M17,12a1,1,0,1,1-1,1,1,1,0,0,1,1-1m0-2a3,3,0,1,0,3,3,3,3,0,0,0-3-3Z" />
+                  <path class="12f18174-89eb-418f-970b-b8b03e643295" d="M21,2a1,1,0,1,1-1,1,1,1,0,0,1,1-1m0-2a3,3,0,1,0,3,3,3,3,0,0,0-3-3Z" />
+                  <rect class="12f18174-89eb-418f-970b-b8b03e643295" x="16.307" y="7" width="5.385" height="2.001"
+                    transform="translate(4.514 22.669) rotate(-68.193)" />
+                  <rect class="12f18174-89eb-418f-970b-b8b03e643295" x="11" y="9.307" width="2" height="5.385"
+                    transform="translate(-3.598 18.685) rotate(-68.199)" />
+                </g>
+              </svg>
+            </i>
+            <span class="menu-text">
+              Reports
+            </span>
+          </a>
+        </li>
+        <li>
+          <!-- <app-placeholder [heading]="'sidenav'"></app-placeholder> -->
+          <a *ngIf="IsAdmin || nonAdminUser" href="javascript:void(0)" class="nav-link grey-placeholder" (click)="tonavigate('/user/all-users')"
+            [ngClass]="getClass('/user/all-users')">
+            <i class="icon-svg">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="29ed0112-4bdc-461f-a7b1-1543f205fc17" data-name="Layer 1"
+                viewBox="0 0 24 24">
+                <g id="19900aba-a63c-4a4b-b087-ac05c2afdf0b" data-name="users">
+                  <path id="2aa6c80d-5d32-4815-9a35-71dc74f96b34" data-name="&lt;Compound Path&gt;" class="dab1c0f6-a1d0-4780-9ca0-37ee009cd367"
+                    d="M10,18v2a2,2,0,0,1-2,2H2V20a2,2,0,0,1,2-2h6m2-2H4a4,4,0,0,0-4,4v4H8a4,4,0,0,0,4-4V16Z" />
+                  <path id="9c28e70d-ba1c-4734-92f7-ee223d8fbc4c" data-name="&lt;Compound Path&gt;" class="dab1c0f6-a1d0-4780-9ca0-37ee009cd367"
+                    d="M7.3,7A1.2,1.2,0,0,1,8.5,8.2V9.8A1.2,1.2,0,0,1,7.3,11H5.7A1.2,1.2,0,0,1,4.5,9.8V8.2A1.2,1.2,0,0,1,5.7,7H7.3m0-2H5.7A3.2,3.2,0,0,0,2.5,8.2V9.8A3.2,3.2,0,0,0,5.7,13H7.3a3.2,3.2,0,0,0,3.2-3.2V8.2A3.2,3.2,0,0,0,7.3,5Z" />
+                  <path id="d04a621e-115e-4ed1-a64d-a326731835b5" data-name="&lt;Compound Path&gt;" class="dab1c0f6-a1d0-4780-9ca0-37ee009cd367"
+                    d="M22,12v2a2,2,0,0,1-2,2H14V14a2,2,0,0,1,2-2h6m2-2H16a4,4,0,0,0-4,4v4h8a4,4,0,0,0,4-4V10Z" />
+                  <path id="47c15b02-f732-45d0-9b31-ab713aae72e3" data-name="&lt;Compound Path&gt;" class="dab1c0f6-a1d0-4780-9ca0-37ee009cd367"
+                    d="M18.8,2A1.2,1.2,0,0,1,20,3.2V4.8A1.2,1.2,0,0,1,18.8,6H17.2A1.2,1.2,0,0,1,16,4.8V3.2A1.2,1.2,0,0,1,17.2,2h1.6m0-2H17.2A3.2,3.2,0,0,0,14,3.2V4.8A3.2,3.2,0,0,0,17.2,8h1.6A3.2,3.2,0,0,0,22,4.8V3.2A3.2,3.2,0,0,0,18.8,0Z" />
+                </g>
+              </svg>
+            </i>
+            <span class="menu-text">
+              Users
+            </span>
+            <span class="badge badge-primary" *ngIf="dashboardData.CompanyUserCount > 0">{{dashboardData.CompanyUserCount}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="leftsidebar-help">
+      <h3>
+        <!-- <app-placeholder [heading]="'single-heading'"></app-placeholder> -->
+        <span class="grey-placeholder">Help</span>
+      </h3>
+      <ul class="nav flex-column leftsidebar-column">
+        <li>
+          <!-- <app-placeholder [heading]="'sidenav'"></app-placeholder> -->
+          <a href="javascript:void(0)" class="nav-link grey-placeholder">
+            <i class="icon-svg">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="c1a26c25-dd77-49c2-99d9-df0cd5340645" data-name="Layer 1"
+                viewBox="0 0 24 24">
+
+                <g id="8592075f-b175-49f6-820d-5d2d013429f3" data-name="settings">
+                  <path class="8446bc33-bc11-48b5-9997-6d038acca7bc" d="M13.072,2a3.657,3.657,0,0,0,5.241,2.171l1.517,1.517A3.659,3.659,0,0,0,22,10.927v2.145a3.659,3.659,0,0,0-2.17,5.24l-1.517,1.517A3.657,3.657,0,0,0,13.073,22H10.928a3.657,3.657,0,0,0-5.241-2.171L4.171,18.313A3.659,3.659,0,0,0,2,13.073V10.928a3.659,3.659,0,0,0,2.17-5.24L5.687,4.171A3.657,3.657,0,0,0,10.927,2h2.144m.263-2h-2.67a1.66,1.66,0,0,0-1.62,1.3l0,.008a1.66,1.66,0,0,1-1.624,1.3,1.645,1.645,0,0,1-.888-.261l-.007,0a1.66,1.66,0,0,0-2.065.227L2.571,4.459a1.66,1.66,0,0,0-.227,2.065l0,.007a1.66,1.66,0,0,1-1.04,2.512l-.008,0A1.66,1.66,0,0,0,0,10.665v2.67a1.66,1.66,0,0,0,1.3,1.62l.008,0a1.66,1.66,0,0,1,1.04,2.512l0,.007a1.66,1.66,0,0,0,.227,2.065l1.888,1.888a1.66,1.66,0,0,0,2.065.227l.007,0a1.658,1.658,0,0,1,2.512,1.04l0,.008a1.66,1.66,0,0,0,1.62,1.3h2.67a1.66,1.66,0,0,0,1.62-1.3l0-.008a1.658,1.658,0,0,1,2.512-1.04l.007,0a1.66,1.66,0,0,0,2.065-.227l1.888-1.888a1.66,1.66,0,0,0,.227-2.065l0-.007a1.66,1.66,0,0,1,1.04-2.512l.008,0a1.66,1.66,0,0,0,1.3-1.62v-2.67a1.66,1.66,0,0,0-1.3-1.62l-.008,0a1.66,1.66,0,0,1-1.04-2.512l0-.007a1.66,1.66,0,0,0-.227-2.065L19.541,2.571a1.66,1.66,0,0,0-2.065-.227l-.007,0a1.646,1.646,0,0,1-.888.261,1.66,1.66,0,0,1-1.624-1.3l0-.008A1.66,1.66,0,0,0,13.335,0Z" />
+                  <path class="8446bc33-bc11-48b5-9997-6d038acca7bc" d="M12,8a4,4,0,1,1-4,4,4,4,0,0,1,4-4m0-2a6,6,0,1,0,6,6,6,6,0,0,0-6-6Z" />
+                </g>
+              </svg>
+            </i>
+            <span class="menu-text" (click)="tonavigate('/user/settings')" [ngClass]="getClass('/user/settings')">
+              Settings
+            </span>
+          </a>
+        </li>
+        <!-- <li>
+
+          <a href="javascript:void(0)" class="nav-link grey-placeholder">
+            <i class="icon-svg">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="c1a26c25-dd77-49c2-99d9-df0cd5340645" data-name="Layer 1"
+                viewBox="0 0 24 24">
+
+                <g id="8592075f-b175-49f6-820d-5d2d013429f3" data-name="settings">
+                  <path class="8446bc33-bc11-48b5-9997-6d038acca7bc" d="M13.072,2a3.657,3.657,0,0,0,5.241,2.171l1.517,1.517A3.659,3.659,0,0,0,22,10.927v2.145a3.659,3.659,0,0,0-2.17,5.24l-1.517,1.517A3.657,3.657,0,0,0,13.073,22H10.928a3.657,3.657,0,0,0-5.241-2.171L4.171,18.313A3.659,3.659,0,0,0,2,13.073V10.928a3.659,3.659,0,0,0,2.17-5.24L5.687,4.171A3.657,3.657,0,0,0,10.927,2h2.144m.263-2h-2.67a1.66,1.66,0,0,0-1.62,1.3l0,.008a1.66,1.66,0,0,1-1.624,1.3,1.645,1.645,0,0,1-.888-.261l-.007,0a1.66,1.66,0,0,0-2.065.227L2.571,4.459a1.66,1.66,0,0,0-.227,2.065l0,.007a1.66,1.66,0,0,1-1.04,2.512l-.008,0A1.66,1.66,0,0,0,0,10.665v2.67a1.66,1.66,0,0,0,1.3,1.62l.008,0a1.66,1.66,0,0,1,1.04,2.512l0,.007a1.66,1.66,0,0,0,.227,2.065l1.888,1.888a1.66,1.66,0,0,0,2.065.227l.007,0a1.658,1.658,0,0,1,2.512,1.04l0,.008a1.66,1.66,0,0,0,1.62,1.3h2.67a1.66,1.66,0,0,0,1.62-1.3l0-.008a1.658,1.658,0,0,1,2.512-1.04l.007,0a1.66,1.66,0,0,0,2.065-.227l1.888-1.888a1.66,1.66,0,0,0,.227-2.065l0-.007a1.66,1.66,0,0,1,1.04-2.512l.008,0a1.66,1.66,0,0,0,1.3-1.62v-2.67a1.66,1.66,0,0,0-1.3-1.62l-.008,0a1.66,1.66,0,0,1-1.04-2.512l0-.007a1.66,1.66,0,0,0-.227-2.065L19.541,2.571a1.66,1.66,0,0,0-2.065-.227l-.007,0a1.646,1.646,0,0,1-.888.261,1.66,1.66,0,0,1-1.624-1.3l0-.008A1.66,1.66,0,0,0,13.335,0Z" />
+                  <path class="8446bc33-bc11-48b5-9997-6d038acca7bc" d="M12,8a4,4,0,1,1-4,4,4,4,0,0,1,4-4m0-2a6,6,0,1,0,6,6,6,6,0,0,0-6-6Z" />
+                </g>
+              </svg>
+            </i>
+            <span class="menu-text" (click)="tonavigate('/user/reports')" [ngClass]="getClass('/user/reports')">
+              Reports
+            </span>
+          </a>
+        </li> -->
+        <li>
+          <!-- <app-placeholder [heading]="'sidenav'"></app-placeholder> -->
+          <a href="javascript:void(0)" class="nav-link grey-placeholder">
+            <i class="icon-svg">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="09da9ef4-560b-4c50-b937-a692aefeb8bf" data-name="Layer 1"
+                viewBox="0 0 24 24">
+
+                <g id="223f8ac6-5de0-4d9c-9a46-3d1e08347961" data-name="support">
+                  <path class="08e70ac6-3b25-4896-a4c1-816f324b7343" d="M12,2A10,10,0,1,1,2,12,10.011,10.011,0,0,1,12,2m0-2A12,12,0,1,0,24,12,12,12,0,0,0,12,0Z" />
+                  <g>
+                    <path class="08e70ac6-3b25-4896-a4c1-816f324b7343" d="M5.08,13H2V11H5.08a6.937,6.937,0,0,1,.6-2H0v6H5.683A6.937,6.937,0,0,1,5.08,13Z" />
+                    <path class="08e70ac6-3b25-4896-a4c1-816f324b7343" d="M11,5.08V2h2V5.08a6.939,6.939,0,0,1,2,.6V0H9V5.683A6.939,6.939,0,0,1,11,5.08Z" />
+                    <path class="08e70ac6-3b25-4896-a4c1-816f324b7343" d="M18.317,9a6.937,6.937,0,0,1,.6,2H22v2H18.92a6.937,6.937,0,0,1-.6,2H24V9Z" />
+                    <path class="08e70ac6-3b25-4896-a4c1-816f324b7343" d="M13,18.92V22H11V18.92a6.937,6.937,0,0,1-2-.6V24h6V18.317A6.937,6.937,0,0,1,13,18.92Z" />
+                  </g>
+                  <path class="08e70ac6-3b25-4896-a4c1-816f324b7343" d="M12,7a5,5,0,1,1-5,5,5.006,5.006,0,0,1,5-5m0-2a7,7,0,1,0,7,7,7,7,0,0,0-7-7Z" />
+                </g>
+              </svg>
+            </i>
+            <span class="menu-text" (click)="tonavigate('/user/support')" [ngClass]="getClass('/user/support')">
+              Support
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

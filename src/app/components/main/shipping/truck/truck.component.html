@@ -1,0 +1,80 @@
+<div class="container-main lcl truck pt-4" (clickOutside)="closeLCLContainer()">
+  <div class="containers-main d-flex justify-content-center align-items-center">
+    <div class="card container-boxes" *ngFor="let container of trucks; let i = index" [ngClass]="[(container?.totalQuantity?.length > 0)?'active':'', (activeContainerId >= 0 && activeContainerId === i) ? 'active-container' : '']"
+      (click)="zoomLCLContainer(container, i, $event)">
+      <span class="count-triangle" *ngIf="container?.truckChips?.length && container?.totalQuantity?.length">
+        <span>{{getTotalTruckQuantity(container.totalQuantity)}}</span>
+      </span>
+      <div class="card-body">
+        <p class="card-text">
+          {{container.ContainerSpecDesc}}
+        </p>
+        <div class="image-container">
+          <img async defer [src]="'../../../assets/images/icons/'+ container.ContainerSpecImage" alt="container-icons" [ngClass]="'ContainerImg' + container.ContainterLength">
+        </div>
+        <div class="card-text-bottom">
+          <label for="">Max Loadable Weight</label>
+          <small>{{container.MaxGWT}} {{container.WeightUnit}}</small>
+        </div>
+        <div class="lcl-counter counter">
+          <div>
+            <div class="input-group">
+              <div ngbDropdown class="d-inline-block w-100 custom-dropdown">
+                <button class="btn btn-outline-primary w-100" id="dropdownBasic1" ngbDropdownToggle>
+                  <span class="text-truncate">{{container.truckInput.selectedOpt}}</span>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="w-100 custom-dropdown-item-main"  [ngClass]="(container.ContainerSubDetail.length) > 4 ? 'scrolling': 'no-scrolling'">
+                  <div slimScroll [options]="opts" [scrollEvents]="scrollEvents">
+                    <div style="max-width: 100%;max-height:180px;" >
+                      <button class="dropdown-item" *ngFor="let subCont of container.ContainerSubDetail ; let ind = index" (click)="onTruckSizeSelect(subCont.ContainerSpecID + ';'+ i + ';' + ind, subCont.ContainerSpecDesc + '&nbsp;&nbsp;&nbsp;&nbsp;' +' MAX WEIGHT: '+subCont.MaxGrossWeight+' '+subCont.WeightUnit, subCont?.JsonContainerSpecProp)">
+                        <span class="meter">{{subCont.ContainerSpecDesc}}</span>
+                        <span class="weight text-truncate">MAX WEIGHT: {{subCont.MaxGrossWeight}} {{subCont.WeightUnit}}
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="input-group">
+              <label class="form-control sr-only">Quantity</label>
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-minus" (click)="counter('minus', container.ContainerLoadType, container.ContainerSpecID, i)"></i>
+                </span>
+              </div>
+              <input type="text" minlength="1" maxlength="3" name="quantity" class="form-control quantity" name="counter" (keypress)="onKeypress($event, 'quantity', container)"
+                [(ngModel)]="container.truckInput.quantity" (focus)="focusIn(container)" placeholder="0" (keyup)="onKeyUp($event, 'quantity')"
+                (ngModelChange)="lclInputsChange('quantity', $event, i)">
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <i class="fa fa-plus" (click)="counter('plus', container.ContainerLoadType, container.ContainerSpecID, i)"></i>
+                </span>
+              </div>
+            </div>
+            <button class="btn btn-outline-primary btn-block btn-lg hvr-sweep-to-right" (click)="submitLCLForm(i, container, $event)">ADD</button>
+          </div>
+          <div class="shipping-counter-selected" *ngIf="container.truckChips?.length">
+            <h4>ADDED TRUCK</h4>
+            <div class="overflow-y-hide">
+              <ng-scrollbar [trackX]="false" [compact]="true" class="scrollConfig">
+                <div class="addedpallete" *ngFor="let truckChip of container.truckChips; let idx = index">
+                  <div class="addedpallete-text">
+                    <p>{{truckChip.quantity}} x {{truckChip.size}} {{truckChip.sizeUnit}}</p>
+                  </div>
+                  <div class="addedpallete-img" (click)="onTruckRemove($event, truckChip.containerSpecId, i, idx)">
+                    <img async defer src="../../../../../assets/images/icons/icon_delete_lcl.svg">
+                  </div>
+                </div>
+              </ng-scrollbar>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lcl-no-results" *ngIf="!trucks.length">
+      <p>No Data Found</p>
+    </div>
+  </div>
+  <!-- <div class="close-container" (click)="closeLCLContainer()"></div> -->
+</div>

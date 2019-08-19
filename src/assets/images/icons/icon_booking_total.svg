@@ -1,0 +1,31 @@
+<svg id="e44d6743-0a22-494c-8fef-fdb82a3ce8d4" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .beacf530-5e58-46ba-b8e5-c396dcf6e995 {
+        fill: #738593;
+      }
+
+      .b6b9849e-9085-4729-94e4-dcc6a57ad25c {
+        fill: #e9f1f4;
+      }
+
+      .e8197418-ac9c-4514-94d4-b7c285ea457b {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  
+  <g id="c96cc7b4-7b50-466a-b580-52b0e44fe2a3" data-name="total_booking">
+    <g id="5548d762-2e90-4c17-a58b-2b3f06316be3" data-name="summary">
+      <path class="beacf530-5e58-46ba-b8e5-c396dcf6e995" d="M16,2V20a2,2,0,0,1-2,2H2V4A2,2,0,0,1,4,2H16m2-2H4A4,4,0,0,0,0,4V24H14a4,4,0,0,0,4-4V0Z"/>
+    </g>
+    <g>
+      <circle class="b6b9849e-9085-4729-94e4-dcc6a57ad25c" cx="16" cy="12" r="7"/>
+      <path class="beacf530-5e58-46ba-b8e5-c396dcf6e995" d="M16,6a6,6,0,1,1-6,6,6.007,6.007,0,0,1,6-6m0-2a8,8,0,1,0,8,8,8,8,0,0,0-8-8Z"/>
+    </g>
+    <g id="b4ba13e3-dae3-4e2b-90bb-2e50ac1d3cd4" data-name="&lt;Group&gt;">
+      <polygon class="e8197418-ac9c-4514-94d4-b7c285ea457b" points="18.469 9 15.2 12.098 13.531 10.516 12 11.967 15.2 15 20 10.451 18.469 9"/>
+      <polygon class="beacf530-5e58-46ba-b8e5-c396dcf6e995" points="18.469 9 15.2 12.098 13.531 10.516 12 11.967 15.2 15 20 10.451 18.469 9"/>
+    </g>
+  </g>
+</svg>

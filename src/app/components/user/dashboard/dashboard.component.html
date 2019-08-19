@@ -1,0 +1,389 @@
+<div class="user-dashboard bookings">
+  <!-- row -->
+  <div class="user-dashborad-welcome-section">
+    <!-- <app-placeholder [heading]="'head'"></app-placeholder> -->
+    <h3>Hey there {{userName}},
+      <span>{{welcomeStatus}}</span>
+    </h3>
+    <p *ngIf="isLastLogin" class="user-info">Last logged in {{loginLogs.LastLoginDate | date : "d MMM, yyyy"}}
+      {{loginLogs.LastLoginDate | date : "H:mm"}} (GMT) from {{loginLogs.LastLoginCountryName}}
+    </p>
+  </div>
+  <!--/ row -->
+
+
+  <div class="alert alert-secondary contact-admin mb-4" *ngIf="!userData.isAdmin && userData.isCorporateUser">
+    <img src="../../../../assets/images/icons/icon_info2_blue.svg" alt="info icon" class="icon-size-16"> You’re a part
+    of
+    <span>{{dashboardData.CompanyName}}</span>. Your admin is {{dashboardData.AdminFirstName}}
+    {{dashboardData.AdminLastName}}
+    <a class="grey-anc-btn text-upper pull-right pointer hvr-icon-forward" href="{{'mailto:' + dashboardData.AdminEmail}}">Contact
+      Admin
+      <img src="../../../../assets/images/icons/icon_arrow_right.svg" alt="icon" class="icon-size-12 hvr-icon">
+    </a>
+  </div>
+
+
+  <!-- Alert -->
+  <div *ngIf="!userData.isVerified" class="alert alert-warning" role="alert">
+    <div class="alert-icon">
+      <div class="icon">
+        <svg id="9b1f104b-adae-4231-b5f7-bf39c55aa249" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+          width="25px">
+          <defs>
+            <style>
+              .\39 52dd5d8-bf35-4258-8097-5d9818671e21 {
+                fill: #fff;
+              }
+            </style>
+          </defs>
+          <g id="3d99911a-56ff-4f4b-aec9-c560c98d1050" data-name="info">
+            <rect id="025cb0bf-200c-4454-a69e-ab67e5546b0a" data-name="&lt;Path&gt;" class="952dd5d8-bf35-4258-8097-5d9818671e21"
+              x="11" y="8" width="2" height="12" />
+            <rect id="db8009d3-0c93-44e6-8114-e4854c720e51" data-name="&lt;Path&gt;" class="952dd5d8-bf35-4258-8097-5d9818671e21"
+              x="6" y="18" width="12" height="2" />
+            <rect id="6072d331-eb94-4791-a477-c8833df20703" data-name="&lt;Path&gt;" class="952dd5d8-bf35-4258-8097-5d9818671e21"
+              x="8" y="8" width="4" height="2" />
+            <rect id="057e0c07-9185-4f2c-869d-f7147dfcfe5f" data-name="&lt;Rectangle&gt;" class="952dd5d8-bf35-4258-8097-5d9818671e21"
+              x="11" y="4" width="2" height="2" />
+          </g>
+        </svg>
+      </div>
+    </div>
+    Hold up, We sent an email at {{userData.userEmail}} but it's still not verified.
+
+    <a class="alert-btn" href="javascript:;" (click)="resendEmailRequest()">Resend Email</a>
+  </div>
+
+  <!--/ Alert -->
+
+
+
+
+
+
+  <div *ngIf="userData.isVerified" class="row">
+
+    <div class="bluebox-section col-md-12">
+      <div class="bluebox-summery">
+        <div class="row">
+          <!-- bluebox Col -->
+          <div class="bluebox-section-boxes col-xl-4 col-lg-4 col-md-12 col-12 mb-2" [ngClass]="customerSettings.isBookWarehouseRequired ? '' : 'col-xl-6 col-lg-6'" (click)="newSearch()">
+            <div class="bluebox">
+              <div class="bluebox-icon">
+                <img src="../../../../assets/images/icons/Icons_Ship.svg">
+              </div>
+              <div class="bluebox-title">
+                <h5>Want to Ship
+                  <br> Something?
+                </h5>
+                <div class="bluebox-btn">
+                  <a class="bluebox-start-btn hvr-icon-forward" href="javascript:;">
+                    <span class="link-hover-1">Start a new booking </span>
+                    <img src="../../../../../assets/images/icons/icon_arrow_right_white.svg" class="hvr-icon">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--/ bluebox Col -->
+          <!-- bluebox Col -->
+          <div class="bluebox-section-boxes col-md-12 col-12 mb-2" *ngIf="customerSettings.isBookWarehouseRequired" (click)="newWareHoue()">
+            <div class="bluebox">
+              <div class="bluebox-icon">
+                <img src="../../../../../assets/images/icons/icon_warehouse_blue.svg">
+              </div>
+              <div class="bluebox-title">
+                <h5>Need Warehousing
+                  <br> Space?
+                </h5>
+                <div class="bluebox-btn">
+                  <a class="bluebox-start-btn hvr-icon-forward" href="javascript:;">
+                    <span class="link-hover-1">Find a warehouse</span>
+                    <img src="../../../../../assets/images/icons/icon_arrow_right_white.svg" class="hvr-icon">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--/ bluebox Col -->
+          <!-- bluebox Col -->
+          <div *ngIf="userData.isAdmin || (!userData.isAdmin && userData.isCorporateUser && userData.isVerified)" class="bluebox-section-boxes col-xl-4 col-lg-4 col-md-12 col-12" [ngClass]="customerSettings.isBookWarehouseRequired ? '' : 'col-xl-6 col-lg-6'">
+            <div class="bluebox">
+              <div class="bluebox-icon">
+                <img src="../../../../../assets/images/icons/icon_user02_blue.svg" routerLink="/user/all-users">
+              </div>
+              <div class="bluebox-title">
+                <h5 routerLink="/user/all-users">
+                  <span *ngIf="dashboardData.CompanyUserCount > 0">{{dashboardData.CompanyUserCount}}</span>
+                  {{usersCount}} in your
+                  <br> Account
+                </h5>
+                <div class="bluebox-btn" *ngIf="userData.isAdmin && userData.isCorporateUser && userData.isVerified"
+                  (click)="openRegister()">
+                  <a class="bluebox-start-btn hvr-icon-forward bluebox-title" href="javascript:;">
+                    <span class="link-hover-1">Add a new user</span>
+                    <img src="../../../../../assets/images/icons/icon_arrow_right_white.svg" class="hvr-icon">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--/ bluebox Col -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- summary -->
+  <div *ngIf="userData.isVerified" class="row">
+    <div class="billing-section col-md-12">
+      <div class="billing-title">
+        <div class="row">
+          <span class="col">Billing</span>
+          <div class="sort-filter pull-right">
+            <p class="currency-title">Display Currency:</p>
+            <app-currency-dropdown [selectedCurrency]="currentSelectedCurrency" [currencyList]="currencyList"
+              (selectedCurrencyEvent)="currencyFilter($event)">
+            </app-currency-dropdown>
+          </div>
+        </div>
+      </div>
+      <div class="billing-summery">
+        <div class="row">
+          <!-- Billing Summery Col -->
+          <div *ngIf="false" class="billing-section-boxes col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
+            <div class="billingbox billing-summary timeline-wrapper">
+            </div>
+            <div class="billingbox billing-summary">
+              <div class="billing-icon">
+                <img src="../../../../../assets/images/icons/icon_wallet.svg">
+              </div>
+              <div class="billing-box-title">
+                <h5>Wallet Balance</h5>
+                <a href="javascript:;" class="billing-btns hvr-icon-forward">
+                  <span class="link-hover-1">Recharge Wallet</span>
+                  <i class="fa fa-angle-right hvr-icon" aria-hidden="true"></i>
+                </a>
+              </div>
+              <div class="billing-quantity">
+                <div class="billing-price">
+                  <p *ngIf="walletSummary && walletSummary.WalletCurrencyCode && !loading">
+                    <small>{{walletSummary.WalletCurrencyCode}}</small>
+                    <span>{{walletSummary.WalletBalance | number: '1.2-2'}}</span>
+                  </p>
+                </div>
+
+              </div>
+              <app-loader-main *ngIf="loading"></app-loader-main>
+            </div>
+            <!--/ Billing Summery Col -->
+            <!-- Billing Summery Col2 -->
+          </div>
+          <div class="billing-section-boxes col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <div class="billingbox billing-summary timeline-wrapper">
+            </div>
+            <div class="billingbox billing-summary">
+              <div class="billing-icon">
+                <img src="../../../../../assets/images/icons/icon_card.svg">
+              </div>
+              <div class="billing-box-title">
+                <h5>Billing-{{publishYear}} YTD</h5>
+              </div>
+              <div class="billing-quantity">
+                <div class="billing-price">
+                  <p *ngIf="billingSummary && !loading" class="mb-0">
+                    <small>{{billingSummary.BillingCurrencyCode}}</small>
+                    <span>{{billingSummary.BillingTillDate | number: '1.2-2'}}</span>
+                  </p>
+                </div>
+                <div class="billing-note" *ngIf="!sameCurrency">
+                  <p>
+                    <img src="../../../../../assets/images/icons/icon_info2 - grey.svg" width="16px">Approximate total
+                    converted from AED based on today's rate</p>
+                </div>
+              </div>
+              <app-loader-main *ngIf="loading"></app-loader-main>
+            </div>
+            <!--/ Billing Summery Col2 -->
+          </div>
+        </div>
+      </div>
+      <!--/ summary -->
+    </div>
+  </div>
+
+  <!-- booking summery -->
+  <div *ngIf="userData.isVerified" class="row">
+    <div class="summary-section col-md-12">
+      <h4 class="summary-title">Booking</h4>
+      <div class="booking-summery">
+        <div class="row pointer" (click)="tonavigate('/user/bookings')">
+          <!-- Booking Summery Col -->
+          <div class="summary-section-boxes col-xl-4 col-md-4 col-sm-12">
+            <div class="summarybox booking-summary">
+              <div class="summary-icon">
+                <img src="../../../../../assets/images/icons/icon_booking_current.svg">
+              </div>
+              <div class="summary-box-title">
+                <h5>Current Bookings</h5>
+              </div>
+              <div class="summery-quantity">
+                <span>{{dashboardData.CurrentBookingCount}}</span>
+              </div>
+            </div>
+          </div>
+          <!--/ Booking Summery Col -->
+          <!-- Booking Summery Col2 -->
+          <div class="summary-section-boxes col-xl-4 col-md-4 col-sm-12">
+            <div class="summarybox booking-summary">
+              <div class="summary-icon">
+                <img src="../../../../../assets/images/icons/icon_booking_saved.svg">
+              </div>
+              <div class="summary-box-title">
+                <h5>Saved Bookings</h5>
+              </div>
+              <div class="summery-quantity">
+                <span>{{dashboardData.SavedBookingCount}}</span>
+              </div>
+            </div>
+          </div>
+          <!--/ Booking Summery Col2 -->
+          <!-- Booking Summery Col3 -->
+          <div class="summary-section-boxes col-xl-4 col-md-4 col-sm-12">
+            <!-- <div class="booking-summary">
+              <app-placeholder></app-placeholder>
+            </div> -->
+            <div class="summarybox booking-summary">
+              <div class="summary-icon">
+                <img src="../../../../../assets/images/icons/icon_booking_total.svg">
+              </div>
+              <div class="summary-box-title">
+                <h5>Total Bookings</h5>
+              </div>
+              <div class="summery-quantity">
+                <span>{{dashboardData.TotalBookingCount}}</span>
+              </div>
+            </div>
+          </div>
+          <!--/ Booking Summery Col3 -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ booking summery -->
+
+  <!-- booking lists -->
+  <div class="row">
+    <!-- Booking List -->
+    <div *ngIf="userData.isVerified" class="col-12 bookings-table">
+      <div *ngIf="false" class="pull-right bookings-selected">
+        <div ngbDropdown #myDrop="ngbDropdown">
+          <div class="pointer" id="dropdowncountry" ngbDropdownToggle>
+            <span>{{selectedBooking}}</span>
+          </div>
+          <div class="sortFilter country-section" ngbDropdownMenu aria-labelledby="dropdowncountry">
+            <!-- <ng-scrollbar [trackX]="false" [autoHide]="true"> -->
+            <ul class="list-group" style="position: relative; width: 200px; max-height: 180px;">
+              <li class="list-group-item pointer" (click)="selectedBooking = 'Sea Bookings'; bookingTab.select('tab-current') ;myDrop.close()">
+                <span>Sea Bookings</span>
+              </li>
+              <li class="list-group-item pointer" (click)="selectedBooking = 'Warehouse Bookings'; bookingTab.select('tab-saved') ;myDrop.close()">
+                <span>Warehouse Bookings</span>
+              </li>
+              <li class="list-group-item pointer" (click)="selectedBooking = 'Air Bookings'; bookingTab.select('tab-total') ;myDrop.close()">
+                <span>Air Bookings</span>
+              </li>
+            </ul>
+            <!-- </ng-scrollbar> -->
+          </div>
+        </div>
+      </div>
+      <ngb-tabset #bookingTab="ngbTabset" (tabChange)="tabChangeEvent($event)">
+        <ngb-tab id="tab-current">
+          <ng-template ngbTabContent>
+            <!-- booking list new -->
+            <div class="row mt-3" style="overflow:hidden;">
+              <div class="col-12" *ngIf="currentBookings">
+                <div *ngFor="let current of currentBookings | paginate: config">
+                  <app-booking-card [bookings]="current"></app-booking-card>
+                </div>
+              </div>
+              <div class="col-12" *ngIf="!currentBookings || currentBookings.length === 0">
+                <div class="card">
+                  <p class="text-center m-0">
+                    You don't have any bookings yet.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!--/ booking list new -->
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab id="tab-saved">
+          <ng-template ngbTabContent>
+            <!-- saved booking list -->
+            <div class="row mt-3" style="overflow:hidden;">
+              <div class="col-12" *ngIf="savedBookings && savedBookings.length > 0">
+                <div *ngFor="let savedBooking of savedBookings | paginate: config">
+                  <app-booking-card [bookings]="savedBooking"></app-booking-card>
+                </div>
+              </div>
+              <div class="col-12" *ngIf="!savedBookings || savedBookings.length === 0">
+                <div class="card">
+                  <p class="text-center m-0">
+                    You don't have any bookings yet.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!--/ saved booking list -->
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab id="tab-total">
+          <ng-template ngbTabContent>
+            <!-- total booking list -->
+            <div class="row mt-3" style="overflow:hidden;">
+              <div class="col-12">
+                <div *ngFor="let total of totalBookings | paginate : config">
+                  <app-booking-card [bookings]="total"></app-booking-card>
+                </div>
+              </div>
+              <div class="col-12" *ngIf="!totalBookings || totalBookings.length === 0">
+                <div class="card">
+                  <p class="text-center m-0">
+                    You don't have any bookings yet.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!--/ total booking list -->
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab id="tab-ground">
+          <ng-template ngbTabContent>
+            <!-- total booking list -->
+            <div class="row mt-3" style="overflow:hidden;">
+              <div class="col-12">
+                <div *ngFor="let total of totalBookings | paginate : config">
+                  <app-booking-card [bookings]="total"></app-booking-card>
+                </div>
+              </div>
+            </div>
+            <!--/ total booking list -->
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+      <div class="row mt-2">
+        <div class="col bookings-selected">
+          <span class="hvr-icon-forward pointer pull-right ml-2" (click)="tonavigate('/user/bookings')">
+            <span class="link-hover-1">View All Bookings &nbsp;</span>
+            <i class="fa fa-angle-right hvr-icon"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- Booking List -->
+
+  </div>
+  <!--/ booking lists -->

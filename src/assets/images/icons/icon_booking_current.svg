@@ -1,0 +1,24 @@
+<svg id="b6e25968-390e-4aa6-ba01-e00305d4b34d" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .f328d407-4845-40e7-bcce-4eb484dd2aaa {
+        fill: #738593;
+      }
+
+      .\39 c963f56-6937-4bdf-89c5-697f90ce7746 {
+        fill: #e9f1f4;
+      }
+    </style>
+  </defs>
+  
+  <g id="c9ea6a21-2429-4cff-a275-5c8d644e0e07" data-name="current_booking">
+    <g id="48dedc6b-00e4-4fb1-b443-aff08e72ea8c" data-name="summary">
+      <path class="f328d407-4845-40e7-bcce-4eb484dd2aaa" d="M16,2V20a2,2,0,0,1-2,2H2V4A2,2,0,0,1,4,2H16m2-2H4A4,4,0,0,0,0,4V24H14a4,4,0,0,0,4-4V0Z"/>
+    </g>
+    <g>
+      <circle class="9c963f56-6937-4bdf-89c5-697f90ce7746" cx="16" cy="12" r="7"/>
+      <path class="f328d407-4845-40e7-bcce-4eb484dd2aaa" d="M16,6a6,6,0,1,1-6,6,6.007,6.007,0,0,1,6-6m0-2a8,8,0,1,0,8,8,8,8,0,0,0-8-8Z"/>
+    </g>
+    <polygon class="f328d407-4845-40e7-bcce-4eb484dd2aaa" points="17 12 17 8 15 8 15 14 15.5 14 17 14 20.5 14 20.5 12 17 12"/>
+  </g>
+</svg>

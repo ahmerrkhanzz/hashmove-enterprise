@@ -1,0 +1,60 @@
+@import "../../../../../assets/scss/_variables";
+.tracking-overview {
+  margin-bottom: 35px;
+  .card {
+    &-header {
+      background: $white-color;
+      border: 0px;
+      padding: 0 1rem;
+      h5 {
+        margin-bottom: 4px;
+        font-family: $font-pragmatica;
+        font-size: $font-size-large;
+        color: $text-color-default;
+        font-weight: $font-weight-mid;
+      }
+    }
+    &-body {
+      padding: 0 1.5rem;
+      &-detail {
+        &-title {
+          font-family: $font-proxima;
+          font-size: $font-size-medium;
+          color: $dark-grey-blue;
+          font-weight: $font-weight-mid;
+          text-transform: uppercase;
+        }
+        &-value {
+          font-size: $font-size-large + 0.25rem;
+          font-family: $font-pragmatica;
+          font-weight: $font-weight-mid;
+          color: $text-color-default;
+        }
+      }
+    }
+  }
+  &-dropdown {
+    .btn {
+      font-family: $font-proxima;
+      font-weight: $font-weight-normal;
+      font-size: $font-size-large;
+      &-outline-primary {
+        min-width: 175px;
+        border-radius: 50px;
+        text-align: left;
+        color: $text-color-default !important;
+        border: 1px solid $input-border;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        box-shadow: none !important;
+        padding: .375rem .15rem;
+        background: $white-color !important;
+      }
+    }
+    .dropdown-item.active,
+    .dropdown-item:active {
+      background-color: $active-text-color !important
+    }
+  }
+}

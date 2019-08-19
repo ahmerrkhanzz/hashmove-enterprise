@@ -1,0 +1,15 @@
+<svg id="d9ac8462-0807-48f7-975f-ff5de6627df2" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .\35 df3f8c7-33b6-43db-b15d-7852dae13c48 {
+        fill: #738593;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g id="354051dd-152a-453e-9f7c-e4d8004b248a" data-name="card">
+    <path id="7e617bcf-3bbe-4966-ae43-a6a67aac14fe" data-name="&lt;Compound Path&gt;" class="5df3f8c7-33b6-43db-b15d-7852dae13c48" d="M22,5V17a2,2,0,0,1-2,2H2V7A2,2,0,0,1,4,5H22m2-2H4A4,4,0,0,0,0,7V21H20a4,4,0,0,0,4-4V3Z"/>
+    <rect id="624bfca5-46e8-4515-8704-c02bfd6b1673" data-name="&lt;Path&gt;" class="5df3f8c7-33b6-43db-b15d-7852dae13c48" y="9" width="24" height="3"/>
+    <rect id="f961f597-47b6-4708-a582-15846b5827bf" data-name="&lt;Path&gt;" class="5df3f8c7-33b6-43db-b15d-7852dae13c48" x="12" y="15" width="8" height="2"/>
+  </g>
+</svg>

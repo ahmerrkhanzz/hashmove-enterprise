@@ -1,0 +1,15 @@
+<svg id="ee0cf102-a966-4a3f-95ef-2d85d2845fce" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .\33 24b713b-d0fb-4a53-8548-411c4a22720a {
+        fill: #bec2c5;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g id="77a57afb-dc84-48f7-bcef-1ea8af6a0a74" data-name="box">
+    <path id="b7ad858c-ef80-4b01-8e89-887b6e7eba38" data-name="&lt;Compound Path&gt;" class="324b713b-d0fb-4a53-8548-411c4a22720a" d="M12,2.236l10,5v9.528l-10,5-10-5V7.236l10-5M12,0,0,6V18l12,6,12-6V6L12,0Z"/>
+    <polygon id="3d2841e7-73c0-49f4-a43e-30e1679abe1b" data-name="&lt;Path&gt;" class="324b713b-d0fb-4a53-8548-411c4a22720a" points="12 12.504 0.5 7.316 1.334 5.496 12 10.307 22.666 5.496 23.5 7.316 12 12.504"/>
+    <rect id="221b7dca-da17-44bc-bf0a-eaf6705915cb" data-name="&lt;Path&gt;" class="324b713b-d0fb-4a53-8548-411c4a22720a" x="11" y="11" width="2" height="12"/>
+  </g>
+</svg>

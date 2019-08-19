@@ -1,0 +1,17 @@
+<svg id="9cd2e9b5-d7da-4033-a834-a656fcdd8e33" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .\33 7908e2b-7499-439c-8b06-9f440dbfe92d {
+        fill: #8998a3;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g id="85ba30f1-204a-4e0f-86ae-6e35647dd48f" data-name="anchor">
+    <path id="13eec2fe-94d8-4eba-b180-4c1da4f787f0" data-name="&lt;Path&gt;" class="37908e2b-7499-439c-8b06-9f440dbfe92d" d="M12,18c-3,0-4-2-4-5H6c0,3.984,2,7,6,7,4.016,0,6-2.984,6-7H16C16,15.969,15.016,18,12,18Z"/>
+    <rect id="3d63d5e6-6c8f-443a-8181-29a9363c8162" data-name="&lt;Path&gt;" class="37908e2b-7499-439c-8b06-9f440dbfe92d" x="11" y="7" width="2" height="12"/>
+    <polygon id="e57a0ba8-a582-44cd-94ea-c397032efca1" data-name="&lt;Path&gt;" class="37908e2b-7499-439c-8b06-9f440dbfe92d" points="7 10 4 14 10 14 7 10"/>
+    <polygon id="8891b7fd-88df-4f1a-8c64-b992851de82b" data-name="&lt;Path&gt;" class="37908e2b-7499-439c-8b06-9f440dbfe92d" points="17 10 14 14 20 14 17 10"/>
+    <circle id="01b40f1c-4809-4a29-ad02-5f8c7e688c89" data-name="&lt;Path&gt;" class="37908e2b-7499-439c-8b06-9f440dbfe92d" cx="12" cy="6" r="2"/>
+  </g>
+</svg>

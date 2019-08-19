@@ -1,0 +1,49 @@
+<div class="shipping-lines mb-4">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <!-- shipping lined -->
+        <!-- <div class="col-12">
+          <h5 class="title" *ngIf="showProviderFields">Your Selection Summary</h5>
+        </div> -->
+        <div class="col">
+          <div class="shipping-lines-left">
+            <div class="shipping-lines-left-title">
+              <img src="{{getUIImage(data.ProviderImage, true)}}" alt="">
+              <h5 class="title">You're shipping with</h5>
+              {{data.ProviderName}}
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 col-md-8 col-sm-12" *ngIf="showProviderFields">
+          <div class="row">
+            <div class="col-xl-4 col-md-4 col-sm-12 details">
+              <h4>
+                <img src="../../../../assets/images/icons/icon_anchor.svg" alt=""> Port Cut Off
+              </h4>
+              <div class="diff-days">{{data.PortCutOffUtc | date : 'dd MMM yyyy'}}</div>
+            </div>
+            <div class="col-xl-4 col-md-4 col-sm-12 details">
+              <h4>
+                <img src="../../../../assets/images/icons/Icons_Clock-28.svg" alt=""> Departure
+              </h4>
+              <div class="diff-days">{{data.EtdUtc | date : 'dd MMM yyyy'}}</div>
+            </div>
+            <div class="col-xl-4 col-md-4 col-sm-12 details">
+              <h4>
+                <img src="../../../../assets/images/icons/Icons_Location.svg" alt=""> Transit Time
+              </h4>
+              <div class="diff-days">+/- {{data.EtaInDays}} Days</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 mr-auto d-flex align-items-center change-shipping-btn">
+          <button *ngIf="!showProviderFields" class="btn btn-outline-primary btn-lg all-deals hvr-sweep-to-right w-100"
+            (click)="gotoSearchResults()">
+            {{changeText}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

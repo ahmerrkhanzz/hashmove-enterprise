@@ -1,0 +1,254 @@
+@import "../../../../assets/scss/_variables.scss";
+
+
+.reports {
+  &-title {
+    font-size: $font-size-large + $font-size-large;
+    font-family: $font-pragmatica;
+    font-weight: $font-weight-mid;
+    color: $text-color-default; // margin-bottom: 0px;
+  }
+
+  &-top-btn {
+    a {
+      font-size: $font-size-base;
+      color: $dark-grey-blue;
+      font-weight: $font-proxima-weight-semibold;
+      font-family: $font-proxima;
+      text-transform: uppercase;
+
+      span {
+        position: relative;
+        color: inherit;
+        text-decoration: none;
+        line-height: 24px;
+        width: auto;
+
+        &:after,
+        &:before {
+          content: "";
+          position: absolute;
+          transition: transform 0.5s ease;
+        }
+
+        &.link-hover-1 {
+          padding-top: 10px;
+
+          &:before {
+            top: 25px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: darken(#738593, 3%);
+            transform: scaleX(0);
+          }
+
+          &:hover:before {
+            transform: scaleX(1);
+          }
+        }
+      }
+    }
+
+    
+
+
+  }
+
+  .dropdown {
+    a {
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      cursor: pointer;
+
+      .dropdown-item {
+
+        &.active,
+        &:active {
+          color: #212529;
+          background-color: #f8f9fa !important;
+          cursor: pointer;
+        }
+      }
+
+    }
+  }
+
+  //---- Total Spend Section ----//
+  .totalspend-section {
+    margin-bottom: 20px;
+
+    .totalspend-title {
+      font-size: $font-size-large + 0.25rem;
+      font-family: $font-pragmatica;
+      font-weight: $font-weight-mid;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      color: $text-color-default;
+    }
+
+    .totalspend-summery {
+      min-height: 160px;
+      background: transparent;
+      border-right: 0px solid #eaeaea;
+      padding: 0px 32px 18px;
+      padding-top: 20px;
+      border: 0px solid #e9e9e9;
+    }
+
+    &-boxes {
+      border-right: 0px solid #e9e9e9;
+
+      .totalspend {
+
+        &-icon {
+          float: left;
+          display: none;
+
+          img {
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        &-box-title {
+          h5 {
+            color: $dark-grey-blue;
+            $font-family: $font-pragmatica;
+            font-weight: $font-weight-mid;
+            font-size: $font-size-medium;
+            text-transform: uppercase;
+            padding-left: 35px;
+            letter-spacing: 0px;
+            padding-top: 5px;
+          }
+        }
+
+        &-quantity {
+          display: flex;
+
+          .currency {
+            padding-left: 2.2rem;
+            font-size: $font-size-medium;
+            font-weight: $font-weight-mid;
+          }
+
+          .spends {
+            padding-left: 0.5rem;
+            font-size: $font-size-large + $font-size-large;
+            font-weight: $font-weight-mid;
+            margin-top: -0.35rem;
+          }
+
+          .status {
+
+            &-up {
+              color: green;
+              margin-top: 0.35rem;
+              width: 11rem;
+
+              img,
+              svg {
+                width: 1.5rem;
+                height: 1.5rem;
+                margin: 0 0.5rem 0;
+              }
+            }
+
+            &-down {
+              color: #d9222d;
+              margin-top: 0.35rem;
+              width: 11rem;
+
+              img,
+              svg {
+                width: 1.5rem;
+                height: 1.5rem;
+                margin: 0 0.5rem 0;
+              }
+            }
+          }
+        }
+
+        &box.totalspend-summary {
+          border-right: 1px solid #e9e9e9;
+          padding: 0px 0px;
+
+          .bookings {
+            padding-left: 4.5rem;
+            font-size: $font-size-medium;
+            font-weight: $font-weight-mid;
+            display: block;
+          }
+        }
+
+      }
+
+    }
+
+    .totalspend-section-boxes:last-child {
+      .totalspendbox {
+        border-right: 0px !important;
+      }
+    }
+  }
+
+  //---- Total Booking by Region ----//
+  .totalbooking-by-region {
+    h4.title {
+      font-size: $font-size-large + 0.25rem;
+      font-family: $font-pragmatica;
+      font-weight: $font-weight-mid;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      color: $text-color-default;
+    }
+  }
+
+  //---- Comparision Section ----//
+  .comparision-section {
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    margin-bottom: 1rem;
+    margin: 0px;
+
+    .services-comparision {
+      border-right: 1px solid rgba(0, 0, 0, .1);
+      padding-left: 0px;
+    }
+  }
+
+  //---- Total Bookings Section ----//
+  .totalBookings {
+    margin-bottom: 1.4rem;
+
+    &-title {
+      font-size: $font-size-large + 0.25rem;
+      font-family: $font-pragmatica;
+      font-weight: $font-weight-mid;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      color: $text-color-default;
+    }
+  }
+  .by-volume{
+    .totalBookings-title{
+      font-size: $font-size-medium;
+      color: $dark-grey-blue;
+      font-family: $font-proxima;
+      line-height:2;
+    }
+    .dropdown{
+      &-toggle{
+        font-size: $font-size-base;
+        color: $dark-grey-blue;
+        font-family: $font-proxima;
+        cursor: pointer;
+      }
+    }
+  }
+}

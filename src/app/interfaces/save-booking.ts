@@ -1,0 +1,51 @@
+export interface SaveBooking {
+  BookingID: number,
+  UserID: number,
+  BookingSource: string,
+  BookingStatus: string,
+  MovementType: string,
+  ShippingSubCatID: number,
+  ShippingModeID: number,
+  CarrierID: number,
+  ProviderID: number,
+  PolID: number,
+  PodID: number,
+  EtdUtc: string,
+  EtdLcl: string,
+  EtaUtc: string,
+  EtaLcl: string,
+  PortCutOffUtc: string,
+  PortCutOffLcl: string,
+  TransitTime: number,
+  ContainerLoad: string,
+  FreeTimeAtPort: number,
+  IsInsured: boolean,
+  IsAnyRestriction: boolean,
+  PolModeOfTrans: string,
+  PodModeOfTrans: string,
+  VesselCode: string,
+  VesselName: string,
+  VoyageRefNum: string,
+  CreatedBy: string,
+  ModifiedBy: string,
+  IDlist: string,
+  BookingContainerTypeDetail: Array<[{
+    ContainerSpecID: number;
+    BookingContTypeQty: number;
+  }]>,
+  BookingSurChargeDetail: [{
+    SurchargeType: string;
+    SurchargeID: number;
+    SurchargeCode: string;
+    SurchargeName: string;
+    ContainerSpecID: number;
+    IndividualPrice: number;
+    CurrencyID: number;
+    TotalAmount: number;
+    CurrencyCode: string;
+    BaseCurrencyID: number;
+    BaseCurrencyCode: string;
+    BaseCurrencyPrice: number;
+    SortingOrder: number;
+  }]
+}

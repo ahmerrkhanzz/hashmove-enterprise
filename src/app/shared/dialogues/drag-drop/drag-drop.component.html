@@ -1,0 +1,19 @@
+<div class="uploader">
+  <label for="file-upload" id="file-drag" class="">
+    <input id="file-upload" type="file" name="fileUpload" multiple="false" (change)="onFileChange($event)" />
+    <div id="start" class="mt-3" dragDropFile (filesChangeEmiter)="onFilesChange($event)" (filesInvalidEmiter)="onFileInvalids($event)"
+      [allowed_extensions]="allowedExtension" fileDrop [options]="optionss" (fileOver)="fileOver($event)" (onFileDrop)="onFileDrop($event)">
+      <p class="uploader-title">Drag & drop Your file here</p>
+      <img id="file-image" src="../../../../assets/images/manager-icon.png" alt="Preview" class="mb-4">
+      <div class="form-group">
+        <span>or</span>
+        <p class="uploader-btn font-italic">select a file</p>
+      </div>
+    </div>
+    <div id="response">
+      <div *ngIf="selectedFile?.fileName">
+        <p>{{selectedFile.fileName}}</p>
+      </div>
+    </div>
+  </label>
+</div>

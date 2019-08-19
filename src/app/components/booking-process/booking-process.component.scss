@@ -1,0 +1,107 @@
+@import "../../../assets/scss/_variables"; // Local Variables
+$TabActiveColor: $active-text-color;
+.booking {
+  /deep/ &-process {
+    padding: 47px 0;
+    overflow: hidden !important;
+    .tab-content {
+      //padding: 20px;
+      .tab-content {
+        padding: 75px 115px;
+        h2 {
+          margin-bottom: 1.4rem;
+          font-family: $font-pragmatica;
+          font-size: $font-size-large + $font-size-large;
+          color: $text-color-default;
+          font-weight: $font-weight-mid;
+        }
+      }
+    }
+    h6 {
+      font-size: $base-font-size + 1;
+      font-weight: 600;
+    }
+    .list-group-item {
+      border: none;
+      padding: 5px 0;
+      font-size: $base-font-size;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .nav-tabs {
+      padding: 0;
+      justify-content: space-between;
+      .nav-item {
+        // width: calc(100% / 5);
+        flex: auto;
+        .nav-link {
+          position: relative;
+          color: #b5b9bc;
+          font-size: $base-font-size + 2;
+          text-align: center;
+          text-transform: uppercase;
+          border-top-left-radius: 0rem;
+          border-top-right-radius: 0rem;
+          font-weight: $font-weight-mid;
+          background: transparent;
+          border: 0;
+          border-bottom: 2px solid $TabActiveColor;
+          padding: 0.5rem 0rem;
+          div.tab-title {
+            font-family: $font-proxima;
+            font-weight: $font-weight-mid;
+            font-size: $font-size-medium;
+            border-right: 1px solid $grey-border;
+          }
+        }
+        & {
+          .nav-link {
+            background: transparent;
+            color: $TabActiveColor;
+            border: 0;
+            border-bottom: 2px solid $TabActiveColor;
+            .tab-title {
+              &:before {
+                font-family: FontAwesome;
+                content: "\f00c";
+                padding-right: 3px;
+                color: #049bd5;
+                font-weight: 500;
+                font-size: 0.75rem;
+                margin-right: 15px;
+              }
+            }
+            &.disabled {
+              color: #b5b9bc !important;
+              background: transparent !important;
+              border: none !important;
+              .tab-title {
+                &:before {
+                  visibility: hidden !important;
+                }
+              }
+            }
+          }
+        }
+        &:first-child {
+          .nav-link {
+            color: $TabActiveColor !important;
+            border-bottom: 2px solid $TabActiveColor !important;
+            .tab-title {
+              &:before {
+                visibility: visible !important;
+              }
+            }
+          }
+        }
+        &:last-child {
+          .nav-link {
+            .tab-title {
+              border-right: 0px solid $grey-border;
+            }
+          }
+        }
+      }
+    }
+  }
+}

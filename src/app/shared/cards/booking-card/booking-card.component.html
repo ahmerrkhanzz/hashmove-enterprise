@@ -1,0 +1,266 @@
+<div class="row">
+  <div class="col-12 booking-card animated bounceInDown">
+    <div class="card" [ngClass]="bookings.ShippingModeCode">
+      <div class="card-header-icon">
+        <span *ngIf="bookings.ShippingModeCode === 'SEA'">
+          <img src="../../../../assets/images/icons/icons_cargo_ship_white.svg" alt="" class="icon-size-24">
+        </span>
+        <span *ngIf="bookings.ShippingModeCode === 'WAREHOUSE'">
+          <img src="../../../../assets/images/icons/icon_warehouse_white.svg" alt="" class="icon-size-24">
+        </span>
+        <span *ngIf="bookings.ShippingModeCode === 'AIR'">
+          <img src="../../../../assets/images/icons/icon_plane_white.svg" alt="" class="icon-size-24">
+        </span>
+        <span *ngIf="bookings.ShippingModeCode === 'TRUCK'">
+          <img src="../../../../assets/images/icons/Icons_Cargo_Truck_white.svg" alt="" class="icon-size-24">
+        </span>
+      </div>
+      <div class="card-header">
+        <div class="row">
+          <div class="card-title m-0 col-xl-6 col-lg-6 col-md-6 col-12 card-header-left">
+
+
+            <div class="row">
+              <div class="col-12 pr-0">
+                <h5 class="m-0"
+                  [ngClass]="(bookings?.BookingTab?.toLowerCase() === 'saved' || bookings?.BookingTab?.toLowerCase() === 'specialrequest')?'':'pointer'"
+                  (click)="viewBookingDetails(bookings.BookingID, bookings.UserID, bookings.ShippingModeCode)">
+                  {{bookings.HashMoveBookingNum}}
+                  <!-- <span class="badge badge-pill hashmove-badge-warning ml-5" *ngIf="bookings.BookingTab === 'SpecialRequest' && (bookings.SpecialRequestStatus.toLowerCase() === statusCode.PENDING || bookings.SpecialRequestStatus.toLowerCase() === statusCode.REQUESTED_AGAIN)">{{bookings.SpecialRequestStatus}}</span> -->
+                </h5>
+
+                <p class="card-text" [ngClass]="bookings.BookingTab === 'SpecialRequest'? 'special-request-text':''">booked by {{bookings.FirstName}} {{bookings.LastName}} on
+                  {{bookings.HashMoveBookingDate | date : "d MMM, yyyy"}}
+                  {{bookings.HashMoveBookingDate | date : "H:mm"}} 
+                  <span class="special-request-badge" *ngIf="bookings.BookingTab === 'SpecialRequest'">
+                    <span class="badge badge-pill hashmove-badge-{{(bookings.SpecialRequestStatus.toLowerCase() === 'price sent')?'secondary':(bookings.SpecialRequestStatus.toLowerCase() === 'pending')?'warning':'active'}} d-inline-block ml-2">{{bookings.SpecialRequestStatus}}</span>
+                  </span>
+                </p>
+              </div>
+              <!-- <div class="col-4 text-left pl-0" *ngIf="bookings.BookingTab === 'SpecialRequest'">
+                <span
+                  class="badge badge-pill hashmove-badge-{{(bookings.SpecialRequestStatus.toLowerCase() === 'price sent')?'secondary':(bookings.SpecialRequestStatus.toLowerCase() === 'pending')?'warning':'active'}} d-inline-block mt-1">{{bookings.SpecialRequestStatus}}</span>
+              </div> -->
+            </div>
+
+
+
+
+          </div>
+          <div class="booking-card-status col-xl-6 col-lg-6 col-md-6 col-12 text-right card-header-right">
+            <!-- <label for="">Documents</label>
+                    <span class="badge badge-pill hashmove-badge-danger ml-1">Info Missing</span> -->
+            <div *ngIf="bookings.BookingTab !== 'Saved' && bookings.BookingTab !== 'SpecialRequest'">
+              <label for="" class="ml-4">Booking:</label>
+              <span class="badge badge-pill hashmove-badge-danger ml-1"
+                *ngIf="bookings.BookingStatusCode.toLowerCase() === statusCode.CANCELLED || bookings.BookingStatusCode.toLowerCase() === statusCode.REJECTED">{{bookings.BookingStatus}}</span>
+              <span class="badge badge-pill hashmove-badge-active ml-1"
+                *ngIf="bookings.BookingStatusCode.toLowerCase() === statusCode.IN_REVIEW">{{bookings.BookingStatus}}</span>
+              <span class="badge badge-pill hashmove-badge-warning ml-1"
+                *ngIf="bookings.BookingStatusCode.toLowerCase() === statusCode.DRAFT">{{bookings.BookingStatus}}</span>
+              <span class="badge badge-pill hashmove-badge-secondary ml-1"
+                *ngIf="bookings.BookingStatusCode.toLowerCase() === statusCode.CONFIRMED">{{bookings.BookingStatus}}</span>
+              <span *ngIf="bookings.ShippingModeCode.toLowerCase() !== 'warehouse'">
+                <label for="" class="ml-4">Shipment:</label>
+                <span class="badge badge-pill hashmove-badge-danger ml-1"
+                  *ngIf="bookings.ShippingStatusCode.toLowerCase() === statusCode.CANCELLED || bookings.ShippingStatusCode.toLowerCase() === statusCode.REJECTED">{{bookings.ShippingStatus}}</span>
+                <span class="badge badge-pill hashmove-badge-secondary ml-1"
+                  *ngIf="bookings.ShippingStatusCode.toLowerCase() === statusCode.COMPLETED">{{bookings.ShippingStatus}}</span>
+                <span class="badge badge-pill hashmove-badge-active ml-1"
+                  *ngIf="bookings.ShippingStatusCode.toLowerCase() === statusCode.READY_TO_SHIP || bookings.ShippingStatusCode.toLowerCase() === statusCode.IN_TRANSIT">{{bookings.ShippingStatus}}</span>
+                <span class="badge badge-pill hashmove-badge-warning ml-1"
+                  *ngIf="bookings.ShippingStatusCode.toLowerCase() === statusCode.PENDING">{{bookings.ShippingStatus}}</span>
+              </span>
+            </div>
+            <div class="actions mt-1"
+              *ngIf="bookings.BookingTab === 'Saved' || bookings.BookingTab === 'SpecialRequest'">
+              <a href="javascript:;" class="text-success mr-4"
+                (click)="continueBooking(bookings.BookingID, bookings.UserID, bookings.ShippingModeCode, bookings.BookingTab)">Continue
+                Booking
+                <i class="fa fa-angle-right"></i>
+              </a>
+              <a href="javascript:;" class="text-secondary mr-4"
+                *ngIf="bookings.BookingTab === 'SpecialRequest' && bookings?.SpecialRequestStatus?.toLowerCase() !== statusCode.REQUESTED_AGAIN && (bookings?.parsedJSONSpecialRequestLogs && bookings?.parsedJSONSpecialRequestLogs?.length > 1)"
+                (click)="onSpecialPrice()">
+                Request Again
+              </a>
+              <a href="javascript:;" class="text-danger" (click)="discardSaveBooking(bookings.BookingID)">Discard</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 border-right">
+            <div class="row">
+              <div class=""
+                [ngClass]="bookings.BookingType === 'Warehouse' ? 'col-md-12 col-sm-12' : 'col-7 right-arrow'">
+                <div class="booking-detail">
+                  <div class="booking-detail-title mb-3"
+                    *ngIf="bookings.ShippingModeCode.toLowerCase() !== 'warehouse'">From</div>
+                  <div class="booking-detail-title mb-3"
+                    *ngIf="bookings.ShippingModeCode.toLowerCase() === 'warehouse'">Detail</div>
+                  <h4 class="m-0" *ngIf="bookings.PolType === 'GROUND'" class="text-truncate" placement="left"
+                    container="body" ngbTooltip="{{bookings.PolInputAddress}}">
+                    <div class="flag-icon-20-14 pull-left mr-2 border">
+                      <img src="../../../../assets/images/icons/flags/4x3/{{bookings?.PolCountryCode | lowercase}}.svg"
+                        alt="">
+                    </div>
+                    {{bookings.PolInputAddress}}
+                  </h4>
+                  <h4 class="m-0" *ngIf="bookings?.PolType !== 'GROUND'" class="text-truncate" placement="left"
+                    container="body" ngbTooltip="{{bookings?.PolCode}}">
+                    <div class="flag-icon-20-14 pull-left mr-2 border">
+                      <img src="../../../../assets/images/icons/flags/4x3/{{bookings?.PolCountryCode | lowercase}}.svg"
+                        alt="">
+                    </div>
+                    {{bookings.PolCode}}
+                  </h4>
+                  <h4 *ngIf="bookings.BookingType === 'Warehouse'" [ngbTooltip]="bookings.WHName" placement="left"
+                    container="body">{{bookings.WHName}}</h4>
+                  <small *ngIf="bookings.PolType === 'GROUND'" [ngbTooltip]="bookings.PolCountry" placement="left"
+                    container="body">{{bookings.PolCountry}}</small>
+                  <small *ngIf="bookings.PolType !== 'GROUND'" [ngbTooltip]="bookings.PolName" placement="left"
+                    container="body">{{bookings.PolName}}</small>
+                  <ul class="list-group list-group-flush mt-3">
+                    <li class="list-group-item d-flex align-items-center mb-1"
+                      *ngIf="bookings.BookingType !== 'Warehouse' && bookings?.EtdLcl && bookings?.ShippingModeCode !== 'AIR'">
+                      <img src="../../../../assets/images/icons/Icons_Calendar.svg" alt="" class="icon-size-14 mr-2">
+                      {{bookings.EtdLcl | date : "d MMM yyyy"}}
+                    </li>
+                    <li class="list-group-item d-flex align-items-center mb-1 mt-1" *ngIf="bookings.ShippingModeCode === 'AIR'">
+                      <img src="../../../../assets/images/icons/Icons_Calendar.svg" alt="" class="icon-size-14 mr-2">
+                      {{bookings.PickupFrom | date : "d MMM yyyy"}}
+                    </li>
+                    <!-- <li class="list-group-item d-flex align-items-center mb-1" *ngIf="bookings.BookingType === 'Warehouse'">
+                      <img src="../../../../assets/images/icons/Icons_Location.svg" alt="" class="icon-size-14 mr-2">
+                      {{bookings.WHGLocName}}
+                    </li> -->
+                    <li class="list-group-item d-flex align-items-center"
+                      *ngIf="bookings.ShippingModeCode.toLowerCase() === 'warehouse' && bookings?.StoredFromUtc">
+                      <img src="../../../../assets/images/icons/Icons_Calendar.svg" alt="" class="icon-size-14 mr-2">
+                      {{bookings.StoredFromUtc | date : "d MMM, yyyy"}} -
+                      {{bookings.StoredUntilUtc | date : "d MMM, yyyy"}}
+                    </li>
+                    <li class="list-group-item d-flex align-items-center"
+                      *ngIf="bookings.ShippingModeCode.toLowerCase() === 'warehouse' && bookings?.WHMinimumLeaseTerm">
+                      <img src="../../../../assets/images/icons/Icons_Calendar.svg" alt="" class="icon-size-14 mr-2">
+                      Lease Term: {{bookings?.WHMinimumLeaseTerm}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-5 col-sm-5" *ngIf="bookings.BookingType !== 'Warehouse'">
+                <div class="booking-detail">
+                  <div class="booking-detail-title mb-3">To</div>
+                  <h4 class="m-0" *ngIf="bookings.PodType === 'GROUND'" placement="left" container="body"
+                    ngbTooltip="{{bookings.PodInputAddress}}">
+                    <div class="flag-icon-20-14 pull-left mr-2">
+                      <img src="../../../../assets/images/icons/flags/4x3/{{bookings.PodCountryCode | lowercase}}.svg"
+                        alt="" class="border">
+                    </div>
+                    {{bookings.PodInputAddress}}
+                  </h4>
+                  <h4 class="m-0" *ngIf="bookings.PodType !== 'GROUND'" placement="left" container="body"
+                    ngbTooltip="{{bookings.PodCode}}">
+                    <div class="flag-icon-20-14 pull-left mr-2" *ngIf="bookings.BookingType !== 'Warehouse'">
+                      <img src="../../../../assets/images/icons/flags/4x3/{{bookings.PodCountryCode | lowercase}}.svg"
+                        alt="" class="border">
+                    </div>
+                    {{bookings.PodCode}}
+                  </h4>
+                  <small *ngIf="bookings.PodType == 'GROUND'" [ngbTooltip]="bookings.PodCountry" placement="left"
+                    container="body">{{bookings.PodCountry}}</small>
+                  <small *ngIf="bookings.PodType !== 'GROUND'" [ngbTooltip]="bookings.PodName" placement="left"
+                    container="body">{{bookings.PodName}}</small>
+                  <ul class="list-group list-group-flush mt-3">
+                    <li class="list-group-item d-flex align-items-center mb-1" *ngIf="bookings?.EtdLcl && bookings?.ShippingModeCode !== 'AIR'">
+                      <img src="../../../../assets/images/icons/Icons_Calendar.svg" alt="" class="icon-size-14 mr-2">
+                      {{bookings.EtaLcl | date : "d MMM, yyyy"}}
+                      <span *ngIf="bookings.ShippingModeCode === 'AIR'" class="ml-1">
+                        {{bookings.EtaLcl | date : "H:mm"}} </span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center mb-1" *ngIf="bookings?.ShippingModeCode === 'AIR'">
+                      <img src="../../../../assets/images/icons/Icons_Calendar.svg" alt="" class="icon-size-14 mr-2">
+                      {{bookings.PickupTo | date : "d MMM, yyyy"}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 border-right">
+            <div class="booking-detail pl-3">
+              <div class="booking-detail-title mb-2"
+                *ngIf="bookings.BookingType !== 'Warehouse' && bookings.BookingTab !== 'SpecialRequest'">Shipping With
+              </div>
+              <div class="booking-detail-title mb-2" *ngIf="bookings.BookingTab === 'SpecialRequest'">Provider</div>
+              <div class="booking-detail-title mb-2" *ngIf="bookings.BookingType === 'Warehouse'">Warehousing Company
+              </div>
+              <h4 class="m-0 provider d-flex align-items-center">
+                <div class="provider-logo mr-2">
+                  <img src="{{getProviderImage(bookings.ProviderImage)}}" alt="">
+                </div>
+                {{bookings.ProviderName}}
+              </h4>
+              <div class="row mt-3" *ngIf="bookings.BookingTab === 'SpecialRequest'">
+                <div class="col-8" *ngIf="bookings.ContainerLoad === 'FCL'">
+                  <div class="booking-detail-title mb-2">Shipping Line
+                  </div>
+                  <h4 class="m-0 provider d-flex align-items-center">
+                    <div class="provider-logo mr-2">
+                      <img src="{{getUIImage(bookings.CarrierImage)}}" alt="">
+                    </div>
+                    {{bookings.CarrierName}}
+                  </h4>
+                </div>
+                <div class="provider-cargo col-{{(bookings.ContainerLoad === 'FCL') ? '4' : 12}}"
+                  [ngClass]="(bookings.ContainerLoad === 'FCL') ? 'pl-0' : ''">
+                  <div class="booking-detail-title mb-2">Cargo
+                  </div>
+                  <h4 class="m-0 provider d-flex align-items-center">
+                    {{bookings.ContainerLoad}} x {{bookings.ContainerCount}}
+                  </h4>
+                  <a href="javascript:;" (click)="openCargoDetails(bookings)">View Details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+            <div class="booking-detail">
+              <div class="booking-detail-title mb-3" *ngIf="bookings.BookingTab !== 'SpecialRequest'">Price</div>
+              <div class="booking-detail-title mb-3" *ngIf="bookings.BookingTab === 'SpecialRequest'">Special Price
+              </div>
+              <h4 class="text-truncate SpecialRequest" *ngIf="bookings.BookingTab === 'SpecialRequest'"
+                [ngbTooltip]="(bookings.BookingSpecialAmount != bookings.BookingTotalAmount)?specialPTooltip:''">
+                <ng-template #specialPTooltip>
+                  {{bookings.CurrencyCode}} {{bookings.BookingSpecialAmount | number: '1.2-2'}}
+                </ng-template>
+                <ng-container *ngIf="bookings.BookingSpecialAmount != bookings.BookingTotalAmount">
+                  <span
+                    [ngClass]="bookings.SpecialRequestStatus === 'REQUESTED AGAIN' ? 'line-through' : ''">{{bookings.CurrencyCode}}
+                    {{bookings.BookingSpecialAmount | number: '1.2-2'}}</span></ng-container>
+                <ng-container *ngIf="bookings.BookingSpecialAmount === bookings.BookingTotalAmount">-</ng-container>
+              </h4>
+              <div class="booking-detail-title mb-2" *ngIf="bookings.BookingTab === 'SpecialRequest'">Original Price
+              </div>
+              <h4 class="m-0 text-truncate"
+                ngbTooltip="{{bookings.CurrencyCode}} {{bookings.BookingTotalAmount | number: '1.2-2'}}">
+                {{bookings.CurrencyCode}} {{bookings.BookingTotalAmount | number: '1.2-2'}}</h4>
+              <div *ngIf="bookings?.ShippingModeCode === 'AIR'" class="mb-3">
+                <div class="booking-detail-title mb-3 mt-3" *ngIf="bookings?.ShippingModeCode === 'AIR'">Chargeable Weight</div>
+                <h4 class="text-truncate" *ngIf="bookings?.ShippingModeCode === 'AIR'">
+                  {{bookings?.ChargeableWeight | number: '1.2-2'}} KG</h4>
+              </div>
+              <div class="booking-detail-logs"
+                *ngIf="bookings.BookingTab === 'SpecialRequest' && (bookings?.parsedJSONSpecialRequestLogs && bookings?.parsedJSONSpecialRequestLogs?.length > 1)">
+                <a href="javascript:;" (click)="openPriceLog()">View Logs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

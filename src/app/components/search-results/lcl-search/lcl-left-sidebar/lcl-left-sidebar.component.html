@@ -1,0 +1,172 @@
+<div class="lcl-sidebar">
+    <h2 class="heading-leftsidebar">
+        <img src="../../../../../assets/images/icons/icon_filter.svg" alt="filter icon" class="icon-size-16 mb-1 mr-2">
+        Filter
+        your results
+    </h2>
+    <div class="leftSearchBar">
+        <!-- search-filter -->
+        <div class="widgets">
+            <div class="widgets-box range-slider">
+                <!-- widget header -->
+                <div class="widgets-heading" (click)="toggleRange()">
+                    <h3>Price Range
+                        <i class="fa fa-caret-down" [ngClass]="buttonRange"></i>
+                        <br>
+                        <small>({{currencyCode}} {{tempPriceMinMax[0]}} - {{currencyCode}} {{tempPriceMinMax[1]}} )</small>
+                    </h3>
+                </div>
+                <div class="OtherSection range">
+                    <div class="widget-content" *ngIf="showRange" [@enterAnimation]>
+                        <ion-range-slider #advancedSliderElement type="double" [step]="0.0001" [from]="priceRange[0]"
+                            [to]="priceRange[1]" [min]="tempPriceMinMax[0]" [max]="tempPriceMinMax[1]" grid="false"
+                            grid_num="2" decorate_both="false" from_shadow="false" (onChange)="onPriceRangeSelectedChange($event)"
+                            (onFinish)="onPriceRangeChange(priceRange, $event)"></ion-range-slider>
+
+                        <div class="row OtherSectionDays">
+                            <div class="col-md-6 price-from">
+                                <p class="text-truncate" placement="top" ngbTooltip="{{currencyCode}} {{minPriceRange | number: '1.2-2'}}">{{currencyCode}} {{minPriceRange | number: '1.2-2'}}</p>
+                            </div>
+                            <div class="col-md-6 price-to">
+                                <p class="text-truncate" placement="top" ngbTooltip="{{currencyCode}} {{maxPriceRange | number: '1.2-2'}}">{{currencyCode}} {{maxPriceRange | number: '1.2-2'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- widget Content -->
+            </div>
+        </div>
+
+        <!-- Payment Dues -->
+        <div class="widgets">
+            <div class="widgets-box">
+                <div class="widgets-heading" (click)="toggleCredit()">
+                    <h3>Payment Dues
+                        <i class="fa fa-caret-down" [ngClass]="buttonMore"></i>
+                    </h3>
+                </div>
+                <div class="OtherSection">
+                    <div class="widget-content credit" *ngIf="showMoreShip" [@enterAnimation]>
+                        <div class="check-boxes-main">
+                            <div *ngFor="let provider of paymentList;  let cIndex=index">
+                                <input id={{provider.CreditDays}} type="checkbox" [checked]="provider.isChecked"
+                                    (change)="paymentFilter(cIndex)">
+                                <label for={{provider.CreditDays}}>
+                                    <span></span>{{provider.strCreditDays}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ Payment Dues -->
+
+        <!-- freight forwarder -->
+        <div class="widgets">
+            <div class="widgets-box">
+                <!-- widget header -->
+                <div class="widgets-heading" (click)="toggleFreight()">
+                    <h3>{{(searchCriteria.searchMode==='truck-ftl')?'Truckers':'LCL Consolidators'}}
+                        <!-- icon dropdown -->
+                        <i class="fa fa-caret-down" [ngClass]="buttonToggleFreight">
+                        </i>
+                        <!-- icon dropdown -->
+                    </h3>
+                </div>
+                <!-- widget header -->
+
+                <!-- widget-content -->
+                <div class="OtherSection">
+                    <div class="widget-content" *ngIf="showToggleFreight" [@enterAnimation]>
+                        <!-- Search Input -->
+                        <div class="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input class="search-query form-control" placeholder="Search" type="text" name="providerSearchInput"
+                                    [(ngModel)]="providerSearchInput" (ngModelChange)="providerModelChange($event)">
+                                <span class="input-group-btn">
+                                    <button class="search-btn" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <!--/ Search Input -->
+
+                        <div [ngClass]="isActive ? '' : 'check-boxes-main'">
+                            <div #providerListView *ngFor="let provider of providerList | filter :'ProviderName' : providerSearchInput;  let cIndex=index">
+                                <div *ngIf="!showMoreProvider">
+                                    <div *ngIf="cIndex < providerlimit">
+                                        <input id={{provider.ProviderName}} type="checkbox" [checked]="provider.isChecked"
+                                            (change)="provideFilter(provider.pIndex)">
+                                        <label for={{provider.ProviderName}}>
+                                            <span></span>{{provider.ProviderName}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div *ngIf="showMoreProvider">
+                                    <input id={{provider.ProviderName}} type="checkbox" [checked]="provider.isChecked"
+                                        (change)="provideFilter(provider.pIndex)">
+                                    <label for={{provider.ProviderName}}>
+                                        <span></span>{{provider.ProviderName}}
+                                    </label>
+                                </div>
+                            </div>
+                            <tr *ngIf="(providerList | search: providerSearchInput)?.length===0 ">
+                                <td>
+                                    <p class="text-muted">No LCL consolidator found</p>
+                                </td>
+                            </tr>
+                            <!--/ More Check boxes -->
+                        </div>
+
+                        <!-- More Check boxes -->
+                        <div *ngIf="moreProvPostFilter > providerlimit ">
+                            <div class="more-checkboxes" *ngIf="providerCount > providerlimit">
+                                <a href=" javascript:; " (click)="toggleProviderChange() ">
+                                    <span *ngIf="!showMoreProvider">+{{providerCount - providerlimit}} More</span>
+                                    <span *ngIf="showMoreProvider">Show Less</span>
+                                </a>
+                            </div>
+                        </div>
+                        <!--/ More Check boxes -->
+                    </div>
+
+                </div>
+                <!--/ widget-content -->
+            </div>
+            <!--/ widget-content -->
+        </div>
+        <!--/ freight forwarder -->
+
+
+
+
+        <!-- Experience -->
+        <div class="widgets">
+            <div class="widgets-box">
+                <div class="widgets-heading" (click)="toggleExperience()">
+                    <h3>
+                        More
+                        <!-- icon dropdown -->
+                        <i class="fa fa-caret-down" [ngClass]="buttonToggleExperience">
+                        </i>
+                        <!-- icon dropdown -->
+                    </h3>
+                </div>
+                <div class="OtherSection">
+                    <div class="widget-content MoreSection" *ngIf="showToggleExperience" [@enterAnimation]>
+                        <div class="check-boxes-main">
+                            <input id="5years" type="checkbox" [checked]="isFreeCancelable" (change)="onFreeCancelable()" />
+                            <label for='5years'>
+                                <span></span>
+                                Free Cancellation </label>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ Experience -->
+    </div>
+</div>

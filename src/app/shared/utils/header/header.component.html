@@ -1,0 +1,153 @@
+<header class="customer-header" id="header">
+
+  <div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" title="" (click)="homeClick()" href="javascript:;">
+            <img class="logo" src="{{getUIImage(customerSettings?.customerSecondaryLogo)}}" alt="">
+          </a>
+        </div>
+        <div class="portal-title">
+          <h2 class="mb-2">{{customerSettings?.customerPortalTitle}}</h2>
+        </div>
+        <ul class="nav justify-content-end menu">
+          <!-- <li class="nav-item h-move">
+            <a class="nav-link active">#move</a>
+          </li> -->
+          <!-- <li class="nav-item h-tools">
+            <app-tools></app-tools>
+          </li>
+          <li class="nav-item h-knowledgbase">
+            <app-mega-menu></app-mega-menu>
+          </li> -->
+          <li *ngIf="isLoggedIn" class="nav-item h-bell">
+            <a class="nav-link bell-svg animated infinite tada">
+              <span class="badge badge-primary badge-bell">&nbsp;</span>
+              <svg xmlns="http://www.w3.org/2000/svg" id="b96a90be-276e-4ba7-b3b2-7c47d4760117" data-name="Layer 1"
+                viewBox="0 0 24 24">
+                <g>
+                  <path class="82a76436-e87b-44d8-b2ef-a3ecbb46accb" d="M13,5a6.007,6.007,0,0,1,6,6v6H13.275l.648,2.5a2,2,0,1,1-3.845,0l.648-2.5H5V11a6.007,6.007,0,0,1,6-6h2m0-2H11a8,8,0,0,0-8,8v8H8.141a4,4,0,1,0,7.717,0H21V11a8,8,0,0,0-8-8Z" />
+                  <path class="82a76436-e87b-44d8-b2ef-a3ecbb46accb" d="M12,0a2,2,0,1,0,2,2,2,2,0,0,0-2-2Z" />
+                  <rect class="82a76436-e87b-44d8-b2ef-a3ecbb46accb" y="17" width="24" height="2" />
+                </g>
+              </svg>
+            </a>
+          </li>
+          <li *ngIf="isLoggedIn" (click)="menuClose()" class="nav-item h-userlogin" ngbDropdown #headerDropMenu="ngbDropdown">
+            <a class=" mt-1 nav-link login-svg hvr-icon-hang" id="dropdownBasic1" ngbDropdownToggle>
+              <img *ngIf="userImagePath" class="nav-user-photo" [src]="userImagePath" alt="user_icon">
+              <img *ngIf="!userImagePath" class="nav-user-photo nav-user-photo-holder" src="../../../../assets/images/icons/Icons_User.svg"
+                alt="user_icon">
+              <i class="fa fa-angle-down hvr-icon ml-1"></i>
+            </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="animated fadeIn userDropdown">
+              <a href="javascript:;" (click)="tonavigate('user/dashboard')" class="dropdown-item">
+                <img src="../../../assets/images/icons/icon_dashboard_blue.svg" class="svg-icon" alt="" />
+                <span class="link-hover-1"> Dashboard</span></a>
+              <a href="javascript:;" (click)="tonavigate('user/bookings')" class="dropdown-item">
+                <img src="../../../assets/images/icons/icon_booking_total-blue.svg" class="svg-icon" alt="" />
+                <span class="link-hover-1">Bookings</span>
+              </a>
+              <!-- <a href="javascript:;" (click)="tonavigate('user/billing')" class="dropdown-item">
+                <img src="../../../assets/images/icons/icon_billing_blue.svg" class="svg-icon" alt="" />
+                <span class="link-hover-1">Billing</span></a> -->
+              <a href="javascript:;" (click)="tonavigate('user/reports')" class="dropdown-item">
+                <img src="../../../assets/images/icons/icon_stats_blue.svg" class="svg-icon" alt="" />
+                <span class="link-hover-1">Reports</span></a>
+              <a *ngIf="isAdmin" href="javascript:;" (click)="tonavigate('user/all-users')" class="dropdown-item">
+                <img src="../../../assets/images/icons/icon_user02_blue.svg" class="svg-icon" alt="" />
+                <span class="link-hover-1">Users</span></a>
+              <div class="dropdown-divider"></div>
+              <!-- <a href="javascript:;" class="dropdown-item" (click)="login()">Re-Login</a> -->
+              <a href="javascript:;" (click)="tonavigate('user/settings')" class="dropdown-item">
+                <img src="../../../assets/images/icons/icon_badge.svg" class="svg-icon" alt="" />
+                <span class="link-hover-1">Settings </span></a>
+              <a href="javascript:;" (click)="tonavigate('user/support')" class="dropdown-item">
+                <img src="../../../assets/images/icons/icon_support.svg" class="svg-icon" alt="" />
+                <span class="link-hover-1">Support </span></a>
+              <a href="javascript:;" class="dropdown-item logoutBtn" (click)="onlogOut()">
+                <img src="../../../assets/images/icons/icon_login_danger.svg" class="svg-icon" alt="" />
+                <span class="link-hover-1">Logout</span></a>
+            </div>
+          </li>
+          <li *ngIf="!isLoggedIn" class="nav-item">
+            <a class="nav-link login-icon" (click)="login()">
+              <img src="../../../assets/images/icons/Icons_Login.svg" alt="">
+            </a>
+          </li>
+          <li class="mobile-nav">
+            <button type="button" class="slide-menu-control" data-target="test-menu-right" data-action="toggle">
+              <i class="fa fa-bars"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- <nav class="slide-menu" id="test-menu-right">
+  <ul>
+    <li>
+      <a href="javascript:;">#move</a>
+    </li>
+    <li>
+      <a href="javascript:;">Tools</a>
+      <ul>
+        <li>
+          <a href="javascript:;">Track Your Shipment</a>
+        </li>
+        <li>
+          <a href="javascript:;">Load Calculator</a>
+        </li>
+        <li>
+          <a href="javascript:;">Glossary</a>
+        </li>
+        <li>
+          <a href="javascript:;">Verified Supplier</a>
+        </li>
+        <li>
+          <a href="javascript:;">Help & Support Center</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="javascript:;">Knowledge Base</a>
+      <ul>
+        <li>
+          <a href="javascript:;">Helpful how to's</a>
+        </li>
+        <li>
+          <a href="">Insights and Data Analytics</a>
+        </li>
+        <li>
+          <a href="">Air Freight</a>
+        </li>
+        <li>
+          <a href="">Sea Freight</a>
+          <ul>
+            <li>
+              <a href="javascript:;" class="link-hover-1">How to prepare your container for Sea Freight</a>
+            </li>
+            <li>
+              <a href="javascript:;" class="link-hover-1">What is FCL and LCL?</a>
+            </li>
+            <li>
+              <a href="javascript:;" class="link-hover-1">When should you arrive at the port with your shipment?</a>
+            </li>
+            <li>
+              <a href="javascript:;" class="link-hover-1" >How important is it to insure your shipment?</a>
+            </li>
+            <li>
+              <a href="javascript:;" class="link-hover-1" >Should perishable goods be sent via Sea Freight?</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav> -->
+
+<!-- <app-toolsubmenu *ngIf="toolMenu"></app-toolsubmenu> -->

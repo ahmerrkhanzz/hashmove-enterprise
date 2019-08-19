@@ -1,0 +1,17 @@
+<svg id="b46b1afe-bb4c-4fbd-8091-fe81d9f74e56" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ship-animate">
+  <defs>
+    <style>
+      .c7ef7b0c-4a35-4e4a-8ea0-c9977dc96b2e {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  
+  <g id="66c792a2-e25a-49ac-bb86-080510745c00" data-name="ship3">
+    <path id="d9adde4b-df8c-432c-996d-1d8dd25308a4" data-name="&lt;Compound Path&gt;" class="c7ef7b0c-4a35-4e4a-8ea0-c9977dc96b2e" d="M14,2V4a2,2,0,0,0,2,2h2v5.114L12.7,9.127a2,2,0,0,0-1.4,0L6,11.114V6H8a2,2,0,0,0,2-2V2h4m2-2H8V4H4V14l8-3,8,3V4H16V0Z"/>
+    <g id="0bb0cf1c-fe93-4a7e-9aa9-53e71bcfafe8" data-name="&lt;Group&gt;">
+      <path class="c7ef7b0c-4a35-4e4a-8ea0-c9977dc96b2e" d="M12,10,0,15l4.813,7.219A4,4,0,0,0,8.141,24h7.718a4,4,0,0,0,3.328-1.781L24,15Zm0,5L4.393,18,3,15.647l8.3-3.508a1.817,1.817,0,0,1,1.393,0L21,15.647,19.607,18Z"/>
+    </g>
+    <rect id="efddec45-e961-4df7-9333-e69fee80b764" data-name="&lt;Rectangle&gt;" class="c7ef7b0c-4a35-4e4a-8ea0-c9977dc96b2e" x="11" y="4" width="2" height="2"/>
+  </g>
+</svg>

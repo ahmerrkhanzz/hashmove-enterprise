@@ -1,0 +1,16 @@
+<svg id="1baabaa8-6727-4ed0-8ff0-af9057ae92cc" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .a2427113-381a-4295-bc05-68927555d6bc {
+        fill: #00a2df;
+      }
+    </style>
+  </defs>
+  
+  <g id="0daead80-9cd9-45c5-893d-b367846497f6" data-name="dashboard">
+    <path class="a2427113-381a-4295-bc05-68927555d6bc" d="M9,2v9H2V2H9m2-2H2A2,2,0,0,0,0,2V13H9a2,2,0,0,0,2-2V0Z"/>
+    <path class="a2427113-381a-4295-bc05-68927555d6bc" d="M9,17v5H2V17H9m2-2H2a2,2,0,0,0-2,2v7H9a2,2,0,0,0,2-2V15Z"/>
+    <path class="a2427113-381a-4295-bc05-68927555d6bc" d="M22,2V7H15V2h7m2-2H15a2,2,0,0,0-2,2V9h9a2,2,0,0,0,2-2V0Z"/>
+    <path class="a2427113-381a-4295-bc05-68927555d6bc" d="M22,13v9H15V13h7m2-2H15a2,2,0,0,0-2,2V24h9a2,2,0,0,0,2-2V11Z"/>
+  </g>
+</svg>

@@ -1,0 +1,50 @@
+<div class="best" (click)="quickSort(selectedOption)">
+  <div class="card" [ngClass]="(isActive)?'best-active':''">
+    <div class="card-body">
+      <h5 class="card-title" *ngIf="selectedOption === 'days' ">Select Results for Fastest Route</h5>
+      <h5 class="card-title" *ngIf="selectedOption === 'price' ">Select Results for Best Price</h5>
+      <div class="card-text animate">
+        <!-- <img src="../../../assets/images/icons/Icons_Fast Route.svg" alt=""> -->
+        <svg *ngIf="selectedOption === 'days' " class="fastest-route-animate" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24">
+
+          <g data-name="fast_route">
+            <rect data-name="&lt;Path&gt;" class="" x="13" y="5" width="2" height="8" />
+            <rect data-name="&lt;Path&gt;" class="" x="14" y="11" width="7" height="2" />
+            <path data-name="&lt;Path&gt;" class="" d="M10.667,2c-.225,0-.447.012-.667.034V4.067A4.61,4.61,0,0,1,10.667,4H22V15.333A4.672,4.672,0,0,1,17.333,20H10v2h7.333A6.667,6.667,0,0,0,24,15.333V2Z" />
+            <rect data-name="&lt;Path&gt;" class="slide-1" y="5" width="8" height="2" />
+            <rect data-name="&lt;Path&gt;" class="slide-2" x="2" y="11" width="6" height="2" />
+            <rect data-name="&lt;Path&gt;" class="slide-3" x="4" y="17" width="4" height="2" />
+          </g>
+
+        </svg>
+
+        <svg *ngIf="selectedOption === 'price' " class="clockSpin best-route-circle" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24">
+          <g data-name="best_price">
+            <path data-name="&lt;Compound Path&gt;" d="M12,23.409a1.994,1.994,0,0,1-1.355-.525L8.873,21.251l-2.439.329A2,2,0,0,1,4.2,19.96l-.41-2.225-2.095-1.06a2,2,0,0,1-.877-2.7L1.832,12,.817,10.021a2,2,0,0,1,.877-2.7L3.789,6.266,4.2,4.04A1.994,1.994,0,0,1,6.434,2.42l2.439.329,1.771-1.633a2.012,2.012,0,0,1,2.711,0l1.771,1.633,2.439-.329A2.008,2.008,0,0,1,19.8,4.04l.41,2.225,2.095,1.06a2,2,0,0,1,.877,2.7L22.168,12l1.015,1.979a2,2,0,0,1-.877,2.7l-2.095,1.059L19.8,19.96a2,2,0,0,1-2.234,1.62l-2.439-.329-1.771,1.633A2,2,0,0,1,12,23.409ZM8.876,19.25a1.992,1.992,0,0,1,1.354.531L12,21.413l1.771-1.633a2,2,0,0,1,1.624-.512l2.438.329.41-2.226a2.012,2.012,0,0,1,1.063-1.422l2.1-1.06-1.015-1.979a2,2,0,0,1,0-1.824L21.4,9.109,19.309,8.051a2.014,2.014,0,0,1-1.064-1.424L17.834,4.4l-2.439.328a2,2,0,0,1-1.624-.513L12,2.588,10.229,4.22A2,2,0,0,1,8.6,4.731L6.166,4.4l-.41,2.226A2.012,2.012,0,0,1,4.692,8.05L2.6,9.109l1.015,1.979a2,2,0,0,1,0,1.824L2.6,14.891l2.095,1.059a2.014,2.014,0,0,1,1.064,1.424l.41,2.224,2.439-.328A2.11,2.11,0,0,1,8.876,19.25Zm3.8-17.4L12,2.587h0Z" />
+            <path data-name="&lt;Compound Path&gt;" d="M12,8a4,4,0,1,1-4,4,4,4,0,0,1,4-4m0-2a6,6,0,1,0,6,6,6,6,0,0,0-6-6Z" />
+          </g>
+        </svg>
+        <div *ngIf="selectedOption === 'days'">
+          <strong>
+            {{fastetDay}}
+          </strong>
+          <span class="fa fa-circle"></span>
+          <small>
+            <label>{{currencyCode}}</label>&nbsp;{{bestPrice | number: '1.2-2'}}
+          </small>
+        </div>
+        <div *ngIf="selectedOption === 'price'">
+          <strong>
+            <label>{{currencyCode}}</label>&nbsp;{{bestPrice | number: '1.2-2'}}
+          </strong>
+          <span class="fa fa-circle"></span>
+          <small>
+            {{fastetDay}}
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+@import "../../../../assets/scss/_variables.scss";
+$unactive-tab1: #ececec;
+$unactive-tab2: $white-color;
+$unactive-container-tab: #a5b2ba;
+
+
+.review{
+  .modal-header{
+    h4{
+      font-family: $font-proxima;
+    }
+  }
+  .modal-body{
+    textarea{
+      font-family: $font-proxima;
+      resize: none;
+    }
+    span{
+      font-family: $font-proxima;
+      font-size: $base-font-size;
+    }
+  }
+}

@@ -1,0 +1,556 @@
+<div class="settings-content-info">
+  <h2>Personal Information</h2>
+  <div class="card">
+    <div class="card-body">
+      <form class="form-component" autocomplete="off" novalidate [formGroup]="profileUpdate">
+        <div class="form-group row">
+          <label class="col-xl-3 col-lg-3 col-12 col-form-label">Email</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+            <input type="email" [ngClass]="(emailError)? 'fieldError': ''" (focusout)="errorMessages()" (focus)="emailError=false" class="form-control"
+              placeholder="john@company.com" formControlName="userEmail" readonly>
+            <span class="animated fadeIn formError" *ngIf="emailError">
+              <p *ngIf="profileUpdate.controls['userEmail'].hasError('required') && (profileUpdate.controls.userEmail.dirty || profileUpdate.controls.userEmail.touched)">{{requiredFields}}</p>
+              <p *ngIf="(profileUpdate.controls['userEmail'].errors && !profileUpdate.controls['userEmail'].pristine )">Please enter valid information</p>
+              <p *ngIf="profileUpdate.controls['userEmail'].hasError('maxlength') && (profileUpdate.controls.userEmail.dirty || profileUpdate.controls.userEmail.touched)">Email should not exceed from 320 characters</p>
+            </span>
+            <span class="animated fadeIn formError" *ngIf="!emailError && !isVerified">
+              <p class="animated fadeIn not-confirmed">Not Confirmed
+                <a href="javascript:void(0)" (click)="resendEmailRequest()" class="send-confirmation"> Send Confirmation Email
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </p>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-xl-3 col-lg-3 col-12 col-form-label">First Name</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+            <input type="text" class="form-control" [ngClass]="(firstNameError)? 'fieldError': ''" (focusout)="errorMessages()" (focus)="firstNameError=false"
+              (keypress)="textValidation($event)" placeholder="Your first name" formControlName="firstName" (ngModelChange)="profileModelChange()">
+            <span class="animated fadeIn formError" *ngIf="firstNameError">
+              <p class="animated fadeIn" *ngIf="profileUpdate.controls['firstName'].hasError('required') && (profileUpdate.controls['firstName'].dirty || profileUpdate.controls['firstName'].touched)">{{requiredFields}}</p>
+              <p class="animated fadeIn" *ngIf="!profileUpdate.controls['firstName'].hasError('pattern') && profileUpdate.controls['firstName'].hasError('minlength') && (profileUpdate.controls['firstName'].dirty || profileUpdate.controls['firstName'].touched)">First name must be at least 2 characters long</p>
+              <p class="animated fadeIn" *ngIf="!profileUpdate.controls['firstName'].hasError('pattern') && profileUpdate.controls['firstName'].hasError('maxlength') && (profileUpdate.controls['firstName'].dirty || profileUpdate.controls['firstName'].touched)">First name should not exceed from 50 characters</p>
+              <p class="animated fadeIn" *ngIf="profileUpdate.controls['firstName'].hasError('pattern') && (profileUpdate.controls['firstName'].dirty || profileUpdate.controls['firstName'].touched)">Please enter valid information</p>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-xl-3 col-lg-3 col-12 col-form-label">Last Name</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+            <input type="text" class="form-control" [ngClass]="(lastNameError)? 'fieldError': ''" (focusout)="errorMessages()" (focus)="lastNameError= false"
+              (keypress)="textValidation($event)" placeholder="Your last name" formControlName="lastName" (ngModelChange)="profileModelChange()">
+            <span class="animated fadeIn formError" *ngIf="lastNameError">
+              <p class="animated fadeIn" *ngIf="profileUpdate.controls['lastName'].hasError('required') && (profileUpdate.controls['lastName'].dirty || profileUpdate.controls['lastName'].touched)">{{requiredFields}}</p>
+              <p class="animated fadeIn" *ngIf="!profileUpdate.controls['lastName'].hasError('pattern') &&  profileUpdate.controls['lastName'].hasError('minlength') && (profileUpdate.controls['lastName'].dirty || profileUpdate.controls['lastName'].touched)">Last name must be at least 2 characters long</p>
+              <p class="animated fadeIn" *ngIf="!profileUpdate.controls['lastName'].hasError('pattern') && profileUpdate.controls['lastName'].hasError('maxlength') && (profileUpdate.controls['lastName'].dirty || profileUpdate.controls['lastName'].touched)">Last name should not exceed from 50 characters</p>
+              <p class="animated fadeIn" *ngIf="profileUpdate.controls['lastName'].hasError('pattern') && (profileUpdate.controls['lastName'].dirty || profileUpdate.controls['lastName'].touched)">Please enter valid information</p>
+            </span>
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-xl-3 col-lg-3 col-12">City</label>
+          <div class="col-xl-5 col-lg-5 col-12 icon-input">
+            <div class="input-group-prepend">
+              <!-- <div class="input-group-text" *ngIf="!city.imageName">
+                  <img src="../../../../assets/images/icons/flags/4x3/ae.svg'}}" width="22" height="22">
+                </div> -->
+              <div *ngIf="!city.imageName" style="width:22px;height:22px;">
+                <img src="../../../../assets/images/icons/flags/4x3/ae.svg'}}" style="max-width:100%; max-height:100%;">
+              </div>
+              <div class="input-group-text" *ngIf="city.imageName" style="width:22px;height:22px;">
+                <img src="{{'../../../../assets/images/icons/flags/4x3/' + (city.imageName | lowercase) + '.svg'}}" style="max-width: 24px;max-height: 15px;">
+              </div>
+              <input type="text" autocomplete="nope" id="typeahead-basic" [ngClass]="(cityError || cityValidation)? 'fieldError': ''" class="form-control"
+                placeholder="Your city" name="city" formControlName="city" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter"
+                data-toggle="dropdown" (focus)="checkCity('focus'); cityError=false" (focusout)="checkCity('focusOut')" (ngModelChange)="flag(city,'city'); profileModelChange()"
+                aria-haspopup="true" aria-expanded="false">
+            </div>
+            <span class="animated fadeIn formError" *ngIf="!cityValidation && cityError">
+              <p class="animated fadeIn" *ngIf="profileUpdate.controls['city'].hasError('required') && (profileUpdate.controls['city'].dirty || profileUpdate.controls['city'].touched)">{{requiredFields}}</p>
+              <p class="animated fadeIn" *ngIf="profileUpdate.controls['city'].hasError('minlength') && (profileUpdate.controls['city'].dirty || profileUpdate.controls['city'].touched)">City name must be at least 3 characters long</p>
+              <p class="animated fadeIn" *ngIf="profileUpdate.controls['city'].hasError('maxlength') && (profileUpdate.controls['city'].dirty || profileUpdate.controls['city'].touched)">City name should not exceed from 25 characters</p>
+            </span>
+            <span class="animated fadeIn formError">
+              <p class="animated fadeIn" *ngIf="cityValidation">{{cityValidation}}</p>
+            </span>
+          </div>
+          <ng-template #rt let-r="result" let-t="term">
+            <div class="d-inline-block icon-size-16">
+              <img src="{{'../../../../assets/images/icons/flags/4x3/' + (r.imageName | lowercase) + '.svg'}}" style="max-width:100%; max-height:100%;">
+            </div>
+            {{r.title}}
+          </ng-template>
+        </div>
+        <div class="row form-group">
+          <label class="col-xl-3 col-lg-3 col-12 col-form-label">Contact</label>
+          <div class="col-xl-5 col-lg-5 col-12 select-number">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <div ngbDropdown class="contanct-dropdown">
+                    <div class="pointer phone" id="phoneCode" ngbDropdownToggle style="max-height: 28rem;">
+                      <div class="d-inline-block mr-1" style="width:20px;height:20px;">
+                        <img *ngIf="!city.imageName && !selectedImage" [src]="'../../../../assets/images/icons/flags/4x3/ae.svg'" alt="flags" class="img-responsive border"
+                          style="max-width:100%; max-height:100%;">
+                        <img *ngIf="city.imageName && !selectedImage" [src]="'../../../../assets/images/icons/flags/4x3/' + (city.imageName | lowercase) + '.svg'"
+                          alt="flags" class="img-responsive border" style="max-width:100%;max-height:100%;">
+                        <img *ngIf="selectedImage" [src]="'../../../../assets/images/icons/flags/4x3/' + (selectedImage | lowercase) + '.svg'" alt="flags"
+                          class="img-responsive border" style="max-width:100%; max-height:100%;">
+                      </div>
+                      <span>{{countryPhoneCode}}</span>
+                    </div>
+                    <div class="animated fadeIn country-section" ngbDropdownMenu aria-labelledby="phoneCode">
+                      <ng-scrollbar [trackX]="false" style="margin-bottom: 0rem; min-height: 200px;">
+                        <ul class="list-group">
+                          <li class="list-group-item" *ngFor="let list of countryList" (click)="flag(list,'country'); profileModelChange()">
+                            <div class="d-inline-block mr-1" style="width:20px;height:20px;">
+                              <img [src]="'../../../../assets/images/icons/flags/4x3/' + (list.code | lowercase) + '.svg'" alt="{{list.code + '-flags'}}"
+                                style="max-width:100%; max-height:100%;">
+                            </div>
+                            <span> {{list.desc[0].CountryPhoneCode}}</span>
+                          </li>
+                        </ul>
+                      </ng-scrollbar>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <input type="text" [ngClass]="(contactError)? 'fieldError': ''" (focusout)="errorMessages()" (focus)="contactError=false"
+                class="form-control control-phone" maxlength="12" placeholder="123456789" (keypress)="NumberValid($event)"
+                formControlName="phone" (ngModelChange)="profileModelChange()">
+            </div>
+            <span class="animated fadeIn formError" *ngIf="contactError">
+              <p class="animated fadeIn" *ngIf="profileUpdate.controls['phone'].hasError('required') && (profileUpdate.controls['phone'].dirty || profileUpdate.controls['phone'].touched)">{{requiredFields}}</p>
+              <p class="animated fadeIn" *ngIf="!profileUpdate.controls['phone'].hasError('pattern') && profileUpdate.controls['phone'].hasError('minlength') && (profileUpdate.controls['phone'].dirty || profileUpdate.controls['phone'].touched)">Phone number should be minimum 7 digits</p>
+              <p class="animated fadeIn" *ngIf="!profileUpdate.controls['phone'].hasError('pattern') && profileUpdate.controls['phone'].hasError('maxlength') && (profileUpdate.controls['phone'].dirty || profileUpdate.controls['phone'].touched)">Phone number should not exceed from 12 digits</p>
+              <p class="animated fadeIn" *ngIf="profileUpdate.controls['phone'].hasError('pattern') && (profileUpdate.controls['phone'].dirty || profileUpdate.controls['phone'].touched)">Please enter valid information</p>
+            </span>
+            <span class="animated fadeIn formError" *ngIf="false">
+              <p class="animated fadeIn">
+                Not Verified
+                <a href="javascript:void(0)" class="send-confirmation"> Send Verification SMS
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </p>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="department" class="col-xl-3 col-lg-3 col-12 col-form-label">Department</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+            <select class="custom-select my-1 mr-sm-2" id="inlineForDepartments" class="form-control" name="department"
+              formControlName="department" (ngModelChange)="profileModelChange()">
+              <option value="null" [selected]="(!profileUpdate.controls['department'].value)?true:false">Please Select
+              </option>
+              <option *ngFor="let department of departmentList; let i = index" [value]="department.id">
+                {{department.title}}</option>
+            </select>
+            <span class="formError">
+              <!-- <p class="animated fadeIn" *ngIf="(profileUpdate.controls['department'].hasError('required') || profileUpdate.controls['department'].value == 'null') && (profileUpdate.controls.department.dirty || profileUpdate.controls.department.touched)">{{requiredFields}}</p> -->
+              <!-- <p class="animated fadeIn" *ngIf="(profileUpdate.controls['department'].value == 'null') && (profileUpdate.controls.department.dirty || profileUpdate.controls.department.touched)">{{requiredFields}}</p> -->
+            </span>
+          </div>
+        </div>
+        <div class="form-group row profile">
+          <label for="formGroupProfile" class="col-xl-3 col-lg-3 col-12 col-form-label">Profile Picture</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+            <input type="file" (change)="onFileChange($event)" accept="image/*" #userAvatar hidden>
+            <div *ngIf="false" class="user-profile-main gradient-border-image pull-left pointer" (click)="selectImage('photo')">
+              <img *ngIf="!filUrl" src="../../../../assets/images/icons/Icons_User.svg" alt="user_icon">
+              <img *ngIf="filUrl" [src]="filUrl" alt="user_icon" alt="user_icon" />
+            </div>
+            <div *ngIf="true">
+              <ng-template #imagePicker let-c="close">
+                <div class="modal-header">
+                  <h4 class="modal-title">Profile photo</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="c('close')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                  <ngx-img (onSelect)="onSelect($event)" (onReset)="reset()" [config]="options"></ngx-img>
+                </div>
+                <div class="modal-footer">
+                  <!-- <button type="button" class="btn btn-outline-dark" (click)="change()">Change</button> -->
+                  <button type="button" class="btn btn-primary btn-lg hvr-sweep-to-right" (click)="c('select')">Apply</button>
+                </div>
+              </ng-template>
+              <div class="user-profile-main gradient-border-image pull-left pointer" (click)="selectImageModal(imagePicker, 'Avatar')">
+                <img *ngIf="!selectedFile" src="../../../../assets/images/icons/Icons_User.svg" alt="user_icon">
+                <img *ngIf="selectedFile" #imgUser [src]="selectedFile" alt="user_icon">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="profileUpdtBlock">
+          <div class="btn-group col-xl-5 col-lg-5 col-12 btn-dashboard mt-5">
+            <button type="button" class="btn" (click)="_profileUpdate(true)">
+              <img src="../../../../assets/images/icons/icon_success_blue.svg" width="15" height="15">Save Settings
+            </button>
+            <button type="button" class="btn" (click)="_profileUpdate(false)">
+              <img src="../../../../assets/images/icons/icon_error.svg" width="15" height="15"> Reset
+            </button>
+          </div>
+        </div>
+      </form>
+      <hr>
+      <!-- From Section Start -->
+      <form class="form-component" autocomplete="off" novalidate [formGroup]="regionalUpdate">
+        <div class="form-group row">
+          <h6 class="col-12 sub-heading">Regional Settings</h6>
+          <div class="col-12">
+            <p>Update these regional settings to change the way dates, quotes and units of measurement
+              <br>are displayed to you on HashMove.</p>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="formGroupRegion" class="col-xl-3 col-lg-3 col-12 col-form-label">My Region</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" [ngClass]="((regionalUpdate.controls['region'].hasError('required') || regionalUpdate.controls['region'].value == 'null') && regionalUpdate.controls.region.touched)? 'fieldError': ''"
+              class="form-control" formControlName="region" (ngModelChange)="regionalModelChange()">
+              <option value="null" [selected]="(!regionalUpdate.controls['region'].value)?true:false">Please Select</option>
+              <option *ngFor="let region of regionList; let i = index" [value]="region.id">{{region.title}}</option>
+            </select>
+            <span class="formError">
+              <p class="animated fadeIn mb-3" *ngIf="(regionalUpdate.controls['region'].hasError('required') || regionalUpdate.controls['region'].value == 'null') && (regionalUpdate.controls.region.dirty || regionalUpdate.controls.region.touched)">{{requiredFields}}</p>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-xl-3 col-lg-3 col-12">My Currency</label>
+          <div class="col-xl-5 col-lg-5 col-12 icon-input">
+            <div class="input-group-prepend">
+              <div class="input-group-text" *ngIf="!currency.imageName" style="width:22px;height:22px;">
+                <img src="../../../../assets/images/icons/flags/4x3/ae.svg" style="max-width:20px; max-height:22px;">
+              </div>
+              <div class="input-group-text" *ngIf="currency.imageName" style="width:22px;height:22px;">
+                <img src="{{'../../../../assets/images/icons/flags/4x3/' + (currency.imageName | lowercase) + '.svg'}}" style="max-width:20px;max-height:22px;">
+              </div>
+              <input type="text" autocomplete="nope" id="typeahead-basic-currency" [ngClass]="(currencyError || currencyValidation)? 'fieldError': ''"
+                class="form-control" placeholder="Your Currency" name="currency" formControlName="currency" [ngbTypeahead]="currencySearch"
+                [resultTemplate]="rtx" [inputFormatter]="currencyformatter" data-toggle="dropdown" (focus)="checkCurrency('focus'); currencyError=false"
+                (focusout)="checkCurrency('focusOut')" (ngModelChange)="flagcurrency(currency);regionalModelChange()" aria-haspopup="true"
+                aria-expanded="false">
+            </div>
+            <span class="formError animated fadeIn mb-3" *ngIf="!currencyValidation && currencyError">
+              <p class="animated fadeIn" *ngIf="regionalUpdate.controls['currency'].hasError('required') && (regionalUpdate.controls['currency'].dirty || regionalUpdate.controls['currency'].touched)">{{requiredFields}}</p>
+              <p class="animated fadeIn" *ngIf="regionalUpdate.controls['currency'].hasError('minlength') && (regionalUpdate.controls['currency'].dirty || regionalUpdate.controls['currency'].touched)">Country name must be at least 3 characters long</p>
+              <p class="animated fadeIn" *ngIf="regionalUpdate.controls['currency'].hasError('maxlength') && (regionalUpdate.controls['currency'].dirty || regionalUpdate.controls['currency'].touched)">Country name should not exceed from 25 characters</p>
+            </span>
+            <span class="animated fadeIn formError" *ngIf="currencyValidation">
+              <p class="animated fadeIn">{{currencyValidation}}</p>
+            </span>
+
+          </div>
+          <ng-template #rtx let-r="result" let-t="term">
+            <div class="d-inline-block" style="width:22px;height:22px;">
+              <img src="{{'../../../../assets/images/icons/flags/4x3/' + (r.imageName | lowercase) + '.svg'}}" style="max-width:100%; ">
+            </div>
+            {{r?.title}} - {{r?.code}}
+          </ng-template>
+        </div>
+        <br>
+        <div class="form-group row" *ngIf="regionalUpdate.valid && regionalBlock">
+          <div class="btn-group col-xl-5 col-lg-5 col-12 btn-dashboard mt-5">
+            <button type="button" class="btn" (click)="_regionalUpdate(true)">
+              <img src="../../../../assets/images/icons/icon_success_blue.svg" width="15" height="15">Save Settings
+            </button>
+            <button type="button" class="btn" (click)="_regionalUpdate(false)">
+              <img src="../../../../assets/images/icons/icon_error.svg" width="15" height="15"> Reset
+            </button>
+          </div>
+        </div>
+      </form>
+      <!--/ From Section ENd -->
+    </div>
+  </div>
+</div>
+<!--/ Settings Information -->
+<!-- Settings Information -->
+<div class="settings-content-info" *ngIf="isAdmin">
+  <h2>Company Information</h2>
+  <div class="card">
+    <div class="card-body">
+      <!-- Form Section Start -->
+      <form class="form-component" autocomplete="off" novalidate [formGroup]="companyUpdate">
+          <div class="form-group row">
+          <label for="formGroupBusinessSize" class="col-xl-3 col-lg-3 col-12 col-form-label">Company Logo</label>
+          <div *ngIf="(currCompanyLogo?.whole?.length> 0)" class="col-xl-2 col-lg-2 col-12">
+            <div class="provider-logo d-table-cell">
+              <img class="provider-logo" [src]="(currCompanyLogo?.path)?currCompanyLogo?.path:currCompanyLogo?.whole" alt="">
+            </div>
+          </div>
+          <div *ngIf="!(currCompanyLogo.whole) || currCompanyLogo.whole.length === 0"
+            class="col-xl-5 col-lg-5 col-12">
+            <app-drag-drop [isSettings]="true" [allowedExtension]="['jpg', 'jpeg','png']"
+              (FileDropEvent)="customDragCheck($event)" (InvalidFileEvent)="fileSelectFailedEvent($event)">
+            </app-drag-drop>
+          </div>
+          <div *ngIf="(currCompanyLogo?.whole?.length> 0)"
+            class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-xs-12 d-flex justify-content-start align-items-center change-logo">
+            <input [hidden]="true" id="file-company-logo" type="file" name="fileUploadLogo" multiple="false" (change)="onFileCompanyLogoChange($event)" />
+            <div class="pointer change-logo" (click)="onCompanyChange()" >Change Logo</div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="formGroupCompany" class="col-xl-3 col-lg-3 col-12 col-form-label">Company</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+            <input type="text" class="form-control" [ngClass]="(companyError)? 'fieldError': ''" (focusout)="errorCompanyMessage()" (focus)="companyError=false"
+              (keypress)="textValidation($event)" placeholder="Your Company Name" name="company" formControlName="company"
+              readonly>
+            <span class="formError animated fadeIn" *ngIf="companyError">
+              <p class="animated fadeIn" *ngIf="companyUpdate.controls['company'].hasError('required') && (companyUpdate.controls['company'].dirty || companyUpdate.controls['company'].touched)">{{requiredFields}}</p>
+              <p class="animated fadeIn" *ngIf="companyUpdate.controls['company'].hasError('minlength') && (companyUpdate.controls['company'].dirty || companyUpdate.controls['company'].touched)">Country name must be at least 3 characters long</p>
+              <p class="animated fadeIn" *ngIf="companyUpdate.controls['company'].hasError('maxlength') && (companyUpdate.controls['company'].dirty || companyUpdate.controls['company'].touched)">Country name should not exceed from 25 characters</p>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-xl-3 col-lg-3 col-12">Business Location</label>
+          <div class="col-xl-5 col-lg-5 col-12 icon-input">
+            <div class="input-group-prepend">
+              <div class="input-group-text" *ngIf="!companyCity.imageName" style="width:22px;height:22px;">
+                <img src="../../../../assets/images/icons/flags/4x3/ae.svg'}}" style="max-width:22px;max-height:22px;">
+              </div>
+              <div class="input-group-text" *ngIf="companyCity.imageName" style="width:22px;height:22px;">
+                <img src="{{'../../../../assets/images/icons/flags/4x3/' + (companyCity.imageName | lowercase) + '.svg'}}" style="max-width:22px;max-height:22px;">
+              </div>
+              <input type="text" id="typeahead-basic-company" [ngClass]="(companyCityError || companyCityValidation)? 'fieldError': ''"
+                class="form-control" placeholder="Your city" name="city" formControlName="city" [ngbTypeahead]="companySearch"
+                [resultTemplate]="rt" [inputFormatter]="companyformatter" data-toggle="dropdown" (focus)="checkCompanyCity('focus'); companyCityError=false"
+                (focusout)="checkCompanyCity('focusOut')" (ngModelChange)="companyFlag(companyCity,'city'); companyModelChange()"
+                aria-haspopup="true" aria-expanded="false">
+            </div>
+            <span class="formError animated fadeIn" *ngIf="!companyCityValidation && companyCityError">
+              <p class="animated fadeIn" *ngIf="companyUpdate.controls['city'].hasError('required') && (companyUpdate.controls['city'].dirty || companyUpdate.controls['city'].touched)">{{requiredFields}}</p>
+              <p class="animated fadeIn" *ngIf="companyUpdate.controls['city'].hasError('minlength') && (companyUpdate.controls['city'].dirty || companyUpdate.controls['city'].touched)">Company name must be at least 3 characters long</p>
+              <p class="animated fadeIn" *ngIf="companyUpdate.controls['city'].hasError('maxlength') && (companyUpdate.controls['city'].dirty || companyUpdate.controls['city'].touched)">Company name should not exceed from 25 characters</p>
+            </span>
+            <span class="animated fadeIn formError" *ngIf="companyCityValidation">
+              <p class="animated fadeIn">{{companyCityValidation}}</p>
+            </span>
+
+          </div>
+          <ng-template #rt let-r="result" let-t="term">
+            <div class="icon-size-16 d-inline-block">
+              <img src="{{'../../../../assets/images/icons/flags/4x3/' + (r.imageName | lowercase) + '.svg'}}" style="max-width:100%;">
+            </div>
+            {{r.title}}
+          </ng-template>
+        </div>
+        <div class="form-group row">
+          <label for="formGroupWeb" class="col-xl-3 col-lg-3 col-12 col-form-label">Website</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+
+            <input type="text" class="form-control" [ngClass]="(websiteError)? 'fieldError': ''" (focusout)="errorCompanyMessage()" (focus)="websiteError = false"
+              placeholder="http://" name="website" formControlName="website" (ngModelChange)="companyModelChange()">
+            <span class="formError animated fadeIn" *ngIf="websiteError">
+              <!-- <p class=" animated fadeIn" *ngIf="(!companyUpdate.controls['website'].hasError('required') && companyUpdate.controls['website'].errors) && (companyUpdate.controls['website'].dirty || companyUpdate.controls['website'].touched)">Invalid URL</p> -->
+              <p class=" animated fadeIn" *ngIf="companyUpdate.controls['website'].hasError('maxlength') && (companyUpdate.controls['website'].dirty || companyUpdate.controls['website'].touched)">Website name should not exceed from 50 characters</p>
+              <p class=" animated fadeIn" *ngIf="companyUpdate.controls['website'].hasError('required') && (companyUpdate.controls['website'].dirty || companyUpdate.controls['website'].touched)">{{requiredFields}}</p>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="formGroupIndustry" class="col-xl-3 col-lg-3 col-12 col-form-label">Industry</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+            <select class="custom-select my-1 mr-sm-2" id="inlineForIndustry" class="form-control" formControlName="industry" (ngModelChange)="companyModelChange()">
+              <option value="null" [selected]="(!companyUpdate.controls['industry'].value)?true:false">Please Select</option>
+              <option *ngFor="let companyType of companyTypeList; let i = index" [value]="companyType.id">{{companyType.title}}</option>
+            </select>
+            <!-- <span class="formError">
+                <p class="formError animated fadeIn" *ngIf="(companyUpdate.controls['industry'].hasError('required') || companyUpdate.controls['industry'].value == 'null') && (companyUpdate.controls.industry.dirty || companyUpdate.controls.industry.touched)">{{requiredFields}}</p>
+              </span> -->
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="formGroupBusinessSize" class="col-xl-3 col-lg-3 col-12 col-form-label">Company Size</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+            <select class="custom-select my-1 mr-sm-2" id="formGroupBusinessSize" class="form-control" formControlName="businessSize"
+              (ngModelChange)="companyModelChange()">
+              <option value="null" [selected]="(!companyUpdate.controls['businessSize'].value)?true:false">Please Select</option>
+              <option *ngFor="let companySize of companySizeList; let i = index" [value]="companySize.id">{{companySize.title}}</option>
+            </select>
+            <!-- <span class="formError">
+                <p class="animated fadeIn" *ngIf="(companyUpdate.controls['businessSize'].hasError('required') || companyUpdate.controls['businessSize'].value == 'null') && (companyUpdate.controls.businessSize.dirty || companyUpdate.controls.businessSize.touched)">{{requiredFields}}</p>
+              </span> -->
+
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="companyBlock">
+          <div class="btn-group col-xl-5 col-lg-5 col-12 btn-dashboard mt-5">
+            <button type="button" class="btn" (click)="_companyUpdate(true)">
+              <img src="../../../../assets/images/icons/icon_success_blue.svg" width="15" height="15">Save Settings
+            </button>
+            <button type="button" class="btn" (click)="_companyUpdate(false)">
+              <img src="../../../../assets/images/icons/icon_error.svg" width="15" height="15"> Reset
+            </button>
+          </div>
+        </div>
+      </form>
+      <!-- Form Section End -->
+      <hr>
+      <!-- Form Section Start -->
+      <!-- <form class="form-component" autocomplete="off" [formGroup]="updateShipping">
+        <div class="form-group row">
+          <h6 class="col-12 sub-heading">Shipping Profile</h6>
+        </div>
+        <div class="form-group row">
+          <label for="formGroupShipFreq" class="col-xl-3 col-lg-3 col-12 col-form-label">Shipping Frequency</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+            <select class="form-control" id="formGroupShipFreq" (ngModelChange)="shippingModelChange()" [ngClass]="((updateShipping.controls['shipFreq'].hasError('required') || updateShipping.controls['shipFreq'].value == 'null') && updateShipping.controls.shipFreq.touched)? 'fieldError': ''"
+              formControlName="shipFreq">
+              <option value="null" [selected]="(!updateShipping.controls['shipFreq'].value)?true:false">Please Select</option>
+              <option *ngFor="let shipFreq of shippingFreg; let i = index" [value]="shipFreq.codeVal">{{shipFreq.codeValDesc}}</option>
+            </select>
+            <span class="formError">
+              <p class="animated fadeIn" *ngIf="(updateShipping.controls['shipFreq'].hasError('required')  || updateShipping.controls['shipFreq'].value == 'null') && (updateShipping.controls.shipFreq.dirty || updateShipping.controls.shipFreq.touched)">{{requiredFields}}</p>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="formGroupIndustry" class="col-xl-3 col-lg-3 col-12 col-form-label">Where do you ship?</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+            <div class="check-boxes-main">
+              <input id="shipOne" type="checkbox" formControlName="international" (ngModelChange)="shippingModelChange()" />
+              <label for="shipOne">
+                <span></span>
+                International </label>
+              <input id="shipTwo" type='checkbox' formControlName="stateLocal" (ngModelChange)="shippingModelChange()" />
+              <label for="shipTwo">
+                <span></span>State &amp; Local
+              </label>
+            </div>
+          </div>
+        </div>
+      </form> -->
+      <!--/ Form Section End -->
+      <!-- Form Section Start -->
+      <!-- <form class="form-component service-categories" autocomplete="off" novalidate [formGroup]="">
+        <div class="row">
+          <h6 class="col-12 sub-heading">Service Categories</h6>
+        </div>
+        
+        <div class="form-group selection-cotainer mb-0" *ngFor="let cat of distinchCat; let catIndex = index ">
+          <div class="row">
+            <span class="col">{{cat.ShippingCatName}}</span>
+          </div>
+          <div class="">
+        
+            <div class="check-boxes-alpha  form-check-inline" *ngFor="let goods of serviceCategories | filter :'ShippingCatID' : cat.ShippingCatID ; let goodsIndex = index">
+              <input id="international{{goods.ShippingSubCatID}}" type="checkbox" [checked]="goods.IsActive" (click)="catClicked(cat.ShippingCatID ,goods.ShippingSubCatID)">
+              <label for="international{{goods.ShippingSubCatID}}">
+                <span></span>{{goods.ShippingSubCatName}}
+              </label>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group row" *ngIf="shippingBlock">
+          <div class="btn-group col-xl-5 col-lg-5 col-12 btn-dashboard mt-5">
+            <button type="button" class="btn" (click)="_updateShipping(true)">
+              <img src="../../../../assets/images/icons/icon_success_blue.svg" width="15" height="15">Save Settings
+            </button>
+            <button type="button" class="btn" (click)="_updateShipping(false)">
+              <img src="../../../../assets/images/icons/icon_error.svg" width="15" height="15"> Reset
+            </button>
+          </div>
+        </div>
+      </form> -->
+      <!--/ Form Section End -->
+    </div>
+  </div>
+</div>
+<!--/ Settings Information -->
+<!-- Settings Information -->
+<div class="settings-content-info">
+  <h2>Change Password</h2>
+  <div class="card">
+    <div class="card-body">
+      <form class="form-component" autocomplete="off" novalidate [formGroup]="updatePassword">
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-xl-3 col-lg-3 col-12 col-form-label">Current Password</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+            <input type="password" (focusout)="errorMessagesPasswordUpdate()" (focus)="currPass=false" autocomplete="off" formControlName="currPass"
+              class="form-control" placeholder="..." [ngClass]="(currPass)?'fieldError':''" required>
+            <div class="animated fadeIn formError" *ngIf="currPass">
+              <p *ngIf="updatePassword.controls['currPass'].hasError('required') && (updatePassword.controls.currPass.dirty || updatePassword.controls.currPass.touched)">{{requiredFields}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-xl-3 col-lg-3 col-12 col-form-label">New Password</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+            <input type="password" [ngClass]="(newPass)? 'fieldError': ''" autocomplete="new-password" (focusout)="errorMessagesPasswordUpdate()"
+              (focus)="newPass=false" class="form-control" placeholder="New Password" formControlName="newPass">
+            <span class="animated fadeIn formError" *ngIf="newPass">
+              <p class=" animated fadeIn" *ngIf="updatePassword.controls['newPass'].hasError('required') && (updatePassword.controls.newPass.dirty || updatePassword.controls.newPass.touched)">{{requiredFields}}</p>
+              <p class=" animated fadeIn" *ngIf="updatePassword.controls['newPass'].hasError('minlength') && (updatePassword.controls.newPass.dirty || updatePassword.controls.newPass.touched)">Password must be at least 6 characters long</p>
+              <p class=" animated fadeIn" *ngIf="updatePassword.controls['newPass'].hasError('maxlength') && (updatePassword.controls.newPass.dirty || updatePassword.controls.newPass.touched)">Password should not exceed from 15 characters</p>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-xl-3 col-lg-3 col-12 col-form-label">Confirm Password</label>
+          <div class="col-xl-5 col-lg-5 col-12">
+            <input type="password" [ngClass]="(confirmPass)? 'fieldError': ''" autocomplete="new-password" (focusout)="errorMessagesPasswordUpdate()"
+              (focus)="confirmPass=false" class="form-control" placeholder="New Password" formControlName="confirmPass">
+            <span class="animated fadeIn formError" *ngIf="confirmPass">
+              <!-- <p class="formError animated fadeIn" *ngIf="updatePassword.controls['confirmPass'].hasError('matchOther') && (updatePassword.controls.confirmPass.dirty || updatePassword.controls.confirmPass.touched)">{{requiredFields}}</p> -->
+              <p class=" animated fadeIn" *ngIf="updatePassword.controls['confirmPass'].hasError('matchOther') && (updatePassword.controls.confirmPass.dirty || updatePassword.controls.confirmPass.touched)">Password Mismatch</p>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row" *ngIf="updatePassword.valid">
+          <div class="btn-group col-xl-5 col-lg-5 col-12 btn-dashboard mt-5">
+            <button type="button" class="btn" (click)="_updatePassword(true)">
+              <img src="../../../../assets/images/icons/icon_success_blue.svg" width="15" height="15">Update Password
+            </button>
+            <button type="button" class="btn" (click)="_updatePassword(false)">
+              <img src="../../../../assets/images/icons/icon_error.svg" width="15" height="15"> Reset
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--/ Settings Information -->
+<hr>
+<div class="settings-content-info">
+  <div class="delete-account">
+    <div class="form-group row">
+      <div class="col-12">
+        <span class="pointer delete-acc" (click)="deleteAccount()">
+
+          <!-- <img alt="del" class="icon-delete" src="../../../../assets/images/icons/icon_del_red.svg" class="svg-icon"> -->
+          <svg id="317c8c47-17e2-4e96-9063-97bc9a32118b" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+            class="icon-size-16 svg-icon mt-1">
+            <defs>
+              <style>
+                .a2933809-f108-463d-a7d6-9972aa735edc {
+                  fill: #c12e37;
+                }
+
+              </style>
+            </defs>
+            <g id="9ddd7984-9517-4e7f-881d-6292000e8e8a" data-name="delete">
+              <rect class="a2933809-f108-463d-a7d6-9972aa735edc" y="2" width="16" height="2" />
+              <rect class="a2933809-f108-463d-a7d6-9972aa735edc" x="5" width="6" height="2" />
+              <path class="a2933809-f108-463d-a7d6-9972aa735edc" d="M2,5v9a2,2,0,0,0,2,2h8a2,2,0,0,0,2-2V5Zm5,9H5V7H7Zm4,0H9V7h2Z" />
+            </g>
+          </svg>
+
+          <h3>Delete Account</h3>
+        </span>
+        <p class="col-10">This action cannot be undone. Once you hit this button and confirm your intention
+          <br> to delete your account, the data associated to your account will be delete. Data related
+          <br> to your company will be still retained however all your activity will be lost - forever!</p>
+      </div>
+    </div>
+  </div>
+</div>

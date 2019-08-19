@@ -1,0 +1,193 @@
+<div class="air-search">
+  <h5 class="d-flex justify-content-center">Cargo Load Details</h5>
+  <div class="col">
+    <ngb-tabset (tabChange)="tabChangeEvent($event)" [justify]="currentJustify" class="secondaryTabs"
+      [activeId]="unitTabId">
+      <ngb-tab id="by_total_ship">
+        <ng-template ngbTabTitle>
+          <div class="tab">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24"
+              enable-background="new 0 0 24 24" xml:space="preserve">
+              <g>
+                <defs>
+                  <rect id="SVGID_1_" width="24" height="24" />
+                </defs>
+                <clipPath id="SVGID_2_">
+                  <use xlink:href="#SVGID_1_" overflow="visible" />
+                </clipPath>
+                <path clip-path="url(#SVGID_2_)" fill="#738593"
+                  d="M12,3c0.827,0,1.5,0.673,1.5,1.5S12.827,6,12,6s-1.5-0.673-1.5-1.5S11.173,3,12,3 M12,0C9.515,0,7.5,2.015,7.5,4.5S9.515,9,12,9c2.485,0,4.5-2.015,4.5-4.5S14.485,0,12,0" />
+                <path clip-path="url(#SVGID_2_)" fill="#738593"
+                  d="M18,9H6L0,24h24L18,9z M12,20.25c-2.071,0-3.75-1.679-3.75-3.75s1.679-3.75,3.75-3.75c2.071,0,3.75,1.679,3.75,3.75S14.071,20.25,12,20.25" />
+              </g>
+            </svg>
+            <span>By Total Shipment</span>
+          </div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <!-- Area Required Unit -->
+          <div class="form-row">
+            <div class="col-md-6 col-12 d-flex input-dropdown m-0">
+              <div class="input-group">
+                <input type="number" min="0" step="1" (keypress)="onKeypress($event)"
+                  (ngModelChange)="modelChange($event, 'weight')" [(ngModel)]="airData.weight" class="form-control"
+                  placeholder="Weight">
+                <div class="input-group-append">
+                  <select #elWeightTotal class="form-control" name="weightUnit"
+                    (change)="onUnitChange($event.target.value, 'weight')">
+                    <option value="{{unit.UnitTypeID}}" *ngFor="let unit of weightUnits"
+                      [selected]="(unit.UnitTypeID === selectedWeightUnitID) ? true : false">
+                      {{unit.UnitTypeShortName}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-12 d-flex input-dropdown m-0">
+              <div class="input-group">
+                <input type="number" min="0" step="1" (keypress)="onKeypress($event)"
+                  (ngModelChange)="modelChange($event, 'volume')" [(ngModel)]="airData.volume" class="form-control"
+                  placeholder="Volume">
+                <div class="input-group-append">
+                  <select #elWeightTotal class="form-control" name="weightUnit"
+                    (change)="onUnitChange($event.target.value, 'volume')">
+                    <option value="{{unit.UnitTypeID}}" *ngFor="let unit of volumeUnits"
+                      [selected]="(unit.UnitTypeID === selectedVolumeUnitID) ? true : false">
+                      {{unit.UnitTypeShortName}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col-md-4 col-12 d-flex input-dropdown m-0">
+              <p class="text-OR mb-0 mr-2">OR</p>
+              <div class="input-group">
+                <input type="number" min="0" step="1" (keypress)="onKeypress($event)"
+                  (ngModelChange)="modelChange($event, 'totalWeight')" [(ngModel)]="airData.totalWeight"
+                  class="form-control" placeholder="Chargeable Weight">
+                <div class="input-group-append">
+                  <select #elWeightTotal class="form-control" name="weightUnit"
+                    (change)="onUnitChange($event.target.value, 'totalWeight')">
+                    <option value="{{unit.UnitTypeID}}" *ngFor="let unit of weightUnits"
+                      [selected]="(unit.UnitTypeID === selectedWeightUnitID) ? true : false">
+                      {{unit.UnitTypeShortName}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <!--/ Area Required Unit -->
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="by_unit">
+        <ng-template ngbTabTitle>
+          <div class="tab">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" class="byunit-icon"
+              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32"
+              style="enable-background:new 0 0 32 32;" xml:space="preserve">
+              <style type="text/css">
+              </style>
+              <g>
+                <rect x="4.75" y="4.75" transform="matrix(0.7071 0.7071 -0.7071 0.7071 16 -6.6274)" class="st0"
+                  width="22.5" height="22.5" />
+
+                <rect x="5.5" y="5.5" transform="matrix(-9.941344e-09 1 -1 -9.941344e-09 32 -7.297966e-07)" class="st1"
+                  width="21" height="21" />
+                <line class="st2" x1="16" y1="4.87" x2="16" y2="27.13" />
+                <line class="st2" x1="27.13" y1="16" x2="4.87" y2="16" />
+              </g>
+              <g>
+              </g>
+              <g>
+              </g>
+              <g>
+              </g>
+              <g>
+              </g>
+              <g>
+              </g>
+            </svg>
+            <span>By Unit</span>
+          </div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <!-- Area Required Unit -->
+          <div class="form-row">
+            <div class="col d-flex input-dropdown m-0">
+              <div class="input-group">
+                <input type="number" min="0" step="1" [(ngModel)]="airData.length" (keypress)="onKeypress($event)"
+                  class="form-control border-right" placeholder="L" (ngModelChange)="modelChange($event, 'length')">
+                <input type="number" [(ngModel)]="airData.width" (keypress)="onKeypress($event)"
+                  class="form-control border-right" min="0" step="1" placeholder="W"
+                  (ngModelChange)="modelChange($event, 'width')">
+                <input type="number" min="0" step="1" [(ngModel)]="airData.height" (keypress)="onKeypress($event)"
+                  class="form-control border-right" placeholder="H" (ngModelChange)="modelChange($event, 'height')">
+                <div class="input-group-append">
+                  <select #elVolume name="" class="form-control" (change)="onUnitChange($event.target.value, 'length')">
+                    <option *ngFor="let unit of lengthUnits" value="{{unit.UnitTypeID}}"
+                      [selected]="(unit.UnitTypeID === selectedLengthUnitID) ? true : false">
+                      {{unit.UnitTypeShortName}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col d-flex input-counter m-0">
+              <div class="input-group">
+                <label class="form-control sr-only">Quantity</label>
+                <div class="input-group-prepend pointer" (click)="counter('minus')">
+                  <span class="input-group-text">
+                    <i class="fa fa-minus"></i>
+                  </span>
+                </div>
+                <input type="number" min="0" step="1" (keypress)="onKeypress($event)"
+                  (ngModelChange)="modelChange($event, 'quantity')" [(ngModel)]="airData.quantity" class="form-control"
+                  placeholder="0">
+                <div class="input-group-append pointer" (click)="counter('plus')">
+                  <span class="input-group-text">
+                    <i class="fa fa-plus"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col d-flex input-dropdown m-0">
+              <div class="input-group">
+                <input type="number" min="0" step="1" (keypress)="onKeypress($event)"
+                  (ngModelChange)="modelChange($event, 'totalWeight')" [(ngModel)]="airData.totalWeight"
+                  class="form-control" placeholder="Chargeable Weight">
+                <div class="input-group-append">
+                  <select #elWeightTotal class="form-control" name="weightUnit"
+                    (change)="onUnitChange($event.target.value, 'totalWeight')">
+                    <option value="{{unit.UnitTypeID}}" *ngFor="let unit of weightUnits"
+                      [selected]="(unit.UnitTypeID === selectedWeightUnitID) ? true : false">
+                      {{unit.UnitTypeShortName}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <!--/ Area Required Unit -->
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+    <div class="row air-total">
+      <div class="col-12">
+        <div class="total-calculation">
+          <p class="total-cbm" *ngIf="airData?.chargeableWeight > 0">
+            <span class="pr-5">
+              Chargeable Weight:
+              <!-- <span class="text-dark" *ngIf="totalWeight > 0">
+                <span>{{totalWeight}} kg</span>
+              </span> -->
+              <span class="text-dark" *ngIf="airData?.chargeableWeight > 0">
+                <span>{{airData?.chargeableWeight | number: '1.2-2'}} kg</span>
+              </span>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

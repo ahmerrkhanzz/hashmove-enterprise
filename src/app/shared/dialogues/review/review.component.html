@@ -1,0 +1,21 @@
+<!-- User login Modal -->
+<div class="review">
+  <div class="animated fadeIn">
+    <div class="modal-header">
+      <h4>Submit Review</h4>
+      <a class="pointer crossIcon" (click)="close()">
+        <img src="../../../../assets/images/icons/icon_close.svg" width="20" height="20" alt="close">
+      </a>
+    </div>
+    <div class="modal-body">
+        <div class="row form-group">
+          <div class="col-12">
+            <textarea name="" id="" cols="30" rows="6" class="form-control" name="review" [(ngModel)]="review"></textarea>
+            <!-- <span class="pull-left mt-3">{{reviewLimit}} charecters</span> -->
+            <button class="btn btn-primary pull-right mt-3" (click)="submitReview()">Submit Review</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<!--/ User login Modal -->

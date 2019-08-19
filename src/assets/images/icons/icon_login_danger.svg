@@ -1,0 +1,14 @@
+<svg id="b02d04d3-96e1-4e8a-ba60-a5eafe1cbcda" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .f1fd996a-bb07-486e-bdcb-eb17f60418de {
+        fill: #ba323c;
+      }
+    </style>
+  </defs>
+  
+  <g>
+    <path class="f1fd996a-bb07-486e-bdcb-eb17f60418de" d="M8,0A2.991,2.991,0,0,0,5.184,2H19V21a1,1,0,0,1-1,1H5v2H18a3,3,0,0,0,3-3V0Z"/>
+    <path class="f1fd996a-bb07-486e-bdcb-eb17f60418de" d="M9,16l3.635-3.216a1.023,1.023,0,0,0,0-1.567L9,8v3H3v2H9Z"/>
+  </g>
+</svg>

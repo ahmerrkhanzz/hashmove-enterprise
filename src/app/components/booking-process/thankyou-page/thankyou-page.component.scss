@@ -1,0 +1,632 @@
+@import "../../../../assets/scss/_variables.scss";
+$alert-danger-background:#f9ebee;
+$alert-danger-border: #92444a;
+$alert-danger-paragraph: #5a5353;
+$TotalAmoutColor: $active-text-color;
+$DueAmoutColor: $text-color-default;
+$icon-color: #aab5be;
+hr {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 0;
+  border-top: 1px dashed $grey-border;
+}
+
+.thankyou {
+  &-bob-icon {
+    img {
+      margin-left: 7%;
+      width: 300px;
+      height: 300px;
+    }
+  }
+  &-message {
+    text-align: center;
+    margin-bottom: 10px;
+    .message {
+      font-size: $font-size-large + $font-size-large + 0.75rem;
+      font-family: $font-pragmatica;
+      font-weight: $font-weight-mid;
+      margin-bottom: 10px;
+      margin-top: 18px;
+    }
+    .booking-id {
+      font-size: $font-size-large + 0.25rem;
+      font-family: $font-pragmatica;
+      font-weight: $font-weight-mid;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .view-booking {
+      font-size: $font-size-medium;
+      font-family: $font-proxima;
+      text-transform: uppercase;
+      color: $secondary-color;
+      font-weight: $font-proxima-weight-semibold;
+      margin-top: 5px;
+      letter-spacing: 1px;
+      position: relative;
+      text-decoration: none;
+      line-height: 24px;
+      width: auto;
+      &:before,
+      &:after {
+        color: $secondary-color;
+        content: '';
+        position: absolute;
+        transition: transform .5s ease;
+      }
+      &.link-hover-1 {
+        padding-top: 10px;
+        &:before {
+          top: 28px;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 1px;
+          background: darken(#02bdb6, 3%);
+          transform: scaleX(0);
+        }
+        &:hover:before {
+          transform: scaleX(1);
+        }
+      }
+    }
+    .view-booking-arrow-icon {
+      width: 14px;
+      height: 14px;
+      position: relative;
+      top: -1px;
+      left: 6px;
+    }
+  }
+  &-insurance {
+    margin-top: 1.45rem;
+  }
+  .confirmation {
+    .alert-danger {
+      background-color: #e9f8f8;
+      padding: 25px 20px;
+      border: 1px solid $secondary-color;
+      border-radius: 0px;
+      margin: 0;
+      .confirmation-message {
+        //   border-bottom: 1px dashed $alert-danger-border;
+        h5 {
+          color: $text-color-default;
+          text-align: left;
+          font-size: $font-size-large + .25rem;
+          font-family: $font-pragmatica;
+        }
+        p {
+          color: $secondary-text-color; // text-align: justify;
+          font-family: $font-proxima;
+          font-size: $font-size-large;
+          font-weight: $font-weight-normal; // padding-left: 72px;
+          margin-bottom: 0;
+        }
+      }
+      .booking-confirmation-list {
+        margin-top: 30px;
+        ul.list-main {
+          padding-left: 12%;
+          margin-bottom: 0px;
+          list-style: none;
+          margin-bottom: 0px;
+          li {
+            padding-bottom: 18px;
+            display: block;
+            a {
+              color: $text-color-default;
+              font-size: $font-size-medium;
+              font-family: $font-proxima;
+              text-transform: uppercase;
+              font-weight: $font-proxima-weight-semibold;
+            }
+            i.fa.fa-circle {
+              color: #d42532;
+              position: relative;
+              left: -10px;
+              font-size: 7px;
+              top: -2px;
+            }
+            .fa-angle-right {
+              margin-left: 0.5rem;
+              vertical-align: text-top;
+            }
+            &:last-child {
+              padding-bottom: 0px;
+            }
+          }
+        }
+      }
+    }
+    .booking-confirmation-icon {
+      margin-top: 4px;
+      margin-right: 1.95rem;
+      float: left;
+    }
+    &-text {
+      font-size: $font-size-medium;
+      color: $text-color-default;
+      font-weight: $font-weight-mid;
+    }
+    .billing-box {
+      hr {
+        margin: 1rem 0;
+        border-top: 1px dashed $grey-border;
+      }
+      .card {
+        border-radius: 0rem;
+        border: 1px solid $light-grey-border;
+        &-title {
+          font-size: $font-size-base;
+          text-transform: uppercase;
+          font-family: $font-proxima;
+          color: $dark-grey-blue;
+          font-weight: $font-proxima-weight-semibold;
+          word-spacing: 3px;
+          img {
+            width: 16px;
+            height: 16px;
+            position: relative;
+            bottom: 2px;
+          }
+        }
+        &-body {
+          h6 {
+            font-weight: 600;
+            font-family: $font-proxima;
+            font-size: $font-size-large;
+            margin-bottom: 0;
+          }
+        }
+      }
+      .list-group {
+        .list-group-item {
+          font-size: $font-size-base;
+          color: $secondary-text-color;
+          font-weight: $font-weight-mid;
+          font-family: $font-proxima;
+          padding: 0.4rem 0;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          border: 0 !important;
+          .long-text {
+            width: 50%;
+            font-family: $font-proxima;
+            font-size: $font-size-base;
+            color: $secondary-text-color;
+          }
+          .amount-text {
+            font-size: $font-size-base;
+            text-align: left;
+            color: $secondary-text-color;
+            width: 35%;
+          }
+          &:last-child {
+            padding-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+  .insurance {
+    background: $white-color;
+    padding: 30px 25px;
+    float: left;
+    width: 100%;
+    &-head {
+      img {
+        float: left;
+        margin-right: 10px;
+      }
+      h5 {
+        font-size: $font-size-medium;
+        text-transform: uppercase;
+        font-family: $font-proxima;
+        color: $dark-grey-blue;
+        font-weight: $font-weight-mid;
+        word-spacing: 3px;
+      }
+    }
+    .insure-goods {
+      margin-top: 30px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed #e7e7e7;
+      .switch {
+        float: left;
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 22px;
+        margin-right: 15px;
+        margin-bottom: 0;
+        border: 1px solid #e7e7e7;
+        border-radius: 50px;
+        input {
+          display: none;
+          &:checked+.slider {
+            background-color: $secondary-color;
+            &:before {
+              -webkit-transform: translateX(26px);
+              -ms-transform: translateX(26px);
+              transform: translateX(26px);
+            }
+          }
+          &:focus+.slider {
+            box-shadow: 0 0 1px $secondary-color;
+          }
+        }
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          -webkit-transition: .4s;
+          transition: .4s;
+          border-radius: 30px;
+          &:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 3px;
+            bottom: -1px;
+            background-color: $white-color;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+          }
+        }
+      }
+      &-text {
+        font-size: $font-size-medium;
+        color: $text-color-default;
+        font-weight: $font-weight-mid;
+      }
+    }
+    .value-goods {
+      float: left;
+      width: 100%;
+      margin-bottom: 20px;
+      padding-bottom: 5px;
+      border-bottom: 1px dashed #e7e7e7;
+      &-price {
+        font-size: 15px;
+        color: $text-color-default;
+        text-shadow: 0px 0px $text-color-default;
+        font-weight: $font-weight-mid;
+        word-spacing: 2px;
+        margin-top: 15px;
+        float: left;
+        width: 100%;
+      }
+      &-paragraph {
+        color: $secondary-text-color;
+        font-size: $font-size-medium;
+        margin-top: 5px;
+        float: left;
+        font-weight: $font-weight-mid;
+      }
+    }
+    .select-preffered {
+      &-text {
+        color: $secondary-text-color;
+        font-size: $font-size-medium;
+        margin-top: 5px;
+        float: left;
+        font-weight: $font-weight-mid;
+      }
+      &-logo {
+        list-style: none;
+        float: left;
+        width: 100%;
+        padding: 0px;
+        margin-top: 20px;
+        .logo {
+          border: 1px solid #ccc;
+          width: 32.2%;
+          height: 100px;
+          border-radius: 8px;
+          overflow: hidden;
+          float: left;
+          margin-right: 12px;
+          position: relative;
+          .tick-triangle {
+            width: 0px;
+            height: 0px;
+            border-top: 40px solid #738592;
+            border-left: 40px solid transparent;
+            float: right;
+            position: absolute;
+            right: 0px;
+          }
+          &:last-child {
+            margin-right: 0px;
+          }
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 14px;
+          }
+        }
+      }
+    }
+  }
+  .relativeNews {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+    .relativeNews-header {
+      h4.title {
+        font-size: $font-size-large + 0.25rem;
+        font-weight: $font-weight-mid;
+        color: $text-color-default;
+        font-family: $font-proxima;
+      }
+      p {
+        font-size: $font-size-large;
+        font-weight: $font-weight-normal;
+        color: $secondary-text-color;
+        font-family: $font-proxima;
+      }
+    }
+    .relativeNewsContent {
+      .news-body {
+        padding: 20px 0px;
+        height: 200px;
+        transition: all 0.5s ease;
+        .news-heading {
+          font-family: $font-proxima;
+          font-size: $font-size-large; //font: message-box;
+          max-height: 20px;
+          max-height: 40px;
+        }
+        .relativeNewDate {
+          .date {
+            font-family: $font-proxima;
+            font-size: $font-size-medium;
+            margin: 6px 0px;
+            font-weight: $font-weight-normal;
+            color: $color-date;
+          }
+        }
+        .news-text {
+          font-family: $font-proxima;
+          font-size: $font-size-medium;
+          color: $secondary-text-color;
+        }
+        .relativeNewsFooter {
+          font-family: $font-proxima;
+          font-size: $font-size-medium;
+          text-transform: uppercase;
+          a {
+            position: relative;
+            color: $dark-grey-blue;
+            text-decoration: none;
+            line-height: 24px;
+            width: auto;
+            &:before,
+            &:after {
+              content: '';
+              position: absolute;
+              transition: transform .5s ease;
+            }
+            color: $dark-grey-blue;
+            font-weight: 500;
+            &.link-hover-1 {
+              padding-top: 10px;
+              &:before {
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 1px;
+                top: 28px;
+                background: darken(#738593, 3%);
+                transform: scaleX(0);
+              }
+              &:hover:before {
+                transform: scaleX(1);
+              }
+            }
+          }
+          .fa.fa-share-alt {
+            float: right;
+            color: $icon-color;
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+      .card {
+        overflow: hidden;
+        border: none;
+        border-radius: 0px;
+        background: transparent;
+        .card-image {
+          transition: all 0.5s ease;
+          border-radius: 0px;
+          .card-img-top {
+            border-radius: 0px;
+          }
+        }
+        &:hover {
+          .card-image {
+            transform: scale(1.05);
+          }
+          .news-body {
+            padding-left: 12px;
+          }
+        }
+      }
+      .share-icon {
+        width: 1rem;
+      }
+    }
+    .share-icon {
+      width: 1rem;
+    }
+  }
+  .warehouse {
+    .card {
+      border: 1px solid $light-grey-border;
+      &-image {
+        // width: 200px;
+        height: 120px;
+        overflow: hidden;
+        img {
+          width: 100%;
+        }
+      }
+      &-title {
+        font-family: $font-proxima;
+        font-size: $root-font-size + 0.25;
+        margin-bottom: 0.5rem;
+      }
+      &-body {
+        a {
+          color: $secondary-color;
+          font-family: $font-proxima;
+          font-size: $font-size-medium;
+          font-weight: 500;
+          position: relative;
+          text-decoration: none;
+          line-height: 24px;
+          width: auto;
+          &:before,
+          &:after {
+            color: $secondary-color;
+            content: '';
+            position: absolute;
+            transition: transform .5s ease;
+          }
+          &.link-hover-1 {
+            padding-top: 10px;
+            &:before {
+              top: 28px;
+              left: 0;
+              bottom: 0;
+              width: 100%;
+              height: 1px;
+              background: darken(#02bdb6, 3%);
+              transform: scaleX(0);
+            }
+            &:hover:before {
+              transform: scaleX(1);
+            }
+          }
+        }
+      }
+    }
+  }
+  /*----BILLING SECTION - Start ----*/
+  /*----BILLING SECTION - End ----*/
+  .helpSupport {
+    border-radius: 0.2rem;
+    position: relative;
+    border: 1px solid $light-grey-border;
+    float: left;
+    margin-top: 1.45rem;
+    padding: 20px 18px 5px;
+    background: #fff;
+    &-img {
+      width: 80px;
+      height: 80px;
+      position: absolute;
+      overflow: hidden;
+      right: 1.2rem;
+      img {
+        width: 100%;
+      }
+    }
+    &-head {
+      h5 {
+        float: left;
+        font-size: $font-size-large;
+        font-weight: $font-weight-mid;
+        font-family: $font-pragmatica;
+        padding-left: 10px;
+        padding-top: 1px; //text-shadow: 0.5px 0px $text-color-default;
+      }
+      img {
+        width: 12px;
+        height: 20px;
+        float: left;
+        position: relative;
+        top: 0;
+      }
+    }
+    &-content {
+      float: left;
+      width: 100%;
+      h5 {
+        font-size: $font-size-base;
+        color: $dark-grey-blue;
+        font-family: $font-proxima;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: $font-proxima-weight-semibold;
+        margin-top: 15px;
+        margin-bottom: 8px;
+      }
+      .address {
+        font-size: $font-size-large;
+        font-family: $font-proxima;
+        font-weight: $font-weight-normal;
+        color: $text-color-default;
+        line-height: 1.5; //   width: 85%;
+      }
+      .helpLine {
+        @extend .address
+      }
+      .dotted {
+        border-bottom: 1px dashed #e5e5e5;
+      }
+    }
+    &-footer {
+      float: left;
+      width: 100%;
+      p {
+        font-size: $font-size-medium;
+        font-family: $font-proxima;
+        margin-top: 1rem;
+        color: $secondary-text-color;
+        a {
+          position: relative;
+          color: #2b2b2b;
+          text-decoration: none;
+          line-height: 24px;
+          width: auto;
+          &:before,
+          &:after {
+            content: '';
+            position: absolute;
+            transition: transform .5s ease;
+          }
+          &.link-hover-1 {
+            padding-top: 10px;
+            &:before {
+              top: 28px;
+              left: 0;
+              bottom: 0;
+              width: 100%;
+              height: 1px;
+              background: darken(#2b2b2b, 3%);
+              transform: scaleX(0);
+            }
+            &:hover:before {
+              transform: scaleX(1);
+            }
+          }
+        }
+      }
+    }
+  }
+}

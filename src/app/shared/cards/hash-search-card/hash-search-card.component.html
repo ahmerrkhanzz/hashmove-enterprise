@@ -1,0 +1,426 @@
+<div class="hash-search" *ngFor="let searchCard of searchResult| paginate: config ; let i=index">
+  <div class="card mb-4">
+    <!-- <span class="badge badge-success card-badge">CMA-CGM Special: Up to {{sortedCountryName}} 200 Off</span> -->
+    <span class="card-share pointer" (click)="shareShippingInfo(searchCard, searchCard)" [hidden]="true">
+      <svg class="dad0eedd-3f58-4190-b99e-682be04a5685" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 16 16">
+        <defs>
+          <style>
+            .\32 57445dd-43e8-4251-8231-74686b6f6f2a {
+              fill: #abb6be;
+            }
+
+            .dad0eedd-3f58-4190-b99e-682be04a5685:hover .\32 57445dd-43e8-4251-8231-74686b6f6f2a {
+              fill: #02b9b2;
+              transition: 2s;
+            }
+          </style>
+        </defs>
+        <g>
+          <circle class="257445dd-43e8-4251-8231-74686b6f6f2a" cx="13" cy="3" r="3" />
+          <circle class="257445dd-43e8-4251-8231-74686b6f6f2a" cx="13" cy="13" r="3" />
+          <circle class="257445dd-43e8-4251-8231-74686b6f6f2a" cx="3" cy="8" r="3" />
+          <g>
+            <polygon class="257445dd-43e8-4251-8231-74686b6f6f2a"
+              points="14 3.078 13.066 1.568 4 6.556 5.839 7.568 14 3.078" />
+            <polygon class="257445dd-43e8-4251-8231-74686b6f6f2a"
+              points="4 10.012 13.066 15 14 13.49 5.839 9 4 10.012" />
+          </g>
+        </g>
+      </svg>
+      <!-- <img src="../../../../assets/images/icons/icon_share.svg" alt="Icons_Share"> -->
+    </span>
+    <div class="card-body">
+      <div class="" [ngClass]="searchCriteria.searchMode === 'air-lcl' ? 'row' : ''">
+        <div class="hash-search-info" [ngClass]="searchCriteria.searchMode === 'air-lcl' ? 'pt-1 col-7' : ''">
+          <div class="company">
+            <div class="logo mr-3">
+              <!-- <img src="../../../assets/images/logos/shippping-lines/{{searchCard.CarrierImage}}" alt=""> -->
+              <img src="{{getCarrierImage(searchCard.CarrierImage)}}" alt="" />
+            </div>
+            <!-- <div class="price">
+              <img src="../../../assets/images/logos/shippping-lines/{{searchCard.CarrierImage}}" alt="">
+            </div> -->
+            <div class="name">
+              <h4 class="ml-1">{{searchCard.CarrierName}}</h4>
+              <span *ngIf="searchCard.VesselName">{{searchCard.VesselName}}</span>
+              <div class="airline-content ml-3 mt-1" *ngIf="searchCriteria.searchMode === 'air-lcl'">
+                <div class="row">
+                  <div class="col airline-content-column pr-0 pl-1">
+                    <label>Cut Off</label>
+                    <strong><span>{{(searchCard?.PortCutOffDays)?searchCard?.PortCutOffDays:'N/A'}}</span></strong>
+                  </div>
+                  <div class="col airline-content-column pr-0 pl-1">
+                    <label>ETD</label>
+                    <strong [innerHTML]="getJsonDepartureDays(searchCard?.JsonDepartureDays)"></strong>
+                  </div>
+                  <div class="col airline-content-column pr-0 pl-1">
+                    <label>Transit</label>
+                    <strong
+                    *ngIf="searchCard?.MinTransitDays" class="d-flex">
+                    {{searchCard?.MinTransitDays}}
+                    <span *ngIf="searchCard?.MinTransitDays && searchCard?.MaxTransitDays"> - </span>
+                    {{searchCard?.MaxTransitDays}} Day(s)
+                  </strong>
+                    <strong *ngIf="!searchCard?.MaxTransitDays && !searchCard?.TransitDays">N/A</strong>
+                  </div>
+                  <div class="col airline-content-column pr-0 pl-1">
+                    <label>AIRCRAFT TYPE</label>
+                    <strong>{{(searchCard?.AircraftTypeName)?searchCard?.AircraftTypeName:'N/A'}}</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="routes" *ngIf="searchCriteria.searchMode !== 'air-lcl'">
+            <div class="route air">
+              <div class="port" [ngClass]="searchCard.PolModeOfTrans === 'AIR'?'air':'' || searchCard?.EtdUtc ? 'mt-3': ''">
+                <img src="../../../../assets/images/icons/{{getImageByMode(searchCard.PolModeOfTrans)}}" alt="">
+                <div class="port-detail">
+                  <strong [ngbTooltip]="searchCriteria.pickupPortName"
+                    placement="top">{{(searchCriteria.pickupPortType==="GROUND")?searchCriteria.pickupPortName:searchCard.PolCode}}</strong>
+                  <small>{{(searchCriteria.pickupPortType==="GROUND")?searchCard.PolCountryName:searchCriteria.pickupPortName}}</small>
+                </div>
+              </div>
+              <div class="arrows">
+                <div class="days">
+                  <span
+                    *ngIf="searchCard.EtaInDays && searchCriteria.searchMode === 'air-lcl'">{{getFlightTime(searchCard.EtaInDays)}}</span>
+                  <div *ngIf="searchCriteria.searchMode === 'sea-fcl' && searchCard?.EtaInDays > 0">
+                    <span *ngIf="searchCard.EtaInDays > 1; else oneDayTemp"> {{searchCard.EtaInDays}} Days</span>
+                    <ng-template #oneDayTemp>{{searchCard.EtaInDays}} Day</ng-template>
+                  </div>
+                </div>
+                <img class="step-arrow" src="../../../../assets/images/icons/step-arrow.svg"/>
+                <div class="days" *ngIf="searchCriteria.searchMode !== 'air-lcl' && searchCard?.EtaInDays > 0">
+                  <!-- via INCOCK1 +2 more -->
+                  <span *ngIf="searchCard.TransfersStop === 0">Direct</span>
+                  <span *ngIf="searchCard.TransfersStop > 0">{{searchCard.TransfersStop}} {{searchCard.TransfersStop > 1 ? 'Stops' : 'Stop'}}</span>
+                </div>
+              </div>
+              <div class="port" [ngClass]="searchCard.PodModeOfTrans === 'AIR'?'air':'' || searchCard?.EtdUtc ? 'mt-3': ''">
+                <img src="../../../../assets/images/icons/{{getImageByMode(searchCard.PodModeOfTrans)}}" alt="">
+                <div class="port-detail">
+                  <strong [ngbTooltip]="searchCriteria.deliveryPortName"
+                    placement="top">{{(searchCriteria.deliveryPortType==="GROUND")?searchCriteria.deliveryPortName:searchCard.PodCode}}</strong>
+                  <small>{{(searchCriteria.deliveryPortType==="GROUND")?searchCard.PodCountryName:searchCriteria.deliveryPortName}}</small>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col hash-search-dates border-0" *ngIf="searchCriteria.searchMode === 'air-lcl'">
+          <div class="date text-right mb-0 d-flex flex-column">
+            <span>{{searchCard.CurrencyCode}}</span>
+            <strong class="text-truncate mt-2 pt-1 pb-2" placement="top"
+              ngbTooltip="{{searchCard.CurrencyCode}} {{searchCard.TotalPrice | number: '1.2-2'}}">
+              {{searchCard.TotalPrice | number: '1.2-2'}}</strong>
+          </div>
+        </div>
+        <div class="hash-search-dates" *ngIf="searchCriteria.searchMode !== 'air-lcl'">
+          <div class="date">
+            <label for="">Departure</label>
+            <strong *ngIf="searchCard?.EtdUtc">{{searchCard?.EtdUtc | date: 'dd MMM yyyy'}}</strong>
+            <strong *ngIf="!searchCard?.EtdUtc">Upon Booking</strong>
+          </div>
+          <div class="date">
+            <label for="">Booking Cut Off</label>
+            <strong
+              *ngIf="searchCriteria.searchMode === 'air-lcl'">{{searchCard?.PortCutOffUtc | date: 'dd MMM yyyy HH:mm'}}</strong>
+            <span *ngIf="searchCriteria.searchMode !== 'air-lcl'">
+              <strong *ngIf="searchCard?.EtdUtc">{{searchCard?.PortCutOffUtc | date: 'dd MMM yyyy'}}</strong>
+              <strong *ngIf="!searchCard?.EtdUtc">Upon Booking</strong>
+            </span>
+          </div>
+          <div class="date">
+            <label for="">Arrival</label>
+            <strong
+              *ngIf="searchCriteria.searchMode === 'air-lcl'">{{searchCard?.EtaUtc | date: 'dd MMM yyyy HH:mm'}}</strong>
+            <span *ngIf="searchCriteria.searchMode !== 'air-lcl'">
+              <strong *ngIf="searchCard?.EtdUtc">{{searchCard?.EtaUtc | date: 'dd MMM yyyy'}}</strong>
+              <strong *ngIf="!searchCard?.EtdUtc">Upon Booking</strong>
+            </span>
+          </div>
+        </div>
+        <div class="hash-search-price" [ngClass]="searchCriteria.searchMode === 'air-lcl' ? 'col pr-3' : ''">
+          <div class="date text-right" *ngIf="searchCriteria.searchMode !== 'air-lcl'">
+            <span>{{searchCard.CurrencyCode}}</span>
+            <strong class="text-truncate" placement="top"
+              ngbTooltip="{{searchCard.CurrencyCode}} {{searchCard.TotalPrice | number: '1.2-2'}}">
+              {{searchCard.TotalPrice | number: '1.2-2'}}</strong>
+          </div>
+          <button class="btn btn-primary btn-block btn-lg hvr-sweep-to-right mb-1"
+            *ngIf="searchCriteria.searchMode === 'sea-fcl'"
+            (click)="onTermsClick(searchCard, 'action')">proceed</button>
+          <button class="btn btn-primary btn-block btn-lg hvr-sweep-to-right mb-1"
+            *ngIf="searchCriteria.searchMode === 'air-lcl'"
+            (click)="onTermsClick(searchCard, 'action')">proceed</button>
+          <a *ngIf="searchCriteria.searchMode !== 'air-lcl'" href="javascript:;"
+            (click)="onTermsClick(searchCard, 'view')" class="termsBtn col-12 mt-2 p-0 d-flex justify-content-center">
+            Terms & Conditions
+          </a>
+          <a *ngIf="searchCriteria.searchMode !== 'air-lcl'" href="javascript:;" (click)="onSpecialPrice(searchCard)"
+            class="termsBtn col-12 p-0 d-flex justify-content-center">
+            Request Special Price
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-muted" *ngIf="searchCriteria.searchMode !== 'air-lcl'">
+      <div class="icons">
+        <span *ngIf="searchCard.IsAnyRestriction">
+          <i class="fa fa-ban text-danger"></i>
+          <label for="">Restrictions</label>
+        </span>
+        <span *ngIf="searchCard.IsTrending">
+          <img src="../../../../assets/images/icons/trending.png" alt="">
+          <label for="">Trending</label>
+        </span>
+      </div>
+      <span class="route-details hvr-icon-down" (click)="getRouteDetails(searchCard.IDlist, i)"
+        *ngIf="searchCard?.EtdUtc">
+        Route Details
+        <i class="fa fa-angle-down ml-1 hvr-icon"></i>
+      </span>
+    </div>
+    <!-- <div class="search-card-details" *ngIf="hideRoute[i]" [@enterAnimation]> -->
+    <div class="search-card-details" *ngIf="hideRoute[i] && searchCriteria.searchMode !== 'air-lcl'" [@enterAnimation]>
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 details">
+              <h4>
+                <svg class="transit-time-bounce" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16">
+                  <path class="animate-location"
+                    d="M8,0A6.622,6.622,0,0,0,1.5,6.737C1.5,10.458,8,16,8,16s6.5-5.542,6.5-9.263A6.622,6.622,0,0,0,8,0ZM8,8a2,2,0,1,1,2-2A2,2,0,0,1,8,8Z" />
+                </svg>
+                <!-- <img src="../../../../assets/images/icons/Icons_Location.svg" alt="">  -->
+                Est. Transit Time
+              </h4>
+              <div class="diff-days">
+                <!-- <span *ngIf="searchCriteria.searchMode === 'air-lcl'">+/- {{getFlightTime(searchCard.EtaInDays)}}</span> -->
+                <span
+                  *ngIf="searchCriteria.searchMode === 'air-lcl' && searchCard?.EtdUtc">{{getFlightTime(searchCard.EtaInDays)}}</span>
+                <!-- <span *ngIf="searchCriteria.searchMode === 'sea-fcl'">+/- {{searchCard.EtaInDays}} Days</span> -->
+                <span *ngIf="searchCriteria.searchMode === 'sea-fcl' && searchCard?.EtaInDays > 0 &&searchCard?.EtdUtc">{{searchCard.EtaInDays}}
+                  {{(searchCard?.EtaInDays > 1)?'Days':'Day'}}</span>
+              </div>
+            </div>
+            <!-- <div class="col-4 details">
+              <h4>
+                <img src="../../../../assets/images/icons/Icons_Clock-28.svg" class="icon-svg" alt=""> Free Time At
+                Port
+              </h4>
+              <div class="diff-days">
+                {{searchCard.FreeTimeAtPort}} Days
+              </div>
+            </div> -->
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 details" *ngIf="searchCard.VesselName">
+              <h4>
+                <img src="../../../../assets/images/icons/icon_ship.svg" class="icon-svg" alt="">
+                VESSEL
+              </h4>
+              <div class="diff-days">
+                {{searchCard.VesselName}}
+              </div>
+            </div>
+          </div>
+          <ngb-tabset #t="ngbTabset">
+            <ngb-tab id="tab-selectbyid1">
+              <ng-template ngbTabTitle>
+                <span (click)="getIndexedMap(i)">
+                  <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                    class="route-icon icon-size-16 ">
+                    <defs>
+                      <style>
+                        .bf2f79a2-1a29-4cea-a2a5-2ed24ec18228 {
+                          fill: #738593;
+                        }
+                      </style>
+                    </defs>
+                    <g>
+                      <path class="bf2f79a2-1a29-4cea-a2a5-2ed24ec18228"
+                        d="M8,2A3,3,0,1,1,5,5,3,3,0,0,1,8,2M8,0a5,5,0,1,0,5,5A5,5,0,0,0,8,0Z" />
+                      <rect class="bf2f79a2-1a29-4cea-a2a5-2ed24ec18228" x="7" y="8" width="2" height="8" />
+                    </g>
+                  </svg>
+                  Route Map
+                </span>
+              </ng-template>
+              <ng-template ngbTabContent>
+                <ng-scrollbar [trackX]="true" [trackY]="false">
+                  <div class="mode-container" [@enterAnimation] style="max-width: 100%;">
+                    <div class="mode" *ngFor="let trans of routesDirection[i]; let lastInd = last">
+                      <div class="shipping">
+                        <div class="route-ship" [innerHTML]="getAnimatedImageByMode(trans[1]) | safeHtml">
+                        </div>
+                        <strong style="max-width: 100px;" class="text-truncate" container="body" placement="bottom"
+                          ngbTooltip="{{trans[0].replace('{DropGroundLocation}',searchCriteria.deliveryPortName).replace('{PickupGroundLocation}',searchCriteria.pickupPortName)}}">{{trans[0].replace('{DropGroundLocation}',searchCriteria.deliveryPortName).replace('{PickupGroundLocation}',searchCriteria.pickupPortName)}}</strong>
+                      </div>
+                      <div class="arrows" *ngIf="!lastInd">
+                        <!-- <img class="icon-dots" *ngFor="let n of getRepeatTimes(trans[1])" src="../../../../assets/images/icons/ic_dot.svg"> -->
+                        <div class="animated-arrows">
+                          <svg version="1.1" id="_x30_ed596bd-b22e-4607-ba64-7dc9a04a5dfe"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                            y="0px" viewBox="0 0 40.5 12" style="enable-background:new 0 0 40.5 12;"
+                            xml:space="preserve">
+                            <g>
+                              <rect x="30" y="5" class="rect-1" width="10" height="2" />
+                              <rect x="25" y="5" class="rect-2" width="3" height="2" />
+                              <rect x="20" y="5" class="rect-3" width="3" height="2" />
+                              <rect x="15" y="5" class="rect-4" width="3" height="2" />
+                              <rect x="10" y="5" class="rect-5" width="3" height="2" />
+                              <rect x="5" y="5" class="rect-6" width="3" height="2" />
+                              <rect y="5" class="rect-7" width="3" height="2" />
+                              <path class="path-animation-1"
+                                d="M40,5l-5-5v12l5-5c0.6-0.4,0.7-1.1,0.4-1.6C40.3,5.2,40.1,5.1,40,5z" />
+                            </g>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </ng-scrollbar>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab id="tab-selectbyid2">
+              <ng-template ngbTabTitle>
+                <span (click)="getIndexedRouted(i)">
+                  <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                    class="route-icon icon-size-16 mr-2">
+                    <defs>
+                      <style>
+                        .\37 79e2df2-b981-4986-92b6-5301f66a5425 {
+                          fill: #738593;
+                        }
+                      </style>
+                    </defs>
+                    <g id="389111f0-a95a-4ac0-bf1b-0ab56e8cbc4a" data-name="info2">
+                      <path class="779e2df2-b981-4986-92b6-5301f66a5425"
+                        d="M8,2A6,6,0,1,1,2,8,6.007,6.007,0,0,1,8,2M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0Z" />
+                    </g>
+                    <g id="39bfcab4-78db-489e-ad82-adff7eb770c3" data-name="info">
+                      <rect id="bf0fd9f4-eb5e-4dbb-aac6-d554f8625274" data-name="&lt;Path&gt;"
+                        class="779e2df2-b981-4986-92b6-5301f66a5425" x="7" y="7" width="2" height="5" />
+                      <rect id="fdaf4d63-fec9-4eb5-b886-2214eadb381b" data-name="&lt;Rectangle&gt;"
+                        class="779e2df2-b981-4986-92b6-5301f66a5425" x="7" y="4" width="2" height="2" />
+                    </g>
+                  </svg>
+                  Route Information
+                </span>
+              </ng-template>
+              <ng-template ngbTabContent>
+                <ul class="list-group list-group-flush" [@enterAnimation]>
+                  <li class="list-group-item"
+                    *ngFor="let iRoute of selectedRoutesInfo[i];  let subIndex=index; let lastIndex = last">
+                    <span class="date"> {{iRoute.DateUtc | date: 'dd MMM, yyyy' }}</span>
+                    <!-- <img src="../../../../assets/images/icons/icons_cargo_ship_grey.svg" alt=""> -->
+                    <div class="route-ship-container" [ngClass]="iRoute.ModeOfTrans !== 'AIR'?'no-animate':''">
+                      <!-- <div class="route-ship" *ngIf="iRoute.ModeOfTrans.toLowerCase() !== 'location'">
+                        <svg id="9da47147-2af0-4541-9126-fe489cb71022" class="route-information-flag" data-name="Layer 1"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                          <defs>
+                            <style>
+                              .\37 14c9074-16c5-4f8a-8fba-4219870be0a1 {
+                                fill: #738593;
+                              }
+                            </style>
+                          </defs>
+                          <g id="4770d30b-5f7a-489b-b03f-e33ae4f209ee" data-name="plane">
+                            <path id="e028be17-d5a5-4255-9439-886e15d376f8" data-name="&lt;Path&gt;" class="714c9074-16c5-4f8a-8fba-4219870be0a1"
+                              d="M21.5,14H3.051a3,3,0,0,1-1.872-.656L0,12.4V10H21.5A2.292,2.292,0,0,1,24,12h0A2.292,2.292,0,0,1,21.5,14Z" />
+                            <polygon id="c0ae1538-9799-4465-bf1f-29ca5182e666" data-name="&lt;Path&gt;" class="714c9074-16c5-4f8a-8fba-4219870be0a1"
+                              points="5 11 0 11 0 7 2.474 7 5 11" />
+                            <g id="c44fbcaf-c122-4795-b609-52d2b77a1d55" data-name="&lt;Group&gt;">
+                              <polygon id="e514b53e-fa4f-4fa8-9244-c9ea5fd16ce8" data-name="&lt;Path&gt;" class="714c9074-16c5-4f8a-8fba-4219870be0a1"
+                                points="9.444 14 16.381 14 18 12 10.714 3 7 3 10.143 12 9.444 14" />
+                              <polygon id="54171f07-8ed6-44b5-9571-7bbf36f3d3c3" data-name="&lt;Path&gt;" class="714c9074-16c5-4f8a-8fba-4219870be0a1"
+                                points="8.746 16 7 21 10.714 21 14.762 16 8.746 16" />
+                            </g>
+                          </g>
+                        </svg>
+                      </div> -->
+                      <div class="route-ship" [innerHTML]="getAnimatedImageByMode(iRoute.ModeOfTrans) | safeHtml">
+                      </div>
+                    </div>
+                    <div class="desc">
+                      <div class="desc-before">
+                        <svg class="route-map-animate" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 5.9 35"
+                          style="enable-background:new 0 0 5.9 35;" xml:space="preserve">
+                          <g>
+                            <circle class="circle-1" cx="1" cy="1" r="1" />
+                            <circle class="circle-2" cx="2.3" cy="5.1" r="1" />
+                            <circle class="circle-3" cx="3.2" cy="9.2" r="1" />
+                            <circle class="circle-4" cx="3.9" cy="13.3" r="1" />
+                            <circle class="circle-5" cx="4.4" cy="17.4" r="1" />
+                            <circle class="circle-6" cx="4.7" cy="21.5" r="1" />
+                            <circle class="circle-7" cx="4.9" cy="25.7" r="1" />
+                            <circle class="circle-8" cx="4.9" cy="29.8" r="1" />
+                            <circle class="circle-9" cx="4.8" cy="34" r="1" />
+
+                          </g>
+                        </svg>
+                      </div>
+                      <div class="desc-after">
+                        <svg class="route-map-animate" data-name="3c55c8ce-f9b2-4a03-9fc6-1fbafa08fdf9"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5.915 34.954">
+                          <g>
+                            <circle class="circle-1" cx="4.915" cy="1" r="1" />
+                            <circle class="circle-2" cx="3.665" cy="5.102" r="1" />
+                            <circle class="circle-3" cx="2.747" cy="9.159" r="1" />
+                            <circle class="circle-4" cx="2.043" cy="13.275" r="1" />
+                            <circle class="circle-5" cx="1.534" cy="17.355" r="1" />
+                            <circle class="circle-6" cx="1.194" cy="21.52" r="1" />
+                            <circle class="circle-7" cx="1.019" cy="25.664" r="1" />
+                            <circle class="circle-8" cx="1" cy="29.81" r="1" />
+                            <circle class="circle-9" cx="1.136" cy="33.954" r="1" />
+                          </g>
+                        </svg>
+                      </div>
+                      {{(iRoute.RouteDesc.replace('{DropGroundLocation}',searchCriteria.deliveryPortName)).replace('{PickupGroundLocation}',
+                      searchCriteria.pickupPortName)}}
+                    </div>
+                  </li>
+                </ul>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab id="tab-selectbyid3" [disabled]="true">
+              <ng-template ngbTabTitle>
+                <span [hidden]="true">Restrictions</span>
+              </ng-template>
+              <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin
+                coffee squid.
+                <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
+                  farm-to-table
+                  craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
+                  ullamco
+                  ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
+                  helvetica
+                  VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
+                  8-bit,
+                  sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
+                  stumptown,
+                  tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+              </ng-template>
+            </ngb-tab>
+          </ngb-tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="d-flex justify-content-end" *ngIf="getTotalPages() > 1">
+    <p class="pager-info mr-3">Page {{config.currentPage}} of {{getTotalPages()}}</p>
+    <pagination-controls [id]="config.id" [maxSize]="maxSize" [directionLinks]="true" [autoHide]="false"
+      [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"
+      [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+      [screenReaderPageLabel]="labels.screenReaderPageLabel"
+      [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel" (pageChange)="onPageChange($event)">
+    </pagination-controls>
+  </div>
+</div>

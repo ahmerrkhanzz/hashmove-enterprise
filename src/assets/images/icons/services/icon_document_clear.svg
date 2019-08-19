@@ -1,0 +1,21 @@
+<svg id="9595e7a8-1ba3-45ed-a4a2-933989b79510" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .\39 afcf9dc-8296-4e75-be92-d3f2fc4ac4a9 {
+        fill: #00a2df;
+      }
+
+      .f747cd06-1d68-4493-a1e1-9e63089db7aa {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  
+  <g id="51493204-8b94-4556-b42d-3a4fc56fae22" data-name="custom_clearance">
+    <path class="9afcf9dc-8296-4e75-be92-d3f2fc4ac4a9" d="M11,14A6,6,0,1,1,13,2.349V0H5A4,4,0,0,0,1,4V16H13V13.651A5.976,5.976,0,0,1,11,14Z"/>
+    <g id="0d8d86a4-7681-4544-b809-0fe2d740fbcf" data-name="&lt;Group&gt;">
+      <polygon class="f747cd06-1d68-4493-a1e1-9e63089db7aa" points="13.469 5 10.2 8.098 8.531 6.516 7 7.967 10.2 11 15 6.451 13.469 5"/>
+      <polygon class="9afcf9dc-8296-4e75-be92-d3f2fc4ac4a9" points="13.469 5 10.2 8.098 8.531 6.516 7 7.967 10.2 11 15 6.451 13.469 5"/>
+    </g>
+  </g>
+</svg>

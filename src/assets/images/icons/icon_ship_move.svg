@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" width="35px" height="35px" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;transform: rotate(-90deg);" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#2978DA;}
+	.st1{clip-path:url(#SVGID_2_);fill:#FFFFFF;}
+	.st2{clip-path:url(#SVGID_4_);fill:#2978DA;}
+	.st3{clip-path:url(#SVGID_6_);fill:#2978DA;}
+	.circle{
+		animation:ripple 1s cubic-bezier(0.43, 0.52, 0.9, 0.78) infinite;
+	}
+	@keyframes ripple {
+		0% {
+			r:10;	
+		}
+		50% {
+			r:12;	
+		}
+		100% {
+			r:13;
+			opacity:0; 
+		}
+	}
+</style>
+<g>
+	<circle class="st0 circle" cx="12" cy="12" r="10"/>
+	<g>
+		<defs>
+			<rect id="SVGID_1_" x="4" y="4" width="16" height="16"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<path class="st1" d="M12,19.3c-4,0-7.3-3.3-7.3-7.3S8,4.7,12,4.7S19.3,8,19.3,12S16,19.3,12,19.3"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_3_" x="4" y="4" width="16" height="16"/>
+		</defs>
+		<clipPath id="SVGID_4_">
+			<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+		</clipPath>
+		<path class="st2" d="M12,5.3c3.7,0,6.7,3,6.7,6.7s-3,6.7-6.7,6.7s-6.7-3-6.7-6.7S8.3,5.3,12,5.3 M12,4c-4.4,0-8,3.6-8,8s3.6,8,8,8
+			s8-3.6,8-8S16.4,4,12,4"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_5_" x="4" y="4" width="16" height="16"/>
+		</defs>
+		<clipPath id="SVGID_6_">
+			<use xlink:href="#SVGID_5_"  style="overflow:visible;"/>
+		</clipPath>
+		<polygon class="st3" points="8.7,9.3 11.6,16 15.3,9.3 		"/>
+	</g>
+</g>
+</svg>

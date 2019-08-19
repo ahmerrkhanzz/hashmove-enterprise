@@ -1,0 +1,89 @@
+<div class="homepage">
+  <div class="bannerSection">
+    <div class="col-lg-12 home-banner-area">
+      <!-- <app-animated-banner></app-animated-banner> -->
+      <section id="banner" class="banner" [ngStyle]="{'background-image':'url('+ getUIImage(customerSettings?.customerSecondaryBGImage) +')'}">
+        <div class="container">
+          <div class="main-banner-tabs">
+            <div class="banner-tabs">
+              <div class="v-btn" (click)="tabOpen('shipping', $event)" #shipTab [ngClass]="(shipping)?'active': ''" *ngIf="customerSettings?.isBookShipmentRequired">
+                <img src="../../../assets/images/icons/Icons_Ship.svg" width="22">
+                <span>Book a Shipment</span>
+              </div>
+              <div class="v-btn" (click)="tabOpen('warehousing', $event)" #warehouseTab [ngClass]="(wareHousing) ? 'active': ''" *ngIf="customerSettings?.isBookWarehouseRequired">
+                <img src="../../../assets/images/icons/Icons_Warehousing.svg" width="22">
+                <span>Book a Warehouse</span>
+              </div>
+              <div class="v-btn" (click)="tabOpen('track', $event)" #trackShipTab *ngIf="customerSettings?.isTrackShipmentRequired">
+                <img src="../../../assets/images/icons/Icons_Tracking-08.svg" width="22">
+                <span>Track Your Shipment</span>
+              </div>
+              <div class="v-btn" (click)="tabOpen('partner', $event)" #partnerTab *ngIf="customerSettings?.isPartnerWithUsRequired">
+                <img src="../../../assets/images/icons/Icons_User-10.svg" width="22">
+                <span>Partner With Us</span>
+              </div>
+            </div>
+          </div>
+          <div class="main-container-box">
+            <app-shipping (clickOutside)="CloseBoxes($event)" [exclude]="'.shipping, div.main-container-box, .v-btn, .overlay'" *ngIf="shipping"></app-shipping>
+            <app-warehousing *ngIf="wareHousing" (clickOutside)="CloseBoxes($event)" [exclude]="'.warehousing, div.main-container-box, .v-btn, .overlay'"></app-warehousing>
+          </div>
+        </div>
+        <!-- <img src="{{getUIImage(customerSettings?.customerSecondaryBGImage)}}" alt=""> -->
+      </section>
+    </div>
+    <div style="display: none" *ngFor="let imgx of mainImages">
+      <img async src="../../../assets/images/icons/{{imgx}}" alt="" style="display: none">
+    </div>
+    <div style="display: none" *ngFor="let imgx of subImages">
+      <img async src="../../../assets/images/shipping/{{imgx}}" alt="" style="display: none">
+    </div>
+    <div style="display: none" *ngFor="let imgx of subSubImages">
+      <img async src="../../../assets/images/shipping/{{imgx}}" alt="" style="display: none">
+    </div>
+    <div style="display: none" *ngFor="let imgx of containers">
+      <img async src="../../../assets/images/icons/{{imgx}}" alt="" style="display: none">
+    </div>
+  </div>
+  <!-- <app-usp-section></app-usp-section> -->
+  <!-- <app-why-hashmove></app-why-hashmove> -->
+  <div class="container homepage-bookings" *ngIf="false">
+    <div class="row mt-3">
+      <div class="col-xl-8 col-lg-8 col-md-12 col-12">
+        <h4>Current Bookings</h4>
+        <app-loader-main *ngIf="loading"></app-loader-main>
+        <div class="mb-3" *ngFor="let current of currentBookings | paginate: currentBookingConfig">
+          <app-booking-card [bookings]="current"></app-booking-card>
+        </div>
+        <div class="card" *ngIf="!currentBookings || currentBookings.length === 0">
+          <p class="text-center m-0">
+            You don't have any bookings yet.
+          </p>
+        </div>
+        <div class="paginationBox text-right mt-3 pull-right"
+          *ngIf="currentBookings && currentBookings.length > currentBookingConfig.itemsPerPage">
+          <div class="d-flex justify-content-end">
+            <p class="pager-info mr-3">Page {{currentBookingConfig.currentPage}} of {{getCurrentPages()}}</p>
+            <pagination-controls [id]="currentBookingConfig.id" [maxSize]="maxSize" [directionLinks]="directionLinks"
+              [autoHide]="autoHide" [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"
+              (pageChange)="onPageChange($event)"></pagination-controls>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-12 ">
+        <h5>Total Bookings by Region</h5>
+        <div class="mt-2">
+          <hashmove-data-map [data]="mapBookings" [currencyCode]="'AED'">
+          </hashmove-data-map>
+          <div  echarts [options]="regions" class="demo-chart"></div>
+          <div echarts [options]="pieChart" class="demo-chart"></div>
+          <!-- <div *ngIf="!isRegionMap" style="min-height: 480px">
+            <app-loader-main></app-loader-main>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- <app-deals [page]="'home'"></app-deals> -->
+    <!-- <app-press></app-press> -->
+  </div>
+  <!-- <app-footer></app-footer> -->

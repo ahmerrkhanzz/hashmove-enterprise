@@ -1,0 +1,79 @@
+<footer class="main-footer footer-mobile">
+  <div class="container">
+    <div *ngFor="let item of footerData">
+      <button class="accordion">{{item.section}}</button>
+      <div class="panel">
+        <div class="list-group" *ngFor="let link of item.links">
+          <a href="{{link.url}}" title="{{link.name}}" onclick="return false;" class="list-group-item list-group-item-action">{{link.name}}</a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let item of footerData2">
+      <button class="accordion">{{item.section}}</button>
+      <div class="panel">
+        <div class="list-group" *ngFor="let link of item.links">
+          <a href="{{link.url}}" title="{{link.name}}" onclick="return false;" class="list-group-item list-group-item-action">{{link.name}}</a>
+        </div>
+      </div>
+    </div>
+
+    <button class="accordion">Door to Door Logistics</button>
+    <div class="panel">
+      <div class="row">
+        <div class="col-6">
+          <div class="list-group" *ngFor="let link of doorToDoor">
+            <a href="{{link.url}}" title="{{link.name}}" onclick="return false;" class="list-group-item list-group-item-action">{{link.name}}</a>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="list-group" *ngFor="let link of doorToDoor_2">
+            <a href="{{link.url}}" title="{{link.name}}" onclick="return false;" class="list-group-item list-group-item-action">{{link.name}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="accordion">Contact</button>
+    <div class="panel">
+      <div class="list-group">
+        <div class="list-group-item">
+          <address>
+            <strong>HEAD OFFICE</strong>
+            <br> 1450, Dubai Tech Zone
+            <br> Dubai Silicon Oasis
+            <br> Dubai, United Arab Emirates
+            <br>
+            <!-- <abbr title="Helpline">Helpline:</abbr> 971 4 1234567
+            <br> -->
+            <a title="Send us a message" href="javascript:;">
+              <img src="../../../assets/images/message.png" alt="Send us a message"> Send us a message
+            </a>
+          </address>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<footer class="end-footer">
+  <div class="ibox">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="pull-left copyrights">Platform powered by 
+            <a [href]="footerDetails?.HMWebsiteURL + '/solutions.html'" target="_blank"
+              style="color: inherit;">
+              <img class="ml-1" src="../../../../assets/images/hm-symbol.svg" alt=""> hashmove</a>
+          </div>
+          
+          <div class="pull-right text-success">
+            <a [href]="footerDetails?.HMTermsURL" target="_blank">Terms</a>
+            <a class="pr-0" [href]="footerDetails?.HMPrivacyURL" target="_blank">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

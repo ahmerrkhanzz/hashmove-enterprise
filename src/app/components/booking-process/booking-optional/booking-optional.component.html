@@ -1,0 +1,310 @@
+<div class="optional" [ngClass]="{'container' : stage === 'insurance'}">
+  <div class="row">
+    <div class="col-12" *ngIf="stage === 'insurance'">
+      <h2>Optional Services</h2>
+    </div>
+    <div class="col-xl-7 col-md-12 col-sm-12" [ngClass]="{'col-xl-12 col-md-12 col-sm-12' : stage === 'thankyou'}">
+      <div class="card optional-insurance">
+        <div class="card-body">
+          <h5 class="card-title">
+            <img src="../../../../assets/images/icons/icon_umbrella.svg" title="logo"> Insurance
+          </h5>
+          <div class="row optional-insurance-switch">
+            <div class="col-12">
+              <div class="switch-box">
+                <ui-switch [checked]="insureGoods"
+                  [disabled]="bookingInfo?.InsuredStatus === 'Enquiry' && (!insuranceProvidersList||  insuranceProvidersList === undefined || insuranceProvidersList?.length === 0)"
+                  (change)="onInsuranceChange($event)" size="small"></ui-switch>
+                <label for="">Do you want to insure your goods?</label>
+              </div>
+            </div>
+          </div>
+          <hr *ngIf="false">
+          <div class="row optional-insurance-value" *ngIf="false" [@enterAnimation]>
+            <div class="col-8">
+              <label for="">
+                What is the value of your goods?
+                <small>(in {{selectedCurrencyCode}})</small>
+              </label>
+              <div class="form-group">
+                <input type="text" maxlength="12" (keypress)="validateNumber($event, goodsAmount)"
+                  (focus)="onAmountFocus($event)" (focusout)="focusOut($event, goodsAmount)"
+                  (ngModelChange)="onModelChange($event)" [(ngModel)]="goodsAmount" class="form-control"
+                  [ngClass]="{'is-invalid' : showGoodsValidation}" placeholder="Enter your value here">
+                <small class="text-danger" *ngIf="showGoodsValidation && insureGoods">Please enter valid amount.</small>
+              </div>
+              <div class="goods-checkbox check-boxes-main">
+                <input id='sixS' type='checkbox' [(ngModel)]="isGoodsBrandNew"
+                  (change)="brandNewGoods(isGoodsBrandNew)" />
+                <label for='sixS'>
+                  <span></span>Are my goods brand new and in original
+                  <br> manufacturer's packing?
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row optional-insurance-alert"
+            *ngIf="insuranceAmount > 0 && bookingInfo.IsInsured && bookingInfo.InsuredStatus === 'Insured' && false"
+            [@enterAnimation]>
+            <div class="col-12">
+              <div class="alert alert-warning" role="alert">
+                <img src="../../../../assets/images/icons/Icons_Card_warning.svg" alt="" class="svg-icon" title="logo">
+                <p>{{selectedCurrencyCode}} {{insuranceAmount}} estimated based on a value of {{selectedCurrencyCode}}
+                  {{goodsAmount
+                  | number:'1.0-0'}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="row optional-insurance-provider"
+            *ngIf="bookingInfo.IsInsured && bookingInfo.InsuredStatus === 'Insured' && false" [@enterAnimation]>
+            <div class="col-10">
+              <div>
+                <div class="row">
+                  <div class="col-3">
+                    <div class="logo">
+                      <img class="mr-3" src="{{getUIImage(bookingInfo.ProviderImage, true)}}" alt="logo"
+                        title="Provider Logo">
+                    </div>
+                  </div>
+                  <div class="col-9 pl-0">
+                    <div class="description">
+                      <p>By adding insurance, I agree to the terms
+                        <br> & conditions set by the
+                        <strong>{{bookingInfo.ProviderName}}</strong>.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row optional-insurance-preffered" *ngIf="bookingInfo.InsuredStatus === 'Enquiry' && insureGoods"
+            [@enterAnimation]>
+            <div class="col-12">
+              <hr>
+              <h6>SELECT YOUR PREFERRED PROVIDER(S)</h6>
+            </div>
+            <div class="col-12" *ngIf="bookingInfo.InsuredStatus === 'Enquiry'" [@enterAnimation]>
+              <ul class="providers-list">
+                <li *ngFor="let provider of insuranceProvidersList; let i = index"
+                  [ngClass]="{'active' : provider.isChecked}">
+                  <a href="javascript:;" (click)="selectProvider(provider, i)">
+                    <span class="checked-provider" *ngIf="provider.isChecked"></span>
+                    <img src="{{getUIImage(provider.ProviderImage, true)}}" alt="Image" />
+                  </a>
+                </li>
+              </ul>
+              <button class="btn btn-outline-primary btn-lg btn-block hvr-sweep-to-right"
+                [disabled]="!goodsAmount || !selectedProviders" (click)="sendEnquiry()">Send Enquiry
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer" *ngIf="insureGoods && stage === 'insurance' && false" [@enterAnimation]>
+          <a href="javascript:;" class="hvr-icon-forward">Terms of insurance
+            <i class="fa fa-angle-right ml-2 hvr-icon"></i>
+          </a>
+          <a href="javascript:;" class="hvr-icon-forward">Required Documents
+            <i class="fa fa-angle-right ml-2 hvr-icon"></i>
+          </a>
+        </div>
+      </div>
+      <div class="card optional-clearance"
+        *ngIf="stage === 'insurance' && searchCriteria.searchMode !== 'warehouse-lcl'" [hidden]="true">
+        <div class="card-body">
+          <h5 class="card-title">
+            <img src="../../../../assets/images/icons/icon_document_clear.svg" width="14px"> Custom Clearance (Coming
+            Soon)
+          </h5>
+          <p class="card-text">
+            Customs clearance work involves preparation and submission of documentations required to facilitate export
+            or imports into
+            the country, representing client during customs examination, assessment, payment of duty and co taking
+            delivery
+            of cargo from customs after clearance along with documents. Document Processing involves processing of
+            documents
+            like Bill of Lading, Freight Bill, FOB Terms of Sale, etc.
+          </p>
+          <div class="optional-clearance-pickup" [hidden]="true">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <strong class="list-group-item-title">
+                  For United Arab Emirates
+                </strong>
+                <div class="flag-icon">
+                  <img src="../../../../assets/images/icons/flags/1x1/ae.svg" class="" alt="" style="max-width:100%;">
+                </div>
+                <div class="checkboxgroup">
+                  <input id='six' type='checkbox' />
+                  <label for='six'>
+                    <span></span>Local custom clearance charges
+                    <small>(+ {{selectedCurrencyCode}} 150)</small>
+                  </label>
+                  <input id='seven' type='checkbox' />
+                  <label for='seven'>
+                    <span></span>Custom inspection
+                    <small>(+ {{selectedCurrencyCode}} 150)</small>
+                  </label>
+                  <input id='eight' type='checkbox' />
+                  <label for='eight'>
+                    <span></span>Any other charges that required
+                    <small>(+ {{selectedCurrencyCode}} 150)</small>
+                  </label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <strong class="list-group-item-title">
+                  For Pakistan
+                </strong>
+                <div class="flag-icon">
+                  <img src="../../../../assets/images/icons/flags/1x1/pk.svg" alt="" style="max-width:100%;">
+                </div>
+                <div class="checkboxgroup">
+                  <input id='nine' type='checkbox' />
+                  <label for='nine'>
+                    <span></span>Local custom clearance charges
+                    <small>(+ {{selectedCurrencyCode}} 150)</small>
+                  </label>
+                  <input id='ten' type='checkbox' />
+                  <label for='ten'>
+                    <span></span>Custom inspection
+                    <small>(+ {{selectedCurrencyCode}} 150)</small>
+                  </label>
+                  <input id='elev' type='checkbox' />
+                  <label for='elev'>
+                    <span></span>Any other charges that required
+                    <small>(+ {{selectedCurrencyCode}} 150)</small>
+                  </label>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card optional-clearance"
+        *ngIf="(searchCriteria.searchMode === 'air-lcl' || searchCriteria.searchMode === 'sea-fcl' || searchCriteria.searchMode === 'sea-lcl' || searchCriteria.searchMode === 'truck-ftl') && (subTotalImp > 0 || subTotalExp > 0)">
+        <div class="card-body">
+          <h5 class="card-title">
+            <img src="../../../../assets/images/icons/Dollar_icon.svg" width="14px"> Exclude local charges for this
+            booking
+            <small>Select the local charges you have already paid for.</small>
+          </h5>
+
+          <div class="optional-clearance-pickup">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="flag-icon">
+                  <img
+                    src="../../../../assets/images/icons/flags/1x1/{{searchCriteria.userPickup.imageName | lowercase}}.svg"
+                    class="" alt="" style="max-width:100%;">
+                </div>
+                <strong class="list-group-item-title">
+                  For {{bookingInfo.PolCountry}}
+                </strong>
+                <div class="checkboxgroup">
+                  <input id='pickup' type='checkbox' [(ngModel)]="bookingInfo.isExcludeExp"
+                    (change)="onExcludeCharges($event, 'all', 'export')" />
+                  <label for='pickup'>
+                    <span></span>Exclude all local charges ({{selectedCurrencyCode}} {{subTotalExp | number:'1.2-2'}})
+                  </label>
+                  <!-- <small>Select this option if you have already paid for all local charges</small> -->
+                </div>
+                <div *ngIf="exportChargeList?.length > 0 ">
+                  <div class="checkboxgroup subgroup" *ngFor="let expCharge of exportChargeList">
+                    <input id="exp_{{expCharge?.SurchargeID}}" type='checkbox' [(ngModel)]="expCharge.isChargeChecked"
+                      (ngModelChange)="onExcludeCharges($event, 'spec', 'export', expCharge?.SurchargeCode)" />
+                    <label for="exp_{{expCharge?.SurchargeID}}">
+                      <span></span>Exclude {{expCharge?.SurchargeCode}} - {{expCharge?.SurchargeName}}
+                      ({{selectedCurrencyCode}}
+                      {{(searchCriteria.searchMode === 'warehouse-lcl')?expCharge?.IndividualPrice:expCharge?.TotalAmount | number: '1.2-2'}})
+                    </label>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="flag-icon">
+                  <img
+                    src="../../../../assets/images/icons/flags/1x1/{{searchCriteria.userDelivery.imageName | lowercase}}.svg"
+                    alt="" style="max-width:100%;">
+                </div>
+                <strong class="list-group-item-title">
+                  For {{bookingInfo.PodCountry}}
+                </strong>
+                <div class="checkboxgroup">
+                  <input id='delivery' type='checkbox' [(ngModel)]="bookingInfo.isExcludeImp"
+                    (change)="onExcludeCharges($event, 'all', 'import')" />
+                  <label for='delivery'>
+                    <span></span> Exclude all local charges ({{selectedCurrencyCode}} {{subTotalImp | number:'1.2-2'}})
+                  </label>
+                  <!-- <small>Select this option if you have already paid for all local charges</small> -->
+                </div>
+                <div *ngIf="importChargeList?.length > 0">
+                  <div class="checkboxgroup subgroup" *ngFor="let impCharge of importChargeList">
+                    <input id="imp_{{impCharge?.SurchargeID}}" type='checkbox' [(ngModel)]="impCharge.isChargeChecked"
+                      (ngModelChange)="onExcludeCharges($event, 'spec', 'import', impCharge?.SurchargeCode)" />
+                    <label for="imp_{{impCharge?.SurchargeID}}">
+                      <span></span>Exclude {{impCharge?.SurchargeCode}} - {{impCharge?.SurchargeName}}
+                      ({{selectedCurrencyCode}}
+                      {{(searchCriteria.searchMode === 'warehouse-lcl')?impCharge?.IndividualPrice:impCharge?.TotalAmount | number: '1.2-2'}})
+                    </label>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card optional-additional" [hidden]="true" *ngIf="AdOptionsList.length > 0 && stage === 'insurance'">
+        <div class="card-body">
+          <h5 class="card-title">
+            <img src="../../../../assets/images/icons/icon_lines.svg" title="logo"> Additional Options (Coming Soon)
+            <hr>
+          </h5>
+          <ul class="list-group list-group-flush" *ngIf="pickUpPortDetail && pickUpPortDetail.title">
+            <li class="list-group-item">
+              <strong class="list-group-item-title">FOR {{pickUpPortDetail.title}}
+              </strong>
+              <div class="flag-icon">
+                <img
+                  src="{{'../../../assets/images/icons/flags/1x1/' + (pickUpPortDetail.imageName | lowercase) + '.svg'}}"
+                  class="" alt="flag" title="logo" style="max-width:100%;">
+              </div>
+              <div class="checkboxgroup">
+                <div *ngFor="let option of AdOptionsList; let i = index">
+                  <input id='BL{{i+1}}' type='checkbox' [(ngModel)]="option.IsChecked" (click)="addOption(option)" />
+                  <label for='BL{{i+1}}'>
+                    <span></span>{{option.VASName}}
+                    <small>(+ {{option.CurrencyCode}} {{option.VASCharges | number: '1.2-2'}})</small>
+                  </label>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row optional-actions" *ngIf="stage === 'insurance'">
+        <div class="col-xl-6 col-md-6 col-sm-12">
+          <a href="javascript:;" *ngIf="searchCriteria.searchMode !== 'air-lcl'" title="Back to Forwarders"
+            (click)="gotoTraking('tracking')" class="hvr-icon-back">
+            <i class="fa fa-angle-left mr-2 hvr-icon"></i>
+            Back to Tracking
+          </a>
+          <span *ngIf="(searchCriteria.criteriaFrom === 'search' || searchCriteria.criteriaFrom === 'vendor') && searchCriteria.searchMode !== 'sea-fcl' && searchCriteria.searchMode !== 'truck-ftl'">            <a href="javascript:;" title="Back to Results" (click)="gotoTraking(searchCriteria.searchMode)"
+              class="hvr-icon-back">
+              <i class="fa fa-angle-left mr-2 hvr-icon"></i>
+              Back to Results
+            </a>
+          </span> 
+        </div>
+        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+          <button class="btn btn-primary btn-block hvr-sweep-to-right" (click)="goToDepartuteDate()">
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-5 col-md-12 col-sm-12 " *ngIf="stage === 'insurance'">
+      <app-optional-billing [insrData]="valueAddedServicesList" [showVAS]="addVas" [insuranceAmount]="insuranceAmount"
+        [additionalCharges]="outputAdditionCharge"></app-optional-billing>
+    </div>
+  </div>
+</div>

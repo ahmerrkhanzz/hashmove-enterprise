@@ -1,0 +1,272 @@
+<div class="departure">
+  <div class="row">
+    <div class="col-12">
+      <h2>Review Your Booking</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-7 col-md-12 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
+            <img src="../../../../assets/images/icons/icon_info2.svg" width="16px" height="16px" title="{{(searchCriteria.searchMode !== 'warehouse-lcl')?'Shipping':'Booking'}} Information">
+            {{(searchCriteria.searchMode !== 'warehouse-lcl')?'SHIPPING':'Booking'}} INFORMATION
+          </h5>
+          <div class="departure-company">
+            <div class="row">
+              <div class="col-12 d-flex">
+                <div class="logo">
+                  <img src="{{getUIImage(orderSummary.ProviderImage, true)}}" alt="">
+                </div>
+                <div class="company">
+                  <span>Your're {{(searchCriteria.searchMode !== 'warehouse-lcl')?'shipping':'booking'}} with</span>
+                  <p>{{orderSummary.ProviderName}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <hr class=""> -->
+          <div class="departure-details" *ngIf="searchCriteria.searchMode === 'sea-fcl' || searchCriteria.searchMode === 'air-lcl' || searchCriteria.searchMode === 'truck-ftl'">
+            <div class="row">
+              <div *ngIf="searchCriteria.searchMode !== 'truck-ftl' && searchCriteria.searchMode !== 'air-lcl' && orderSummary?.PortCutOffUtc" class="col-md-4">
+                <i class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="a688d378-17ad-4ab3-b0da-cda8bd1286a7" data-name="Layer 1"
+                    viewBox="0 0 16 16">
+
+                    <g id="d73ac421-57ae-4778-b515-13510a5d48dc" data-name="anchor">
+                      <path id="82af46c4-f06d-4a20-8a76-05f1b296580f" data-name="&lt;Path&gt;" class="38471b22-2a52-49a5-b0e9-a736f0d84770"
+                        d="M8,14c-3,0-4-2-4-5H2c0,3.984,2,7,6,7,4.016,0,6-2.984,6-7H12C12,11.969,11.016,14,8,14Z" />
+                      <rect id="44a8963a-73b8-41c3-9d8b-2e5959883bd3" data-name="&lt;Path&gt;" class="38471b22-2a52-49a5-b0e9-a736f0d84770"
+                        x="7" y="3" width="2" height="12" />
+                      <polygon id="d93c8f1c-35c1-462b-8991-5974f829fee8" data-name="&lt;Path&gt;" class="38471b22-2a52-49a5-b0e9-a736f0d84770"
+                        points="3 6 0 10 6 10 3 6" />
+                      <polygon id="2941af6f-236d-4875-8d74-991251c89c67" data-name="&lt;Path&gt;" class="38471b22-2a52-49a5-b0e9-a736f0d84770"
+                        points="13 6 10 10 16 10 13 6" />
+                      <circle id="544c5ca5-a363-4fe7-b901-8f413cca1334" data-name="&lt;Path&gt;" class="38471b22-2a52-49a5-b0e9-a736f0d84770"
+                        cx="8" cy="2" r="2" />
+                    </g>
+                  </svg>
+                </i>
+                <span class="lable">Cut off</span>
+                <h4 *ngIf="searchCriteria.searchMode === 'sea-fcl'">{{orderSummary.PortCutOffUtc | date: 'dd MMM,
+                  yyyy'}}</h4>
+              </div>
+              <div class="col-md-4" *ngIf="(searchCriteria.searchMode !== 'air-lcl' && orderSummary?.EtdUtc) || searchCriteria.searchMode === 'truck-ftl'">
+                <i class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="6d8eb025-50e1-4f4e-9509-0ece3b2ae2f3" data-name="Layer 1"
+                    viewBox="0 0 16 16">
+                    <defs>
+                      <style>
+                        .\32 8c2eb2e-8a19-4680-a1e3-575b72c01779 {
+                          fill: #fff;
+                        }
+
+                      </style>
+                    </defs>
+                    <svg xmlns="http://www.w3.org/2000/svg" id="6d8eb025-50e1-4f4e-9509-0ece3b2ae2f3" data-name="Layer 1"
+                      viewBox="0 0 16 16">
+                      <defs>
+                        <style>
+                          .baaaa889-c628-4d5b-9081-ee0269094979 {
+                            fill: #738593;
+                          }
+
+                          .\32 8c2eb2e-8a19-4680-a1e3-575b72c01779 {
+                            fill: #fff;
+                          }
+
+                        </style>
+                      </defs>
+                      <g id="5ba9a348-aeac-4f9a-be54-90629d3d2f39" data-name="clock">
+                        <g id="fb1f6d08-2b4e-4ade-b3d1-64755a5183ad" data-name="&lt;Rectangle&gt;">
+                          <path class="baaaa889-c628-4d5b-9081-ee0269094979" d="M10.667,16H0V5.333A5.333,5.333,0,0,1,5.333,0H16V10.667A5.333,5.333,0,0,1,10.667,16Z" />
+                        </g>
+                        <polygon class="28c2eb2e-8a19-4680-a1e3-575b72c01779" points="9 7 9 3 7 3 7 7 7 9 9 9 12 9 12 7 9 7" />
+                      </g>
+                    </svg>
+                    <g id="5ba9a348-aeac-4f9a-be54-90629d3d2f39" data-name="clock">
+                      <g id="fb1f6d08-2b4e-4ade-b3d1-64755a5183ad" data-name="&lt;Rectangle&gt;">
+                        <path class="baaaa889-c628-4d5b-9081-ee0269094979" d="M10.667,16H0V5.333A5.333,5.333,0,0,1,5.333,0H16V10.667A5.333,5.333,0,0,1,10.667,16Z" />
+                      </g>
+                      <polygon class="28c2eb2e-8a19-4680-a1e3-575b72c01779" points="9 7 9 3 7 3 7 7 7 9 9 9 12 9 12 7 9 7" />
+                    </g>
+                  </svg>
+                </i>
+                <span class="lable">Departure</span>
+                <h4 *ngIf="searchCriteria.searchMode === 'truck-ftl'">{{searchCriteria.pickupDate | date: 'dd MMM, yyyy'}}</h4>
+                <h4 *ngIf="searchCriteria.searchMode !== 'truck-ftl'">{{orderSummary.EtdUtc | date: 'dd MMM, yyyy'}}</h4>
+              </div>
+              <div *ngIf="((searchCriteria.searchMode !== 'air-lcl' && transitDays !== 'null' && transitDays !== null) || (searchCriteria.searchMode === 'truck-ftl' && transitDays)) && orderSummary?.EtdUtc" class="col-md-4">
+                <i class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="3c57c4c3-2d9a-4ba4-9b1e-b5f326e90531" data-name="Layer 1"
+                    viewBox="0 0 16 16">
+                    <path class="91fdb950-2485-4a99-894d-1df78ec78575" d="M8,0A6.622,6.622,0,0,0,1.5,6.737C1.5,10.458,8,16,8,16s6.5-5.542,6.5-9.263A6.622,6.622,0,0,0,8,0ZM8,8a2,2,0,1,1,2-2A2,2,0,0,1,8,8Z" />
+                  </svg>
+                </i>
+                <span class="lable">Est. Transit Time</span>
+                <h4>{{(transitDays && transitDays !== null)?transitDays:'N/A'}} {{((searchCriteria.searchMode === 'sea-fcl' || searchCriteria.searchMode === 'truck-ftl') && transitDays)?'Days':''}}
+                </h4>
+              </div>
+              <div *ngIf="searchCriteria.searchMode === 'sea-lcl'" class="col-md-4">
+                <i class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="f0372e79-766d-4a98-bb57-031b0cf0ba9e" data-name="Layer 1"
+                    viewBox="0 0 16 16">
+                    <defs>
+                      <style>
+                        .\38 72e5b18-38f1-446a-97be-e2fec3360342 {
+                          fill: #fff;
+                        }
+
+                      </style>
+                    </defs>
+                    <g id="eb44aaad-ad63-477d-86e8-60e00dbc93d3" data-name="ship">
+                      <path id="75d471e7-d95e-410f-a042-b20f5a4cf067" data-name="&lt;Compound Path&gt;" class="8b7c5f0d-b671-464b-b4c2-f17db6dfaeb7"
+                        d="M11,0H5V3H3V7L8,5l5,2V3H11V0Z" />
+                      <g id="ade59d74-71c7-4f39-81c3-acceafa4e0dd" data-name="&lt;Group&gt;">
+                        <path class="8b7c5f0d-b671-464b-b4c2-f17db6dfaeb7" d="M8,7,0,10l3.208,4.586A2.584,2.584,0,0,0,5.427,16h5.146a2.584,2.584,0,0,0,2.219-1.414L16,10Z" />
+                      </g>
+                      <rect id="0bfcaa5a-9a86-4fd5-b0c5-70d6c4864480" data-name="&lt;Rectangle&gt;" class="872e5b18-38f1-446a-97be-e2fec3360342"
+                        x="9" y="10" width="3" height="3" rx="1.5" ry="1.5" />
+                    </g>
+                  </svg>
+
+                </i>
+                <span class="lable">Voyage #</span>
+                <h4>{{orderSummary.VoyageRefNum}}</h4>
+              </div>
+              <!-- <div *ngIf="searchCriteria.searchMode === 'air-lcl'" class="col-md-4">
+                <img class="icon" src="../../../../assets/images/icons/air-lcl-grey.svg" alt="icon">
+                <span class="lable">Flight #</span>
+                <h4>{{orderSummary.FlightNo}}</h4>
+              </div> -->
+              <div *ngIf="searchCriteria.searchMode === 'sea-fcl' && orderSummary.EtaLcl" class="col-md-4">
+                <i class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="f0372e79-766d-4a98-bb57-031b0cf0ba9e" data-name="Layer 1"
+                    viewBox="0 0 16 16">
+                    <defs>
+                      <style>
+                        .\38 72e5b18-38f1-446a-97be-e2fec3360342 {
+                          fill: #fff;
+                        }
+
+                      </style>
+                    </defs>
+                    <g id="eb44aaad-ad63-477d-86e8-60e00dbc93d3" data-name="ship">
+                      <path id="75d471e7-d95e-410f-a042-b20f5a4cf067" data-name="&lt;Compound Path&gt;" class="8b7c5f0d-b671-464b-b4c2-f17db6dfaeb7"
+                        d="M11,0H5V3H3V7L8,5l5,2V3H11V0Z" />
+                      <g id="ade59d74-71c7-4f39-81c3-acceafa4e0dd" data-name="&lt;Group&gt;">
+                        <path class="8b7c5f0d-b671-464b-b4c2-f17db6dfaeb7" d="M8,7,0,10l3.208,4.586A2.584,2.584,0,0,0,5.427,16h5.146a2.584,2.584,0,0,0,2.219-1.414L16,10Z" />
+                      </g>
+                      <rect id="0bfcaa5a-9a86-4fd5-b0c5-70d6c4864480" data-name="&lt;Rectangle&gt;" class="872e5b18-38f1-446a-97be-e2fec3360342"
+                        x="9" y="10" width="3" height="3" rx="1.5" ry="1.5" />
+                    </g>
+                  </svg>
+
+                </i>
+                <span class="lable">Vessel Name</span>
+                <h4>{{orderSummary.VesselName}}</h4>
+              </div>
+              <!-- <div *ngIf="searchCriteria.searchMode === 'air-lcl'" class="col-md-4">
+                <img class="icon" src="../../../../assets/images/icons/air-lcl-grey.svg" alt="icon">
+                <span class="lable">AirCraft Info</span>
+                <h4>{{orderSummary.AirCraftInfo}}</h4>
+              </div> -->
+              <div *ngIf="searchCriteria.searchMode === 'sea-fcl' && orderSummary?.EtdUtc" class="col-md-4">
+                <i class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="f0372e79-766d-4a98-bb57-031b0cf0ba9e" data-name="Layer 1"
+                    viewBox="0 0 16 16">
+                    <defs>
+                      <style>
+                        .\38 72e5b18-38f1-446a-97be-e2fec3360342 {
+                          fill: #fff;
+                        }
+
+                      </style>
+                    </defs>
+                    <g id="eb44aaad-ad63-477d-86e8-60e00dbc93d3" data-name="ship">
+                      <path id="75d471e7-d95e-410f-a042-b20f5a4cf067" data-name="&lt;Compound Path&gt;" class="8b7c5f0d-b671-464b-b4c2-f17db6dfaeb7"
+                        d="M11,0H5V3H3V7L8,5l5,2V3H11V0Z" />
+                      <g id="ade59d74-71c7-4f39-81c3-acceafa4e0dd" data-name="&lt;Group&gt;">
+                        <path class="8b7c5f0d-b671-464b-b4c2-f17db6dfaeb7" d="M8,7,0,10l3.208,4.586A2.584,2.584,0,0,0,5.427,16h5.146a2.584,2.584,0,0,0,2.219-1.414L16,10Z" />
+                      </g>
+                      <rect id="0bfcaa5a-9a86-4fd5-b0c5-70d6c4864480" data-name="&lt;Rectangle&gt;" class="872e5b18-38f1-446a-97be-e2fec3360342"
+                        x="9" y="10" width="3" height="3" rx="1.5" ry="1.5" />
+                    </g>
+                  </svg>
+
+                </i>
+                <span class="lable">Vessel #</span>
+                <h4>{{orderSummary.VesselCode}}</h4>
+              </div>
+              <div class="" [ngClass]="searchCriteria.searchMode === 'sea-fcl' && orderSummary?.EtdUtc ? 'col-md-4' : 'col-12 pt-4'">
+                <div class="carrier-logo" *ngIf="searchCriteria.searchMode !== 'truck-ftl'">
+                  <img src="{{getUIImage(orderSummary.CarrierImage, false)}}" alt="">
+                </div>
+                <div class="carrier-logo" *ngIf="searchCriteria.searchMode === 'truck-ftl'">
+                  <img src="../../../../assets/images/icons/icons_cargo_truck_grey_dark.svg" alt="icon" class="icon-size-16">
+                </div>
+                <div class="carrier-name">
+                  <span class="lable" *ngIf="searchCriteria.searchMode === 'truck-ftl'">Vehicle #</span>
+                  <span class="lable" *ngIf="searchCriteria.searchMode === 'sea-fcl'">Shipping Line</span>
+                  <!-- <span class="lable" *ngIf="searchCriteria.searchMode === 'air-lcl'">Air Line</span> -->
+                  <h4 *ngIf="searchCriteria.searchMode !== 'truck-ftl'">{{orderSummary.CarrierName}}</h4>
+                  <h4 *ngIf="searchCriteria.searchMode === 'truck-ftl'">{{(orderSummary.TruckNumber)?orderSummary.TruckNumber:'N/A'}}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="departure-shipment">
+        <div class="row mb-3" [hidden]="true">
+          <div class="col-6">
+            <h3 class="departure-shipment-title">Inco</h3>
+            <ng-template #rt let-r="result" let-t="term">
+              <ngb-highlight [result]="r.title" [term]="t"></ngb-highlight>
+            </ng-template>
+            <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="selectedInco" [ngbTypeahead]="search"
+              [resultTemplate]="rt" [inputFormatter]="formatter" (selectItem)="onIncoSelection($event)" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h3 class="departure-shipment-title">What's in Your {{(searchCriteria.searchMode !== 'warehouse-lcl')?'Shipment':'Booking'}}?</h3>
+            <p class="departure-shipment-description">In order to offer you the best possible service and be 100%
+              compliance, we need to know the commodity for your
+              {{(searchCriteria.searchMode !== 'warehouse-lcl')?'shipment':'booking'}}.
+            </p>
+            <textarea class="w-100" [ngClass]="hasTextError ? 'has-error' : ''" [(ngModel)]="BookingDesc" [maxLength]="4000"
+              (keyup)="onFocusOut($event)" (focus)="hasTextError = false" placeholder="List down the exact items in your cargo. for example: Rice, Cupboards, Apparel, Medicines, Flowers, Seeds etc."></textarea>
+            <div class="goods-checkbox check-boxes-main">
+              <input id='sixS' type='checkbox' [checked]="BookingAcknowledgment" (change)="onBookingCheck();hasCheckError = false">
+              <label for='sixS' class="d-flex d-flex align-items-start">
+                <span class="mt-1" [ngClass]="hasCheckError ? 'has-error' : ''"></span>I hereby certify that the commodity is none of the excluded cargo exposed
+                before by {{(searchCriteria.searchMode !== 'warehouse-lcl')?'shipping line':'warehouse company'}}
+                and I understand that it needs to be approved prior booking acceptance. I fully understand that I have
+                to
+                fulfill all export requirement to do this booking.
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row departure-actions">
+        <div class="col-xl-6 col-md-6 col-sm-12">
+          <a href="javascript:;" (click)="backToOptional()" class="hvr-icon-back">
+            <i class="fa fa-angle-left mr-2 hvr-icon"></i>
+            Back to Optional Services
+          </a>
+        </div>
+        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+          <button class="btn btn-primary btn-block hvr-sweep-to-right" (click)="confirmBooking()">Confirm</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-5 col-md-12 col-sm-12">
+      <app-optional-billing [insuranceAmount]="insuranceAmount"></app-optional-billing>
+      <div class="mt-4">
+        <app-order-summary *ngIf="searchCriteria.searchMode !== 'warehouse-lcl'"></app-order-summary>
+      </div>
+    </div>
+  </div>
+</div>

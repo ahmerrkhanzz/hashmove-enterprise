@@ -1,0 +1,228 @@
+<section class="tracking">
+  <div class="row">
+    <div class="col-12">
+      <h2>{{(searchCriteria.searchMode === 'warehouse-lcl' || searchCriteria.searchMode === 'sea-lcl')?'HashMove Services':'Tracking & Quality'}}</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-7 col-md-12 col-sm-12">
+      <div class="row">
+        <div class="col-12">
+          <div class="alert alert-secondary text-center mb-0" role="alert">
+            <img src="../../../../assets/images/icons/icon_smiley_secondary.svg" alt="" class="icon-size-24" title="logo">
+            <p class="d-inline-block ml-1">Basic Tracking is free and included</p>
+          </div>
+        </div>
+      </div>
+      <div class="card " *ngIf="trackingAmount > 0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="card-title text-uppercase">
+                <img src="../../../../assets/images/icons/Icons_Location_light_grey.svg" width="16px" height="16px" title="Shipping Information"> Premium Tracking Solution
+                <!-- <a href="javascript:;" class="grey-anc-btn pull-right" [ngbTooltip]="'Coming Soon'">Learn More
+                  <img src="../../../../assets/images/icons/icon_arrow_right.svg" alt="arrow-right" class="icon-size-14 hvr-icon">
+                </a> -->
+              </h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <h6 *ngIf="totalTrackingContainers">You've {{totalTrackingContainers}} / {{combinedContainersCount}} {{totalTrackingContainers > 1 ? 'Containers'
+                : 'Container'}} in your order</h6>
+              <div class="switch-box">
+                <ui-switch [checked]="trackingChecked" [disabled]="trackingContainers.length === 0" size="small" (change)="addTrackingQality($event, 'TRCK')"></ui-switch>
+                <label for="">Yes, I would like to add Premium Tracking (
+                  <span>
+                    +{{currencyData.currencyCode}} {{indTrackingAmount | number:'1.2-2'}} / {{searchCriteria.containerLoad.toLowerCase() ===
+                    'fcl'?'Container':'Handling Unit'}}
+                  </span>)</label>
+              </div>
+              <hr class="hr-dash">
+            </div>
+            <div class="col-12">
+              <div class="card-text d-flex">
+                <div class="mr-2">
+                  <img src="../../../../assets/images/icons/icon_info2.svg" alt="Information" class="icon-size-16 pull-left">
+                </div>
+                <p>62% of customers have always said that the biggest challenge they face when shipping goods is that they do
+                  not know where their shipment is. This is why, we provide premium tracking order at HashMove.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mt-4 " *ngIf="qltyMonitAmount > 0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="card-title text-uppercase">
+                <img src="../../../../assets/images/icons/icon_shield.svg " width="16px" height="16px" title="Shipping Information"> Quality Monitoring
+                <!-- <a href="javascript:;" class="grey-anc-btn pull-right" [ngbTooltip]="'Coming Soon'">Learn More
+                  <img src="../../../../assets/images/icons/icon_arrow_right.svg" alt="arrow-right" class="icon-size-14 hvr-icon">
+                </a> -->
+              </h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <h6 *ngIf="totalQualityContainers && searchCriteria.searchMode !== 'warehouse-lcl'">You've {{totalQualityContainers}} / {{combinedContainersCount}} {{totalQualityContainers > 1 ? 'Containers'
+                : 'Container'}} in your order</h6>
+              <div class="switch-box">
+                <ui-switch [checked]="qualityChecked" [disabled]="qualityContainers.length === 0" size="small" (change)="addTrackingQality($event, 'QLTY')"></ui-switch>
+                <label for="">Yes, I would like to add Quality Monitoring (
+                  <span>
+                    +{{currencyData.currencyCode}} {{indQltyMonitAmount | number:'1.2-2'}} / {{(searchCriteria.searchMode ===
+                      'sea-fcl' || searchCriteria.searchMode === 'truck-ftl')?'Container':(searchCriteria.searchMode ==='warehouse-lcl')?'Device':'Handling Unit'}}
+                  </span>)</label>
+              </div>
+              <div class="col-sm-12 pl-2 pr-0 pt-2" *ngIf="searchCriteria.searchMode === 'warehouse-lcl' && qualityChecked">
+                How many devices do you need?
+                <input type="number" min="0" max="100" (keypress)="onKeypress($event)" (paste)="onKeypress($event)" [(ngModel)]="userInpContainers" class="form-control col-sm-5 mt-2" placeholder="enter value" (ngModelChange)="onContainerInputChange($event)" />
+              </div>
+              <hr class="hr-dash">
+            </div>
+            <div class="col-12">
+              <div class="card-text d-flex">
+                <div class="mr-2">
+                  <img src="../../../../assets/images/icons/icon_info2.svg" alt="Information" class="icon-size-16 pull-left">
+                </div>
+                <p>{{(searchCriteria.searchMode !== 'warehouse-lcl')?'Container':''}} Quality Monitoring is a highly valuable service that can be used when you need to be ensure that
+                  your merchandise is being handled properly at all times including temperature checks, from the time it
+                  leaves the factory right up to when it is loaded onto the {{(searchCriteria.searchMode !== 'warehouse-lcl')?'ship or plane':'warehouse'}}.</p>
+              </div>
+            </div>
+          </div>
+          <hr class="hr-dash" *ngIf="qualityChecked">
+          <div class="row" *ngIf="qualityChecked">
+            <div class="col-12 mb-2 tracking-qualitymonitoring-form">
+              <h5 class="card-title text-uppercase mb-1 mt-1">
+                Parameters of Sensors
+              </h5>
+              <div *ngIf="IOTParams">
+                <div class="row justify-content-start sensors-checkbox check-boxes-main" *ngFor="let item of IOTParams[0]?.parametersGroup">
+                  <div class="col-sm-4 pr-0" *ngIf="item.iotParameterType === 'QUALITY' && qualityChecked">
+                    <input id='{{item.iotGroupParamDisplayName}}' type='checkbox' [checked]="item.parametersDetail[0].isChecked" (change)="item.parametersDetail[0].isChecked = !item.parametersDetail[0].isChecked; item.isChecked = !item.isChecked;"
+                    />
+                    <label for='{{item.iotGroupParamDisplayName}}'>
+                      <span></span>
+                      <div class="form-check-inline">{{item.parametersDetail[0].iotParamNameDisplayName}}</div>
+                    </label>
+                  </div>
+                  <div class="col-sm-3 pl-2 pr-0 pt-2" *ngIf="item.parametersDetail[0].isChecked">
+                    <input type="number" min="item.parametersDetail[0].minThershold" max="item.parametersDetail[0].maxThershold" (keyup)="negetiveNumberValidation($event, 'range', item.parametersDetail[0].minAlertValue)"
+                      [(ngModel)]="item.parametersDetail[0].minAlertValue" class="form-control" placeholder="enter value">
+                  </div>
+                  <div class="col-sm-1 pl-0 pr-0 text-center pt-3 mw-25" *ngIf="item.parametersDetail[0].isChecked">
+                    <label>to</label>
+                  </div>
+                  <div class="col-sm-3 pl-0 pt-2 pr-0" *ngIf="item.parametersDetail[0].isChecked">
+                    <input type="number" min="item.parametersDetail[0].minThershold" max="item.parametersDetail[0].maxThershold" (keyup)="negetiveNumberValidation($event, 'range', item.parametersDetail[0].maxAlertValue)"
+                      [(ngModel)]="item.parametersDetail[0].maxAlertValue" class="form-control" placeholder="enter value">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="qualityChecked">
+            <div class="col-12 mt-4 set-action">
+              <div *ngIf="showEmailDropdown">
+                <h5 class="card-title text-uppercase mb-2">
+                  Set Action
+                </h5>
+                <div class="form-group col-sm-6 pl-0 pr-0">
+                  <select class="form-control" id="sendanemail" [(ngModel)]="emailDropdown" *ngIf="showEmailDropdown" (change)="onActionSelection($event, 'email')">
+                    <option [value]="action.actionTypeID" *ngFor="let action of IOTActions; let i = index">{{action.actionTypeName}}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="InputEmailAddress">Email Address</label>
+                  <input type="email" id="email" [(ngModel)]="userEmail" (keypress)="onEmailEnter('email', $event)" name="InputEmailAddress"
+                    class="form-control col-sm-6" placeholder="eg: john@company.com" />
+                </div>
+                <span class="badge badge-pill badge-primary hashmove-badge-active mb-3 mr-2" *ngFor="let email of iotUserData.email; let i = index">
+                  {{email}}
+                  <a href="javascript:;" (click)="removeChip(email, i, 'email')">
+                    <i class="fa fa-times"></i>
+                  </a>
+                </span>
+              </div>
+              <div *ngIf="showSMSDropdown">
+                <h5 class="card-title text-uppercase mb-2">
+                  Set Action
+                </h5>
+                <div class="form-group col-sm-6 pl-0 pr-0">
+                  <select class="form-control" id="sendansms" [(ngModel)]="smsDropdown" (change)="onActionSelection($event, 'sms')">
+                    <option [value]="action.actionTypeID" *ngFor="let action of IOTActions">{{action.actionTypeName}}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="InputSMS">SMS</label>
+                  <div class="select-number col-md-6 p-0">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <div ngbDropdown class="contanct-dropdown">
+                            <div class="pointer phone" id="phoneCode" ngbDropdownToggle style="max-height: 28rem;">
+                              <div class="d-inline-block mr-1" style="width:20px;height:20px;" >
+                                <img *ngIf="!city.imageName && !selectedImage" [src]="'../../../../assets/images/icons/flags/4x3/ae.svg'" alt="flags" class="img-responsive"
+                                  style="max-width:100%; max-height:100%;">
+                                <img *ngIf="city.imageName && !selectedImage" [src]="'../../../../assets/images/icons/flags/4x3/' + (city.imageName | lowercase) + '.svg'"
+                                  alt="flags" class="img-responsive" style="max-width:100%;max-height:100%;">
+                                <img *ngIf="selectedImage" [src]="'../../../../assets/images/icons/flags/4x3/' + (selectedImage | lowercase) + '.svg'" alt="flags"
+                                  class="img-responsive" style="max-width:100%; max-height:100%;">
+                              </div>
+                              <span>{{countryPhoneCode}}</span>
+                            </div>
+                            <div class="animated fadeIn country-section" ngbDropdownMenu aria-labelledby="phoneCode">
+                              <ng-scrollbar [trackX]="false" [compact]="true" style="margin-bottom: 0rem; min-height: 200px;">
+                                <ul class="list-group">
+                                  <li class="list-group-item" *ngFor="let list of countryList" (click)="flag(list,'country')">
+                                    <div class="d-inline-block mr-1" style="width:20px;height:20px;" >
+                                      <img [src]="'../../../../assets/images/icons/flags/4x3/' + (list.code | lowercase) + '.svg'" alt="{{list.code + '-flags'}}"
+                                        style="max-width:100%; max-height:100%;">
+                                    </div>
+                                    <span> {{list.desc[0].CountryPhoneCode}}</span>
+                                  </li>
+                                </ul>
+                              </ng-scrollbar>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <input type="text" id="sms" class="form-control control-phone" [(ngModel)]="userPhone" (keypress)="onEmailEnter('sms', $event);NumberValid($event)"
+                        maxlength="12" placeholder="123456789">
+                    </div>
+                  </div>
+                </div>
+                <span class="badge badge-pill badge-primary hashmove-badge-active mb-3 mr-2" *ngFor="let phone of iotUserData.sms; let i = index">
+                  {{phone}}
+                  <a href="javascript:;" (click)="removeChip(phone, i, 'sms')">
+                    <i class="fa fa-times"></i>
+                  </a>
+                </span>
+              </div>
+              <div class="form-group col-sm-4 pl-0 pr-0">
+                <button type="submit" class="btn btn-outline-primary btn-lg all-deals hvr-sweep-to-right w-100" (click)="addAnotherAction()">Add Another Action</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row tracking-actions mb-2">
+        <div class="col-xl-6 col-md-6 col-sm-12">
+          <a href="javascript:;" routerLink="{{getPreviousRoute()}}" class="hvr-icon-back" *ngIf="!bookingInfo?.isConinueBooking">
+            <i class="fa fa-angle-left mr-2 hvr-icon"></i>
+            Back to Search Results
+          </a>
+        </div>
+        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+          <button class="btn btn-primary btn-block hvr-sweep-to-right" (click)="navigateToTab()">Next</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-5 col-md-12 col-sm-12">
+      <app-optional-billing [additionalCharges]="newTrackQualityObj"></app-optional-billing>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,158 @@
+@import "../../../../assets/scss/_variables";
+
+.cargo-details {
+  .modal-header {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+  .modal-body {
+            
+    label {
+      font-size: $font-size-large;
+      font-weight: $font-weight-mid;
+      font-family: $font-pragmatica;
+      color: $text-color-default;
+    }
+    p {
+        font-size: $font-size-medium;
+      font-weight: $font-weight-normal;
+      font-family: $font-pragmatica;
+      color: $text-color-default;
+      text-align: left;
+      padding-bottom: 0
+    }
+   
+    .input-dropdown {
+      .input-group-append {
+        width: 56px;
+        align-items: center;
+        justify-content: center;
+        border-left: 1px solid $input-border;
+        span {
+          font-size: $font-size-medium;
+          font-family: $font-proxima;
+          font-weight: $font-weight-mid;
+          color: $text-color-default;
+        }
+        input{
+          &::placeholder {
+            font-size:$font-size-base;
+          }
+        }
+        select {
+          font-size: $font-size-medium;
+          font-family: $font-proxima;
+          font-weight: $font-weight-mid;
+          color: $text-color-default;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          border: 0px;
+        }
+      }
+    }
+    .container-main {
+      .container-boxes {
+        cursor: pointer;
+        position: relative;
+        border: 1px solid $boxes-border !important;
+        border-radius: 3px;
+        background: transparent;
+        text-align: center;
+        font-family: $font-proxima;
+        margin: 0.1875rem 0.125rem;
+        &.selected-container {
+          border: 1px solid $primary-color !important;
+        }
+        .card-body {
+          font-family: $font-proxima;
+          padding-top: 8px;
+          padding-bottom: 0;
+          width: 100%;
+          -webkit-transition: all 0.2s;
+          -moz-transition: all 0.2s;
+          transition: all 0.2s;
+          border: 0px solid $primary-color;
+        }
+        small {
+          font-size: $font-size-base;
+          font-family: $font-proxima;
+          color: $copyrights-color;
+        }
+        .containerInfo {
+          display: flex;
+          justify-content: space-around;
+          .container-weight,
+          .container-size {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            small {
+              font-size: $font-size-base;
+              font-family: $font-proxima;
+              color: $copyrights-color;
+            }
+            label {
+              font-size: $font-size-base;
+              margin: 0;
+              font-weight: $font-proxima-weight-semibold;
+            }
+          }
+        }
+        &.active {
+          border-color: $primary-color !important;
+        }
+        .count-triangle {
+          width: 0;
+          height: 0;
+          border-top: 45px solid $primary-color;
+          border-left: 45px solid transparent;
+          position: absolute;
+          right: 0;
+          top: 0;
+          font-size: $font-size-base;
+          img {
+            width: 35px;
+            height: 35px;
+            top: -48px;
+            position: relative;
+            left: -31px;
+          }
+          span {
+            top: -42px;
+            position: absolute;
+            right: 0px;
+            color: $color-white;
+            width: 30px;
+            text-align: center;
+          }
+        }
+        p {
+          padding: 0;
+          font-size: $font-size-large;
+          margin-bottom: 0;
+        }
+        img {
+          margin: 0 auto;
+          &.ContainerImg20 {
+            width: 65%; // margin-bottom: 3rem;
+            height: 90px;
+          }
+          &.ContainerImg40 {
+            width: 74%; // margin-bottom: 3rem;
+            height: 95px;
+            margin-bottom: -3px;
+          }
+          &.ContainerImg45 {
+            width: 95%;
+            margin-bottom: -7px;
+            height: 100px;
+          }
+        }
+      }
+    }
+    .btn-container {
+      font-size: $font-size-large;
+    }
+  }
+}
+

@@ -1,0 +1,25 @@
+<svg id="499d9f41-9355-40aa-a907-59caa6c1fdf0" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .d7251875-8290-4414-95db-37a03783c183 {
+        fill: #738593;
+      }
+
+      .d0a80558-862b-4b23-adcc-d9510c62b906 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g id="3c5a6cb3-1620-49d0-b22d-4c8dd253881c" data-name="user2">
+    <g id="9d41a820-b3cb-43c7-a3bc-c7f82742dc40" data-name="&lt;Group&gt;">
+      <circle class="d7251875-8290-4414-95db-37a03783c183" cx="12" cy="12" r="10"/>
+    </g>
+    <g id="95fd0c5d-ca1a-4394-88d3-f438468d2ce9" data-name="&lt;Rectangle&gt;">
+      <path id="d24191ca-1795-4323-ab11-09b598679cc2" data-name="&lt;Path&gt;" class="d0a80558-862b-4b23-adcc-d9510c62b906" d="M19,22H5V18a5,5,0,0,1,5-5h4a5,5,0,0,1,5,5Z"/>
+    </g>
+    <g id="df2d9ab5-3310-4551-829e-749b3933c8ce" data-name="&lt;Rectangle&gt;">
+      <rect id="c48d595b-5492-4fe0-8d39-dbbcd228ba54" data-name="&lt;Path&gt;" class="d0a80558-862b-4b23-adcc-d9510c62b906" x="8" y="4" width="8" height="8" rx="4" ry="4"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,160 @@
+<div class="reports">
+  <div class="row">
+    <h4 class="reports-title col-xl-6 col-sm-12">
+      Reports
+    </h4>
+    <div class="col-xl-6 col-sm-12 reports-top-btn mt-1 text-right mb-2">
+
+      <div ngbDropdown class="d-inline-block">
+        <a class="hvr-icon-forward" id="dropdownBasic1" ngbDropdownToggle><img src="../../../../../assets/images/icons/Icons_Calendar.svg"
+            alt="icon" class="icon-size-16 mr-2"><span class="link-hover-1 mr-2">{{reportPeriodDesc}}</span></a>
+        <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <li *ngFor="let period of periodList" (click)="onPeriodChange(period.codeVal, period.codeValDesc)" class="dropdown-item">{{period.codeValDesc}}</li>
+        </ul>
+      </div>
+<!-- 
+      <a href="javascript:;" class="hvr-icon-forward mr-5">
+        <img src="../../../../../assets/images/icons/icon_print.svg" alt="icon" class="icon-size-16 mr-2">
+        <span class="link-hover-1">Print</span>
+      </a>
+      <a href="javascript:;" class="hvr-icon-forward">
+        <img src="../../../../../assets/images/icons/icon_share_blue.svg" alt="icon" class="icon-size-16 mr-2">
+        <span class="link-hover-1">Share</span>
+      </a> -->
+    </div>
+  </div>
+  <hr class="hr-solid mt-2">
+  <!-- Total Spend Section -->
+  <div class="row">
+    <div class="totalspend-section col-md-12">
+      <h4 class="totalspend-title">Total Spend</h4>
+      <div class="totalspend-summery" *ngIf="isCurrVsPrev">
+        <div class="row pointer">
+          <!-- Spend Col 1 -->
+          <div class="totalspend-section-boxes col-xl-6 col-md-6 col-sm-12">
+
+            <div class="totalspendbox totalspend-summary">
+              <div class="totalspend-icon">
+                <img src="../../../../../assets/images/icons/icon_booking_current.svg">
+              </div>
+              <div class="totalspend-box-title">
+                <h5>{{userGraphData?.currentVsPrevious[0]?.title}}</h5>
+              </div>
+              <div class="totalspend-quantity">
+                <span class="currency">{{userGraphData?.currentVsPrevious[0]?.currencyCode}}</span>
+                <span class="spends text-truncate" placement="top" ngbTooltip="{{userGraphData?.currentVsPrevious[0]?.currencyCode}} {{userGraphData?.currentVsPrevious[0]?.totalAmount | number: '1.2-2'}}">{{userGraphData?.currentVsPrevious[0]?.totalAmount
+                  | number: '1.2-2'}}</span>
+                <span [ngClass]="(userGraphData?.currentVsPrevious[0]?.amountComp < 0)?'status-down':'status-up'">
+                  <img *ngIf="userGraphData?.currentVsPrevious[0]?.amountComp < 0" src="../../../../../assets/images/icons/icon-status-down.svg">
+                  <img *ngIf="userGraphData?.currentVsPrevious[0]?.amountComp >= 0" src="../../../../../assets/images/icons/icon-status-up.svg">
+                  {{userGraphData?.currentVsPrevious[0]?.amountComp | number: '1.2-2'}} %
+                </span>
+              </div>
+              <div class="bookings">{{userGraphData?.currentVsPrevious[0]?.totalBooking | number: '1.0-0'}} Bookings</div>
+            </div>
+          </div>
+          <!-- Spend Col 2 -->
+          <div class="totalspend-section-boxes col-xl-6 col-md-6 col-sm-12">
+
+            <div class="totalspendbox totalspend-summary">
+              <div class="totalspend-icon">
+                <img src="../../../../../assets/images/icons/icon_booking_current.svg">
+              </div>
+              <div class="totalspend-box-title">
+                <h5>{{userGraphData?.currentVsPrevious[1]?.title}}</h5>
+              </div>
+              <div class="totalspend-quantity">
+                <span class="currency">{{userGraphData?.currentVsPrevious[1]?.currencyCode}}</span>
+                <span class="spends text-truncate" placement="top" ngbTooltip="{{userGraphData?.currentVsPrevious[1]?.currencyCode}} {{userGraphData?.currentVsPrevious[1]?.totalAmount | number: '1.2-2'}}">{{userGraphData?.currentVsPrevious[1]?.totalAmount
+                  | number: '1.2-2'}}</span>
+              </div>
+              <div class="bookings">{{userGraphData?.currentVsPrevious[1]?.totalBooking | number: '1.0-0'}} Bookings</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="totalspend-summery" style="min-height: 210px" *ngIf="!isCurrVsPrev">
+        <app-loader-main></app-loader-main>
+      </div>
+    </div>
+
+  </div>
+  <div class="mt-4" *ngIf="isBarGraph">
+    <div echarts [options]="userBarGraph" class="demo-chart"></div>
+  </div>
+  <div class="mt-4 position-relative" *ngIf="!isBarGraph" style="min-height: 415px">
+    <app-loader-main></app-loader-main>
+  </div>
+  <hr class="hr-solid mt-2">
+  <!-- Total Bookings By Region Section -->
+  <div class="totalbooking-by-region mt-5">
+
+
+    <div class="row mb-5">
+      <div class="by-map col-md-7 col-xl-7 col-sm-12">
+        <h4 class="totalBookings-title mt-4">Total Bookings by Region</h4>
+        <div class="mt-2">
+          <hashmove-data-map *ngIf="isRegionMap" [data]="mapData" [currencyCode]="currCurrency.sortedCountryName"></hashmove-data-map>
+          <div *ngIf="!isRegionMap" style="min-height: 480px">
+            <app-loader-main></app-loader-main>
+          </div>
+        </div>
+
+      </div>
+      <div class="by-volume col-md-5 col-xl-5 col-sm-12 text-right">
+        <div class="mt-0">
+          <div class="d-flex justify-content-between">
+            <h4 class="totalBookings-title mt-4 mb-0">VOLUME %</h4>
+<div ngbDropdown placement="bottom-right" class="d-inline-block mr-0 mt-4 pull-right">
+              <a class="hvr-icon-forward" id="dropdownBasic2" ngbDropdownToggle><span class="link-hover-1 mr-2">{{imp_ExpType.toUpperCase()}}</span></a>
+              <ul ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                <li class="dropdown-item" (click)="onImp_Exp('import')">Import</li>
+                <li class="dropdown-item" (click)="onImp_Exp('export')">Export</li>
+              </ul>
+            </div>
+          </div>
+          <div *ngIf="isRegionMap" echarts [options]="userRegionBarGraph" [theme]="theme" class="demo-chart"></div>
+          <div *ngIf="!isRegionMap" style="min-height: 480px">
+            <app-loader-main></app-loader-main>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- <hr class="hr-solid mt-2"> -->
+    <!-- Value Added Services & Booking Type Comparision Section -->
+    <div class="row comparision-section">
+      <div class="services-comparision col-md-5 col-xl-5 col-sm-12 pt-3 pb-3">
+        <h4 class="totalBookings-title mt-4">Value Added Services Comparision</h4>
+        <div class="mt-4">
+          <div *ngIf="isVas" echarts [options]="optionHalfRound" [theme]="theme" class="demo-chart"></div>
+          <div *ngIf="!isVas" style="min-height: 490px">
+            <app-loader-main></app-loader-main>
+          </div>
+          <!-- <div echarts [options]="optionServicesComparision" [theme]="theme" class="demo-chart"></div> -->
+        </div>
+      </div>
+      <div class="booking-comparision col-md-7 col-xl-7 col-sm-12 pt-3 pb-3">
+        <h4 class="totalBookings-title mt-4">Booking Type Comparision</h4>
+        <div class="mt-4">
+          <div *ngIf="isTypeCompare" echarts [options]="userPieChart" [theme]="theme" class="demo-chart"></div>
+          <div *ngIf="!isTypeCompare" style="min-height: 490px">
+            <app-loader-main></app-loader-main>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- Recent Bookings Section -->
+    <h4 class="totalBookings-title mt-4">Recent Bookings</h4>
+    <div *ngFor="let booking of currentBookings" class="totalBookings">
+      <app-booking-card [bookings]="booking"></app-booking-card>
+    </div>
+
+  </div>
+</div>

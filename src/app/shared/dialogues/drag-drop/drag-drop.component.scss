@@ -1,0 +1,49 @@
+@import "../../../../assets/scss/_variables.scss";
+.drag-drop {}
+
+.uploader {
+  label {
+    float: left;
+    clear: both;
+    cursor: pointer;
+    width: 100%;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background: $color-white;
+    border-radius: 7px;
+    border: 1px dashed #ced4da;
+    transition: all .2s ease;
+    user-select: none;
+    margin: 0;
+    &:hover {
+      border: 1px dashed $primary-color;
+      transition: 1.5s;
+    }
+    .mt-3 {
+      background: none !important;
+    }
+  }
+  input[type="file"] {
+    display: none;
+  }
+  &-btn {
+    color: $secondary-color;
+  }
+  &-cancel-btn {
+    width: 100%;
+    display: inline-block;
+    margin-top: 8px;
+    font-family: $font-proxima;
+    font-size: $font-size-base;
+    color: $dark-grey-blue;
+    font-weight: $font-proxima-weight-semibold;
+    text-transform: uppercase;
+  }
+  #messages {
+    word-break: break-all;
+    p {
+      margin: 0;
+      font-weight: $font-weight-light !important;
+    }
+  }
+}

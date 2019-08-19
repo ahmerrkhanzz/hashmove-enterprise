@@ -1,0 +1,19 @@
+<svg id="20e3b6e4-3657-49f7-94e0-ab9cff12f6c4" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .cb74e6d5-6ae2-4f09-bfe7-f71670c11c4e {
+        fill: #B9C2C8;
+      }
+
+      .\31 bfeffb7-2abe-4a4f-b172-1a134f753c7a {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  
+  <path id="e4b85f56-8317-49a5-8de8-164ef5f8d30b" data-name="&lt;Compound Path&gt;" class="cb74e6d5-6ae2-4f09-bfe7-f71670c11c4e" d="M14.765,3.572,8,0,1.235,3.572A2.607,2.607,0,0,0,0,5.781V13c0,2.109,1.54,2.51,2,2.964V6H14v9.964c.46-.454,2-.854,2-2.964V5.781A2.607,2.607,0,0,0,14.765,3.572Z"/>
+  <g id="f71a6f32-a07d-43c8-a84d-dff4abf24be4" data-name="&lt;Group&gt;">
+    <polygon class="1bfeffb7-2abe-4a4f-b172-1a134f753c7a" points="10.469 8 7.2 11.098 5.531 9.516 4 10.967 7.2 14 12 9.451 10.469 8"/>
+    <polygon class="cb74e6d5-6ae2-4f09-bfe7-f71670c11c4e" points="10.469 8 7.2 11.098 5.531 9.516 4 10.967 7.2 14 12 9.451 10.469 8"/>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+<div class="user-modal animated fadeIn">
+  <div class="modal-header">
+    <h4 class="user-modal-title">Logout</h4>
+    <a class="pointer crossIcon" (click)="closeModal()">
+      <img src="../../../../assets/images/icons/icon_close.svg" alt="close">
+    </a>
+  </div>
+  <div class="modal-body">
+    <div class="text-center">
+      <p>Are you sure you want to logout?</p>
+      <button *ngIf="!isRouting" class="btn btn-danger hvr-sweep-to-right" (click)="onConfirmClick()">Yes, logout the user</button>
+      <button *ngIf="isRouting" class="btn btn-danger">
+        <i class="fa fa-spinner fa-spin"></i>
+      </button>
+    </div>
+  </div>
+</div>

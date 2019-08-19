@@ -1,0 +1,246 @@
+@import "./_variables";
+//moving clockwise animation
+.clockSpin {
+  // transform-origin: 15px 15px;
+  transform-origin: 13.1px;
+}
+
+.transit-time-bounce {
+  fill: #738593;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes tabsRightAnimation {
+  from {
+    // -webkit-transform: translate3d(18%, 0, 0);
+    // transform: translate3d(18%, 0, 0);
+    transform: translate3d(3%, 0, 0);
+    visibility: visible;
+    box-shadow: 0px 0px 0px 0px rgba(51, 59, 69, 0.15);
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    box-shadow: 0px 20px 50px 0px rgba(51, 59, 69, 0.15);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(2, 189, 182, 0.3), 0 0 0 0.2em rgba(2, 189, 182, 0.3), 0 0 0 0.75em rgba(2, 189, 182, 0.3), 0 0 0 1em rgba(2, 189, 182, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 0.2em rgba(2, 189, 182, 0.3), 0 0 0 0.5em rgba(2, 189, 182, 0.3), 0 0 0em 1.5em rgba(255, 255, 255, 0), 0 0 0 2em rgba(70, 173, 169, 0);
+  }
+}
+
+@-webkit-keyframes ripple2 {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  75% {
+    -webkit-transform: scale(1.75);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple2 {
+  0% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.75);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+
+/* The typing effect */
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes animateLCL {
+  0% {
+    transform: translate3d(0%, 40%, 0);
+    opacity: 0;
+  }
+  90% {
+    transform: translate3d(0%, 0%, 0);
+    opacity: 0;
+  }
+  100% {
+    // transform: translate3d(0%, 30%, 0);
+    opacity: 1;
+    transition-delay: 0.8s;
+  }
+}
+
+/* The typewriter cursor effect */
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+
+@keyframes clockwiseSpin {
+  0% {
+    transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(240deg);
+    -moz-transform: rotate(240deg);
+  }
+}
+
+@keyframes text-glow {
+  0% {
+    text-shadow: none;
+  }
+  100% {
+    color: #afafaf;
+  }
+}
+
+// bounce animation for route details section (transit time)
+@keyframes bounce-top {
+  0% {
+    transform: translateY(-20px);
+    animation-timing-function: ease-in;
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(-13px);
+    animation-timing-function: ease-in;
+  }
+  65% {
+    transform: translateY(-6px);
+    animation-timing-function: ease-in;
+  }
+  82% {
+    transform: translateY(-4px);
+    animation-timing-function: ease-in;
+  }
+  93% {
+    transform: translateY(-2px);
+    animation-timing-function: ease-in;
+  }
+  25%,
+  55%,
+  75%,
+  87% {
+    transform: translateY(0px);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateY(0px);
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+}
+
+// Fastes Route Icon...
+@keyframes fastest-route-1 {
+  0% {
+    -webkit-transform: translate(-16px, 0px);
+    transform: translate(-16px, 0px);
+  }
+  50% {
+    -webkit-transform: translate(-8px, 0px);
+    transform: translate(-8px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 100;
+    opacity: 1;
+    stroke: #000000;
+    fill-opacity: 1;
+    stroke-opacity: 0;
+  }
+}
+
+@keyframes LeftToRight {
+  from {
+    transform: translate3d(-2.7rem, 0, 1rem);
+  }
+  to {
+    transform: translate3d(0rem, 0, 0rem);
+  }
+}
+
+@keyframes airAnimation {
+  from {
+    // transform: rotate(-18deg) translate3d(-2.7rem, 0, 1rem) !important;
+    transform: rotate(-12deg) translate3d(-2.7rem, 0, 1rem);
+  }
+  to {
+    // transform: rotate(-18deg) translate3d(0rem, 0, 0rem) !important;
+    transform: rotate(-12deg) translate3d(0rem, 0, 0rem);
+  }
+}
+
+/*=== Fastest Route and Best Price onload strok animation   ===*/
+
+//*===  RECOMMENDED glowing section keyfram for FORWARDER Page ===*//
+@keyframes glowing {
+  0% {
+    background-color: rgba($primary-grey, 0.9);
+    -webkit-box-shadow: 0 0 3px rgba($primary-grey, 0.9);
+  }
+  50% {
+    background-color: rgba($secondary-color-dark, 0.9);
+    -webkit-box-shadow: 0 0 10px rgba($secondary-color-dark, 0.9);
+  }
+  100% {
+    background-color: rgba($primary-grey, 0.9);
+    -webkit-box-shadow: 0 0 3px rgba($primary-grey, 0.9);
+  }
+}
+
+@keyframes bottomToTop {
+  from {
+    transform: translate3d(0, 25%, 0);
+  }
+  to {
+    transform: translate3d(0, 0%, 0);
+  }
+}
+
+//*===  RECOMMENDED glowing section keyfram for FORWARDER Page .END/ ===*//

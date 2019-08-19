@@ -1,0 +1,253 @@
+<section class="payment">
+  <div class="row">
+    <div class="col-12">
+      <h2>Billing and Payments</h2>
+    </div>
+    <div class="col-xl-7 col-md-7 col-sm-12">
+      <!-- Content Payment Method -->
+      <div class="col-12 payment-method">
+        <h3>Select Payment Method</h3>
+      </div>
+      <!-- Payment Tabs Section -->
+      <ngb-tabset class="payment-tabs">
+        <ngb-tab>
+          <ng-template ngbTabTitle>
+            <div class="icon-box">
+              <svg id="daadc353-b3d9-43e2-a7d7-b2636f9cc8c5" class="icon-card" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
+                <defs>
+                  <style>
+                    .\30 9729411-ae3d-4e50-9b4d-f4606092c840 {
+                      fill: #e7edf2;
+                    }
+
+                    .\31 b5e7d08-b3cd-4bfa-b333-09438b01219c {
+                      fill: #00a2df;
+                    }
+
+                    .e879e959-203a-49ce-b722-34a0172ce967 {
+                      fill: #fff;
+                    }
+
+                  </style>
+                </defs>
+
+                <g id="149b6445-fd9e-465c-89e6-555c5dd4d5e4" data-name="credit_card">
+                  <g>
+                    <g>
+                      <rect class="09729411-ae3d-4e50-9b4d-f4606092c840" width="34" height="24" rx="4" ry="4" />
+                      <path class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" d="M30,2a2,2,0,0,1,2,2V20a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2H30m0-2H4A4,4,0,0,0,0,4V20a4,4,0,0,0,4,4H30a4,4,0,0,0,4-4V4a4,4,0,0,0-4-4Z"
+                      />
+                    </g>
+                    <rect class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" x="2" y="5" width="30" height="2" />
+                    <rect class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" x="2" y="10" width="30" height="2" />
+                    <rect class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" x="5" y="15" width="7" height="2" />
+                    <rect class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" x="14" y="15" width="7" height="2" />
+                  </g>
+                  <g>
+                    <rect class="e879e959-203a-49ce-b722-34a0172ce967" x="10" y="20" width="34" height="24" rx="4" ry="4" />
+                    <path class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" d="M40,22a2,2,0,0,1,2,2V40a2,2,0,0,1-2,2H14a2,2,0,0,1-2-2V24a2,2,0,0,1,2-2H40m0-2H14a4,4,0,0,0-4,4V40a4,4,0,0,0,4,4H40a4,4,0,0,0,4-4V24a4,4,0,0,0-4-4Z"
+                    />
+                  </g>
+                  <rect class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" x="15" y="36" width="6" height="2" />
+                  <rect class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" x="24" y="36" width="6" height="2" />
+                  <rect class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" x="33" y="36" width="6" height="2" />
+                  <g>
+                    <rect class="e879e959-203a-49ce-b722-34a0172ce967" x="31" y="24" width="8" height="8" rx="3" ry="3" />
+                    <path class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" d="M36,26a1,1,0,0,1,1,1v2a1,1,0,0,1-1,1H34a1,1,0,0,1-1-1V27a1,1,0,0,1,1-1h2m0-2H34a3,3,0,0,0-3,3v2a3,3,0,0,0,3,3h2a3,3,0,0,0,3-3V27a3,3,0,0,0-3-3Z"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <h4>Credit Card</h4>
+            <p>&nbsp;</p>
+          </ng-template>
+          <ng-template ngbTabContent>
+            <div class="content animated fadeIn mt-4">
+              <h3>You have selected to pay with your Credit Card.</h3>
+              <p>You will be billed the full amount displayed as the total payable of this order.</p>
+
+              <form novalidate [formGroup]="creditForm">
+                <div class="row form-group">
+                  <div class="col-5 select-number">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-9 select-number">
+                    <label for="inputCCNumber">Card Number</label>
+                    <div class="input-group-prepend">
+                      <div class="contanct-dropdown">
+                        <div class="pointer phone c-card" id="phoneCode" style="max-height: 28rem;">
+                          <div class="d-inline-block">
+                            <img [src]="'../../../../assets/images/icons/'+selectedCard" alt="flags" class="img-responsive" style="max-width:100%; max-height:100%;">
+                          </div>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control control-creditcard" maxlength="19" placeholder="5460 XXXX XXXX XXXX" [ngbTypeahead]="onCardChange"
+                        formControlName="ccNumber" (focus)="inputFocusIn('ccNumber')" (focusout)="inputFocusOut('ccNumber')"
+                        (ngModelChange)="ccChange($event)" [ngModel]="iban_no" (keypress)="numberValid($event)" />
+                    </div>
+                    <span class="animated fadeIn formError" *ngIf="!creditFormValid.ccNumber">
+                      <p *ngIf="(creditForm.controls.ccNumber.dirty || creditForm.controls.ccNumber.touched)">Required</p>
+                    </span>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="inputCCV">CVV/CVV2</label>
+                    <input type="text" class="form-control" maxlength="3" placeholder="3 digit code" id="inputCCV" (keypress)="numberValid($event)"
+                      formControlName="ccVerCode" (focus)="inputFocusIn('ccVerCode')" (focusout)="inputFocusOut('ccVerCode')"
+                      autocomplete="false" />
+                    <span class="animated fadeIn formError" *ngIf="!creditFormValid.ccVerCode">
+                      <p *ngIf="(creditForm.controls.ccVerCode.dirty || creditForm.controls.ccVerCode.touched)">Required</p>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputMonth">Expiry Date</label>
+                    <select id="inputMonth" class="form-control" formControlName="ccMonth" (focus)="inputFocusIn('ccMonth')" (focusout)="inputFocusOut('ccMonth')"
+                      (change)="onMonthChangeEvent($event)">
+                      <option selected value="0">MM</option>
+                      <option *ngFor="let month of monthList" [value]="month">{{month}}</option>
+                    </select>
+                    <span class="animated fadeIn formError" *ngIf="!creditFormValid.ccMonth">
+                      <p *ngIf="(creditForm.controls.ccMonth.dirty || creditForm.controls.ccMonth.touched)">Required</p>
+                    </span>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="inputYear">&nbsp;</label>
+                    <select id="inputYear" class="form-control" formControlName="ccYear" (focus)="inputFocusIn('ccYear')" (focusout)="inputFocusOut('ccYear')">
+                      <option selected value="0">YYYY</option>
+                      <option *ngFor="let year of yearList" [value]="year">{{year}}</option>
+                    </select>
+                    <span class="animated fadeIn formError" *ngIf="!creditFormValid.ccYear">
+                      <p *ngIf="(creditForm.controls.ccYear.dirty || creditForm.controls.ccYear.touched)">Required</p>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col">
+                    <label for="inputCCName">Card Holder Name</label>
+                    <input type="text" placeholder="e.g. Michael Thompson" class="form-control" id="inputCCName" (keypress)="textValidation($event)"
+                      maxlength="50" formControlName="ccUserName" (focus)="inputFocusIn('ccUserName')" (focusout)="inputFocusOut('ccUserName')"
+                    />
+                    <span class="animated fadeIn formError" *ngIf="!creditFormValid.ccUserName">
+                      <p *ngIf="(creditForm.controls.ccUserName.dirty || creditForm.controls.ccUserName.touched)" class="animated fadeIn formError">Required</p>
+                    </span>
+                  </div>
+                </div>
+                <div class="row payment-actions">
+                  <div class="col-6">
+                    <a href="javascript:;" title="Back to Forwarders" class="hvr-icon-back" (click)="backToReview()">
+                      <i class="fa fa-angle-left mr-2 hvr-icon"></i>
+                      Back
+                    </a>
+                  </div>
+                  <div class="col-6">
+                    <button type="submit" class="btn btn-primary btn-block hvr-sweep-to-right" (click)="makePayment(creditForm)">Confirm &amp; Pay</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle>
+            <div class="icon-box">
+              <svg id="fbfd7d34-d3c9-4c28-905c-23c42e2c9ae6" class="icon-wallet" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 44 44">
+                <defs>
+                  <style>
+                    .\30 b82acf2-a7b4-4870-a589-e18c864a9070 {
+                      fill: #e7edf2;
+                    }
+
+                    .\39 44a5720-3558-409a-9269-b8e107341756 {
+                      fill: #00a2df;
+                    }
+
+                    .e3e64dcd-394a-4bb3-8e2e-de87ea880053 {
+                      fill: #cee6ea;
+                    }
+
+                    .\33 c25e17d-d891-4000-925e-1c7e86dee9e1 {
+                      fill: #fff;
+                    }
+
+                  </style>
+                </defs>
+                <g id="4c1ce85e-1010-483a-941c-0404df13c406" data-name="wallet">
+                  <path class="0b82acf2-a7b4-4870-a589-e18c864a9070" d="M6,43H4a4,4,0,0,1-4-4V19H6Z" />
+                  <path class="944a5720-3558-409a-9269-b8e107341756" d="M38,19V42H4a2,2,0,0,1-2-2V19H38m2-2H0V40a4,4,0,0,0,4,4H40V17Z" />
+                  <g>
+                    <path class="0b82acf2-a7b4-4870-a589-e18c864a9070" d="M3.79,18A2.9,2.9,0,0,1,1,15a2.9,2.9,0,0,1,2.79-3H35v6Z" />
+                    <path class="944a5720-3558-409a-9269-b8e107341756" d="M34,13v4H3.789A1.906,1.906,0,0,1,2,15a1.906,1.906,0,0,1,1.789-2H34m2-2H3.789A3.9,3.9,0,0,0,0,15a3.9,3.9,0,0,0,3.789,4H36V11Z"
+                    />
+                  </g>
+                  <path class="944a5720-3558-409a-9269-b8e107341756" d="M38,26v8H26a4,4,0,0,1,0-8H38m2-2H26a6,6,0,0,0-6,6h0a6,6,0,0,0,6,6H40V24Z"
+                  />
+                  <path class="944a5720-3558-409a-9269-b8e107341756" d="M27,29a1,1,0,1,1-1,1,1,1,0,0,1,1-1m0-2a3,3,0,1,0,3,3,3,3,0,0,0-3-3Z"
+                  />
+                  <g>
+                    <polygon class="e3e64dcd-394a-4bb3-8e2e-de87ea880053" points="8.293 18 19 6.47 29.707 18 8.293 18" />
+                    <path class="944a5720-3558-409a-9269-b8e107341756" d="M19,7.939,27.414,17H10.586L19,7.939M19,5,6,19H32L19,5Z" />
+                  </g>
+                  <path class="944a5720-3558-409a-9269-b8e107341756" d="M20.384,12.384A1.632,1.632,0,0,1,19,13a1.632,1.632,0,0,1-1.384-.616L13,17H25Z"
+                  />
+                  <path class="3c25e17d-d891-4000-925e-1c7e86dee9e1" d="M19.923,14a1.264,1.264,0,0,1-1.846,0L15,17h8Z" />
+                  <rect class="944a5720-3558-409a-9269-b8e107341756" x="34" width="2" height="5" />
+                  <rect class="944a5720-3558-409a-9269-b8e107341756" x="38.596" y="1.904" width="2" height="5" transform="translate(14.711 -26.709) rotate(45)"
+                  />
+                  <rect class="944a5720-3558-409a-9269-b8e107341756" x="40.5" y="6.5" width="2" height="5" transform="translate(50.5 -32.5) rotate(90)"
+                  />
+                </g>
+              </svg>
+            </div>
+            <h4>Wallet</h4>
+            <p>(Available: AED 25,600)</p>
+          </ng-template>
+          <ng-template ngbTabContent>
+            <div class="content animated fadeIn payment-wallet mt-4">
+              <h3>You've Selected to pay with your Wallet</h3>
+              <p class="m-1">You will be billed the full amount displayed as the total payable of this order.</p>
+              <div class="mt-4 payment-wallet-card mb-3">
+                <div class="alert alert-danger mb-4" role="alert">
+                  <div class="d-block alert-shape">
+                    <img src="../../../../assets/images/icons/icon_error_white.svg" alt="" class="icon-size-24">
+                  </div>
+                  <label class="ml-4">Not Enough Funds!</label>
+                  <p class="ml-4">You do not have enough funds in your wallet to complete this folder.</p>
+                </div>
+                <label for="">Current Wallet Balance</label>
+                <div class="card">
+                  <div class="card-body d-flex">
+                    <img src="../../../../assets/images/icons/icon_wallet.svg" alt="" class="icon-size-44">
+                    <div class="d-block ml-3">
+                      <h5 class="card-title m-0">AED</h5>
+                      <p class="card-text">25,600.00</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-primary hvr-sweep-to-right text-uppercase pl-3 pr-3 payment-wallet-btn mt-4">Confirm & Pay</button>
+              <div class="payment-wallet-secure mt-3 d-flex align-items-center">
+                <img src="../../../../assets/images/insurance_logo.jpg" alt="" class="payment-wallet-secure-logo">
+                <p>
+                  Your transaction is secured with TrustShield. This ensures a 256 bit encryption.
+                  <a href="javascript:;">Learn More</a>
+                </p>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+      <!-- Payment Tabs Section ./End -->
+
+      <!-- Content Payment Method ./End -->
+    </div>
+    <div class="col-md-5">
+      <app-optional-billing></app-optional-billing>
+      <br>
+      <app-order-summary *ngIf="searchCriteria.searchMode !== 'warehouse-lcl'"></app-order-summary>
+    </div>
+  </div>
+</section>

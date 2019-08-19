@@ -1,0 +1,47 @@
+<div class="vendor-customer-review">
+  <div class="row">
+    <div class="col-12">
+      <hr class="w-100">
+      <div class="vendor-title mt-4">
+        <h6>
+          Hear it from our customers
+          <small class="reviews mt-2">{{total?.TotalReviews}} {{total?.TotalReviews > 1 ? 'Reviews' : 'Review'}}
+          </small>
+        </h6>
+        <button class="btn btn-primary hvr-sweep-to-right" (click)="submitReviewAction()">submit a review</button>
+      </div>
+      <ngu-carousel #myCarousel2 [inputs]="carouselOne" id="usp2" [dataSource]="reviewsArray" *ngIf="total?.TotalReviews > 0">
+        <div *nguCarouselDef="let item; let i = index; let ani = animate" class="carouselTile item">
+          <div class="card mt-3">
+            <div class="card-body">
+              <p class="card-text">" {{item?.ReviewText}}"</p>
+              <div class="vendor-customer-review-profile">
+                <div class="media">
+                  <img class="mr-3 profile-logo" *ngIf="item?.UserImage" src="{{getUserImage(item?.UserImage)}}" alt="user_icon">
+                  <img class="mr-3 profile-logo nav-user-photo-holder" *ngIf="!item?.UserImage" src="../../../../assets/images/icons/Icons_User.svg"
+                    alt="user_icon">
+                  <div class="media-body">
+                    <blockquote class="m-0">{{item.ReviewerName}}</blockquote>
+                    <span class="d-flex align-items-center">
+                      <img src="../../../assets/images/icons/flags/4x3/{{item.CountryCode | lowercase}}.svg" alt="icon"
+                        class="flag-icon mr-2"> {{item.ReviewerCountry}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button NguCarouselPrev class='leftRs btn mr-1 hvr-icon-back' *ngIf="total?.TotalReviews > 3">
+          <i class="fa fa-angle-left hvr-icon"></i>
+        </button>
+        <button NguCarouselNext class='rightRs btn hvr-icon-forward' *ngIf="total?.TotalReviews > 3">
+          <i class="fa fa-angle-right hvr-icon"></i>
+        </button>
+      </ngu-carousel>
+    </div>
+  </div>
+</div>
+
+
+<!-- <span>providerReviews</span> -->

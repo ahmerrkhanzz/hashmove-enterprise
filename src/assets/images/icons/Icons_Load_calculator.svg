@@ -1,0 +1,19 @@
+<svg id="78875c62-933a-4478-96f1-2b74912556c9" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .d1ea073d-7587-402f-8888-ef5fdf952973 {
+        fill: #738593;
+      }
+
+      .\35 31c2d2f-6f3b-4dea-a0e3-d26425d55d54 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g id="d2d6c45f-034c-46e6-ac29-677a5382189c" data-name="load">
+    <polygon class="d1ea073d-7587-402f-8888-ef5fdf952973" points="20 20 4 20 8 10 16 10 20 20"/>
+    <path class="d1ea073d-7587-402f-8888-ef5fdf952973" d="M12,6a1,1,0,1,1-1,1,1,1,0,0,1,1-1m0-2a3,3,0,1,0,3,3,3,3,0,0,0-3-3Z"/>
+    <circle class="531c2d2f-6f3b-4dea-a0e3-d26425d55d54" cx="12" cy="15" r="2.5"/>
+  </g>
+</svg>

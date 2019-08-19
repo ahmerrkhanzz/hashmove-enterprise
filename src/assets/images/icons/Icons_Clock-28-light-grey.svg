@@ -1,0 +1,20 @@
+<svg id="a4b4bca8-4abd-4f12-bdc8-d72d9c92247f" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .d70d805c-7d22-4b77-8110-17968394957a {
+        fill: #bac2c8;
+      }
+
+      .e96f5668-c07d-48bb-a726-c267210e5338 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  
+  <g id="2308c414-ef1a-4817-9ae2-9982eef325e9" data-name="clock">
+    <g id="af086ddf-09ab-4b8a-8534-4b02999c4810" data-name="&lt;Rectangle&gt;">
+      <path class="d70d805c-7d22-4b77-8110-17968394957a" d="M10.667,16H0V5.333A5.333,5.333,0,0,1,5.333,0H16V10.667A5.333,5.333,0,0,1,10.667,16Z"/>
+    </g>
+    <polygon class="e96f5668-c07d-48bb-a726-c267210e5338" points="9 7 9 3 7 3 7 7 7 9 9 9 12 9 12 7 9 7"/>
+  </g>
+</svg>

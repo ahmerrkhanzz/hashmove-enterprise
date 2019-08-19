@@ -1,0 +1,71 @@
+<ngb-tabset class="mt-4 vendor-details" [activeId]="activeTabId" (tabChange)="onTabChange($event)">
+  <ngb-tab id="vendor-about">
+    <ng-template ngbTabTitle>
+      <div class="tab-title">
+        About
+      </div>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <h5 class="mt-4 pt-2">About Company</h5>
+      <div class="mt-2 about animated fadeIn">
+        <!-- <ng-scrollbar [trackX]="false" [trackY]="true" [compact]="true" [ngClass]="readMoreClass ? 'scrollActive' : 'scrollHide'">
+        <div id="detailsMain" [innerHTML]="details?.About" [ngClass]="readMoreClass ? 'readMore animated fadeIn' : 'unread'" class="detail"></div>
+      </ng-scrollbar> -->
+      <!-- <a id="detailsBtn" href="javascript:;" class="vendor-details-readMore" (click)="readMore()">{{vendorAboutBtn}}</a> -->
+        <div slimScroll [options]="opts" [scrollEvents]="scrollEvents">
+          <div style="max-width:96%; max-height: 260px;">
+            <div id="detailsMain" [innerHTML]="details?.About" [ngClass]="readMoreClass ? 'readMore animated fadeIn' : 'unread'" class="detail"></div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="tab-gallery">
+    <ng-template ngbTabTitle>
+      <div class="tab-title">
+        Gallery
+      </div>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <div class="row">
+        <div class="col-12">
+          <h5 class="mt-4">Gallery</h5>
+          <div class="row" *ngIf="!details.ProviderGalleryParsed.length">
+            <div class="col-12">
+              No data found
+            </div>
+          </div>
+          <div class="row">
+            <div class="gallery-section animated fadeIn">
+              <div class="images-carousel col-sm-2 p-0" *ngFor="let image of details?.ProviderGalleryParsed; let i=index">
+                <img [src]="image.thumb" (click)="open(i, details?.ProviderGalleryParsed)" class="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="tab-awards">
+    <ng-template ngbTabTitle>
+      <div class="tab-title">
+        Awards & Certificates
+      </div>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <h5 class="mt-4"> Awards & Certificates</h5>
+      <div class="row" *ngIf="!details.AwdCrtfGalleryParsed.length">
+        <div class="col-12">
+          No data found
+        </div>
+      </div>
+      <div class="row">
+        <div class="gallery-section vendor-certificate animated  fadeIn">
+          <div class="images-carousel" *ngFor="let image of details?.AwdCrtfGalleryParsed; let i=index">
+            <img [src]="image.thumb" (click)="open(i, details?.AwdCrtfGalleryParsed)" class="" />
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

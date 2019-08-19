@@ -1,0 +1,36 @@
+@import "../../../../../assets/scss/_variables";
+
+.air-search {
+  .secondaryTabs {
+    ul {
+      .nav-item {
+        a.nav-link {
+          span {
+            font-size: $font-size-medium;
+          }
+
+          svg {
+            position: relative;
+            top: 6px;
+            width: 22px;
+            height: 22px;
+          }
+        }
+      }
+    }
+  }
+
+  .air-total {
+    float: left;
+    width: 100%;
+  }
+
+  .text-OR {
+    font-size: $font-size-medium;
+    font-weight: $font-weight-mid;
+    color: $text-color-default;
+    font-family: $font-proxima;
+    display: flex;
+    align-items: center;
+  }
+}

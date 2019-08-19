@@ -1,0 +1,67 @@
+<app-search-header name="booking" [buttons]="hidebooking" [strActiveTabId]="activeIdString"></app-search-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="booking-process" id="BookingProcess" [ngClass]="{'is-insured' : !IsInsured}">
+        <ngb-tabset #t="ngbTabset" [activeId]="activeIdString" (tabChange)="onTabChange($event)" [destroyOnHide]="false">
+          <ngb-tab id="tab-search" [disabled]="true">
+            <ng-template ngbTabTitle>
+              <div class="tab-title">
+                Search
+              </div>
+            </ng-template>
+            <ng-template ngbTabContent>
+              <p>Search content</p>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="tab-tracking" [disabled]="disableTrackingTab" *ngIf="searchCriteria.searchMode === 'sea-fcl' || searchCriteria.searchMode === 'warehouse-lcl' || searchCriteria.searchMode === 'sea-lcl' || searchCriteria.searchMode === 'truck-ftl'">
+            <ng-template ngbTabTitle class="">
+              <div class="tab-title checking123">
+                {{(searchCriteria.searchMode === 'warehouse-lcl' || searchCriteria.searchMode === 'sea-lcl')?'':'Tracking & '}}Quality
+              </div>
+            </ng-template>
+            <ng-template ngbTabContent>
+              <div class="tab-content">
+                <app-tracking [providerVasList]="providerVasList" (tabChangeEvent)="tabChange($event)"
+                  (setProviderList2Parent)="updateProviderVASList($event)"></app-tracking>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="tab-optional-services" [disabled]="disableOptionalTab" *ngIf="searchCriteria.searchMode !== 'warehouse-lcl'">
+            <ng-template ngbTabTitle>
+              <div class="tab-title">
+                Optional Services
+              </div>
+            </ng-template>
+            <ng-template ngbTabContent>
+              <div class="tab-content">
+                <app-booking-optional [providerVasList]="providerVasList" (tabChange)="tabChange($event)" (IsInsured)="receiveInsured($event)"
+                  [previousTab]="previousTab" [stage]="'insurance'"></app-booking-optional>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="tab-departure-date" [disabled]="disabledDepartTab" *ngIf="showDepartureTab">
+            <ng-template ngbTabTitle>
+              <div class="tab-title">Review & Confirm</div>
+            </ng-template>
+            <ng-template ngbTabContent>
+              <div class="tab-content">
+                <app-departure (tabChange)="tabChange($event)" (departureEvent)="receiveDeparture($event)"></app-departure>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <!-- <ngb-tab id="tab-billing" [disabled]="disablePaymentTab">
+            <ng-template ngbTabTitle>
+              <div class="tab-title">
+                Billing
+              </div>
+            </ng-template>
+            <ng-template ngbTabContent>
+              <app-payment (tabChange)="tabChange($event)"></app-payment>
+            </ng-template>
+          </ngb-tab> -->
+        </ngb-tabset>
+      </div>
+    </div>
+  </div>
+</div>

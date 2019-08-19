@@ -1,0 +1,62 @@
+@import "../../../../../assets/scss/_variables.scss";
+.billing-box {
+  hr {
+    margin: 1rem 0;
+    border-top: 1px dashed $grey-border;
+  }
+  .card {
+    border-radius: 0rem;
+    border: 1px solid $light-grey-border;
+    &-title {
+      font-size: $font-size-base;
+      text-transform: uppercase;
+      font-family: $font-proxima;
+      color: $dark-grey-blue;
+      font-weight: $font-proxima-weight-semibold;
+      word-spacing: 3px;
+      img {
+        width: 16px;
+        height: 16px;
+        position: relative;
+        bottom: 2px;
+      }
+    }
+    &-body {
+      h6 {
+        font-weight: 600;
+        font-family: $font-proxima;
+        font-size: $font-size-large;
+        margin-bottom: 0;
+      }
+    }
+  }
+  .list-group {
+    .list-group-item {
+      font-size: $font-size-base;
+      color: $secondary-text-color;
+      font-weight: $font-weight-mid;
+      font-family: $font-proxima;
+      padding: 0.4rem 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 0 !important;
+      .long-text {
+        width: 50%;
+        font-family: $font-proxima;
+        font-size: $font-size-base;
+        color: $secondary-text-color;
+      }
+      .amount-text {
+        width: 35%;
+        font-size: $font-size-base;
+        text-align: right;
+        color: $secondary-text-color;
+        display: flex;
+        flex-direction: row-reverse;
+      }
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+<svg id="b3e11e2d-3ee5-473d-acab-32340cda0588" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .a47f91c0-d26b-45ac-96d2-1ce64da05494 {
+        fill: #aab4bd;
+      }
+    </style>
+  </defs>
+  
+  <rect class="a47f91c0-d26b-45ac-96d2-1ce64da05494" x="3" width="2" height="9"/>
+  <path class="a47f91c0-d26b-45ac-96d2-1ce64da05494" d="M4,10a2,2,0,1,1-2,2,2,2,0,0,1,2-2M4,8a4,4,0,1,0,4,4A4,4,0,0,0,4,8Z"/>
+  <rect class="a47f91c0-d26b-45ac-96d2-1ce64da05494" x="11" y="7" width="2" height="9"/>
+  <path class="a47f91c0-d26b-45ac-96d2-1ce64da05494" d="M12,2a2,2,0,1,1-2,2,2,2,0,0,1,2-2m0-2a4,4,0,1,0,4,4,4,4,0,0,0-4-4Z"/>
+</svg>

@@ -1,0 +1,79 @@
+<div class="usp-section aos-init">
+  <div class="usp-box container">
+    <ngu-carousel #myCarousel [inputs]="carouselOne" id="usp" [dataSource]="uspList" class="usp-menu border-control-right">
+      <div *nguCarouselDef="let item; let i = index; let ani = animate" class="carouselTile item">
+        <div class="item-sub-section" (click)="toggleVideo(i, '')">
+          <img [src]="'../../../../assets/images/icons/'+ item.codeVal +'.svg'" alt="usp-icons">
+          <a href="javascript:void(0)">{{item.codeValDesc}}</a>
+        </div>
+        <div class="usp-sub-megamenu" *ngIf="showVideo && i === relatedVideo" (clickOutside)="CloseUspMenu()" [exclude]="'div.item-sub-section'"
+          data-aos="fade-down" data-aos-delay="30" data-aos-easing="ease-in-sine" data-aos-duration="500" [ngClass]="'usp-subcontent-' + i">
+          <div class="overlay-menu">
+            <div class="row">
+              <div class="col-md-6 col-xs-12 text-left">
+                <p>HashMove providers offer great range of premium tracking and monitoring solution for your shipments.
+                  This
+                  value added service can be very compelling for the shipments which are required to be arrived on
+                  time.</p>
+                <div class="read-more hvr-icon-forward">learn more <i class="fa fa-angle-right hvr-icon ml-1"></i></div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="embed-responsive embed-responsive-16by9">
+                  <video src="../../../../assets/images/dummy.mp4" controls></video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      
+      <button NguCarouselPrev class='leftRs btn hvr-icon-back' (click)="toggleVideo(false, 'left')">
+        <i class="fa fa-angle-left hvr-icon"></i>
+      </button>
+      <button NguCarouselNext class='rightRs btn hvr-icon-forward' (click)="toggleVideo(false, 'right')">
+        <i class="fa fa-angle-right hvr-icon"></i>
+      </button>
+      
+      <ul class="myPoint" NguCarouselPoint>
+        <li *ngFor="let i of myCarousel.pointNumbers; let i = index" [class.active]="i==myCarousel.activePoint" (click)="myCarousel.moveTo(i)"></li>
+      </ul>
+      <!-- {{myCarousel.isHovered}} -->
+    </ngu-carousel>
+    <!-- <ngu-carousel [inputs]="carouselOne" [dataSource]="uspList" id="usp" class="usp-menu border-control-right">
+      <div *nguCarouselDef="let item; let i = index; let ani = animate" class="carouselTile item">
+        <div class="item-sub-section" (click)="toggleVideo(i, '')">
+          <img [src]="'../../../../assets/images/icons/'+ item.codeVal +'.svg'" alt="usp-icons">
+          <a href="javascript:void(0)">{{item.codeValDesc}}</a>
+        </div>
+        <div class="usp-sub-megamenu" *ngIf="showVideo && i === relatedVideo" (clickOutside)="CloseUspMenu()" [exclude]="'div.item-sub-section'"
+          data-aos="fade-down" data-aos-delay="30" data-aos-easing="ease-in-sine" data-aos-duration="500" [ngClass]="'usp-subcontent-' + i">
+          <div class="overlay-menu">
+            <div class="row">
+              <div class="col-md-6 col-xs-12 text-left">
+                <p>HashMove providers offer great range of premium tracking and monitoring solution for your shipments.
+                  This
+                  value added service can be very compelling for the shipments which are required to be arrived on
+                  time.</p>
+                <div class="read-more hvr-icon-forward">learn more <i class="fa fa-angle-right hvr-icon ml-1"></i></div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="embed-responsive embed-responsive-16by9">
+                  <video src="../../../../assets/images/dummy.mp4" controls></video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button NguCarouselPrev class='leftRs btn hvr-icon-back' (click)="toggleVideo(false, 'left')">
+        <i class="fa fa-angle-left hvr-icon"></i>
+      </button>
+      <button NguCarouselNext class='rightRs btn hvr-icon-forward' (click)="toggleVideo(false, 'right')">
+        <i class="fa fa-angle-right hvr-icon"></i>
+      </button>
+    </ngu-carousel> -->
+  </div>
+
+</div>

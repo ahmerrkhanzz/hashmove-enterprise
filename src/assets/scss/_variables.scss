@@ -1,0 +1,177 @@
+@import url("https://use.typekit.net/gwn1jtf.css");
+// Default for size for body
+$body-fontsize: 16px;
+$body-fontfamily: 'pragmatica',
+sans-serif;
+// Hashmove fonts - font-family and font-weight variables
+$font-pragmatica: 'pragmatica',
+sans-serif;
+$font-proxima: 'proxima-nova',
+sans-serif;
+// base font for root - HTML/Body
+// FONT SIZES VARIABLES
+$root-font-size: 1rem;
+$font-size-base: $root-font-size - 0.25; // font-size: 12px
+$font-size-medium:$root-font-size - 0.125; // font-size: 14px
+$font-size-large: $root-font-size; // font-size: 16px
+//old font size
+$base-font-size:$root-font-size;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-mid: 500;
+$font-weight-bold: 700;
+$font-proxima-weight-semibold: 600;
+// screen sizes for using component base media query
+$mediumDesktop: "(max-width: 1366px)";
+$tablet: "(max-width: 991px)";
+$mobile: "(max-width: 768px)";
+$smallDesktop: "(max-width: 1024px)";
+
+$btn-grey-color: #b3bcc3;
+$light-grey:#d1d8de;
+$color-white: #ffffff;
+$color-topmenu: #738593;
+$color-topmenuhover: #56b5da !important;
+$color-topmenuactive: #00a2df;
+$color-icon-grey: #738592;
+$color-default-svg:#738592;
+$color-default-svg-hover:#56b5da !important;
+$color-list-style-blue:#56b5da;
+$color-menuheading-blue:#00a2df;
+$color-menuheading-black:#2b2b2b;
+$color-date:#777777;
+$primary-text-shadow:#018cb5;
+// default blue button
+$btn-default-sky-blue: #1caae3;
+// inner pages background-color
+$inner-background-color: #f7f7f8;
+// Route Box heading color
+// $search-routes-heading: #738593;
+// check boxes background
+$checkboxes-background-color: #1eace3;
+// search background
+$search-background: #ebeef1;
+// default grey + dark blue
+$dark-grey-blue: #738593;
+// sky blue default
+$sky-blue-default: #00a0df;
+// Footer Copyrights color
+$copyrights-color: #777777;
+// shippping dropdown color
+$dropdown-shipping: #738593;
+// $dark-grey-blue: #738593;
+$white-color:#ffffff;
+$container-bg: #f2f3f5;
+$primary-grey: #3f5165;
+$active-text-color: #049bd5;
+// $dark-grey-blue: #738593;
+$disabled-text-color: #8a939d;
+$mini-footer-bg: #c7ced4;
+$break-down-color: #b5b5b5;
+$modal-header-background: #fcfcfd;
+$place-holder-color:#afafaf;
+$pagination-text-color:#555;
+$pagination-bg-color:#ebebeb;
+$pagination-bg-color2:#dde0e7;
+$alert-warning--background-color: #fff8ee;
+//--- FONTS COLORS --////
+$text-color-default: #2b2b2b;
+$text-grey: #afafaf;
+$secondary-text-color: #555555;
+//--- BORDER COLORS --////
+$input-border: #d5dade;
+$dashed-border-color: #d7d7d7;
+$theme-border-grey: #f4f4f4;
+$grey-border: #e5e5e5;
+$booking-card-border:#ebeff3;
+$dark-grey-border: #a8b0ba;
+$light-grey-border: #f1f1f1;
+$footer-border:#8f9da9;
+$checkboxes-border-color:#2a96da;
+$checkboxes-border: #e0e0e0;
+$sidebar-border-color: rgb(229,
+229,
+229);
+$left-sidebar-border-color: rgba($sidebar-border-color,
+0.502);
+$boxes-border-grey:#eff2f5;
+//--- COLORS --///
+$secondary-color: #02bdb6;
+$secondary-light-color:#e9f8f8;
+$secondary-color-dark:#01958f;
+$primary-color: #00a2df;
+$default-yellow: #f5a623;
+$badge-default: #546376;
+$badge-green: #c5f5f3;
+$badge-yellow: #fcf7ef;
+$badge-light-blue: #e4f5fc;
+$shaded-blue: #f4fafd;
+$grey-alert: #ebeef0;
+$dark-blue: #317fcb;
+$dark-blue-hover:#2b7ee4;
+$secondary-light-color: #80deda;
+$badge-secondary:#4e5b69;
+$danger-color: #d32020;
+$chili-red:#fe404b;
+$danger-color-light: #faecee;
+$disabled-color: #e9ecef;
+$pagination-color: #222222;
+$danger-light-color: #fcf0f1;
+$submenu-bg: #f1f3f4;
+$shipping-active-color:#00a1df;
+$shipping-subcar-active:#243748;
+$shipping-subcat-border:#8999a6;
+$shipping-subcat-text:#dbdfe2;
+//disable colors
+$btn-disable-background:#e3e7e9;
+$btn-disable-color:$dark-grey-blue;
+$dropdown-color:#e4e9ec;
+$admin-panel-bg:#f3f4f6;
+$user-panel-bg:#fcfcfe;
+$warehouse-tab: #e8e8e8;
+$color-plus-minus: #adadad;
+// shipping variables
+$boxes-border: #d9d9d9;
+$active-tab: $color-topmenuactive;
+$unactive-tab1: #ececec;
+$unactive-tab2: #ffffff;
+$unactive-container-tab: #a5b2ba;
+$tabs-grey-border: #e3e4e6;
+$badge-border: #edeff1;
+$pickup-text: #555555;
+$pickup-border: #dedfe0;
+$active-tab-fontsize: $font-size-base;
+$shipping-nav-tabs-width: 100%;
+$calendar-month-name-fontcolor: #2b2b2b;
+$calendar-month-name-fontsize: 15px;
+$ngb-dp-weekday-fontcolor: #777777;
+$calendar-background-color: $white-color;
+$btn-light-fontsize: $font-size-medium;
+$shipping-box-shadow: #d9d9d9;
+$container-detail-text-color: #717171;
+$portValid-color: #c70606;
+$pickup-options-hover-color: #f7f8f9;
+$nav-tabs-box-shadow: #008bd4;
+$ngb-dp-month-border-color: #dfdfdf;
+$btn-outline-secondary-bgcolor: #ebeff2;
+$btn-outline-secondary-bordercolor: #d5dade;
+$date-unactive:#f2f2f2;
+$weight-value-color: #777777;
+$border-e4: #e4e4e4;
+$TabActiveColor: $active-text-color;
+$select-background:#ecf0f3;
+$heading-light-color:#bec3c8;
+$bullets-background:#cfd7db;
+$background-dark-green:#0f9246;
+$background-ember:#f68e1f;
+
+
+// Customer Variables
+$customer-primary: #daecf9;
+$customer-secondary: #0082d6;
+$customer-footer:#1a1c27;
+$customer-text: #97a5b1;
+$screen-fourteen-hundred: 1400px;
+$screen-md-screen: 991px;
+$secondary-grey: #738593;
+$bottomTabs-navitem-color: #abb6be;

@@ -1,0 +1,17 @@
+<svg id="bb77e979-d120-4743-bcaf-c7f8354b4ebb" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .\31 1f6b092-74a8-4dea-850b-2dc627672e4a {
+        fill: #738593;
+      }
+    </style>
+  </defs>
+  
+  <g id="0a43c3d2-2c36-4868-a1c7-279c706c650d" data-name="route">
+    <g id="b8cda96a-cb4f-4a5c-9e89-d0b6428d68e9" data-name="&lt;Group&gt;">
+      <rect id="7b3067ba-4868-4841-bb23-744cfa9eb6f3" data-name="&lt;Path&gt;" class="11f6b092-74a8-4dea-850b-2dc627672e4a" x="5" y="7" width="10" height="2"/>
+      <rect id="3a715208-1dd5-468c-b0f4-b7a0763b6282" data-name="&lt;Path&gt;" class="11f6b092-74a8-4dea-850b-2dc627672e4a" y="7" width="3" height="2"/>
+      <path class="11f6b092-74a8-4dea-850b-2dc627672e4a" d="M15,7,10,2V14l5-5A1.187,1.187,0,0,0,15,7Z"/>
+    </g>
+  </g>
+</svg>

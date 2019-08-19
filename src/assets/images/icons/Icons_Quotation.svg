@@ -1,0 +1,44 @@
+<svg id="ab0772a4-04ca-45c7-b148-e777677b7dff" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
+  <defs>
+    <style>
+      .\36 5802fd4-ad04-48ca-837a-f435a300a1a6 {
+        fill: #00a2df;
+      }
+
+      .b7dd0415-482d-40c3-8164-34411c31dbaf {
+        fill: #fff;
+      }
+
+      .\36 649030a-6ba4-42e3-952e-4dc50a3d453c {
+        opacity: 0.15;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g>
+    <path id="bba9aa9e-9f15-4f62-b43e-068b16053d2c" data-name="&lt;Compound Path&gt;" class="65802fd4-ad04-48ca-837a-f435a300a1a6" d="M34,3V41H10V10a7.008,7.008,0,0,1,7-7H34m3-3H17A10,10,0,0,0,7,10V44H37V0Z"/>
+    <g id="014bf165-7469-4c20-856d-840b2b17dfa5" data-name="&lt;Group&gt;">
+      <polygon id="e69b3c44-39eb-4849-b9c4-f85c326869fc" data-name="&lt;Path&gt;" class="65802fd4-ad04-48ca-837a-f435a300a1a6" points="12.996 39 10.003 40.994 15.997 41 12.996 39"/>
+      <polygon id="5d428d60-3f70-432a-bf4f-726900379d75" data-name="&lt;Path&gt;" class="65802fd4-ad04-48ca-837a-f435a300a1a6" points="18.996 39 16.003 40.994 21.997 41 18.996 39"/>
+      <polygon id="081f74d0-910e-4532-8a3d-67a51e6e85ed" data-name="&lt;Path&gt;" class="65802fd4-ad04-48ca-837a-f435a300a1a6" points="24.996 39 22.003 40.994 27.997 41 24.996 39"/>
+      <polygon id="c297de95-8040-408b-8399-e57c022098ea" data-name="&lt;Path&gt;" class="65802fd4-ad04-48ca-837a-f435a300a1a6" points="30.996 39 28.003 40.994 33.997 41 30.996 39"/>
+    </g>
+    <g id="49b40272-edb3-4c21-b404-699449ec1ea0" data-name="&lt;Group&gt;">
+      <polygon id="189e6607-ae96-4a6d-8c49-ea802e4318e2" data-name="&lt;Path&gt;" class="b7dd0415-482d-40c3-8164-34411c31dbaf" points="12.996 42 10.003 43.994 15.997 44 12.996 42"/>
+      <polygon id="278d99ea-3634-495d-aba6-122e557d1330" data-name="&lt;Path&gt;" class="b7dd0415-482d-40c3-8164-34411c31dbaf" points="18.996 42 16.003 43.994 21.997 44 18.996 42"/>
+      <polygon id="5d437a9f-d90d-412f-9094-b99dfc71a841" data-name="&lt;Path&gt;" class="b7dd0415-482d-40c3-8164-34411c31dbaf" points="24.996 42 22.003 43.994 27.997 44 24.996 42"/>
+      <polygon id="3494d7fe-48a3-4567-86d6-1450fc38fe8f" data-name="&lt;Path&gt;" class="b7dd0415-482d-40c3-8164-34411c31dbaf" points="30.996 42 28.003 43.994 33.997 44 30.996 42"/>
+    </g>
+    <rect id="ef92b4dd-6dc1-4414-ad50-12fe29ee4ddd" data-name="&lt;Rectangle&gt;" class="65802fd4-ad04-48ca-837a-f435a300a1a6" x="15" y="28" width="8" height="3"/>
+    <rect id="a7c914b7-f9d5-467d-b73d-4093f6d36946" data-name="&lt;Rectangle&gt;" class="65802fd4-ad04-48ca-837a-f435a300a1a6" x="14" y="12" width="4" height="4" rx="2" ry="2"/>
+    <rect id="bcdeff4a-04d6-418e-816d-65755cb57fe7" data-name="&lt;Rectangle&gt;" class="b7dd0415-482d-40c3-8164-34411c31dbaf" x="30" y="6" width="11" height="30"/>
+    <g id="c4be3463-d8e2-4f39-9d16-c66075bf05c4" data-name="&lt;Rectangle&gt;" class="6649030a-6ba4-42e3-952e-4dc50a3d453c">
+      <path id="aa8ee538-c0ec-4273-ad6b-6b4332013f6e" data-name="&lt;Path&gt;" class="65802fd4-ad04-48ca-837a-f435a300a1a6" d="M34,41H13V12a6,6,0,0,1,6-6H34Z"/>
+    </g>
+    <g id="2ae72a11-08d0-4f25-aabe-969f6b1f9a27" data-name="&lt;Group&gt;">
+      <path id="e459877b-383f-483d-b33f-0ff9bf3b6860" data-name="&lt;Compound Path&gt;" class="65802fd4-ad04-48ca-837a-f435a300a1a6" d="M31.669,24.451a8.743,8.743,0,0,0,3.65.864c1.512,0,2.311-.6,2.311-1.5,0-.864-.69-1.357-2.44-1.953-2.42-.8-4-2.076-4-4.09,0-2.364,2.073-4.173,5.506-4.173a9.32,9.32,0,0,1,3.716.7l-.735,2.528a7.212,7.212,0,0,0-3.044-.657c-1.426,0-2.116.616-2.116,1.336,0,.884.82,1.274,2.7,1.952,2.57.9,3.779,2.179,3.779,4.132,0,2.322-1.879,4.3-5.875,4.3A9.936,9.936,0,0,1,31,27.042Z"/>
+    </g>
+    <rect id="319e84d6-0eb0-4f3a-b6e9-ad81045ab6e2" data-name="&lt;Path&gt;" class="65802fd4-ad04-48ca-837a-f435a300a1a6" x="34" y="27" width="3" height="5"/>
+    <rect id="2f07e878-72a7-4946-b4b9-e27e53484753" data-name="&lt;Path&gt;" class="65802fd4-ad04-48ca-837a-f435a300a1a6" x="34" y="9.982" width="3" height="5"/>
+  </g>
+</svg>

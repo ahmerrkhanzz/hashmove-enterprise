@@ -1,0 +1,78 @@
+@import "../../../../../assets/scss/_variables";
+
+.document {
+  background: #fff;
+  border: 1px solid #f1f1f1;
+  padding: 0.5rem 0 0;
+  /deep/ .card {
+    border: none;
+    &:hover {
+      border: none;
+      box-shadow: 0px 0px 0px;
+    }
+    &-header {
+      padding: 0.3rem;
+      border-bottom: 0;
+      background: #fff;
+      button {
+        width: 100%;
+        border-bottom: 1px dashed $light-grey-border;
+        &:hover,&:focus {
+          text-decoration: none;
+          box-shadow: 0px 0px 0px !important;
+        }
+      }
+      .accordion {
+        &-title {
+          margin: 0;
+          font-family: $font-proxima;
+          font-size: $font-size-large;
+          color: $primary-color;
+        }
+        &-time {
+          margin: 0;
+          color: $text-grey;
+          font-size: $font-size-base;
+        }
+        a.btn-outline-primary {
+          font-size: $font-size-medium;
+        }
+      }
+    }
+    &-body{
+      background: #fdfdff;
+      border-bottom: 1px solid rgba(0,0,0,.125);
+    }
+    &:last-child {
+      .card-header {
+        button {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  .doc-message {
+    font-size: $font-size-base;
+    font-weight: $font-weight-normal;
+    color: $text-grey;
+  }
+  .card-wrapper {
+    padding: 1rem 8rem;
+    .uploader {
+      text-align: center;
+      &-cancel-btn {
+        margin-top: 0.5rem;
+        font-family: $font-proxima;
+        font-size: $font-size-base;
+        color: $dark-grey-blue;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+    }
+    .form-control {
+      height: 3rem;
+      font-size: $font-size-medium;
+      font-weight: 400;
+    }
+  }
+}

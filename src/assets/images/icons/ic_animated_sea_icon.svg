@@ -1,0 +1,13 @@
+<svg class="ship-animate" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+
+  <g data-name="ship2">
+    <path data-name="&lt;Path&gt;" class="path-ship" d="M18.4,21H5.262a3,3,0,0,1-2.1-.862L0,17.029.042,15H24l-3.1,4.662A3,3,0,0,1,18.4,21Z" />
+    <rect data-name="&lt;Rectangle&gt;" class="rect-1" x="2" y="11" width="6" height="3" />
+    <rect data-name="&lt;Rectangle&gt;" class="rect-2" x="9" y="11" width="6" height="3" />
+    <rect data-name="&lt;Rectangle&gt;" class="rect-5" x="9" y="7" width="6" height="3" />
+    <rect data-name="&lt;Rectangle&gt;" class="rect-3" x="16" y="11" width="6" height="3" />
+    <rect data-name="&lt;Rectangle&gt;" class="rect-4" x="2" y="7" width="6" height="3" />
+    <rect data-name="&lt;Rectangle&gt;" class="rect-6" x="9" y="3" width="6" height="3" />
+  </g>
+
+</svg>

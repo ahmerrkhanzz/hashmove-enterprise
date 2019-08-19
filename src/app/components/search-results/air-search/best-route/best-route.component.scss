@@ -1,0 +1,353 @@
+@import "../../../../../assets/scss/_variables";
+$route-and-price-icon-color: #62c4eb;
+.best {
+  margin-bottom: 1.5rem;
+  user-select: none;
+  /* On-load icons animation via strok */
+  Path,
+  polygon,
+  rect,
+  circle {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    -webkit-animation: dash 1.5s linear alternate-reverse;
+    animation: dash 1.5s linear alternate-reverse; // stroke: #000000;
+    fill: $route-and-price-icon-color; //   fill-opacity: 0;
+    stroke-width: 0.6px;
+    animation-fill-mode: both;
+    /* opacity: 0; */
+  }
+  &-route {
+    //min-width: 386px;
+    min-width: 100%;
+    max-width: 100%;
+    .card {
+      border: 1px solid $btn-disable-color;
+      font-family: $font-proxima;
+      background: #fdfdfd;
+      cursor: pointer;
+      &-title {
+        //font-size: $font-size-large + 0.258;
+        color: $btn-disable-color;
+        text-transform: uppercase;
+        font-family: $font-proxima;
+        font-size: $font-size-medium;
+        font-weight: $font-proxima-weight-semibold;
+        margin-bottom: 0.55rem;
+      }
+      &-body {
+        padding-top: 20px;
+        padding-bottom: 25px;
+        min-height: 98px;
+        max-height: 98px;
+      }
+      &-text {
+        .best-route-circle {
+          fill: $btn-disable-color;
+          rect,
+          path {
+            fill: $btn-disable-color;
+          }
+        }
+        img.fastest-route-animate,
+        svg.fastest-route-animate {
+          width: 1.6rem;
+          height: 1.6rem;
+          float: left;
+          fill: $btn-disable-color;
+          rect,
+          path {
+            fill: $btn-disable-color;
+          }
+        }
+        strong {
+          font-size: $font-size-large + 0.25rem;
+          color: $btn-disable-color;
+          vertical-align: middle; // margin-left: 0.5rem;
+          // margin-right: 0.5rem;
+          margin-left: 10px;
+          margin-right: 10px;
+          font-weight: $font-weight-mid;
+          font-family: $font-pragmatica;
+          label {
+            font-size: $font-size-base;
+          }
+        }
+        span {
+          color: $light-grey;
+          font-size: 0.3rem;
+          width: 0.81rem;
+          padding-top: 13px;
+        }
+        small {
+          font-size: $font-size-large + 0.2;
+          vertical-align: sub;
+          color: $btn-disable-color;
+          font-weight: $font-weight-mid;
+          label {
+            font-size: $font-size-base;
+          }
+        }
+        &.route-circle {
+          height: 26px;
+          display: flex;
+        }
+      }
+      &:hover {
+        box-shadow: none;
+      }
+    }
+    &.best-active {
+      .card {
+        &-body:before {
+          content: " ";
+          width: 45px;
+          height: 45px;
+          background: url("../../../../../assets/images/corner-selection.svg") no-repeat;
+          position: absolute;
+          right: -2px;
+          top: -1px;
+        }
+      }
+    }
+    &-circle {
+      width: 26px;
+      float: left;
+    }
+    &:hover .clockSpin {
+      // animation: clockwiseSpin 2s infinite linear;
+      -webkit-animation: clockwiseSpin 1.2s linear infinite both;
+      animation: clockwiseSpin 1.2s linear infinite both; // width: auto !important;
+    }
+    &.fastest-route {
+      //fill-opacity: 1 !important;
+      .slide-1,
+      .slide-2,
+      .slide-3 {
+        fill-opacity: 1 !important; //   stroke-dashoffset: 1 !important;
+        //   opacity: 1 !important;
+        //animation-duration: 1s;
+      }
+      &:hover {
+        svg {
+          fill: $primary-color;
+        }
+        .slide-1 {
+          -webkit-animation: fastest-route-1 0.7s linear both;
+          animation: fastest-route-1 0.7s linear both; //animation-iteration-count: 4;
+        }
+        .slide-2 {
+          -webkit-animation: fastest-route-1 0.5s linear both;
+          animation: fastest-route-1 0.5s linear both;
+        }
+        .slide-3 {
+          -webkit-animation: fastest-route-1 0.3s linear both;
+          animation: fastest-route-1 0.3s linear both;
+        }
+      }
+    }
+    &.best-active {
+      .card {
+        border: solid 1px $primary-color;
+        background: $shaded-blue;
+        &-title,
+        strong {
+          color: $primary-color;
+        }
+        svg.best-route-circle,
+        svg.fastest-route-animate {
+          fill: $route-and-price-icon-color;
+          rect,
+          path {
+            fill: $route-and-price-icon-color;
+          }
+        }
+      }
+    }
+  }
+  .routing {
+    padding: 1.4rem 0.85rem;
+    min-width: 230px;
+    .routes {
+      display: inline-block;
+      font-family: $font-proxima; //width: 41%;
+      strong {
+        font-size: $font-size-medium;
+        font-weight: $font-proxima-weight-semibold;
+        font-family: $font-proxima;
+        vertical-align: middle;
+      }
+      img {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.25rem;
+      }
+      &:first-child {
+        text-align: right;
+      }
+      &:last-child {
+        text-align: left;
+      }
+    }
+    .arrows {
+      width: 15%;
+      text-align: center;
+      display: inline-block;
+      margin-right: 0.9rem;
+      .animated-arrows {
+        width: 2rem;
+        height: 1rem;
+        margin: 0 auto;
+        .rect-3 {
+          animation: movingarrow 1.5s alternate linear;
+          -moz-animation: movingarrow 1.5s alternate linear;
+          -o-animation: movingarrow 1.5s alternate linear;
+          -webkit-animation: movingarrow 1.5s alternate linear;
+        }
+        .rect-2 {
+          animation: movingarrow 1.6s alternate linear;
+          -moz-animation: movingarrow 1.6s alternate linear;
+          -o-animation: movingarrow 1.6s alternate linear;
+          -webkit-animation: movingarrow 1.6s alternate linear;
+        }
+        .rect-1 {
+          animation: movingarrow 2s alternate linear;
+          -moz-animation: movingarrow 2s alternate linear;
+          -o-animation: movingarrow 2s alternate linear;
+          -webkit-animation: movingarrow 2s alternate linear;
+        }
+        .rect-0 {
+          animation: movingarrow 2.2s alternate linear;
+          -moz-animation: movingarrow 2.2s alternate linear;
+          -o-animation: movingarrow 2.2s alternate linear;
+          -webkit-animation: movingarrow 2.2s alternate linear;
+        }
+        .path-animation-1,
+        rect {
+          fill: #a3afb8;
+          animation: movingarrow 2.5s alternate linear;
+          -moz-animation: movingarrow 2.5s alternate linear;
+          -o-animation: movingarrow 2.5s alternate linear;
+          -webkit-animation: movingarrow 2.5s alternate linear;
+        }
+        /** * ---------------------------------------- * animation movingarrow * ---------------------------------------- */
+        @-webkit-keyframes movingarrow {
+          0% {
+            transform: translate3d(-130%, 0, 0);
+            -ms-transform: translate3d(-130%, 0, 0);
+            -o-transform: translate3d(-130%, 0, 0);
+            -webkit-transform: translate3d(-130%, 0, 0);
+            opacity: 0;
+          }
+          80% {
+            opacity: 0;
+          }
+          100% {
+            transform: translate3d(0%, 0, 0);
+            -ms-transform: translate3d(0%, 0, 0);
+            -o-transform: translate3d(0%, 0, 0);
+            -webkit-transform: translate3d(0%, 0, 0);
+            opacity: 1;
+          }
+        }
+        @keyframes movingarrow {
+          0% {
+            transform: translate3d(-130%, 0, 0);
+            -ms-transform: translate3d(-130%, 0, 0);
+            -o-transform: translate3d(-130%, 0, 0);
+            -webkit-transform: translate3d(-130%, 0, 0);
+            opacity: 0;
+          }
+          80% {
+            opacity: 0;
+          }
+          100% {
+            transform: translate3d(0%, 0, 0);
+            -ms-transform: translate3d(0%, 0, 0);
+            -o-transform: translate3d(0%, 0, 0);
+            -webkit-transform: translate3d(0%, 0, 0);
+            opacity: 1;
+          }
+        }
+      }
+    }
+    p {
+      text-align: center;
+      margin: 0;
+      font-family: $font-proxima;
+      font-size: $font-size-medium;
+      font-weight: $font-weight-light;
+      color: $secondary-text-color;
+      margin-top: 0.45rem;
+      position: relative;
+      top: 7px;
+      strong {
+        font-size: $font-size-large + 0.125rem;
+        font-family: $font-proxima;
+        font-weight: $font-proxima-weight-semibold;
+        color: $text-color-default;
+        background: #fdfdff;
+        padding: 0 10px;
+        &:before {
+          content: " ";
+          width: 100%;
+          height: 2px;
+          position: absolute;
+          background: $primary-color;
+          left: 0;
+          top: 12px;
+          z-index: -1;
+        }
+      }
+    }
+  }
+  &-active {
+    border: solid 1px $primary-color !important;
+    background: $shaded-blue !important;
+    .card-title {
+      color: $primary-color;
+    }
+    strong {
+      color: $primary-color !important;
+    }
+    small {
+      color: $text-color-default;
+    }
+    svg.best-route-circle,
+    svg.fastest-route-animate {
+      fill: $route-and-price-icon-color;
+      rect,
+      path {
+        fill: $route-and-price-icon-color;
+      }
+    }
+    &:before {
+      content: " ";
+      width: 45px;
+      height: 45px;
+      background: url("../../../../../assets/images/corner-selection.svg") no-repeat;
+      position: absolute;
+      right: 0px;
+      top: -1px;
+    }
+  }
+  &:hover {
+    .card-title {
+      color: $primary-color;
+    }
+    strong {
+      color: $primary-color !important;
+    }
+    small {
+      color: $text-color-default;
+    }
+    svg.best-route-circle,
+    svg.fastest-route-animate {
+      fill: $route-and-price-icon-color;
+      rect,
+      path {
+        fill: $route-and-price-icon-color;
+      }
+    }
+  }
+}

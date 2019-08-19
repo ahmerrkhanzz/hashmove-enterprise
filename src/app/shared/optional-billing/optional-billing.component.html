@@ -1,0 +1,116 @@
+<div class="billing" id="Billing" [ngClass]="{'hasInsurance' : !showVAS}">
+  <div class="card">
+
+    <div class="close" *ngIf="closeIcon">
+      <a class="pointer crossIcon" (click)="closeModal()">
+        <img src="../../../../assets/images/icons/icon_close.svg" alt="close">
+      </a>
+    </div>
+
+    <div class="card-body">
+      <h5 class="card-title">
+        <img src="../../../../assets/images/icons/icon_summary.svg" alt="umbrella-icon" width="16px"> Billing Summary
+      </h5>
+
+      <!-- <ng-scrollbar [trackX]="false" [autoHide]="true" barclass="main-bar" #scrollRef>
+
+      </ng-scrollbar> -->
+
+      <div>
+        <h6 *ngIf="freightData.length && searchCriteria.searchMode !== 'warehouse-lcl'">Freight Surcharges</h6>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let item of freightData">
+            <!-- <span class="long-text" placement="top" ngbTooltip="{{item.SurchargeName}}">
+                  {{item.SurchargeCode}} - {{item.SurchargeName}}
+                </span>
+                <span class="amount-text">{{item.CurrencyCode}} {{item.TotalAmount | number: '1.2-2'}}</span> -->
+            <span class="long-text">
+              {{item.SurchargeCode}} - {{item.SurchargeName}} <span
+                *ngIf="searchCriteria.searchMode === 'warehouse-lcl' && searchCriteria?.storageType ==='full'">{{(searchCriteria.minimumLeaseTerm < 12)?'x ' + searchCriteria.minimumLeaseTerm:'x 1'}}</span>
+            </span>
+            <span class="amount-text">
+              <span>{{item.CurrencyCode}}
+                {{(searchCriteria.searchMode === 'warehouse-lcl')?item.IndividualPrice:item.TotalAmount | number: '1.2-2'}}
+                <span *ngIf="searchCriteria.searchMode === 'warehouse-lcl' && searchCriteria.storageType === 'full'">x
+                  {{(searchCriteria.minimumLeaseTerm < 12)?searchCriteria.minimumLeaseTerm:'1'}}</span>
+                <span *ngIf="searchCriteria.searchMode === 'warehouse-lcl' && searchCriteria.storageType === 'shared'">x
+                  {{((searchCriteria.searchBy ==='by_unit' || searchCriteria.searchBy ==='by_vol_weight') && searchCriteria?.storageType === 'shared' )?searchCriteria.CBM:searchCriteria.SQFT}}
+                  x {{searchCriteria.TotalDays}}</span>
+              </span>
+            </span>
+          </li>
+        </ul>
+        <hr *ngIf="freightData.length">
+
+        <h6 *ngIf="additionalData.length">Additional Charges</h6>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let item of additionalData">
+            <!-- <span class="long-text" placement="top" ngbTooltip="{{item.SurchargeName}}" [ngClass]="{'text-danger' : item.active}">{{item.SurchargeCode}} - {{item.SurchargeName}}</span>
+                <span class="amount-text" [ngClass]="{'text-danger' : item.active}">{{item.CurrencyCode}} {{item.TotalAmount | number: '1.2-2'}}</span> -->
+            <span class="long-text">{{item.SurchargeCode}} - {{item.SurchargeName}}</span>
+            <span class="amount-text">
+              <span *ngIf="item.TotalAmount > 0">{{item.CurrencyCode}} {{item.TotalAmount | number: '1.2-2'}}</span>
+              <span *ngIf="item.TotalAmount === 0">Free</span>
+            </span>
+          </li>
+        </ul>
+
+        <hr *ngIf="additionalData.length">
+
+        <h6 *ngIf="showVasSection">Value Added Services</h6>
+        <ul class="list-group list-group-flush value-services" *ngIf="showVasSection">
+          <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of vasData">
+            <!-- <span class="long-text" placement="top" ngbTooltip="{{item.SurchargeName}}">{{item.SurchargeCode}} - {{item.SurchargeName}}</span>
+                <span class="amount-text">{{item.CurrencyCode}} {{item.TotalAmount | number: '1.2-2'}}</span> -->
+            <!-- <span class="long-text"  [ngClass]="{'text-danger' : item.active}" *ngIf="item.TotalAmount > 0">{{item.SurchargeCode}} - {{item.SurchargeName}}</span>
+                <span class="amount-text"  [ngClass]="{'text-danger' : item.active}" *ngIf="item.TotalAmount > 0">{{item.CurrencyCode}} {{item.TotalAmount | number: '1.2-2'}}</span> -->
+
+            <span class="long-text" [ngClass]="{'text-danger' : item.active}"
+              *ngIf="item.TotalAmount > 0">{{item.SurchargeCode}}
+              - {{item.SurchargeName}}</span>
+            <span class="amount-text" [ngClass]="{'text-danger' : item.active}"
+              *ngIf="item.TotalAmount > 0 && item.SurchargeCode !== 'INSR'">{{item.CurrencyCode}}
+              {{item.TotalAmount | number: '1.2-2'}}</span>
+            <span class="amount-text" [ngClass]="{'text-danger' : item.active}"
+              *ngIf="item.SurchargeCode === 'INSR' && isInsured">
+              ---
+            </span>
+          </li>
+        </ul>
+
+        <hr *ngIf="vasData.length">
+        <h6 *ngIf="taxData.length">Taxes</h6>
+        <ul class="list-group list-group-flush value-services">
+          <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of taxData">
+            <span class="long-text" [ngClass]="{'text-danger' : item.active}"
+              *ngIf="item.TotalAmount > 0">{{item.SurchargeCode}}
+              - {{item.SurchargeName}}</span>
+            <span class="amount-text" [ngClass]="{'text-danger' : item.active}"
+              *ngIf="item.TotalAmount > 0">{{item.CurrencyCode}}
+              {{item.TotalAmount | number: '1.2-2'}}</span>
+          </li>
+        </ul>
+
+        <hr *ngIf="taxData.length">
+        <ul class="list-group list-group-flush">
+          <li *ngIf="discountedAmount"  class="list-group-item d-flex justify-content-between align-items-center">
+            <span class="long-text">{{discountData?.SurchargeCode}} - {{discountData?.SurchargeName}}</span>
+            <span class="amount-text">
+              <span>{{currencyCode}} {{discountedAmount | number: '1.2-2'}}</span>              
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <strong class="text-primary">Total</strong>
+            <span class="text-primary text-right">
+              <strong>{{currencyCode}} {{subTotal | number: '1.2-2'}}</strong><br>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+</div>

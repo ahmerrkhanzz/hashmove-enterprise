@@ -1,0 +1,14 @@
+<svg id="f9ef24f8-8066-4b6e-9316-a6e99ceb1ef6" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .c3eb9749-d922-48e5-8172-20beab3f67d2 {
+        fill: #ffffff;
+      }
+    </style>
+  </defs>
+  
+  <g id="20b5112f-d510-4878-8fc6-470c0e7f9b2e" data-name="camera">
+    <path class="c3eb9749-d922-48e5-8172-20beab3f67d2" d="M14,2V12a2,2,0,0,1-2,2H2V4A2,2,0,0,1,4,2H14m2-2H4A4,4,0,0,0,0,4V16H12a4,4,0,0,0,4-4V0Z"/>
+    <path class="c3eb9749-d922-48e5-8172-20beab3f67d2" d="M8,6A2,2,0,1,1,6,8,2,2,0,0,1,8,6M8,4a4,4,0,1,0,4,4A4,4,0,0,0,8,4Z"/>
+  </g>
+</svg>

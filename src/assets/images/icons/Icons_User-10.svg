@@ -1,0 +1,14 @@
+<svg id="43d866f9-8e1e-4bb4-a637-4957d35c2cca" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .\37 07b10a3-3aef-479f-a19a-5267cbd01168 {
+        fill: #00a2df;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g id="55752513-5063-4673-80dd-2e1a69024564" data-name="supplier">
+    <path id="0cb87942-6619-455e-b76a-08acdff42507" data-name="&lt;Compound Path&gt;" class="707b10a3-3aef-479f-a19a-5267cbd01168" d="M19,14v4a4,4,0,0,1-4,4H5V18a4,4,0,0,1,4-4H19m2-2H9a6,6,0,0,0-6,6v6H15a6,6,0,0,0,6-6V12Z"/>
+    <path id="572ec587-b634-47f4-877c-b3aec9681e32" data-name="&lt;Compound Path&gt;" class="707b10a3-3aef-479f-a19a-5267cbd01168" d="M13,2a2,2,0,0,1,2,2V6a2,2,0,0,1-2,2H11A2,2,0,0,1,9,6V4a2,2,0,0,1,2-2h2m0-2H11A4,4,0,0,0,7,4V6a4,4,0,0,0,4,4h2a4,4,0,0,0,4-4V4a4,4,0,0,0-4-4Z"/>
+  </g>
+</svg>

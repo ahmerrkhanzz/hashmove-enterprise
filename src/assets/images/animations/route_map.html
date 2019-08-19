@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style/main.css" />
+
+
+    <style>
+    .main-animation { width: 20px; height: auto; margin: 50px auto 0 auto; }
+        /*
+        .route-map-animate {
+            animation: slide-bottom 1.3s alternate linear both;
+            -webkit-transition-duration: 0.3s; 
+            transition-duration: 0.3s;
+        }
+        */
+
+        .circle-1 {
+            animation: movingcircle 0.1s alternate linear;
+        }
+
+        .circle-2 {
+            animation: movingcircle 0.2s alternate linear;
+            /*animation-delay: 3s;*/
+        }
+
+        .circle-3 {
+            animation: movingcircle 0.3s alternate linear;
+        }
+
+        .circle-4 {
+            animation: movingcircle 0.4s alternate linear;
+        }
+
+        .circle-5 {
+            animation: movingcircle 0.5s alternate linear;
+        }
+
+        .circle-6 {
+            animation: movingcircle 0.6s alternate linear;
+        }
+
+        .circle-7 {
+            animation: movingcircle 0.7s alternate linear;
+        }
+
+        .circle-8 {
+            animation: movingcircle 0.8s alternate linear;
+        }
+
+        .circle-9 {
+            animation: movingcircle 0.9s alternate linear;
+        }
+
+        .route-map-animate g {
+            fill: #00a2df;
+        }
+
+
+        /** * ---------------------------------------- * animation movingcircle * ---------------------------------------- */
+
+        @-webkit-keyframes movingcircle {
+            0% {
+                transform: translate3d(0, -30%, 0);
+                opacity: 0;
+            }
+            75% {
+                opacity: 0;
+            }
+            100% {
+                transform: translate3d(0, 0%, 0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes movingcircle {
+            0% {
+                transform: translate3d(0, -30%, 0);
+                opacity: 0;
+            }
+            75% {
+                opacity: 0;
+            }
+            100% {
+                transform: translate3d(0, 0%, 0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <div class="main-animation">
+        <div class="animate">
+            <svg class="route-map-animate" data-name="3c55c8ce-f9b2-4a03-9fc6-1fbafa08fdf9" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5.915 34.954">
+                <g>
+                    <circle class="circle-1" cx="4.915" cy="1" r="1" />
+                    <circle class="circle-2" cx="3.665" cy="5.102" r="1" />
+                    <circle class="circle-3" cx="2.747" cy="9.159" r="1" />
+                    <circle class="circle-4" cx="2.043" cy="13.275" r="1" />
+                    <circle class="circle-5" cx="1.534" cy="17.355" r="1" />
+                    <circle class="circle-6" cx="1.194" cy="21.52" r="1" />
+                    <circle class="circle-7" cx="1.019" cy="25.664" r="1" />
+                    <circle class="circle-8" cx="1" cy="29.81" r="1" />
+                    <circle class="circle-9" cx="1.136" cy="33.954" r="1" />
+                </g>
+            </svg>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+</body>
+
+</html>

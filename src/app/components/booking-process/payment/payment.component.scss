@@ -1,0 +1,357 @@
+@import "../../../../assets/scss/_variables";
+.payment {
+  padding: 24px 115px;
+  &-method {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  hr {
+    border-top: 1px dashed $dashed-border-color;
+  }
+  h3 {
+    padding: 0.7rem 0rem;
+    font-size: $font-size-large + 0.4;
+    font-family: $font-proxima;
+    font-weight: $font-proxima-weight-semibold;
+    border-bottom: 1px solid #dee2e6;
+    margin: 0;
+  }
+  p {
+    font-size: $font-size-medium;
+  }
+  .tab {
+    &-content {
+      transition: all .5s;
+      padding: 24px 0px !important;
+      text-align: left;
+      h3 {
+        padding: 0.7rem 0rem 0rem;
+        font-size: $font-size-large + 0.4;
+        font-family: $font-proxima;
+        font-weight: $font-proxima-weight-semibold;
+        border-bottom: 0px solid #dee2e6;
+      }
+      .select-number {
+        input[type="text"] {
+          padding-right: 29% !important;
+        }
+        .input-group-prepend,
+        .c-card {
+          .dropdown,
+          img {
+            //margin-top: 13px;
+            position: absolute;
+            margin-right: 12px;
+            right: 0;
+            width: 24px;
+            height: 20px;
+            .dropdown-toggle:after {
+              display: none;
+            }
+          }
+        }
+        span {
+          font-size: $font-size-medium;
+        }
+        .country-section {
+          border: 0px;
+          background: transparent;
+        }
+        ng-scrollbar {
+          margin-bottom: 0rem;
+          min-height: 267px;
+          width: 4rem;
+          position: absolute;
+          z-index: 999;
+          top: 10px;
+          border: 1px solid $primary-color;
+          box-shadow: 0px 5px 20px 0px rgba(0, 162, 223, 0.5);
+          -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 162, 223, 0.5);
+          left: -14px;
+          border-radius: .25rem;
+          background-color: $white-color;
+          ul {
+            border: 0px;
+            li.list-group-item {
+              border: 0px;
+              cursor: pointer;
+              padding: 1rem;
+              img {
+                border: 1px solid $grey-border;
+              }
+            }
+          }
+        }
+      }
+      .form-group {
+        margin-bottom: 10px;
+        label {
+          font-family: $font-proxima;
+          font-size: $font-size-large;
+          font-weight: $font-weight-normal;
+          color: $text-color-default;
+          padding-top: 15px;
+        }
+        input,
+        select {
+          height: 50px;
+          border: 1px solid $input-border;
+          color: $text-color-default;
+          font-size: $font-size-medium;
+          padding-left: 15px;
+          font-weight: 100;
+          &.fieldError {
+            border-color: $danger-color;
+            transition: ease-in .8s;
+          }
+        }
+        input[autocomplete=new-password] {
+          padding-right: 45px;
+        }
+        input:focus,
+        select:focus {
+          border-color: $primary-color;
+          transition: ease-in .8s;
+        }
+      }
+    }
+    .tab-content {
+      .tab-content {
+        padding: 0 !important;
+      }
+    }
+  }
+  &-tabs {
+    padding: 1.2rem;
+    .nav {
+      &-tabs {
+        border-bottom: 0px solid #dee2e6;
+        .nav-item:nth-child(1) .nav-link::before {
+          content: none;
+        }
+      }
+      &-item {
+        width: 50% !important;
+        :first-child {
+          margin-right: .3rem;
+        }
+        :last-child {
+          margin-left: .3rem;
+        }
+        .nav-link {
+          border: 1px solid #d5dade !important;
+          padding: 1rem;
+          color: $text-color-default !important;
+          border-radius: .25rem !important;
+          padding: .4rem.5rem .25rem !important;
+          text-transform: capitalize !important;
+          font-family: $font-proxima !important;
+          border-bottom: 2px solid $TabActiveColor !important;
+          -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+          opacity: .5;
+          transition: all .5s;
+          .icon-box {
+            height: 60px;
+            margin: 1rem 0 0;
+            .icon-card,
+            .icon-wallet {
+              width: 44px;
+            }
+          }
+          h4 {
+            font-size: $font-size-large;
+            margin-bottom: 0;
+          }
+          p {
+            font-size: $font-size-base;
+            color: $text-grey;
+          }
+          &.active:after {
+            content: " ";
+            width: 45px;
+            height: 45px;
+            background: url("../../../../assets/images/corner-selection.svg") no-repeat;
+            position: absolute;
+            right: 0px;
+            top: -1px;
+            border-radius: 0 .25rem;
+            transition: all .5s;
+          }
+        }
+        :hover {
+          -webkit-filter: grayscale(0%);
+          filter: grayscale(0%);
+          opacity: 1;
+          transition: all .5s;
+          h4 {
+            font-size: $font-size-large;
+            color: $text-color-default !important;
+          }
+        }
+        .active {
+          border: 1px solid $primary-color !important;
+          border-bottom: 2px solid $TabActiveColor !important;
+          box-shadow: 0px 5px 20px 0px rgba(0, 162, 223, 0.15);
+          -webkit-filter: grayscale(0%);
+          filter: grayscale(0%);
+          opacity: 1;
+          h4 {
+            font-size: $font-size-large;
+            color: $text-color-default !important;
+          }
+        }
+      }
+    }
+  }
+  &-actions {
+    margin-top: 28px;
+    a {
+      font-size: $font-size-medium;
+      font-family: $font-proxima;
+      font-weight: $font-weight-mid;
+      color: $dark-grey-blue;
+      display: inline-block;
+      vertical-align: sub;
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+    button {
+      padding: 0.7rem 0.5rem;
+      text-transform: uppercase;
+      font-size: $font-size-large;
+      font-family: $font-proxima;
+      font-weight: $font-proxima-weight-semibold;
+      background-color: $secondary-color !important;
+      background: $secondary-color !important;
+      @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+        /* IE10+ specific styles go here */
+        background-color: $secondary-color !important;
+        background: $secondary-color !important;
+      }
+    }
+  }
+  &-wallet {
+    &-card {
+      label {
+        font-size: $font-size-large;
+        font-family: $font-proxima;
+        font-weight: $font-weight-normal;
+        color: $text-color-default;
+      }
+      .card {
+        &-body {
+          padding: 0.70rem 1.25rem;
+          border-color: $light-grey-border;
+        }
+        &-title {
+          font-size: $font-size-medium;
+          font-family: $font-pragmatica;
+        }
+        &-text {
+          font-size: $font-size-large + $font-size-large;
+          font-family: $font-pragmatica;
+          font-weight: $font-weight-mid;
+          line-height: 1.2;
+        }
+      }
+    }
+    .alert {
+      &.alert-danger {
+        overflow: hidden;
+        padding: .75rem 0rem;
+        padding-left: 11%;
+        border: 1px solid $danger-color;
+        background: $danger-color-light;
+        .icon-size-24 {
+          position: relative;
+          left: 4px;
+        }
+        label {
+          font-size: $font-size-large;
+          font-weight: $font-weight-mid;
+          font-family: $font-pragmatica;
+          color: $text-color-default;
+          margin: 0px;
+        }
+        p {
+          margin: 0px;
+          font-size: $font-size-medium;
+          font-weight: $font-weight-normal;
+          font-family: $font-proxima;
+          color: $secondary-text-color;
+        }
+      }
+      &-shape {
+        background: $danger-color;
+        position: absolute;
+        left: 0;
+        height: 100%;
+        top: 0;
+        width: 54px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        &:before {
+          content: " ";
+          width: 0;
+          height: 0;
+          border-top: 34px solid transparent;
+          border-bottom: 38px solid transparent;
+          border-left: 20px solid $danger-color;
+          position: absolute;
+          left: 54px;
+          top: -1px;
+          z-index: 1;
+        }
+      }
+    }
+    &-btn {
+      font-size: $font-size-large;
+      font-family: $font-proxima;
+      font-weight: $font-weight-mid;
+      min-width: 200px;
+      height: 50px;
+    }
+    &-secure {
+      &-logo {
+        width: 30px;
+        height: 40px;
+      }
+      p {
+        color: $text-grey;
+        font-size: $font-size-base;
+        font-family: $font-proxima;
+        font-weight: $font-weight-light;
+        max-width: 290px;
+        line-height: 1.3;
+        margin-left: 0.5rem !important;
+        margin: 0;
+        a {
+          font-weight: $font-proxima-weight-semibold;
+          text-transform: uppercase;
+          color: $text-grey;
+        }
+      }
+    }
+  }
+}
+
+.formError {
+  width: 100%;
+  p {
+    margin-top: 2px;
+    margin-bottom: 0px;
+    color: $danger-color;
+    font-size: $font-size-medium;
+    font-family: $font-proxima;
+    font-weight: $font-weight-mid;
+    text-transform: capitalize;
+    position: absolute;
+    .send-confirmation {
+      color: $secondary-color;
+      $font-family: $font-proxima;
+      margin-left: 0.57rem;
+    }
+  }
+}

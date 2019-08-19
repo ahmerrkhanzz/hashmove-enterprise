@@ -1,0 +1,81 @@
+<div class="specialPrice">
+  <app-loader-main *ngIf="loading"></app-loader-main>
+  <div class="user-modal animated fadeIn">
+    <div class="modal-header">
+      <h4 class="user-modal-title">Request Special Price</h4>
+      <a class="pointer crossIcon" (click)="closeModal()">
+        <img src="../../../../assets/images/icons/icon_close.svg" alt="close">
+      </a>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-12">
+          <!-- <ng-scrollbar [trackX]="false" [trackX]="true" style="min-height:415px;max-height:415px;"> -->
+            <div class="form-group">
+              <label>Description</label>
+              <textarea [(ngModel)]="desc" class="form-control" name="description" id="" cols="30" rows="10" placeholder="Type here"></textarea>
+            </div>
+            <div class="row" *ngIf="searchCriteria.searchMode === 'sea-lcl' || searchCriteria.searchMode === 'air-lcl'">
+              <div class="col input-dropdown">
+                <label for="" class="w-100">Total Volume</label>
+                <div class="input-group">
+                  <input type="totalvolume" min="0" step="1" class="form-control" [disabled]="true" [ngModel]="searchCriteria.SearchCriteriaContainerDetail[0].contRequestedCBM">
+                  <div class="input-group-append">
+                    <span>cbm</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col input-dropdown">
+                <label for="" class="w-100">Total Weight</label>
+                <div class="input-group">
+                  <input type="number" min="0" step="1" class="form-control" [disabled]="true" [ngModel]="searchCriteria.SearchCriteriaContainerDetail[0].contRequestedWeight" >
+                  <div class="input-group-append">
+                    kg
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="containers" *ngIf="searchCriteria.searchMode === 'sea-fcl' || searchCriteria.searchMode === 'truck-ftl'">
+              <label>Your Containers</label>
+              <div class="container-main pl-3 pr-2">
+                <div class="row">
+                  <div class="col-xl-6 col-md-6 col-12 pr-2 pb-1 p-0" *ngFor="let container of selectedContainers">
+                    <div class="card container-boxes disabled">
+                      <span class="count-triangle">
+                        <span>{{container.contRequestedQty}}</span>
+                      </span>
+                      <div class="card-body mb-2 p-2">
+                        <div class="image-container">
+                          <img async defer
+                            src="'../../../assets/images/icons/{{container?.containerDtl?.ContainerSpecImage}}"
+                            alt="container-icons" class="ContainerImg20">
+                        </div>
+                        <p class="card-text">
+                          {{container?.containerDtl?.ContainerSpecDesc}}
+                        </p>
+                        <div class="containerInfo">
+                          <div class="container-size" *ngIf="searchCriteria.searchMode === 'sea-fcl'">
+                            <label>Size</label>
+                            <small>{{getContainerInfo(container.containerDtl).containerSize}}</small>
+                          </div>
+                          <div class="container-weight">
+                            <label>Max Weight</label>
+                            <small>{{getContainerInfo(container.containerDtl).containerWeight
+                              | number}} {{container?.containerDtl?.WeightUnit}}</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- </ng-scrollbar> -->
+        </div>
+        <div class="col">
+          <button type="button" (click)="bookNowCarriers()"
+            class="btn btn-primary hvr-sweep-to-right w-100 mt-4 btn-container" [disabled]="!desc">Submit Request</button>
+        </div>
+      </div>
+    </div>
+  </div>

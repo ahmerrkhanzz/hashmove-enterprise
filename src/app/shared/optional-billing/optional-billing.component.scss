@@ -1,0 +1,104 @@
+@import "../../../assets/scss/_variables";
+.billing {
+  transition: all 1s ease;
+  position: relative;
+  hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-top: 1px dashed $grey-border;
+  }
+  .card {
+    border-radius: 0.2rem;
+    border: 1px solid $light-grey-border;
+    .close {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      right: 8px;
+      top: 2px;
+      img {
+        width: 100%;
+      }
+    }
+    &-title {
+      font-size: $font-size-base !important;
+      text-transform: uppercase;
+      font-family: $font-proxima;
+      color: $dark-grey-blue;
+      font-weight: $font-proxima-weight-semibold;
+      text-transform: uppercase;
+      font-family: $font-proxima;
+      color: $dark-grey-blue;
+      word-spacing: 3px;
+      margin-bottom: 30px;
+      img,
+      svg {
+        height: 16px;
+      }
+    }
+    &-body {
+      background-color: $white-color;
+      overflow: auto;
+      animation: textChange 3s ease-out;
+      h6 {
+        font-weight: 600;
+        font-family: $font-proxima;
+        font-size: $font-size-large;
+        margin-bottom: 0;
+      }
+    }
+  }
+  .list-group {
+    .list-group-item {
+      font-size: $font-size-large;
+      background: transparent !important;
+      position: unset !important;
+      border: none;
+      padding: 5px 0;
+      font-weight: $font-weight-mid;
+      text-transform: uppercase;
+      .long-text {
+        font-family: $font-proxima;
+        font-size: $font-size-base;
+        color: $secondary-text-color;
+        width: 65%;
+      }
+      .amount-text {
+        font-size: $font-size-base;
+        text-align: left;
+        color: $secondary-text-color;
+        width: 35%;
+        display: flex;
+        flex-direction: row-reverse;
+        span{
+          text-transform: uppercase;
+          span{
+            text-transform: lowercase;
+          }
+        }
+
+      }
+      &:last-child {
+        padding-bottom: 0px;
+      }
+      .text-primary {
+        font-size: $font-size-medium !important;
+        font-weight: $font-weight-mid !important;
+        strong {
+          @extend .text-primary;
+        }
+      }
+    }
+    &.total {
+      .list-group-item {
+        padding: 0;
+      }
+    }
+  }
+  .value-services {
+    .long-text,
+    .amount-text {
+      animation: textChange 3s ease-out;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<svg id="45bda59a-b56a-462b-b5a2-1301e3479fc3" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
+  <defs>
+    <style>
+      .\37 01a5eac-68ca-4206-b8a2-c9be49b78bd1 {
+        fill: #fff;
+      }
+
+      .d5134560-9600-4ef4-bf5f-215175ab3dbb {
+        fill: #00a2df;
+      }
+
+      .\37 468e8d3-947f-4308-a996-d93c0913878a {
+        opacity: 0.15;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g>
+    <g id="b96992c9-2440-417f-83cf-c25103d7a90e" data-name="&lt;Rectangle&gt;">
+      <path id="72a77306-23f7-4c86-8517-4ec30e650366" data-name="&lt;Path&gt;" class="701a5eac-68ca-4206-b8a2-c9be49b78bd1" d="M37,44H7V10A10,10,0,0,1,17,0H37Z"/>
+    </g>
+    <path id="a741fae9-e8f1-4201-8ce4-fd20e4612644" data-name="&lt;Compound Path&gt;" class="d5134560-9600-4ef4-bf5f-215175ab3dbb" d="M34,3V41H10V10a7.008,7.008,0,0,1,7-7H34m3-3H17A10,10,0,0,0,7,10V44H37V0Z"/>
+    <rect id="e90defaf-8e18-4ae2-be26-60a226229cc3" data-name="&lt;Rectangle&gt;" class="701a5eac-68ca-4206-b8a2-c9be49b78bd1" x="30" y="6" width="11" height="32"/>
+    <path id="86ff538b-51fc-4958-b41a-fd4bf346c4d7" data-name="&lt;Compound Path&gt;" class="d5134560-9600-4ef4-bf5f-215175ab3dbb" d="M32,13a9,9,0,1,1-9,9,9.01,9.01,0,0,1,9-9m0-3A12,12,0,1,0,44,22,12,12,0,0,0,32,10Z"/>
+    <g id="a379cec0-e80c-4e91-9122-ba102f0cc59d" data-name="&lt;Group&gt;">
+      <polygon id="707c534a-d9ba-4c0e-8a11-9dbcaa3c94cf" data-name="&lt;Path&gt;" class="701a5eac-68ca-4206-b8a2-c9be49b78bd1" points="35.703 17.5 30.8 22.146 28.297 19.774 26 22 30.8 26.5 38 19.677 35.703 17.5"/>
+      <polygon id="27ac248a-d97f-499b-b10a-eeb51dbff302" data-name="&lt;Path&gt;" class="d5134560-9600-4ef4-bf5f-215175ab3dbb" points="35.703 17.5 30.8 22.146 28.297 19.774 26 22 30.8 26.5 38 19.677 35.703 17.5"/>
+    </g>
+    <g id="0d781bbc-e6df-4250-b88c-d162bbdc4a2c" data-name="&lt;Group&gt;" class="7468e8d3-947f-4308-a996-d93c0913878a">
+      <path id="ed822f10-92e3-4951-9994-c535160150c9" data-name="&lt;Path&gt;" class="d5134560-9600-4ef4-bf5f-215175ab3dbb" d="M32,34a12,12,0,1,1,2-23.82V6H19a6,6,0,0,0-6,6V41H34V33.82A12.024,12.024,0,0,1,32,34Z"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,64 @@
+<div class="cargo-details">
+  <div class="user-modal animated fadeIn">
+    <div class="modal-header">
+      <h4 class="user-modal-title">Cargo Details</h4>
+      <a class="pointer crossIcon">
+        <img src="../../../../assets/images/icons/icon_close.svg" alt="close" (click)="close()">
+      </a>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-12">
+          <!-- <ng-scrollbar [trackX]="false" [trackY]="true" style="min-height:332px;max-height:415px;"> -->
+            <div class="row">
+              <div class="col-xl-2 col-md-2 col-12 pr-0">
+                <div class="image-container">
+                  <img async defer src="'../../../assets/images/shipping/Goods.png" alt="container-icons"
+                    class="ContainerImg20">
+                </div>
+              </div>
+              <div class="col-xl-10 col-md-10 col-12">
+                <label class="w-100">{{data.ShippingCatName}}</label>
+                <p>{{data.SpecialRequestDesc}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="containers">
+              <label>{{data.ContainerCount}} {{(data.ContainerCount > 1) ? 'Containers' : 'Container'}}</label>
+              <div class="container-main">
+                <div class="row">
+                  <div class="col-xl-6 col-md-6 col-12" *ngFor="let container of containers">
+                <div class="card container-boxes disabled">
+                  <span class="count-triangle">
+                    <span>{{container.bookingContTypeQty}}</span>
+                  </span>
+                  <div class="card-body mb-2">
+                    <p class="card-text">
+                      {{container.containerSpecDesc}}
+                    </p>
+                    <div class="image-container">
+                      <img async defer src="../../../../assets/images/icons/{{container.containerSpecImage}}"
+                        alt="container-icons" class="ContainerImg20" />
+                    </div>
+                    <div class="containerInfo" *ngIf="data.ContainerLoad === 'FCL' || data.ContainerLoad === 'FTL'">
+                      <div class="container-size" *ngIf="data.containerLoad === 'FCL'">
+                        <label>Size</label>
+                        <small>{{getContainerInfo(container).containerSize}}</small>
+                      </div>
+                      <div class="container-weight">
+                        <label>Max Weight</label>
+                        <small>{{container.containerWeight}} {{container.weightUnit}}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                </div>
+              </div>
+            </div>
+          <!-- </ng-scrollbar> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

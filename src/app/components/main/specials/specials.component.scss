@@ -1,0 +1,57 @@
+@import '../../../../assets/scss/_variables';
+.title {
+  font-size: $font-size-large + 1rem;
+  font-family: $font-pragmatica;
+  border-left: 3px solid $primary-color;
+  font-weight: $font-weight-mid;
+  color: $text-color-default;
+  padding: 10px 23px;
+  margin-bottom: 25px;
+  letter-spacing: -0.05rem; //text-shadow: 1px 0px $text-color-default;
+}
+
+.special {
+  .card {
+    border: 0px;
+    background: transparent;
+    transition: all 0.5s ease;
+    overflow: hidden;
+    &:hover {
+      cursor: pointer;
+    }
+    .card-img-top {
+      transition: all 0.5s ease;
+      border-radius: 4px;
+    }
+    &-body {
+      padding: 30px 0;
+      transition: all 0.5s ease;
+      h5 {
+        font-size: $font-size-large + .25rem;
+        font-weight: 500;
+        color: $text-color-default;
+      }
+      p {
+        font-weight: 400;
+        font-size: $font-size-large + .125rem;
+        font-family: $font-proxima;
+        color: $secondary-text-color;
+        line-height: 1.4;
+      }
+    }
+    &-image {
+      overflow: hidden;
+      border-radius: 4px;
+    }
+  }
+  .item {
+    &:hover {
+      // .card-body {
+      //   padding-left: 12px;
+      // }
+      .card-img-top {
+        transform: scale(1.05);
+      }
+    }
+  }
+}

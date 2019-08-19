@@ -1,0 +1,317 @@
+@import "../../../../assets/scss/_variables.scss";
+.tracking-monitoring {
+  .catDetail {
+    .amount-text {
+      font-size: $font-size-medium;
+    }
+  }
+  .status2 {
+    .card {
+      background: transparent;
+      border: 0px;
+      &-body {
+        padding: 0 1.25rem;
+        .card-subtitle {
+          font-family: $font-proxima;
+          color: $dark-grey-blue;
+          font-size: $font-size-base;
+          font-weight: $font-weight-mid;
+          text-transform: uppercase;
+        }
+        .card-title {
+          @extend .card-subtitle;
+          font-size: $font-size-large;
+          color: $text-color-default;
+        }
+        .card-text {
+          @extend .card-subtitle;
+          font-size: $font-size-medium;
+          color: $secondary-text-color;
+          text-transform: capitalize;
+        }
+      }
+    }
+    .col-xl-6 {
+      .card {
+        &-body {
+          padding: 0 0.4rem;
+        }
+      }
+    }
+  }
+  .tracking-info-alert {
+    .alert {
+      font-family: $font-proxima;
+      font-weight: 500;
+      border: 1px dashed #f3a723;
+      font-size: $font-size-medium;
+      overflow: hidden;
+      .svg-color {
+        transform: rotate(-18deg) !important;
+        z-index: 2;
+      }
+      &-message {
+        width: 100%;
+        marquee {
+          font-weight: $font-proxima-weight-semibold;
+          font-family: $font-proxima;
+          margin-top: 0rem;
+          color: $text-color-default;
+          font-size: $font-size-medium;
+          line-height: 1.8;
+          // margin: 0 25px;
+        }
+      }
+      a {
+        font-size: $font-size-large;
+        float: right;
+        font-size: $font-proxima-weight-semibold;
+        font-family: $font-proxima;
+        margin-top: 0rem;
+        color: $primary-grey;
+      }
+      &.alert-warning:after {
+        content: " ";
+        width: 30px;
+        height: 100%;
+        position: absolute;
+        background: #f8d7da00;
+        border-top: 24px solid transparent;
+        border-bottom: 28px solid transparent;
+        border-left: 26px solid #b96169;
+        top: 1px;
+        left: 34px;
+        z-index: 1;
+      }
+      &.alert-warning:before {
+        content: " ";
+        width: 34px;
+        height: 100%;
+        position: absolute;
+        background: #b96169;
+        left: 0;
+        top: 0px;
+        z-index: -1;
+      }
+    }
+  }
+  button.gm-ui-hover-effect {
+    display: none !important;
+  }
+  .google-map {
+    .my-shipment-location {
+      /deep/ .ng-scrollbar-x-layout {
+        .ng-scrollbar-y-layout {
+          ng-scrollbar-y {
+            right: 5px;
+          }
+        }
+      }
+      z-index: 9999;
+      position: absolute;
+      top: 0rem; // top: 1rem;
+      width: auto;
+      margin-left: 0rem; // margin-left: 1rem;
+      overflow: hidden !important;
+      height: 530px;
+      ul {
+        // max-width: 345px;
+        max-width: 100%;
+        border: 0 solid #00a2df !important;
+        background: 0 0;
+        border-radius: 3px;
+        padding: 0 0;
+        margin: 0.5rem;
+        margin-bottom: 0rem; // -webkit-box-shadow: 0 0 30px 0 #d9d9d9;
+        // box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.2);
+        // max-height: 200px;
+        // max-height: 512px;
+        height: 700px;
+        transition: max-height 1.2s ease-out;
+        overflow: hidden; // background-color: $color-white;
+        position: static;
+        overflow-y: auto;
+        li {
+          border: 0 solid rgba(0, 0, 0, 0.125);
+          background: transparent !important;
+          display: flex;
+          flex: 0 0;
+          padding: .75rem 0.55rem;
+          &:hover {
+            .fa.fa-circle {
+              font-size: 9px !important;
+              transition: all cubic-bezier(0.4, 0, 1, 1) 0.2s;
+              left: 9px !important;
+              top: -4px !important;
+            }
+          }
+          .location-start-icon {
+            display: none;
+          }
+          &.portStart {
+            .location-start-icon {
+              display: block !important;
+            }
+            .fa.fa-circle {
+              display: none !important;
+            }
+          }
+          &.selected {
+            .port {
+              label {
+                color: $primary-color;
+              }
+            }
+            .fa.fa-circle {
+              color: $primary-color !important;
+            }
+          }
+          .port-icon {
+            float: left;
+            text-align: left;
+            margin-right: 1.25rem;
+            img,
+            svg {
+              width: 24px;
+              fill: rgba($color-default-svg, 0.65);
+              margin-top: 3px;
+              margin-left: 7px;
+            }
+            &:before {
+              content: "";
+              width: 45px;
+              height: 84%;
+              border-left: dashed 1px $color-default-svg;
+              position: absolute; // left: 2rem;
+              left: 1.3rem;
+              top: 1.8rem;
+              z-index: 1;
+            }
+            .fa.fa-circle {
+              font-size: 7px;
+              position: relative;
+              top: -5px;
+              left: 10px;
+              color: $dark-grey-blue;
+            }
+          }
+          .port {
+            line-height: 1.3;
+            border-bottom: 1px solid $grey-border;
+            padding-bottom: 1.5rem;
+            label {
+              margin: 0;
+              width: 90%;
+              font-size: $font-size-medium !important;
+              font-family: $font-proxima;
+              color: $text-color-default;
+              font-weight: $font-weight-mid;
+            }
+            small {
+              @extend label;
+              color: $secondary-text-color !important;
+              font-weight: $font-weight-normal;
+            }
+          }
+          p {
+            width: 80%;
+            margin-right: 10px;
+            margin-bottom: 0rem;
+            font-family: $font-proxima;
+            font-size: $font-size-medium;
+            color: $text-color-default;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+            float: left;
+            padding: 0.25rem 1rem 1rem 0;
+            cursor: pointer;
+            small {
+              display: block;
+              color: $secondary-text-color;
+              font-size: $font-size-base;
+            }
+          } //&:hover,
+          &.selected {
+            // background-color: rgba($light-grey, .25);
+            .port-icon {
+              color: $sky-blue-default;
+              img,
+              svg {
+                width: 24px;
+                fill: $primary-color;
+              }
+              &:before {
+                content: "";
+                width: 45px;
+                height: 84%;
+                border-left: solid 1px $primary-color;
+                position: absolute;
+                left: 1.3rem;
+                top: 1.8rem;
+                z-index: 1;
+              }
+            }
+            p {
+              color: $sky-blue-default;
+            }
+            small {
+              font-size: $font-size-base;
+            }
+          }
+          &:last-child {
+            p {
+              border-bottom: 0 solid rgba(0, 0, 0, 0.125);
+            }
+            .port-icon {
+              &:before {
+                content: "";
+                border-left: solid 0 $primary-color;
+              }
+            }
+          }
+          &:last-child {
+            .port-icon {
+              &:before {
+                display: none;
+              }
+            }
+            .port {
+              border: 0px;
+              padding-bottom: 0px;
+            }
+          }
+        }
+        .list-group-item:hover {
+          z-index: unset;
+        }
+        &.BookingRouteMapInfo {
+          transition: max-height 2s ease-out;
+          max-height: 800px;
+        }
+      }
+      .view-btn {
+        max-width: 337px;
+        background: $modal-header-background !important;
+        border-top: 1px solid $grey-border !important;
+        font-size: $font-size-base;
+        font-family: $font-proxima;
+        font-weight: $font-weight-mid;
+        color: $dark-grey-blue;
+        height: 24px;
+        margin: 0 0.5rem; // box-shadow: 0px 14px 25px -9px rgba(0, 0, 0, 0.2);
+        border: 0px;
+        width: 100%;
+        outline: 0;
+        &.booking-info-icon {
+          img {
+            transition: all ease 0.7s;
+            transform: rotate(180deg);
+          }
+        }
+        img {
+          transform: rotate(0deg);
+          transition: all ease 0.7s;
+        }
+      }
+    }
+  }
+}

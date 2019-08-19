@@ -1,0 +1,206 @@
+@import "../../../../assets/scss/_variables"; // Local Variables
+$TotalAmoutColor: $active-text-color;
+$DueAmoutColor: $text-color-default;
+$departure-fontColor: $secondary-grey;
+.departure {
+  .card {
+    border-radius: 0.2rem;
+    border: 1px solid $light-grey-border !important;
+    &-body {
+      background-color: $white-color;
+      border: 0px solid $light-grey-border !important;
+    }
+    &-title {
+      font-size: $font-size-medium;
+      text-transform: uppercase;
+      font-family: $font-proxima;
+      color: $secondary-grey;
+      word-spacing: 3px;
+      img {
+        position: relative;
+        top: -3px;
+      }
+    }
+    &-text {
+      font-size: $font-size-medium;
+      color: $secondary-grey;
+      font-family: $font-proxima;
+    }
+    &-footer {
+      font-size: $font-size-medium;
+      text-transform: uppercase;
+      text-align: right;
+      background: $modal-header-background;
+      border-top: 1px solid $light-grey-border;
+      a {
+        font-family: $font-proxima;
+        font-weight: 500;
+        font-size: $font-size-base + 0.1;
+        color: $secondary-grey;
+        &:first-child {
+          margin-right: 0.8rem;
+        }
+      }
+    }
+  }
+  &-company {
+    .logo {
+      border: solid 1px #f4f4f4;
+      text-align: center;
+      margin: 10px 0px;
+      float: left;
+      max-width: 64px;
+      width: 100%;
+      height: 64px;
+      margin-right: 15px;
+      overflow: hidden;
+      background-color: $white-color;
+      position: relative;
+      img {
+        width: 100%;
+        margin: 0;
+        background: transparent;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    .company {
+      text-align: left;
+      float: left;
+      margin-top: 18px;
+      span {
+        font-size: $font-size-large;
+        text-align: left;
+        font-family: $font-pragmatica;
+        font-weight: $font-weight-normal;
+      }
+      p {
+        font-size: $font-size-large + 0.25rem;
+        font-family: $font-pragmatica;
+        font-weight: $font-weight-mid;
+        text-align: left;
+        line-height: 1.2;
+      }
+    }
+  }
+  &-details {
+    .icon {
+      width: 18px;
+      height: 18px;
+      float: left;
+      margin: 4px 10px 20px 0;
+      padding: 1px;
+      fill: $departure-fontColor;
+    }
+    .carrier-logo {
+      margin-right: 12px;
+      text-align: center;
+      float: left;
+      width: 16px;
+      height: 16px;
+      margin-top: 4px;
+      overflow: hidden;
+      background-color: transparent;
+      position: relative;
+      img {
+        margin: 0;
+        top: 23%;
+        left: 14%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-12%, -20%);
+        width: 100%;
+        position: absolute;
+      }
+    }
+    .col-md-4 {
+      padding: 15px 15px 20px;
+
+      // .lable {
+      //   font-size: $font-size-base;
+      //   font-family: $font-proxima;
+      //   font-weight: $font-weight-normal;
+      //   color: $departure-fontColor;
+      //   text-transform: uppercase;
+      // }
+      // h4 {
+      //   padding-left: 28px;
+      //   font-size: $font-size-large;
+      //   font-weight: $font-weight-mid;
+      //   font-family: $font-pragmatica;
+      //   color: $text-color-default;
+      // }
+    }
+    .lable {
+      font-size: $base-font-size;
+      font-weight: $font-weight-mid;
+      text-transform: uppercase;
+      color: $departure-fontColor;
+      font-family: $font-proxima;
+    }
+    h4 {
+      // font-size: $base-font-size + 2;
+      // font-weight: $font-weight-mid;
+      // font-family: $font-proxima;
+      padding-left: 28px;
+      font-size: $font-size-large;
+      font-weight: $font-weight-mid;
+      font-family: $font-pragmatica;
+      color: $text-color-default;
+    }
+  }
+  &-actions {
+    margin-top: 1rem;
+    a {
+      font-size: $font-size-medium;
+      font-family: $font-proxima;
+      font-weight: $font-weight-mid;
+      color: $secondary-grey;
+      display: inline-block;
+      vertical-align: sub;
+      text-transform: uppercase;
+      margin-top: 16px;
+    }
+    button {
+      padding: 0.7rem 0.5rem;
+      text-transform: uppercase;
+      font-size: $font-size-large;
+      font-family: $font-proxima;
+      font-weight: $font-proxima-weight-semibold;
+    }
+  }
+  &-shipment {
+    margin-top: 2rem;
+    margin-bottom: 3.5rem;
+    &-title {
+      font-size: $font-pragmatica;
+      font-weight: $font-weight-mid;
+      font-size: $font-size-large + 0.25rem;
+      color: $text-color-default;
+    }
+    &-description {
+      font-size: $font-proxima;
+      font-weight: $font-weight-normal;
+      font-size: $font-size-large;
+      line-height: 1.5;
+      color: $secondary-text-color;
+    }
+    .check-boxes-main {
+      label.d-flex {
+        font-weight: $font-weight-normal !important;
+      }
+    }
+    .has-error {
+      border: 1px solid $danger-color !important;
+      box-shadow: 0px 0px 5px $danger-color !important;
+    }
+    .form-control {
+      font-family: $font-proxima;
+      color: $text-color-default;
+      font-size: $font-size-medium;
+      height: 3rem;
+    }
+  }
+}

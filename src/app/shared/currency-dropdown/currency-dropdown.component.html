@@ -1,0 +1,33 @@
+<div class="currency-filter">
+  <div class="sort-filter">
+    <div class="country-filter">
+      <div ngbDropdown #currDrop="ngbDropdown" class="d-inline-block" [autoClose]="'outside'">
+        <div class="pointer" id="dropdowncountry" ngbDropdownToggle>
+          <div class="icon-flag d-inline-block">
+            <img *ngIf="selectedCurrency?.sortedCountryFlag" [src]="'../../../../assets/images/icons/flags/4x3/'+ selectedCurrency.sortedCountryFlag + '.svg'"
+              alt="flags" class="img-responsive">
+          </div>
+          <span>{{selectedCurrency?.sortedCountryName}}</span>
+        </div>
+        <div class="sortFilter animated fadeIn country-section flag-dropdown" ngbDropdownMenu aria-labelledby="dropdowncountry">
+          <h4 class="country-filter-title mb-2">Select your payment currency</h4>
+          <!-- <ng-scrollbar [trackX]="false" [shown]="shown" [disabled]="false" [compact]="false"> -->
+          <div slimScroll [options]="opts" [scrollEvents]="scrollEvents">
+            <ul class="list-group" style="position: relative !important; max-width:100%; max-height: 400px;display: inline-block;">
+              <li class="list-group-item border-0 pull-left col-4 p-0 pb-2 " *ngFor="let currency of currencyList; let cIndex = index"
+                (click)="currDrop.close();currencyFilter(currency, cIndex);" [ngClass]="(currency.imageName.toLowerCase() === selectedCurrency?.sortedCountryFlag.toLowerCase())?'active':''">
+                <div class="flag-dropdown-icon d-inline-block">
+                  <img [src]="'../../../../assets/images/icons/flags/4x3/' + (currency.imageName | lowercase) + '.svg'">
+                </div>
+                <span *ngIf="currency.desc" class="link-hover-1">{{currency.title}} ( {{currency.code}} )</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- </ng-scrollbar> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

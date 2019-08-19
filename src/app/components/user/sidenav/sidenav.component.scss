@@ -1,0 +1,104 @@
+@import '../../../../assets/scss/_variables'; // Local Variables
+$left-nav-icon-color-2: #76858d;
+$left-nav-icon-width: 20px;
+$left-nav-icon-height:20px;
+$left-nave-link: $text-color-default;
+$left-nave-badge-primary: $dark-grey-blue;
+$leftsidebar-h3-color: #c6c8ca;
+.user-dashboard-leftsidebar {
+  width: 85%;
+  position: sticky;
+  top: 0;
+  .nav-left {
+    .leftsidebar-help {
+      .leftsidebar-column {
+        li {
+          .nav-link {
+            .icon {
+              fill: $left-nav-icon-color-2 !important;
+            }
+            &.active {
+              .menu-text {
+                color: $primary-color;
+              }
+            }
+          }
+        }
+      }
+    }
+    .leftsidebar-main,
+    .leftsidebar-help {
+      margin: 20px 0;
+      h3 {
+        font-size: $font-size-base;
+        font-weight: $font-weight-mid;
+        color: $leftsidebar-h3-color;
+        text-transform: uppercase;
+        margin: 0px 0px -1px;
+      }
+      .leftsidebar-column {
+        margin-left: 8px;
+        li {
+          padding: 10px 0 0;
+          .nav-link {
+            color: $left-nave-link;
+            &.active {
+              color: $primary-color;
+            }
+            .icon {
+              fill: $primary-color;
+              width: $left-nav-icon-width;
+              height: $left-nav-icon-height;
+              margin-right: 14px;
+            }
+            .menu-text {
+              font-size: $font-size-large;
+              font-weight: $font-weight-mid;
+              margin-top: 5px;
+              font-family: $font-proxima;
+              line-height: 0.8;
+              &:hover,
+              &.active {
+                color: $primary-color;
+              }
+            }
+            .badge-primary {
+              background-color: $dark-grey-blue;
+              font-weight: normal;
+              margin-right: 2rem;
+              float: right;
+              margin-top: 1px;
+              font-family: $font-proxima;
+              font-weight: $font-weight-mid;
+              border-radius: 20px;
+              font-size: 0.8125rem !important;
+              min-width: 22px;
+              min-height: 20px;
+              line-height: 12px;
+              padding: 5px;
+              border:0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.isBlur {
+  .grey-placeholder {
+    display: none;
+  }
+  .timeline-wrapper {
+    display: block;
+  }
+}
+
+.isNotBlur {
+  .timeline-wrapper {
+    display: none;
+  }
+  .grey-placeholder {
+    display: inherit;
+  }
+}

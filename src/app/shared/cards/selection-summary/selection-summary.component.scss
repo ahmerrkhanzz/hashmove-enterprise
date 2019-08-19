@@ -1,0 +1,70 @@
+@import "../../../../assets/scss/_variables";
+.shipping-lines {
+  border: 1px solid $secondary-color;
+  &-left {
+    &-title {
+      font-size: $font-size-large + 0.25rem;
+      font-weight: $font-weight-mid;
+      img {
+        margin: 0 14px 0 0;
+        border: 1px solid $left-sidebar-border-color;
+        width: 80px;
+        height: 64px;
+        padding: 4px;
+        float: left;
+        object-fit: contain;
+      }
+    }
+  }
+  .card {
+    border: 0px solid $left-sidebar-border-color !important;
+    &-body {
+      padding: 1.25rem;
+      background-color: $white-color !important;
+      border: 1px solid $left-sidebar-border-color; //border-top: 0px;
+      border-radius: 2px;
+      h5 {
+        font-size: $font-size-medium;
+        font-weight: $font-weight-mid;
+        color: $dark-grey-blue;
+        text-transform: uppercase;
+        font-family: $font-proxima;
+        letter-spacing: 0.5px;
+      }
+      .change-shipping-btn {
+        button.btn {
+          font-size: $font-size-medium;
+          font-family: $font-proxima;
+          font-weight: $font-proxima-weight-semibold;
+          text-transform: uppercase;
+          height: 48px;
+        }
+      }
+    }
+    &-footer {
+      background: #fcfcfd !important
+    }
+  }
+  .details {
+    margin-bottom: 2rem;
+    h4 {
+      font-family: $font-proxima;
+      font-size: $font-size-base;
+      color: $color-icon-grey;
+      text-transform: uppercase;
+      margin-bottom: -4px;
+      font-weight: $font-weight-normal;
+      img {
+        width: 1rem;
+        margin-right: 0.2rem;
+      }
+    }
+    .diff-days {
+      font-weight: $font-weight-mid;
+      font-family: $font-proxima;
+      padding-left: 1.4rem;
+      font-size: $font-size-large;
+      margin-top: 2px;
+    }
+  }
+}

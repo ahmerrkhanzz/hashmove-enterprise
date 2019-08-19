@@ -1,0 +1,18 @@
+<svg id="71a355f8-709f-4640-b6b5-75bea1041faa" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .\38 ada2b19-857c-4267-b13e-a51d64e47e19 {
+        fill: #00a1df;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g id="d999ce1f-92a1-4242-ae87-bcd21bd50dae" data-name="plane">
+    <path id="32127319-35da-44ca-b977-bb5c3613da70" data-name="&lt;Path&gt;" class="8ada2b19-857c-4267-b13e-a51d64e47e19" d="M21.5,14H3.051a3,3,0,0,1-1.872-.656L0,12.4V10H21.5A2.292,2.292,0,0,1,24,12h0A2.292,2.292,0,0,1,21.5,14Z"/>
+    <polygon id="c04456ed-7fbd-407b-b335-91935f738948" data-name="&lt;Path&gt;" class="8ada2b19-857c-4267-b13e-a51d64e47e19" points="5 11 0 11 0 7 2.474 7 5 11"/>
+    <g id="fe04bb4e-4e3e-412b-a88c-b8e66f7f75b1" data-name="&lt;Group&gt;">
+      <polygon id="ee172df5-6608-44cb-a00b-5e2fb47164b5" data-name="&lt;Path&gt;" class="8ada2b19-857c-4267-b13e-a51d64e47e19" points="9.444 14 16.381 14 18 12 10.714 3 7 3 10.143 12 9.444 14"/>
+      <polygon id="b017da0a-a02c-4257-b92a-b2b07e9a0ce3" data-name="&lt;Path&gt;" class="8ada2b19-857c-4267-b13e-a51d64e47e19" points="8.746 16 7 21 10.714 21 14.762 16 8.746 16"/>
+    </g>
+  </g>
+</svg>

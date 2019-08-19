@@ -1,0 +1,17 @@
+<svg id="e602a427-71ec-4f54-a794-6e532db93994" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .\36 f5538ef-a304-42d6-8e9d-24c89f7c7b08 {
+        fill: #00a2df;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g id="267548b5-550f-47d0-87c8-a869071f50c7" data-name="ship3">
+    <path id="aa81d38e-aa95-4751-b0a6-cd9296e4f9fc" data-name="&lt;Compound Path&gt;" class="6f5538ef-a304-42d6-8e9d-24c89f7c7b08" d="M14,2V4a2,2,0,0,0,2,2h2v5.114L12.7,9.127a2,2,0,0,0-1.4,0L6,11.114V6H8a2,2,0,0,0,2-2V2h4m2-2H8V4H4V14l8-3,8,3V4H16V0Z"/>
+    <g id="f6422017-9dc1-465d-96b1-64ef674cb35f" data-name="&lt;Group&gt;">
+      <path class="6f5538ef-a304-42d6-8e9d-24c89f7c7b08" d="M12,10,0,15l4.813,7.219A4,4,0,0,0,8.141,24h7.718a4,4,0,0,0,3.328-1.781L24,15Zm0,5L4.393,18,3,15.647l8.3-3.508a1.817,1.817,0,0,1,1.393,0L21,15.647,19.607,18Z"/>
+    </g>
+    <rect id="91ee75e0-3380-45a5-ab6c-f4dd9da735dd" data-name="&lt;Rectangle&gt;" class="6f5538ef-a304-42d6-8e9d-24c89f7c7b08" x="11" y="4" width="2" height="2"/>
+  </g>
+</svg>

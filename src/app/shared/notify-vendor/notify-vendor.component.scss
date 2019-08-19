@@ -1,0 +1,15 @@
+@import "../../../assets/scss/_variables";
+.send-request {
+  background-color: $grey-alert;
+  border: dashed 1px #cbd2df;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+
+  h3 {
+    font-size: $font-size-large + 0.125;
+    font-family: $font-pragmatica;
+    color: $text-color-default;
+    line-height: 1;
+  }
+}

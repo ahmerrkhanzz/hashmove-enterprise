@@ -1,0 +1,355 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <defs>
+    <style>
+      .\30 1e31efc-ebee-4ebe-bf92-68ba002e548e {
+        isolation: isolate;
+      }
+
+      .\31 6c1c9a4-be39-498c-aaca-94f1afc8495c {
+        fill: #fff;
+      }
+
+      .\32 ccc13a7-ea51-43b1-bf42-b6668fb671b7, .\33 e4e3269-1e5d-4a5d-ad7b-0b1fb5363c4e {
+        fill: #00a2df;
+      }
+
+      .\37 bcc4634-1772-4c2c-95b2-04d9d39a63a8 {
+        fill: #cfdde8;
+      }
+
+      .\32 ccc13a7-ea51-43b1-bf42-b6668fb671b7 {
+        mix-blend-mode: multiply;
+      }
+
+      .\37 acb03a6-b7ed-43ab-84b3-5a3511302127 {
+        fill: #142836;
+      }
+
+      .ae7670d0-f1fb-4c9f-a178-1e22e5377310 {
+        fill: #091a23;
+      }
+    </style>
+  </defs>
+  <title>Transport Mode</title>
+  <g class="01e31efc-ebee-4ebe-bf92-68ba002e548e">
+    <g id="dbb0feec-15b0-44b2-8077-4936549a394b" data-name="Layer 4">
+      <g id="9d8bf722-8b9a-460a-be18-28f700c14328" data-name="ship">
+        <g id="7503c519-6a28-4f57-a6ad-a49862d27570" data-name="&lt;Group&gt;">
+          <polygon id="8ffbd2a4-9f72-4994-8aa2-1d127045e9c2" data-name="&lt;Path&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" points="495.81 261.48 437.89 177.94 439.07 177.12 496.99 260.66 495.81 261.48"/>
+        </g>
+        <g id="d5e77de6-7dd3-4275-8298-6277c33cfcd7" data-name="&lt;Group&gt;">
+          <g id="7ba0a352-bab4-4032-99fb-17a51f16cd62" data-name="&lt;Group&gt;">
+            <path id="ce7d004c-9be5-46a1-a560-cf4b582901a0" data-name="&lt;Path&gt;" class="3e4e3269-1e5d-4a5d-ad7b-0b1fb5363c4e" d="M439.92,238V175.33h-2.85c-.2,6.84.88,58.66-3.15,62.71Z"/>
+          </g>
+          <g id="49ea72f2-a699-4262-9c96-184bec014537" data-name="&lt;Group&gt;">
+            <path id="119e7c8a-2113-4b78-82c3-2ae7ae4e2dfb" data-name="&lt;Path&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" d="M428.28,243.88l-5.17,28.34h5.74l4.54-28.79h1.48v28.79h5V238h-4.66A7.1,7.1,0,0,0,428.28,243.88Z"/>
+          </g>
+        </g>
+        <g id="2d113a2f-8615-4aa7-b890-70ca126dd3f7" data-name="&lt;Group&gt;">
+          <g id="879b7501-a0ad-4150-ac73-67bb1026bef5" data-name="&lt;Group&gt;">
+            <g id="17e30b3c-306b-4503-83fa-29d4f316be15" data-name="&lt;Group&gt;">
+              <g id="183c73ec-0da0-4826-9e73-861618ff8faa" data-name="&lt;Group&gt;">
+                <rect id="83ec31e1-730f-4e53-93fd-66e10644f438" data-name="&lt;Rectangle&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" x="123.15" y="244.72" width="65.39" height="24.94"/>
+              </g>
+              <g id="e7d2123b-b054-4ac0-99ce-6dc110332347" data-name="&lt;Group&gt;">
+                <g id="0ef5e3e0-d17d-43eb-847b-e693ed5872fc" data-name="&lt;Group&gt;">
+                  <rect id="55fe1c00-0f87-4c9c-8c77-32013a5284bb" data-name="&lt;Rectangle&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="126.42" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="ab343c77-f98d-4dc0-a67d-16a0de90c391" data-name="&lt;Group&gt;">
+                  <rect id="541e2c0a-3c46-4556-bb76-b001d70b04fc" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="135.97" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="4fffe27d-7de3-460b-8102-c9a99d763010" data-name="&lt;Group&gt;">
+                  <rect id="bf22b9ba-d415-4c9e-be38-e58bfb3dfd4d" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="145.51" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="e3e3ba2c-ff56-4560-bbb1-b3f5372c87ce" data-name="&lt;Group&gt;">
+                  <rect id="2926b7bc-62cc-402f-8664-d85dd4ad8e6a" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="155.06" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="79bffa3e-c3cb-4e03-9f16-7c837bb63815" data-name="&lt;Group&gt;">
+                  <rect id="49e3a892-eabb-4c07-bbbe-19ca94dbd80f" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="164.61" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="b971cc9c-4863-49b2-82ac-aca1663a4c2b" data-name="&lt;Group&gt;">
+                  <rect id="35def9a6-0da4-4f92-98f5-8c8353ef5312" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="174.15" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="a1dd0b3f-70de-4ff7-b1d5-0b458942b067" data-name="&lt;Group&gt;">
+                  <rect id="835c0cba-0d1a-4b28-99e6-ca5e6c74cd4f" data-name="&lt;Rectangle&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="183.7" y="247.69" width="1.57" height="19.01"/>
+                </g>
+              </g>
+            </g>
+            <g id="cf0424ff-9c2f-4ab9-8cbb-ac6a776c5151" data-name="&lt;Group&gt;">
+              <g id="6a265354-e35d-4233-99f3-bca50347a395" data-name="&lt;Group&gt;">
+                <rect id="11006dad-0ef1-4603-880b-ef91c5f6356e" data-name="&lt;Rectangle&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" x="191.4" y="244.72" width="65.39" height="24.94"/>
+              </g>
+              <g id="c3f4c886-90a9-458e-bc86-d7f1afa59c57" data-name="&lt;Group&gt;">
+                <g id="e7be745e-53f9-42ea-9bbe-29e72fcd263a" data-name="&lt;Group&gt;">
+                  <rect id="8764f186-d6a9-4ff2-87e4-152336f4b740" data-name="&lt;Rectangle&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="194.67" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="cde3e87d-90f2-4610-be6e-bee886dfe144" data-name="&lt;Group&gt;">
+                  <rect id="967b026e-9a49-470e-a3da-71ed545197d8" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="204.22" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="7e38c550-a20d-4576-8433-36cfb2487463" data-name="&lt;Group&gt;">
+                  <rect id="580c7242-e545-4aac-a7df-3018aa560e74" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="213.76" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="e96fb8ae-032d-464e-853b-c014c8272726" data-name="&lt;Group&gt;">
+                  <rect id="3970c072-b07e-4f9b-aecd-606a6a61ef7e" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="223.31" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="23d71bd3-3be3-43c3-bbfe-1d9c21689306" data-name="&lt;Group&gt;">
+                  <rect id="6f156bff-12d2-466f-8914-977bf782fa19" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="232.86" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="5f69724b-d1c7-46d0-982e-a9d56d06cd47" data-name="&lt;Group&gt;">
+                  <rect id="4d1eb3bb-dc20-42c3-a7ef-ed2069822745" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="242.4" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="8dedac0c-1a37-45b2-8c25-048975a93de5" data-name="&lt;Group&gt;">
+                  <rect id="ec9bf99d-25c0-48e1-b9f1-c298253e4f6d" data-name="&lt;Rectangle&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="251.95" y="247.69" width="1.57" height="19.01"/>
+                </g>
+              </g>
+            </g>
+            <g id="38660f18-4ae2-434f-8475-c10844b3c28f" data-name="&lt;Group&gt;">
+              <g id="b7bfa05f-b603-4ddf-a9c9-18e07acbf1bd" data-name="&lt;Group&gt;">
+                <rect id="79e9f407-ca7d-4a8c-84c5-93ce2d8662fe" data-name="&lt;Rectangle&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" x="327.9" y="244.72" width="65.39" height="24.94"/>
+              </g>
+              <g id="aa2716c3-f630-4cf9-8749-02ef7af4bdd9" data-name="&lt;Group&gt;">
+                <g id="912d176a-9666-4c1b-88cf-b0aac5ba1a80" data-name="&lt;Group&gt;">
+                  <rect id="104a35ae-a852-410e-bd36-1d458b5aa4a2" data-name="&lt;Rectangle&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="331.17" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="b6fd9c24-5417-4679-ae6f-ca570901339b" data-name="&lt;Group&gt;">
+                  <rect id="165908f6-278e-4f10-a53e-cc5f9786c525" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="340.72" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="463849c5-9083-42a9-b6b5-5affe7250119" data-name="&lt;Group&gt;">
+                  <rect id="0f3825ab-8f4b-45c7-a0be-8e6e16dcbcc0" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="350.26" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="1f6b554d-5a18-4b08-a3bf-c94481d72248" data-name="&lt;Group&gt;">
+                  <rect id="e1af0a36-a63d-4b77-a7bb-4eb947ac7e1a" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="359.81" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="f6aeb8b7-d6a5-42bd-91b6-318378aeb416" data-name="&lt;Group&gt;">
+                  <rect id="11943e8f-387c-4dcb-b543-7e8b67e3d50d" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="369.36" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="93fda9b6-3c98-4d50-ac28-5a9e7015fb41" data-name="&lt;Group&gt;">
+                  <rect id="5f394497-2bbe-4229-b9b7-eff0cbe8b82c" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="378.9" y="247.69" width="1.57" height="19.01"/>
+                </g>
+                <g id="faa20562-d4b6-4372-a9d5-5d09b2f34d49" data-name="&lt;Group&gt;">
+                  <rect id="5147bde4-3413-4550-af8f-5525ed44dd68" data-name="&lt;Rectangle&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="388.45" y="247.69" width="1.57" height="19.01"/>
+                </g>
+              </g>
+            </g>
+          </g>
+          <g id="9370e918-c86c-45b9-8b65-9f5364b61ee4" data-name="&lt;Group&gt;">
+            <g id="06863b4b-da03-4a6d-b172-c4706286dfc3" data-name="&lt;Group&gt;">
+              <g id="07ecba40-b977-4e00-9e6a-93fa2710419f" data-name="&lt;Group&gt;">
+                <rect id="6af9bf14-0a36-4559-aa91-4a671caa78b5" data-name="&lt;Rectangle&gt;" class="3e4e3269-1e5d-4a5d-ad7b-0b1fb5363c4e" x="123.15" y="272.06" width="65.39" height="24.94"/>
+              </g>
+              <g id="0d4ec57f-741f-4745-a620-299b3d16faa7" data-name="&lt;Group&gt;">
+                <g id="00f699d8-54a9-49dc-9399-40feedca360e" data-name="&lt;Group&gt;">
+                  <rect id="1fadb05e-7c9d-454e-a906-7cf020f73a5f" data-name="&lt;Rectangle&gt;" class="2ccc13a7-ea51-43b1-bf42-b6668fb671b7" x="126.42" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="b50d9608-8769-448e-86ce-a7b7a0b35c6a" data-name="&lt;Group&gt;">
+                  <rect id="a3d50db8-777f-4e2d-b5ea-30811491f7ff" data-name="&lt;Path&gt;" class="2ccc13a7-ea51-43b1-bf42-b6668fb671b7" x="135.97" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="2868ff8a-36ff-4ffd-a8c3-55dc04a91ec7" data-name="&lt;Group&gt;">
+                  <rect id="f7a84ae5-d802-45bc-8a86-7ee67fd99629" data-name="&lt;Path&gt;" class="2ccc13a7-ea51-43b1-bf42-b6668fb671b7" x="145.51" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="a3d9537f-2178-481a-a929-c62429480047" data-name="&lt;Group&gt;">
+                  <rect id="162f1487-d9fe-444e-b4de-4a39425e6acf" data-name="&lt;Path&gt;" class="2ccc13a7-ea51-43b1-bf42-b6668fb671b7" x="155.06" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="2f261384-5930-4bc6-8495-86fae5c1f773" data-name="&lt;Group&gt;">
+                  <rect id="92df3cf5-d5d4-4b22-b469-9a3cc74c38a8" data-name="&lt;Path&gt;" class="2ccc13a7-ea51-43b1-bf42-b6668fb671b7" x="164.61" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="f2cb657f-d1c5-49c2-832e-4fe83f762898" data-name="&lt;Group&gt;">
+                  <rect id="fb48ff79-28cd-407f-9878-c5a03d0b04b0" data-name="&lt;Path&gt;" class="2ccc13a7-ea51-43b1-bf42-b6668fb671b7" x="174.15" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="fcae4a53-2ffd-4281-a102-558dc0efe9d0" data-name="&lt;Group&gt;">
+                  <rect id="f51b3183-54fe-4050-b59b-630bc694fe9a" data-name="&lt;Rectangle&gt;" class="2ccc13a7-ea51-43b1-bf42-b6668fb671b7" x="183.7" y="275.03" width="1.57" height="19.01"/>
+                </g>
+              </g>
+            </g>
+            <g id="7f6832e8-764a-4168-a42b-2deeaef261b5" data-name="&lt;Group&gt;">
+              <g id="82933b8b-ec0c-4520-9b89-958dfd89b081" data-name="&lt;Group&gt;">
+                <rect id="f08b5b87-40aa-4f43-a0e5-c050896c8754" data-name="&lt;Rectangle&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" x="191.4" y="272.06" width="65.39" height="24.94"/>
+              </g>
+              <g id="08ac4a88-e0df-4fe4-b255-62cd82ee515d" data-name="&lt;Group&gt;">
+                <g id="236a3952-592b-43f3-9e9b-ae9e9c8ace88" data-name="&lt;Group&gt;">
+                  <rect id="00ea1c45-afd5-49c3-a339-bd4a816a1b28" data-name="&lt;Rectangle&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="194.67" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="f5607241-f15d-489c-a872-9badccf49028" data-name="&lt;Group&gt;">
+                  <rect id="29d078f0-250c-42ed-802f-8025473cbf83" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="204.22" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="f309417f-469a-4e3a-97e5-5bb06c33452d" data-name="&lt;Group&gt;">
+                  <rect id="e1e86d5c-f7b4-46ca-877f-da584bc7d63a" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="213.76" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="54de0d8e-9f6a-4d76-8ce7-b4ed7bfdb24e" data-name="&lt;Group&gt;">
+                  <rect id="634826ea-9a98-408b-babc-528edd059352" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="223.31" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="ad493b14-39db-43d7-9e33-cfc46f507762" data-name="&lt;Group&gt;">
+                  <rect id="b7bef622-adc0-4b50-bbff-1c1c0c6f6610" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="232.86" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="3c10a379-3e12-444e-bca0-45038493fa06" data-name="&lt;Group&gt;">
+                  <rect id="625a3375-8f1f-4e6e-9e0e-3667e0136a74" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="242.4" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="a82b6608-bdc7-4d11-8511-a4b251ff058b" data-name="&lt;Group&gt;">
+                  <rect id="ba8ba676-6dbe-47b9-a549-7d4424d9369b" data-name="&lt;Rectangle&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="251.95" y="275.03" width="1.57" height="19.01"/>
+                </g>
+              </g>
+            </g>
+            <g id="f0ca83fb-606b-430f-aa4c-42c31a816fc0" data-name="&lt;Group&gt;">
+              <g id="472a7d29-14df-4fae-b17d-4de69fea73d6" data-name="&lt;Group&gt;">
+                <rect id="62c6761b-21d1-480b-9841-8bb4b185be41" data-name="&lt;Rectangle&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" x="259.65" y="272.06" width="65.39" height="24.94"/>
+              </g>
+              <g id="5df80075-6b72-4f99-a744-b6630f9ce23f" data-name="&lt;Group&gt;">
+                <g id="a1e2443a-ac7e-43a3-8ee9-b5edc323ab8b" data-name="&lt;Group&gt;">
+                  <rect id="dc81e3dc-f685-4c67-a8b2-c3ba6a06ca36" data-name="&lt;Rectangle&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="262.92" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="5219cfe2-d7b9-4466-aeb3-4f584aa80ac9" data-name="&lt;Group&gt;">
+                  <rect id="40aca46c-b5e7-433f-8533-b2f835e894a5" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="272.47" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="7775e10b-c405-41e7-b037-3bd03858ceff" data-name="&lt;Group&gt;">
+                  <rect id="b8667cb1-0d6a-43df-90f1-d2d229721673" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="282.01" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="4b1a918e-9666-48e1-96a3-49e1ee0982a8" data-name="&lt;Group&gt;">
+                  <rect id="ec66bfa9-01b1-4efa-8c9d-6e1e76dcaafc" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="291.56" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="5bc7e7fd-d789-496e-bd71-1e945619a163" data-name="&lt;Group&gt;">
+                  <rect id="1286a63c-1865-4c21-a931-b5ab1ff462cf" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="301.11" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="115f6424-3d8c-49af-b1d3-94c126ec1e53" data-name="&lt;Group&gt;">
+                  <rect id="7e8129db-05f1-488b-a6f6-9f2a81737b58" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="310.65" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="cc737a71-02dd-4df5-bfb4-cf7f061d7a2a" data-name="&lt;Group&gt;">
+                  <rect id="4fa3209b-2324-445b-baa2-dec0a0742498" data-name="&lt;Rectangle&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="320.2" y="275.03" width="1.57" height="19.01"/>
+                </g>
+              </g>
+            </g>
+            <g id="6c3fe9b2-4d70-4f74-8b12-ba1958c04c1f" data-name="&lt;Group&gt;">
+              <g id="b70a5725-4e9f-43a5-bfba-4303c1448ff0" data-name="&lt;Group&gt;">
+                <rect id="df5b6d2d-8714-459b-a7e4-b7e15debd550" data-name="&lt;Rectangle&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" x="327.9" y="272.06" width="65.39" height="24.94"/>
+              </g>
+              <g id="101e29bf-48fd-4ec4-9de0-412ad5b8dffb" data-name="&lt;Group&gt;">
+                <g id="f95f7afe-8b4b-4d5c-bd00-8bfc5d099380" data-name="&lt;Group&gt;">
+                  <rect id="b659b00e-2424-43c3-839c-371117cba523" data-name="&lt;Rectangle&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="331.17" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="bebfc1b7-bf30-4321-8a91-b7105ddeeb4e" data-name="&lt;Group&gt;">
+                  <rect id="13830e7c-ede6-4f48-a5e2-c8e81ca50a01" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="340.72" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="1a759cab-66bc-4825-ae1f-3393c1f46127" data-name="&lt;Group&gt;">
+                  <rect id="67db39ee-597d-460b-ac9d-5f348998379c" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="350.26" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="a2c532d1-6bf2-4f1d-a32d-9d6ea4cf8b9d" data-name="&lt;Group&gt;">
+                  <rect id="eb0f838d-fdcf-4215-af51-5d7da248aa7f" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="359.81" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="573d27dc-a9c7-4918-91ee-b4512ffe85db" data-name="&lt;Group&gt;">
+                  <rect id="7c923317-de21-453f-9bcc-3c5e99f08617" data-name="&lt;Path&gt;" class="7bcc4634-1772-4c2c-95b2-04d9d39a63a8" x="369.36" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="dd93b082-5557-4c84-a57a-807472c0b3f4" data-name="&lt;Group&gt;">
+                  <rect id="6bf0270b-ca07-4316-ac62-593d84eb80b6" data-name="&lt;Path&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" x="378.9" y="275.03" width="1.57" height="19.01"/>
+                </g>
+                <g id="ac3e4cb6-aa27-49fa-b8d7-c132f9ced342" data-name="&lt;Group&gt;">
+                  <rect id="f3af9f6e-499f-4d81-89a7-7fc01d8a0c13" data-name="&lt;Rectangle&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" x="388.45" y="275.03" width="1.57" height="19.01"/>
+                </g>
+              </g>
+            </g>
+          </g>
+          <g id="1a455528-26ea-4c45-bf0f-504785c50f9b" data-name="&lt;Group&gt;">
+            <g id="79f27e11-2485-433a-87bf-1738f931a32a" data-name="&lt;Group&gt;">
+              <rect id="fd3eb074-d8f3-41f1-804d-dcac74b946aa" data-name="&lt;Rectangle&gt;" class="3e4e3269-1e5d-4a5d-ad7b-0b1fb5363c4e" x="259.67" y="244.67" width="65.39" height="24.94"/>
+            </g>
+            <g id="e207357e-0171-49ad-99dc-0570b75c7292" data-name="&lt;Group&gt;">
+              <g id="22ee232b-073f-432e-a304-b4e6a1345c3d" data-name="&lt;Group&gt;">
+                <rect id="7e0b137d-cdf7-454a-924a-1f55956f7924" data-name="&lt;Rectangle&gt;" class="2ccc13a7-ea51-43b1-bf42-b6668fb671b7" x="262.94" y="247.63" width="1.57" height="19.01"/>
+              </g>
+              <g id="0c9143af-6dbf-45d6-8c76-fa901f448549" data-name="&lt;Group&gt;">
+                <rect id="757f6238-f92f-4c73-93b4-87aea1d480ef" data-name="&lt;Path&gt;" class="2ccc13a7-ea51-43b1-bf42-b6668fb671b7" x="272.48" y="247.63" width="1.57" height="19.01"/>
+              </g>
+              <g id="1a90859b-740c-499c-8d90-9ec375c77379" data-name="&lt;Group&gt;">
+                <rect id="15ee1077-d7ff-4c20-bbfa-6a6a05473205" data-name="&lt;Path&gt;" class="2ccc13a7-ea51-43b1-bf42-b6668fb671b7" x="282.03" y="247.63" width="1.57" height="19.01"/>
+              </g>
+              <g id="42427c15-e82a-4632-9bf0-784fb82d5eab" data-name="&lt;Group&gt;">
+                <rect id="0245a64e-31d6-44ba-bab7-c297efd2565c" data-name="&lt;Path&gt;" class="2ccc13a7-ea51-43b1-bf42-b6668fb671b7" x="291.57" y="247.63" width="1.57" height="19.01"/>
+              </g>
+              <g id="4b181920-5559-4aac-8e03-953dbbfcb774" data-name="&lt;Group&gt;">
+                <rect id="5c9361d9-4cb4-4ddf-ad59-6e69d5f4aecf" data-name="&lt;Path&gt;" class="2ccc13a7-ea51-43b1-bf42-b6668fb671b7" x="301.12" y="247.63" width="1.57" height="19.01"/>
+              </g>
+              <g id="ca829e11-dca8-418e-9afb-1bb622323841" data-name="&lt;Group&gt;">
+                <rect id="559d59c5-0294-4232-a999-84d871e4bb37" data-name="&lt;Path&gt;" class="2ccc13a7-ea51-43b1-bf42-b6668fb671b7" x="310.67" y="247.63" width="1.57" height="19.01"/>
+              </g>
+              <g id="288f7696-ee54-4223-a2bb-d4818811f66a" data-name="&lt;Group&gt;">
+                <rect id="8ea3794d-6492-4517-8959-aee28976f402" data-name="&lt;Rectangle&gt;" class="2ccc13a7-ea51-43b1-bf42-b6668fb671b7" x="320.21" y="247.63" width="1.57" height="19.01"/>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g id="628d6f71-90bb-446b-bff0-44fe4b3e0145" data-name="&lt;Group&gt;">
+          <g id="e555cb38-2c10-4b47-a5b8-5a3799a3cdd4" data-name="&lt;Group&gt;">
+            <polygon id="572509b8-248e-4f2f-8e08-ae7a594194ea" data-name="&lt;Path&gt;" class="3e4e3269-1e5d-4a5d-ad7b-0b1fb5363c4e" points="48.98 182.04 48.98 242.96 18.25 242.96 22.15 201.53 23.06 191.81 23.98 182.04 48.98 182.04"/>
+          </g>
+          <g id="cbb885fb-12db-4458-8926-d6d18b69d052" data-name="&lt;Group&gt;">
+            <polygon id="a379153e-b90d-4215-afd0-a248565d186d" data-name="&lt;Path&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" points="48.98 191.81 48.98 201.53 22.15 201.53 23.06 191.81 48.98 191.81"/>
+          </g>
+          <g id="6ebf7479-0335-4918-a00a-463af35f6f8a" data-name="&lt;Group&gt;">
+            <g id="bfc56166-63e8-4017-b8a5-89f7f7dbb2c8" data-name="&lt;Group&gt;">
+              <path id="17e81fa0-4171-4003-b902-56a085dd0ebb" data-name="&lt;Path&gt;" class="3e4e3269-1e5d-4a5d-ad7b-0b1fb5363c4e" d="M65,208.18h8.75V174H71.2S71.68,201.42,65,208.18Z"/>
+            </g>
+            <g id="1910ef31-ba03-4a59-b5dc-05a6363df391" data-name="&lt;Group&gt;">
+              <polygon id="ec7793fb-3d9b-4adb-a49a-28d57de08be9" data-name="&lt;Path&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" points="94.71 220.59 64.96 220.59 60.15 208 99.52 208 94.71 220.59"/>
+            </g>
+            <g id="f27bf17e-9004-446e-bc09-d2acec572f07" data-name="&lt;Group&gt;">
+              <rect id="a065a713-4835-4ed3-bbb2-12741e9ce3b3" data-name="&lt;Rectangle&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" x="13.61" y="235.7" width="82.69" height="50.73"/>
+            </g>
+            <g id="be46ad39-5d47-4d70-bd98-b65b1d10f693" data-name="&lt;Group&gt;">
+              <path id="113519fd-9269-406a-b7c7-ab8d895ff801" data-name="&lt;Rectangle&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" d="M41.69,225.27H96.3a0,0,0,0,1,0,0V240a0,0,0,0,1,0,0H33.62a0,0,0,0,1,0,0v-6.68A8.07,8.07,0,0,1,41.69,225.27Z"/>
+            </g>
+            <g id="f934057c-7074-4dd3-8e15-9be6e36f02a3" data-name="&lt;Group&gt;">
+              <rect id="4770b0ef-5d3c-4eb3-88b4-56293663965b" data-name="&lt;Rectangle&gt;" class="3e4e3269-1e5d-4a5d-ad7b-0b1fb5363c4e" x="57.68" y="217.35" width="47.22" height="7.92"/>
+            </g>
+            <g id="191f8f34-dd5f-485b-b13d-ada2df9cb31b" data-name="&lt;Group&gt;">
+              <g id="8bddbb22-bb41-4a51-94a8-394cc23ebaa8" data-name="&lt;Group&gt;">
+                <rect id="7f25afc2-3f0e-4ba4-bba7-36bf03f05c80" data-name="&lt;Rectangle&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" x="22.94" y="271.61" width="3.89" height="5.94" rx="1.12" ry="1.12"/>
+                <path id="c4b280f9-b551-4c3e-9c30-156ba768a4b5" data-name="&lt;Path&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" d="M37.43,277.55h-1A1.44,1.44,0,0,1,35,276.11v-3.06a1.44,1.44,0,0,1,1.43-1.44h1a1.44,1.44,0,0,1,1.43,1.44v3.06A1.44,1.44,0,0,1,37.43,277.55Z"/>
+                <path id="165df79f-9541-4301-814b-b9a8b66fff28" data-name="&lt;Path&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" d="M49.46,277.55h-1A1.44,1.44,0,0,1,47,276.11v-3.06a1.44,1.44,0,0,1,1.43-1.44h1a1.44,1.44,0,0,1,1.43,1.44v3.06A1.44,1.44,0,0,1,49.46,277.55Z"/>
+                <path id="ecdc43e2-565f-422f-9c48-c461894c5a23" data-name="&lt;Path&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" d="M61.49,277.55h-1A1.44,1.44,0,0,1,59,276.11v-3.06a1.44,1.44,0,0,1,1.43-1.44h1a1.44,1.44,0,0,1,1.43,1.44v3.06A1.44,1.44,0,0,1,61.49,277.55Z"/>
+                <path id="2a535aa4-8c2e-40ab-a22a-49497322ac11" data-name="&lt;Path&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" d="M73.51,277.55h-1a1.44,1.44,0,0,1-1.43-1.44v-3.06a1.44,1.44,0,0,1,1.43-1.44h1a1.44,1.44,0,0,1,1.43,1.44v3.06A1.44,1.44,0,0,1,73.51,277.55Z"/>
+                <rect id="050adb86-a6b3-4ea0-aba4-05107f1cbb52" data-name="&lt;Rectangle&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" x="83.08" y="271.61" width="3.89" height="5.94" rx="1.12" ry="1.12"/>
+              </g>
+            </g>
+            <g id="b0b19f1a-ca31-4dc8-beb7-45b51eb52777" data-name="&lt;Group&gt;">
+              <g id="72befdb5-68a5-484f-90b4-99f1121bda7d" data-name="&lt;Group&gt;">
+                <rect id="61059257-8746-46ec-b42f-1f8be97637dd" data-name="&lt;Rectangle&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" x="22.94" y="257.22" width="3.89" height="5.94" rx="1.12" ry="1.12"/>
+                <path id="26784291-e25a-41d0-87d2-677e7708b464" data-name="&lt;Path&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" d="M37.43,263.16h-1A1.44,1.44,0,0,1,35,261.72v-3.06a1.44,1.44,0,0,1,1.43-1.44h1a1.44,1.44,0,0,1,1.43,1.44v3.06A1.44,1.44,0,0,1,37.43,263.16Z"/>
+                <path id="0df12542-3f5f-4ac7-871e-d4b45a9efe96" data-name="&lt;Path&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" d="M49.46,263.16h-1A1.44,1.44,0,0,1,47,261.72v-3.06a1.44,1.44,0,0,1,1.43-1.44h1a1.44,1.44,0,0,1,1.43,1.44v3.06A1.44,1.44,0,0,1,49.46,263.16Z"/>
+                <path id="2fc29124-1174-47ac-8f36-15e2b5c9ba1f" data-name="&lt;Path&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" d="M61.49,263.16h-1A1.44,1.44,0,0,1,59,261.72v-3.06a1.44,1.44,0,0,1,1.43-1.44h1a1.44,1.44,0,0,1,1.43,1.44v3.06A1.44,1.44,0,0,1,61.49,263.16Z"/>
+                <path id="63880f07-9f18-428b-9f69-8a4b66842918" data-name="&lt;Path&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" d="M73.51,263.16h-1a1.44,1.44,0,0,1-1.43-1.44v-3.06a1.44,1.44,0,0,1,1.43-1.44h1a1.44,1.44,0,0,1,1.43,1.44v3.06A1.44,1.44,0,0,1,73.51,263.16Z"/>
+                <rect id="68fe3cce-5956-4c20-95b7-7516e841b8e6" data-name="&lt;Rectangle&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" x="83.08" y="257.22" width="3.89" height="5.94" rx="1.12" ry="1.12"/>
+              </g>
+            </g>
+            <g id="4bbe1b12-a585-464f-8a1b-c1b51dcdeea0" data-name="&lt;Group&gt;">
+              <g id="689cb4d3-260b-4f0c-92ed-27685ef34a5b" data-name="&lt;Group&gt;">
+                <g id="c89393d1-651e-461d-86f5-9dec834e93a8" data-name="&lt;Group&gt;">
+                  <path id="42652905-2099-4c15-b060-83bd73d64989" data-name="&lt;Path&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" d="M61.49,248.77h-1A1.44,1.44,0,0,1,59,247.33v-3.06a1.44,1.44,0,0,1,1.43-1.44h1a1.44,1.44,0,0,1,1.43,1.44v3.06A1.44,1.44,0,0,1,61.49,248.77Z"/>
+                </g>
+                <g id="100be78c-a6a7-41ec-a901-3bb405e21443" data-name="&lt;Group&gt;">
+                  <path id="31a35da1-58ee-4489-8622-faab0f192bf8" data-name="&lt;Path&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" d="M73.51,248.77h-1a1.44,1.44,0,0,1-1.43-1.44v-3.06a1.44,1.44,0,0,1,1.43-1.44h1a1.44,1.44,0,0,1,1.43,1.44v3.06A1.44,1.44,0,0,1,73.51,248.77Z"/>
+                </g>
+                <g id="5d3fd328-b0c4-45a9-a0a0-df505f881eb4" data-name="&lt;Group&gt;">
+                  <rect id="2044490f-396f-4f3b-92f8-37df9e3d442a" data-name="&lt;Rectangle&gt;" class="7acb03a6-b7ed-43ab-84b3-5a3511302127" x="83.08" y="242.83" width="3.89" height="5.94" rx="1.12" ry="1.12"/>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g id="c7610a9a-b697-44ba-b63c-bd0bead06e9a" data-name="&lt;Group&gt;">
+          <g id="0f2c4569-1146-4668-93e5-86989d1a33e7" data-name="&lt;Group&gt;">
+            <g id="9ab4657e-1b63-4e10-b2e2-bcab16125dab" data-name="&lt;Group&gt;">
+              <path id="84acaa2a-b108-4cff-a7c6-4d0b18f5d70a" data-name="&lt;Path&gt;" class="3e4e3269-1e5d-4a5d-ad7b-0b1fb5363c4e" d="M500,260.82l-111.06,7.67A29,29,0,0,0,367,281l-4.23,6.15H484.16Z"/>
+            </g>
+            <g id="1c83ee49-3703-4128-98c7-b72e741ba992" data-name="&lt;Group&gt;">
+              <path id="92545d1f-9fe3-4bcb-936b-4dfc83778626" data-name="&lt;Path&gt;" class="3e4e3269-1e5d-4a5d-ad7b-0b1fb5363c4e" d="M0,287.15H110.62l-3.17-4.32H4.6Q2.35,285,0,287.15Z"/>
+            </g>
+            <g id="07baff2e-5cac-4e17-9e67-b0f5fb84227c" data-name="&lt;Group&gt;">
+              <polygon id="fbfa837f-1ac4-443c-a000-b6d56a0fa19d" data-name="&lt;Path&gt;" class="ae7670d0-f1fb-4c9f-a178-1e22e5377310" points="362.81 287.14 359.19 292.9 114.84 292.9 110.62 287.14 0 287.14 12.69 321.2 464.2 321.2 484.16 287.14 362.81 287.14"/>
+            </g>
+          </g>
+          <g id="798af49f-c9da-4033-8bcd-a576e7d666e6" data-name="&lt;Group&gt;">
+            <polygon id="0f8d790f-914c-462f-8e9d-65ed73c36cfb" data-name="&lt;Path&gt;" class="16c1c9a4-be39-498c-aaca-94f1afc8495c" points="465.63 326 11.26 326 12.69 321.2 464.2 321.2 465.63 326"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

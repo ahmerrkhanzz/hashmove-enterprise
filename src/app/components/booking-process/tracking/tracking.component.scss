@@ -1,0 +1,196 @@
+@import "../../../../assets/scss/_variables";
+.tracking {
+  hr {
+    border-top: 1px dashed $dashed-border-color; // margin-top: 0px;
+  }
+  .form-control {
+    font-family: $font-proxima;
+    color: $text-color-default;
+    font-size: $font-size-medium;
+    height: 3rem;
+  }
+  p {
+    font-family: $font-proxima;
+    font-size: $font-size-medium;
+  }
+  .select-number {
+    .input-group-prepend {
+      .input-group-text {
+        background: $white-color;
+        border-right: 0;
+      }
+    }
+    input:focus,
+    select:focus,
+    input.fieldError {
+      border-color: $input-border !important;
+      transition: ease-in .8s;
+    }
+    .control-phone {
+      padding-left: 0;
+      border-left: 0;
+      box-shadow: none !important;
+    }
+    span {
+      font-size: $font-size-medium;
+    }
+    .country-section {
+      border: 0px;
+      background: transparent;
+    }
+    ng-scrollbar {
+      margin-bottom: 0rem;
+      min-height: 367px;
+      width: 7.2rem;
+      background: $white-color;
+      position: absolute;
+      z-index: 999;
+      top: 10px;
+      border: 1px solid $primary-color;
+      -webkit-box-shadow: 0px 0px 10px 0px $primary-color;
+      box-shadow: 0px 0px 10px 0px $primary-color;
+      left: -10px;
+      ul {
+        border: 0px;
+        li.list-group-item {
+          border: 0px;
+          padding: 0.625rem !important;
+          cursor: pointer;
+          img {
+            border: 1px solid $grey-border;
+          }
+        }
+      }
+    }
+  }
+  .card {
+    border-radius: 0;
+    &-title {
+      font-size: $font-size-medium;
+      text-transform: uppercase;
+      font-family: $font-proxima;
+      color: $dark-grey-blue;
+      font-weight: $font-weight-mid;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+      img {
+        position: relative;
+        top: -3px;
+        width: 14px;
+        height: 14px;
+      }
+    }
+    &-text {
+      font-size: $font-size-medium;
+      color: $secondary-text-color;
+      margin-bottom: 0;
+      font-family: $font-proxima;
+      .icon-size-16 {
+        margin-top: 2px;
+      }
+    }
+    &-body {
+      h6 {
+        font-size: $font-size-large;
+        font-weight: $font-weight-mid;
+        color: $text-color-default;
+        font-family: $font-pragmatica;
+      }
+      .set-action {
+        a {
+          font-family: $font-proxima;
+          font-weight: $font-weight-mid;
+          font-size: $font-size-medium;
+          color: $dark-grey-blue;
+        }
+        .badge {
+          text-transform: none;
+        }
+        .form-control {
+          font-family: $font-proxima;
+          color: $text-color-default;
+          font-size: $font-size-medium;
+          height: 3rem;
+        }
+        label {
+          color: $color-menuheading-black;
+          font-family: $font-proxima;
+        }
+      }
+    }
+    a.grey-anc-btn {
+      font-family: $font-proxima;
+      font-weight: $font-weight-mid;
+      font-size: $font-size-base;
+      color: $dark-grey-blue;
+      img {
+        top: -1px;
+      }
+      &:first-child {
+        margin-right: 0.8rem;
+      }
+    }
+    .switch-box {
+      label {
+        span {
+          color: $secondary-text-color;
+        }
+      }
+    }
+  }
+  .alert.alert-secondary {
+    padding: 0.4rem 0.87rem;
+    border-radius: 0;
+  }
+  &-actions {
+    margin-top: 28px;
+    a {
+      font-size: $font-size-medium;
+      font-family: $font-proxima;
+      font-weight: $font-weight-mid;
+      color: $dark-grey-blue;
+      display: inline-block;
+      vertical-align: sub;
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+    button {
+      padding: 0.7rem 0.5rem;
+      text-transform: uppercase;
+      font-size: $font-size-large;
+      font-family: $font-proxima;
+      font-weight: $font-proxima-weight-semibold;
+      background-color: $secondary-color !important;
+      background: $secondary-color !important;
+      @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+        /* IE10+ specific styles go here */
+        background-color: $secondary-color !important;
+        background: $secondary-color !important;
+      }
+    }
+  }
+  &-qualitymonitoring-form {
+    .check-boxes-main {
+      label {
+        font-size: $font-size-large;
+        color: $text-color-default;
+        font-family: $font-proxima;
+        font-weight: $font-weight-mid;
+      }
+    }
+  }
+}
+
+input::placeholder {
+  color: #aaaaaa !important;
+  font-family: $font-proxima;
+  font-size: $font-size-medium;
+  font-weight: $font-weight-mid;
+  opacity: 0.7;
+}
+
+// input::placeholder {
+//   color: red;
+//   font-size: 1.2em;
+//   font-style: italic;
+// }

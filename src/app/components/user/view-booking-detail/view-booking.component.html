@@ -1,0 +1,1672 @@
+<div class="view-booking mt-4" *ngIf="bookingDetails">
+  <div class="row">
+    <div class="col-12 pt-1">
+      <div class="row">
+        <h4 class="view-booking-title col-xl-6 col-sm-12">
+          {{bookingDetails.HashMoveBookingNum}}
+        </h4>
+        <div class="col-xl-6 col-sm-12 view-booking-top-btn mt-1 text-right mb-2" *ngIf="!isTracking">
+          <!-- <a href="javascript:;" class="hvr-icon-forward mr-5" (click)="printDetail()">
+              <img src="../../../../../assets/images/icons/icon_print.svg" alt="icon" class="icon-size-16 mr-2">
+              <span class="link-hover-1">Print</span>
+            </a> -->
+          <a href="javascript:;" *ngIf="!isGuestLogin" class="hvr-icon-forward" (click)="shareShippingInfo(bookingDetails,'')">
+            <img src="../../../../../assets/images/icons/icon_share_blue.svg" alt="icon" class="icon-size-16 mr-2">
+            <span class="link-hover-1">Share</span>
+          </a>
+        </div>
+      </div>
+      <small class="view-booking-info">Booked by {{bookingDetails.UserName}} on
+        {{bookingDetails.HashMoveBookingDate | date : "d MMM yyyy"}} at {{bookingDetails.HashMoveBookingDate
+          | date : "shortTime"}} (GMT), {{userCountry?.country}}</small>
+      <div class="col-12 pr-0 pl-0">
+        <ng-container *ngIf="!isGuestLogin">
+          <a *ngIf="!isTracking" class="hvr-icon-back grey-anc-btn mt-2 pt-1" href="javascript:;"
+            title="Back to Bookings" routerLink='/user/bookings'>
+            <img src="../../../../../assets/images/icons/icon_arrow_left.svg" alt="icon"
+              class="icon-size-14 hvr-icon mr-1">
+            <span class="link-hover-1">Back to Bookings</span>
+          </a>
+        </ng-container>
+        <a *ngIf="isTracking && !isContDtl" (click)="changeView('view')" class="hvr-icon-back grey-anc-btn mt-4"
+          href="javascript:;" title="Back to View Booking">
+          <img src="../../../../../assets/images/icons/icon_arrow_left.svg" alt="icon" class="icon-size-14 hvr-icon">
+          <span class="link-hover-1">Back to View Booking</span>
+        </a>
+
+        <a *ngIf="isTracking && isContDtl" (click)="changeView('track')" class="hvr-icon-back grey-anc-btn mt-4"
+          href="javascript:;" title="Back to View Booking">
+          <img src="../../../../../assets/images/icons/icon_arrow_left.svg" alt="icon" class="icon-size-14 hvr-icon">
+          <span class="link-hover-1">Back to Tracking</span>
+        </a>
+      </div>
+    </div>
+    <div class="col-12">
+      <hr class=" hr-solid mt-3">
+    </div>
+  </div>
+
+  <!-- status -->
+  <div class="row mt-2" *ngIf="!isTracking">
+    <div class="col-sm-12 status mb-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-xl-{{invoiceRights.ObjRights === 'R' ? '4' : '6'}} col-md-{{invoiceRights.ObjRights === 'R' ? '4' : '6'}} col-12 border-right pl-3 pr-2 detail-card">
+              <label class="status-label">Booking</label>
+              <strong class="text-capitalize" [ngClass]="bookingDetails.BookingStatus.toLowerCase()">
+                {{bookingDetails?.BookingStatus?.toLowerCase() | titlecase}}
+                <img src="../../../../assets/images/icons/icon_success_blue.svg" class="icon-size-16 pull-right"
+                  *ngIf="(bookingDetails?.BookingStatus?.toLowerCase() === 'confirmed' && bookingDetails?.BookingStatus?.toLowerCase() !== 'cancelled' && bookingDetails?.BookingStatus?.toLowerCase() !== 'in-transit')">
+
+              </strong>
+              <div class="actions mr-2">
+                <a href="javascript:;"
+                  *ngIf="((bookingDetails?.BookingStatus?.toLowerCase() !== 'confirmed' && bookingDetails?.BookingStatus?.toLowerCase() !== 'cancelled') && (bookingDetails?.ShippingStatus?.toLowerCase() !== 'in-transit' &&  bookingDetails?.ShippingStatus?.toLowerCase() !== 'cancelled'))"
+                  class="text-danger" (click)="openCancelModal()">Cancel Booking</a>
+              </div>
+            </div>
+            <div class="col-xl-{{invoiceRights.ObjRights === 'R' ? '4' : '6'}} col-md-{{invoiceRights.ObjRights === 'R' ? '4 border-right' : '6'}} col-12 pl-4 pr-2 detail-card">
+              <label class="status-label">{{(searchCriteria.searchMode === 'warehouse-lcl')?'Booking':'Shipment'}}</label>
+              <strong class="text-capitalize" [ngClass]="bookingDetails.BookingStatus.toLowerCase()">
+                {{bookingDetails.ShippingStatus | titlecase}}
+              </strong>
+              <div class="actions">
+                <a class="text-success" href="javascript:;"
+                  *ngIf="bookingDetails.ShippingStatus.toLowerCase() === 'in-transit' && ((bookingDetails.ContainerLoad.toLowerCase() === 'fcl') || (bookingDetails.ContainerLoad.toLowerCase() === 'ftl' && (isTrackingOnBooking || isMonitoringOnBooking)))"
+                  (click)="changeView('track')">
+                  <img class="icon-size-20 pull-left mr-1"
+                    src="../../../../assets/images/icons/ic_curr_loc_anim_green.svg" alt="">
+                  <span class="link-hover-1 mr-2">Tracking & Monitoring</span>
+                  <i class="fa fa-angle-right hvr-icon"></i>
+                </a>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-4 col-12  pl-4 pr-2 detail-card" *ngIf="invoiceRights.ObjRights === 'R'">
+              <label class="status-label">Billing</label>
+              <strong>
+                {{bookingDetails.CurrencyCode}} {{bookingDetails.BookingTotalAmount | number: '1.2-2'}}
+                <a class="pull-right hvr-icon-forward" href="javascript:;" (click)="viewInvoice()">
+                  <span class="link-hover-1 mr-2">View Invoice</span>
+                  <i class="fa fa-angle-right hvr-icon"></i>
+                </a>
+              </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ status -->
+
+  <!-- <app-tracking-monitoring *ngIf="isTracking" [data]="bookingDetails" [isTracking]="isTrackingOnBooking"
+    [shouldTrackingOpen]="shouldMapOpen" [isMonitoring]="isMonitoringOnBooking" [trackingData]="trackingData"
+    [monitorData]="qualityMonitorData" [isContDtl]="isContDtl" (containerCallback)="trackContrCallback($event)">
+  </app-tracking-monitoring> -->
+
+  <!-- <app-cont-track-mon *ngIf="isTracking && isContDtl"></app-cont-track-mon> -->
+
+  <div *ngIf="!isTracking">
+    <!-- Where is my shipment -Google Map -->
+    <div class="row my-shipment ml-1 mr-1"
+      *ngIf="bookingDetails?.EtdUtc?.length > 1 && bookingDetails.BookingRouteMapInfo?.length > 0 && bookingDetails?.ShippingModeCode !== 'WAREHOUSE'">
+      <h5 class="d-block mt-2">Where's my shipment?</h5>
+      <div class="col-xl-12">
+        <div class="row border rounded">
+          <div class="col-sm-4 col-12 p-0">
+            <div class="card">
+              <div class="card-body google-map">
+                <div class="my-shipment-location">
+                  <ul class="list-group" *ngIf="bookingDetails.BookingRouteMapInfo">
+                    <li
+                      *ngFor="let port of bookingDetails.BookingRouteMapInfo.RouteInfo; let lastIndex = last;let fistIndex = first"
+                      class="list-group-item pr-0" [ngClass]="(port.IsPassed)?'selected':''">
+                      <div class="port-icon">
+                        <img *ngIf="port.ModeOfTrans === 'LOCATION'"
+                          src="../../../../assets/images/icons/{{getIcon(port.ModeOfTrans)}}" alt="mode" height="22">
+                        <img *ngIf="port.ModeOfTrans !== 'LOCATION'"
+                          src="../../../../assets/images/icons/{{getIcon(port.ModeOfTrans)}}" alt="mode">
+                      </div>
+                      <p>{{port.RouteDesc}}
+                        <br>
+                        <small *ngIf="!lastIndex">
+                          Departed on
+                          <span *ngIf="port?.DateUtc?.length > 1">{{ port.DateUtc |date: 'dd MMM yyyy'}}</span>
+                          <span *ngIf="!port?.DateUtc || !(port?.DateUtc?.length > 1)">N/A</span>
+                        </small>
+                        <small *ngIf="lastIndex">
+                          Arrived on
+                          <span *ngIf="port?.DateUtc?.length > 1">{{ port.DateUtc |date: 'dd MMM yyyy'}}</span>
+                          <span *ngIf="!port?.DateUtc || !(port?.DateUtc?.length > 1)">N/A</span>
+                        </small>
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col pr-0">
+            <hashmove-map [windowHeight]="'34.375rem'" [enableDataService]="false" [isViewBookingData]="true"
+              [bookingRouteMapInfo]="bookingDetails.BookingRouteMapInfo"></hashmove-map>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Where is my shipment -Google Map ./END -->
+
+    <!-- shipping details -->
+    <div class="row view-booking-shipment-detail">
+      <div class="col-xl-8 col-lg-8 col-md-12 col-12">
+        <!-- <div class="col-12" *ngIf="bookingDetails.PolType.toUpperCase() === 'GROUND'
+            &&  (searchCriteria.searchMode === 'sea-fcl' || searchCriteria.searchMode === 'air-lcl')"> -->
+        <div class="row">
+          <div class="col-12" *ngIf="bookingDetails.PolType.toUpperCase() === 'GROUND'">
+            <div class="warehouse-schedule">
+              <ngb-accordion #acc="ngbAccordion" (panelChange)="accChange($event);">
+                <ngb-panel id="acc-load-pickup">
+                  <ng-template ngbPanelTitle>
+                    <div class="row pt-3 pb-3">
+                      <div class="col-2 track-heading mt-2 mb-2 p-0">
+                        <img src="../../../../assets/images/icons/On_time_Delivery.svg" width="40" alt="">
+                      </div>
+                      <div class="col-10 d-flex justify-content-center"
+                        [ngClass]="[(arrowChange ? 'active' : 'unactive'),(loadPickupDate ? 'loadPickup' : 'col-10')]">
+                        <div class="loadPickup-detail w-100">
+                          <strong *ngIf="!loadPickupDate">Request to Schedule Your Load Pickup</strong>
+                          <span *ngIf="loadPickupDate" class="w-100 d-flex text-left flex-column">Your Load pickup has
+                            been scheduled for
+                            <strong>{{loadPickupDate| date: 'EE, dd MMM yyy HH:mm'}} GMT</strong>
+                          </span>
+                          <div class="actions">
+                            <span class=" ml-2 d-flex flex-column text-left">
+                              <a href="javascript:;" class="grey-anc-btn">Re-Schedule
+                                <i class="fa fa-angle-right"></i>
+                              </a>
+                              <a href="javascript:;" class="text-danger"
+                                (click)="shouldOpenPanel = false;updateBooking('discard', $event, acc)">Cancel</a>
+                            </span>
+                          </div>
+                          <img src="../../../../assets/images/icons/icon_arrow_down.svg"
+                            class="icon-size-12 pull-right mr-3 mt-1">
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                  <div>
+                    <ng-template ngbPanelContent *ngIf="arrowChange">
+                      <div>
+                        <div>
+                          <p>
+                            <img class="icon-size-16" src="../../../../assets/images/icons/Icons_Calendar.svg" alt="">
+                            <strong>SELECT DATE AND TIME</strong>
+                          </p>
+                        </div>
+                        <ngu-carousel [inputs]="carouselOne" id="usp" [dataSource]="dateList"
+                          class="border-control-right">
+                          <div *nguCarouselDef="let item; let i = index; let ani = animate" class="carouselTile item"
+                            [ngClass]="[(item.isSelected)?'active':'',(!item.isActive)?'inactive':'']">
+                            <div class="item-sub-section pointer" (click)="onDateSelect(item, i)">
+                              <div>
+                                <p class="date">{{item.pickupDate | date: 'dd'}}</p>
+                                <p class="month">{{item.pickupDate | date: 'MMM'}}</p>
+                              </div>
+                            </div>
+                          </div>
+                          <button NguCarouselPrev class='leftRs btn hvr-icon-back'>
+                            <img src="../../../../assets/images/icons/icon_arrow_left.svg" alt="" class="icon-size-16">
+                          </button>
+                          <button NguCarouselNext class='rightRs btn hvr-icon-forward'>
+                            <img src="../../../../assets/images/icons/icon_arrow_right.svg" alt="" class="icon-size-16">
+                          </button>
+                        </ngu-carousel>
+                        <hr class="mt-4">
+                        <div class="pickup-time">
+                          <ul class="list-group">
+                            <li class="list-group-item">hrs</li>
+                            <li class="list-group-item">mints</li>
+                          </ul>
+                          <ngb-timepicker [(ngModel)]="pickupTime"></ngb-timepicker>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center">
+                          <button class="btn btn-primary hvr-sweep-to-right btn-lg text-uppercase"
+                            (click)="updateBooking('update', $event, acc)">Submit Request
+                          </button>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </div>
+                </ngb-panel>
+              </ngb-accordion>
+            </div>
+            <br>
+            <br>
+          </div>
+
+          <div class="d-flex mt-2 ml-3">
+            <div class="icon mr-2 mt-1 pull-left" [ngClass]="[bookingDetails.ShippingModeCode === 'AIR' ? 'icon-size-22': '', bookingDetails.ShippingModeCode === 'SEA' ? 'icon-size-18':
+              '', bookingDetails.ShippingModeCode === 'TRUCK' ? 'icon-size-20': '', bookingDetails.ShippingModeCode === 'WAREHOUSE' ? 'icon-size-20':
+              '']">
+              <img src="../../../../assets/images/icons/{{getIconByMode(bookingDetails.ShippingModeCode)}}" alt=""
+                [ngClass]="bookingDetails.ShippingModeCode">
+            </div>
+            <h5 class="mt-1"
+              *ngIf="bookingDetails.ShippingModeCode === 'SEA' || bookingDetails.ShippingModeCode === 'AIR' || bookingDetails.ShippingModeCode === 'TRUCK'">
+              Shipment Details
+            </h5>
+            <h5 class="mt-1" *ngIf="bookingDetails.ShippingModeCode === 'WAREHOUSE'">Booking Overview</h5>
+          </div>
+
+          <div class="col-12"
+            *ngIf="bookingDetails.ShippingModeCode === 'SEA' || bookingDetails.ShippingModeCode === 'AIR' || bookingDetails.ShippingModeCode === 'TRUCK'">
+            <div class="card mb-0 rounded-top">
+              <div class="card-body">
+                <div class="card-title mt-2">
+                  <h5>
+                    <img src="../../../../assets/images/icons/icon_info2.svg" class="mr-1" width="16px" height="16px"
+                      title="Shipping Information"> SHIPPING INFORMATION
+                  </h5>
+                </div>
+                <div class="logo">
+                  <!-- <img alt="icon" src="{{'../../../../assets/images/logos/' + bookingDetails.ProviderImage}}"/> -->
+                  <img alt="icon" src="{{getUIImage(bookingDetails.ProviderImage, true)}}" />
+                </div>
+                <div class="company">
+                  <span>Your're shipping with</span>
+                  <p>{{bookingDetails.ProviderName}}</p>
+                </div>
+                <button
+                  class="btn btn-outline-primary hvr-sweep-to-right pull-right view-booking-shipment-detail-btn mt-4"
+                  placement="bottom" [ngbPopover]="contact">Contact</button>
+                <ng-template #contact>
+                  <div class="contact-popup fadeIn animated">
+                    <a *ngFor="let email of ProviderEmails" href="{{'mailto:' + email}}">
+                      <img src="../../../../assets/images/icons/icon_email.svg" alt="mail_Icon"
+                        class="icon-size-16 mt-1 mr-1">
+                      <span>{{email}}</span>
+                    </a>
+                    <p *ngFor="let phone of ProviderPhones">
+                      <img src="../../../../assets/images/icons/mob-icon.svg" alt="Contact_Icon" class="icon-size-16">
+                      <strong style="vertical-align: middle;">{{phone}}</strong>
+                    </p>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+            <div class="card grey-background rounded-bottom" *ngIf="showMap">
+              <div class="card-body mt-3">
+                <div class="row mt-1">
+                  <div class="col-xl-12 col-sm-12 details">
+                    <div class="row">
+                      <div class="col-4 pb-2"
+                        *ngIf="!isTruck && bookingDetails?.ShippingModeCode?.toLowerCase() !== 'air' && bookingDetails?.EtdUtc?.length > 1">
+                        <img src="../../../../assets/images/icons/icon_anchor.svg" alt="icon"
+                          class="icon-size-16 mr-3 align-top">
+                        <div class="info">
+                          <h5 class="mt-0 mb-1">cut off
+                          </h5>
+                          <p *ngIf="bookingDetails.ShippingModeCode.toLowerCase() !== 'air'">
+                            {{bookingDetails.PortCutOffLcl | date : "d MMM yyyy"}}</p>
+                        </div>
+                      </div>
+                      <div class="col-4 pb-2"
+                        *ngIf="bookingDetails?.ShippingModeCode?.toLowerCase() !== 'air' && bookingDetails?.EtdUtc?.length > 1">
+                        <img src="../../../../../assets/images/icons/Icons_Clock-28.svg" alt="icon"
+                          class="icon-size-16 mr-3 align-top">
+                        <div class="info">
+                          <h5 class="mt-0 mb-1">Departure
+                          </h5>
+                          <p *ngIf="bookingDetails.ShippingModeCode.toLowerCase() !== 'air'">
+                            {{bookingDetails.EtdLcl | date : "d MMM yyyy"}}</p>
+                        </div>
+                      </div>
+                      <div class="col-4 pb-2"
+                        *ngIf="bookingDetails?.ShippingModeCode?.toLowerCase() !== 'air' && bookingDetails?.EtdUtc?.length > 1">
+                        <img src="../../../../../assets/images/icons/Icons_Location.svg" alt="icon"
+                          class="icon-size-16 mr-3 align-top">
+                        <div class="info">
+                          <h5 class="mt-0 mb-1">Est. Transit Time
+                          </h5>
+                          <p *ngIf="bookingDetails.ShippingModeCode.toLowerCase() !== 'air'">
+                            {{(bookingDetails.TransitTime && bookingDetails.TransitTime !== null) ? bookingDetails.TransitTime : 'N/A'}}
+                            {{(bookingDetails.TransitTime && bookingDetails.TransitTime !== null) ? 'Days' : ''}}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="col-4 pb-2" *ngIf="isTruck">
+                        <img src="../../../../../assets/images/icons/icons_cargo_truck_grey_dark.svg" alt="icon"
+                          class="icon-size-16 mr-3 align-top">
+                        <div class="info">
+                          <h5 class="mt-0 mb-1">Vehicle #
+                          </h5>
+                          <p>
+                            {{bookingDetails.TruckNumber}}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mt-4"
+                      *ngIf="!isTruck && bookingDetails?.ShippingModeCode?.toLowerCase() !== 'air' && bookingDetails?.EtdUtc?.length > 1">
+                      <div
+                        *ngIf="bookingDetails.ShippingModeCode.toLowerCase() !== 'air' && bookingDetails.ShippingModeCode.toLowerCase() !== 'truck' && bookingDetails?.EtdUtc?.length > 1"
+                        class="col-4">
+                        <img src="../../../../assets/images/icons/icon_ship.svg" alt="icon"
+                          class="icon-size-16 mr-3 align-top">
+                        <div class="info">
+                          <h5 class="mt-0 mb-1">Voyage #
+                          </h5>
+                          <p *ngIf="bookingDetails.VoyageRefNum">{{bookingDetails.VoyageRefNum}}</p>
+                          <p *ngIf="!bookingDetails.VoyageRefNum"> N/A</p>
+                        </div>
+                      </div>
+                      <div class="col-4"
+                        *ngIf="!isTruck && bookingDetails?.EtdUtc?.length > 1 && bookingDetails.ShippingModeCode.toLowerCase() !== 'air'">
+                        <img src="../../../../assets/images/icons/icon_ship.svg" alt="icon"
+                          class="icon-size-16 mr-3 align-top">
+                        <div *ngIf="bookingDetails.ShippingModeCode.toLowerCase() !== 'air'" class="info">
+                          <h5 class="mt-0 mb-1">Vessel Name</h5>
+                          <p *ngIf="bookingDetails.VesselName">{{bookingDetails.VesselName}}</p>
+                          <p *ngIf="!bookingDetails?.VesselName"> N/A</p>
+                        </div>
+                      </div>
+                      <div class="col-4"
+                        *ngIf="!isTruck && bookingDetails?.EtdUtc?.length > 1 && bookingDetails.ShippingModeCode.toLowerCase() !== 'air'">
+                        <img src="../../../../assets/images/icons/icon_ship.svg" alt="icon"
+                          class="icon-size-16 mr-3 align-top">
+                        <div *ngIf="bookingDetails.ShippingModeCode.toLowerCase() !== 'air'" class="info">
+                          <h5 class="mt-0 mb-1">Vessel #
+                          </h5>
+                          <p *ngIf="bookingDetails?.VesselCode">{{bookingDetails.VesselCode}}</p>
+                          <p *ngIf="!bookingDetails?.VesselCode">N/A</p>
+                        </div>
+                        <!-- <div *ngIf="bookingDetails.ShippingModeCode.toLowerCase() === 'air'" class="info">
+                            <h5 class="mt-0 mb-1">FlightNo #
+                            </h5>
+                            <p *ngFor="let flight of distinctFlightNo">{{flight.FlightNo}}</p>
+                          </div> -->
+                      </div>
+                    </div>
+                    <div class="row" *ngIf="!isTruck && bookingDetails.CarrierName"
+                      [ngClass]="(bookingDetails?.ShippingModeCode?.toLowerCase() !== 'air')?'mt-4':''">
+                      <div class="media col-4">
+                        <div class="align-self-start mr-3">
+                          <img src="{{getUIImage(bookingDetails.CarrierImage, false)}}" alt="icon" width="62px"
+                            height="62px" />
+                        </div>
+                        <div class="media-body">
+                          <div class="details">
+                            <h5 class="mt-0 mb-1">
+                              {{(bookingDetails?.ShippingModeCode?.toLowerCase() !== 'air')?'SHIPPING':'AIR'}} LINE</h5>
+                            <p>{{bookingDetails.CarrierName}}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-4 col-12 border-xs-bottom mb-4 d-flex"
+                        *ngIf="bookingDetails.ContainerLoad === 'FCL'">
+                        <img src="../../../../assets/images/icons/icon_summary.svg" alt="icon"
+                          class="icon-size-16 mr-3 align-top">
+                        <div class="info">
+                          <h5 class="mt-0 mb-1">B/L NUMBER
+                          </h5>
+                          <a class="hvr-icon-forward m-0" href="javascript:;">
+                            <span class="mr-1 container-link">{{bookingDetails.BLNo || 'N/A'}}</span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-4 col-12 border-xs-bottom mb-4 d-flex"
+                        *ngIf="bookingDetails.ContainerLoad === 'FCL'">
+                        <img src="../../../../assets/images/icons/icon_container.svg" alt="icon"
+                          class="icon-size-16 mr-3 align-top">
+                        <div class="info">
+                          <h5 class="mt-0 mb-1">CONTAINER NUMBER(S)
+                          </h5>
+                          <a class="hvr-icon-forward m-0 container-link" (click)="openAddContainer()"
+                            href="javascript:;">
+                            <span class=" mr-1">View Container No.</span>
+                          </a>
+                        </div>
+                      </div>
+
+                      <!-- <div class="media col-6">
+                          <img src="../../../../../assets/images/icons/Icons_Clock-28.svg" alt="icon"
+                          class="icon-size-16 mr-3 align-top">
+                        <div class="info">
+                          <h5 class="mt-0 mb-1">CARGO READINESS DATE
+                          </h5>
+                          <p *ngIf="bookingDetails.ShippingModeCode.toLowerCase() !== 'air'">
+                            {{bookingDetails.EtdLcl | date : "d MMM yyyy"}}</p>
+                          <p *ngIf="bookingDetails.ShippingModeCode.toLowerCase() === 'air'">
+                            {{bookingDetails.EtdLcl | date : "d MMM yyyy HH:mm"}} GMT</p>
+                        </div>
+                        </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- document required -->
+            <div class="row view-booking-document mt-4"
+              *ngIf="documentsRights.ObjRights === 'R' || documentsRights.ObjRights === 'RW'">
+              <!-- <h5 class="col-12 view-booking-document-heading">Documents</h5> -->
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-xl-12 col-sm-12">
+                    <h5 class="view-booking-document-heading" *ngIf="!isTruck">Shipping Information For
+                      <img class="flag-icon-20-12"
+                        src="../../../../assets/images/icons/flags/4x3/{{bookingDetails?.PolImage}}.svg"
+                        alt="flag icon">
+                      {{bookingDetails?.PolCode}}, {{bookingDetails?.PolName}}
+                    </h5>
+                    <h5 class="view-booking-document-heading" *ngIf="isTruck">Shipping Information For
+                      <img class="flag-icon-20-12"
+                        src="../../../../assets/images/icons/flags/4x3/{{bookingDetails.PolImage}}.svg" alt="flag icon">
+                      {{bookingDetails?.PolCity}}, {{bookingDetails?.PolCountry}}
+                    </h5>
+                    <div class="card rounded-top">
+                      <!-- <div class="view-booking-document-title">
+                          <div class="flag-icon-20-12 d-inline-block mr-2">
+                            <img src="../../../../assets/images/icons/flags/4x3/{{bookingDetails.PolImage}}.svg"
+                              alt="flag icon">
+                          </div>
+                          <span *ngIf="!isTruck">Documents Required At {{bookingDetails.PolCode}},
+                            {{bookingDetails.PolName}} Are:
+                          </span>
+                          <span *ngIf="isTruck">{{bookingDetails?.PolCity}}, {{bookingDetails.PolCountry}}</span>
+                          <hr class="hr-border">
+                        </div> -->
+                      <div class="card-body">
+                        <div class="card-title mt-3 mb-2">
+                          <h5><img class="icon-size-16 mr-2"
+                              src="../../../../../assets/images/icons/icon_upload.svg">Upload
+                            Documents</h5>
+                          <!-- <hr> -->
+                        </div>
+                        <ul class="list-group list-group-flush mt-4">
+                          <li *ngFor="let originDoc of originDocList"
+                            class="list-group-item d-flex justify-content-between" [ngClass]="{'active':originDoc.DocumentID, 'rejected-doc':
+                              originDoc.DocumentLastStatus.toLowerCase() === 're-upload'}">
+                            <div class="d-flex document-detail-left ml-3">
+                              <h6 class="mb-0" (click)="downloadAction(originDoc)"
+                                [ngClass]="(originDoc.DocumentFileName && originDoc.IsDownloadable)?'pointer':''">
+                                <img
+                                  *ngIf="originDoc.DocumentID && originDoc.DocumentLastStatus.toLowerCase() !== 're-upload'"
+                                  src="../../../../assets/images/icons/Icons_Check.svg" alt="check icon"
+                                  class="icon-size-24 check-icon">
+                                <img
+                                  *ngIf="originDoc.DocumentID && originDoc.DocumentLastStatus.toLowerCase() === 're-upload'"
+                                  src="../../../../assets/images/icons/icon_close_red.svg" alt="check icon"
+                                  class="icon-size-16 delete-icon">
+                                {{originDoc.DocumentTypeDesc}}
+                              </h6>
+                              <p *ngIf="originDoc.DocumentUploadDate">Uploaded on
+                                {{originDoc.DocumentUploadDate | date :"d MMM, yyyy"}} {{originDoc.DocumentUploadDate
+                                                        | date : "H:mm"}} GMT</p>
+                              <div class="d-flex mt-1" *ngIf="originDoc.ReasonID && originDoc.ReasonID > 0">
+                                <!-- <img src="../../../../../assets/images/icons/icon_info2 - grey.svg"
+                                                                    class="icon-size-16 mr-1" /> -->
+                                <img src="../../../../assets/images/icons/icon_comment.png"
+                                  class="icon-size-16 mr-2 mt-1" />
+                                <!-- <small [ngbTooltip]="originDoc.DocumentStausRemarks" placement="left" container="body"
+                                    class="text-muted" class="animated-info">
+                                    This document was rejected by the provider with the reason:
+                                    <span class="reason">{{originDoc.DocumentStausRemarks}}</span>
+                                  </small> -->
+                                <div class="animated-info">
+                                  <span class="view-booking-reasons-name">{{originDoc.ReasonName}}</span>
+                                  <p class="view-booking-reasons-desc">{{originDoc.DocumentStausRemarks}}</p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="d-flex document-detail-right">
+                              <span *ngIf="originDoc?.DocumentLastStatus.toLowerCase() === 'approved'"
+                                class="badge pointer mr-2 mt-1"
+                                [ngClass]="originDoc?.DocumentLastStatus.toLowerCase() === 'approved' ? 'hashmove-badge-secondary' : 'badge'">
+                                {{originDoc.DocumentLastStatus}}
+                              </span>
+                              <span
+                                *ngIf="originDoc?.DocumentLastStatus && originDoc?.DocumentLastStatus.toLowerCase() !== 'approved'"
+                                class="badge pointer mr-2 mt-1"
+                                [ngClass]="[originDoc.DocumentLastStatus === 'DRAFT' ? 'hashmove-badge-warning' : 'badge', originDoc.DocumentLastStatus.toLowerCase() === 're-upload' ? 'hashmove-badge-danger' : 'badge']">
+                                <!-- originDoc.DocumentLastStatus -->
+                                {{(originDoc.DocumentLastStatus.toLowerCase() === 'draft') ? 'PENDING APPROVAL' : (originDoc.DocumentLastStatus.toLowerCase()
+                                === 're-upload' ? 'REJECTED' : originDoc.DocumentLastStatus)}}
+                              </span>
+                              <button
+                                *ngIf="!originDoc.DocumentID && originDoc.IsUploadable && bookingDetails.BookingStatus.toLowerCase() !== 'completed' && bookingDetails.BookingStatus.toLowerCase() !== 'cancelled'"
+                                class="btn btn-outline-primary hvr-sweep-to-right pull-right"
+                                [disabled]="bookingDetails.BookingStatus.toLowerCase() === 'cancelled' || bookingDetails.ShippingStatus.toLowerCase() === 'in-transit' || documentsRights.ObjRights === 'R'"
+                                (click)="uploadDoc(originDoc)">Upload</button>
+                              <button
+                                *ngIf="originDoc.DocumentID && originDoc.IsUploadable && originDoc.DocumentLastStatus.toLowerCase() !== 'approved' && bookingDetails.BookingStatus.toLowerCase() !== 'completed' && bookingDetails.BookingStatus.toLowerCase() !== 'cancelled'"
+                                class="btn btn-outline-primary hvr-sweep-to-right" (click)="uploadDoc(originDoc)"
+                                [disabled]="originDoc.StatusAction && originDoc.StatusAction === 'LOCKED' || (bookingDetails.BookingStatus.toLowerCase() === 'cancelled' || bookingDetails.ShippingStatus.toLowerCase() === 'in-transit' || documentsRights.ObjRights === 'R')">
+                                Re-Upload
+                              </button>
+                            </div>
+
+                          </li>
+                        </ul>
+                      </div>
+
+                    </div>
+                    <div class="card mb-0 grey-background rounded-0"
+                      *ngIf="shipperInfoRights.ObjRights === 'R' || shipperInfoRights.ObjRights === 'RW'">
+                      <div class="card-body d-flex flex-column">
+                        <div
+                          class="card-title mb-3 mt-2 d-flex justify-content-between align-items-center grey-background rounded-bottom">
+                          <h5 (click)="toggleInfoSection('origin')" class="pointer prevent-text-select">
+                            <img src="../../../../assets/images/icons/icon_info2.svg" class="icon-size-16 mr-1">
+                            Supplier
+                            Information
+                            <i class="fa fa-caret-down" [ngClass]="originToggleClass">
+                            </i>
+                          </h5>
+                          <span *ngIf="editSupOrgToggler">
+                            <img src="../../../../../assets/images/icons/icon_device_edit.svg"
+                              class="icon-size-16 pointer mr-1" alt="edit" (click)="setSupOrgInfo()">
+                          </span>
+                        </div>
+                        <div *ngIf="originToggle">
+                          <div class="row" *ngIf="editSupOrgToggler">
+                            <div class="contact ml-4" [ngClass]="editSupOrgToggler ? 'col-8': 'col-8'">
+                              <h4 class="contact-name">{{bookingDetails?.JsonShippingOrgInfo?.Name}}</h4>
+                              <div class="contact-address mb-3 d-flex"
+                                [ngClass]="ShippingOrgInforeadMoreClass ? 'readMore animated fadeIn' : 'unread'">
+                                <img src="../../../../../assets/images/icons/Icons_Location.svg" alt="icon"
+                                  class="icon-size-16 mt-1">
+                                <span class="ml-2">
+                                  {{bookingDetails?.JsonShippingOrgInfo?.Address}}
+                                </span>
+                              </div>
+                              <a href="javascript:;" class="link-hover-1 vendor-details-readMore ml-4 detailsBtn"
+                                (click)="ShippingOrgInforeadMore()" *ngIf="bookingDetails?.JsonShippingOrgInfo?.Address?.length >
+                                  250">{{ShippingOrgInfoBtn}}</a>
+                              <div class="contact-info d-flex justify-content-between pt-1">
+                                <span class="mr-4">
+                                  <img src="../../../../assets/images/icons/mob-icon.svg" class="icon-size-16">
+                                  <span
+                                    class="ml-2">{{bookingDetails?.JsonShippingOrgInfo?.PhoneCountryCode}}{{bookingDetails?.JsonShippingOrgInfo?.PhoneNumber}}</span>
+                                </span>
+                                <span class="ml-3">
+                                  <img src="../../../../assets/images/icons/icon_email.svg" class="icon-size-16">
+                                  <span class="ml-2">{{bookingDetails?.JsonShippingOrgInfo?.Email}}</span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <form autocomplete="off" novalidate [formGroup]="SupInfoFormOrigin" class=" pt-2 pl-4 pb-3"
+                            *ngIf="!editSupOrgToggler" (ngSubmit)="updateSupInfoOrig()">
+                            <div class="row">
+                              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-12 text-right supplier-text">
+                                <div class="form-group">
+                                  <label class="mt-2">Name</label>
+                                </div>
+                              </div>
+                              <div class="col-xl-6 col-lg-8 col-md-8 col-sm-8 col-xs-12 pl-1">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" formControlName="name"
+                                    [ngClass]="(sup_origin_name_error)? 'fieldError': ''"
+                                    (focusout)="errorMessages('origin')" (focus)="sup_origin_name_error=false"
+                                    (keypress)="textValidation($event)" />
+                                  <span class="animated fadeIn" *ngIf="sup_origin_name_error">
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormOrigin.controls['name'].hasError('required') && (SupInfoFormOrigin.controls.name.dirty || SupInfoFormOrigin.controls.name.touched)">
+                                      This field is required!</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="!SupInfoFormOrigin.controls['name'].hasError('pattern') && SupInfoFormOrigin.controls['name'].hasError('minlength') && (SupInfoFormOrigin.controls.name.dirty || SupInfoFormOrigin.controls.name.touched)">
+                                      Name must be at least 2 characters long</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="!SupInfoFormOrigin.controls['name'].hasError('pattern') && SupInfoFormOrigin.controls['name'].hasError('maxlength') && (SupInfoFormOrigin.controls.name.dirty || SupInfoFormOrigin.controls.name.touched)">
+                                      Name should not exceed from 50 characters</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormOrigin.controls['name'].hasError('pattern') && (SupInfoFormOrigin.controls.name.dirty || SupInfoFormOrigin.controls.name.touched)">
+                                      Please enter valid information</p>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-12 text-right supplier-text ">
+                                <div class="form-group">
+                                  <label class="mt-2">Address</label>
+                                </div>
+                              </div>
+                              <div class="col-xl-6 col-lg-8 col-md-8 col-sm-8 col-xs-12 pl-1">
+                                <div class="form-group">
+                                  <textarea class="form-control" formControlName="address" maxlength="500"
+                                    [ngClass]="(sup_origin_address_error)? 'fieldError': ''"
+                                    (focusout)="errorMessages('origin')"
+                                    (focus)="sup_origin_address_error=false"></textarea>
+                                  <span class="animated fadeIn" *ngIf="sup_origin_address_error">
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormOrigin.controls['address'].hasError('required') && (SupInfoFormOrigin.controls.address.dirty || SupInfoFormOrigin.controls.address.touched)">
+                                      This field is required!</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="!SupInfoFormOrigin.controls['address'].hasError('pattern') && SupInfoFormOrigin.controls['address'].hasError('minlength') && (SupInfoFormOrigin.controls.address.dirty || SupInfoFormOrigin.controls.address.touched)">
+                                      address must be at least 10 characters long</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="!SupInfoFormOrigin.controls['address'].hasError('pattern') && SupInfoFormOrigin.controls['address'].hasError('maxlength') && (SupInfoFormOrigin.controls.address.dirty || SupInfoFormOrigin.controls.address.touched)">
+                                      Name should not exceed from 250 characters</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormOrigin.controls['address'].hasError('pattern') && (SupInfoFormOrigin.controls.address.dirty || SupInfoFormOrigin.controls.address.touched)">
+                                      Please enter valid information</p>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-12 text-right supplier-text">
+                                <div class="form-group">
+                                  <label class="mt-2">Contact</label>
+                                </div>
+                              </div>
+                              <div class="col-xl-6 col-lg-8 col-md-8 col-sm-8 col-xs-12 pl-1">
+                                <div class="form-group select-number">
+                                  <div class="input-group" [ngClass]="(sup_origin_contact_error)? 'inputError': ''">
+                                    <div class="input-group-prepend">
+                                      <div class="input-group-text">
+                                        <div ngbDropdown class="contanct-dropdown">
+                                          <div class="pointer phone" id="phoneCode" ngbDropdownToggle
+                                            style="max-height: 28rem;">
+                                            <div class="d-inline-block mr-1" style="width:20px;height:20px;">
+                                              <img *ngIf="supFlagImgOrg"
+                                                [src]="'../../../../assets/images/icons/flags/4x3/' + (supFlagImgOrg | lowercase) + '.svg'"
+                                                alt="flags" class="img-responsive border"
+                                                style="max-width:100%; max-height:100%;">
+                                            </div>
+                                            <span>{{supOrgphoneCode}}</span>
+                                          </div>
+                                          <div class="animated fadeIn country-section" ngbDropdownMenu
+                                            aria-labelledby="phoneCode">
+                                            <ng-scrollbar [trackX]="false"
+                                              style="margin-bottom: 0rem; min-height: 200px;">
+                                              <ul class="list-group">
+                                                <li class="list-group-item" *ngFor="let list of countryList"
+                                                  (click)="selectPhoneCode(list,'origin')">
+                                                  <div class="d-inline-block mr-1" style="width:20px;height:20px;">
+                                                    <img
+                                                      [src]="'../../../../assets/images/icons/flags/4x3/' + (list.code | lowercase) + '.svg'"
+                                                      alt="{{list.code + '-flags'}}"
+                                                      style="max-width:100%; max-height:100%;">
+                                                  </div>
+                                                  <span> {{list.desc[0].CountryPhoneCode}}</span>
+                                                </li>
+                                              </ul>
+                                            </ng-scrollbar>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <input type="text" class="form-control control-phone" maxlength="13"
+                                      placeholder="123456789" formControlName="contact"
+                                      [ngClass]="(sup_origin_contact_error)? 'fieldError': ''"
+                                      (keypress)="NumberValid($event)" (focusout)="errorMessages('origin')"
+                                      (focus)="sup_origin_contact_error=false" />
+                                  </div>
+                                  <span class="animated fadeIn" *ngIf="sup_origin_contact_error">
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormOrigin.controls['contact'].hasError('required') && (SupInfoFormOrigin.controls.contact.dirty || SupInfoFormOrigin.controls.contact.touched)">
+                                      This field is required!</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="!SupInfoFormOrigin.controls['contact'].hasError('pattern') && SupInfoFormOrigin.controls['contact'].hasError('minlength') && (SupInfoFormOrigin.controls.contact.dirty || SupInfoFormOrigin.controls.contact.touched)">
+                                      Phone
+                                      number should be minimum 7 digits</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="!SupInfoFormOrigin.controls['contact'].hasError('pattern') && SupInfoFormOrigin.controls['contact'].hasError('maxlength') && (SupInfoFormOrigin.controls.contact.dirty || SupInfoFormOrigin.controls.contact.touched)">
+                                      Phone
+                                      number should not exceed from 12 digits</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormOrigin.controls['contact'].hasError('pattern') && (SupInfoFormOrigin.controls.contact.dirty || SupInfoFormOrigin.controls.contact.touched)">
+                                      Please
+                                      enter valid information</p>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-12 text-right supplier-text">
+                                <div class="form-group">
+                                  <label class="mt-2">Email</label>
+                                </div>
+                              </div>
+                              <div class="col-xl-6 col-lg-8 col-md-8 col-sm-8 col-xs-12 pl-1">
+                                <div class="form-group">
+                                  <input class="form-control" placeholder="abc@email.com" type="email"
+                                    formControlName="email" [ngClass]="(sup_origin_email_error)? 'fieldError': ''"
+                                    (focusout)="errorMessages('origin')" (focus)="sup_origin_email_error=false" />
+                                  <span class="animated fadeIn" *ngIf="sup_origin_email_error">
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormOrigin.controls['email'].hasError('required') && (SupInfoFormOrigin.controls.email.dirty || SupInfoFormOrigin.controls.email.touched)">
+                                      This field is required!</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormOrigin.controls['email'].hasError('pattern') && (SupInfoFormOrigin.controls.email.dirty || SupInfoFormOrigin.controls.email.touched)">
+                                      Please
+                                      enter valid information</p>
+                                  </span>
+                                </div>
+                                <div class="row mt-2 pl-5 pr-3">
+                                  <button class="col btn btn-outline-primary hvr-sweep-to-right" type="button"
+                                    (click)="resetForm('origin')">Reset</button>
+                                  <button [disabled]="this.SupInfoFormOrigin.invalid" type="submit"
+                                    class="col btn btn-primary hvr-sweep-to-right ml-3"
+                                    (click)="updateSupInfoOrig()">Confirm</button>
+                                </div>
+                                <!-- <button [disabled]="this.SupInfoFormOrigin.invalid"
+                                    class="btn btn-primary hvr-sweep-to-right pull-right mt-2 pl-5 pr-5"
+                                    (click)="updateSupInfoOrig()">Confirm</button> -->
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card grey-background rounded-bottom"
+                      *ngIf="bookingDetails.JsonAgentOrgInfo && (shipperInfoRights.ObjRights === 'R' || shipperInfoRights.ObjRights === 'RW')">
+                      <div class="card-body">
+                        <div class="card-title mb-4 mt-3">
+                          <h5>
+                            <img src="../../../../../assets/images/icons/icon_info2.svg" class="icon-size-16"
+                              title="logo"> Agent Information
+                          </h5>
+                        </div>
+                        <div class="row">
+                          <div class="contact ml-4" [ngClass]="bookingDetails?.JsonAgentOrgInfo ? 'col-8': 'col-8'">
+                            <h4 class="contact-name">{{bookingDetails?.JsonAgentOrgInfo?.Name}}</h4>
+                            <div class="contact-address mb-3 mt-3 d-flex"
+                              [ngClass]="JsonAgentOrgInfoReadMoreClass ? 'readMore animated fadeIn' : 'unread'">
+                              <img src="../../../../../assets/images/icons/Icons_Location.svg" alt="icon"
+                                class="icon-size-16 mt-1">
+                              <span class="ml-2">{{bookingDetails?.JsonAgentOrgInfo?.Address}}</span>
+                            </div>
+                            <a href="javascript:;" class="link-hover-1 vendor-details-readMore ml-4 detailsBtn"
+                              (click)="JsonAgentOrgInfoReadMore()" *ngIf="bookingDetails?.JsonAgentOrgInfo?.Address?.length >
+                                250">{{JsonAgentOrgInfoBtn}}</a>
+                            <div class="contact-info d-flex justify-content-between pt-1">
+                              <span class="mr-4">
+                                <img src="../../../../assets/images/icons/mob-icon.svg" class="icon-size-16">
+                                <span
+                                  class="ml-2">{{bookingDetails.JsonAgentOrgInfo.PhoneCountryCode}}{{bookingDetails.JsonAgentOrgInfo.PhoneNumber}}</span>
+                              </span>
+                              <span>
+                                <img src="../../../../assets/images/icons/icon_email.svg" class="icon-size-16">
+                                <span class="ml-2">{{bookingDetails?.JsonAgentOrgInfo?.Email}}</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <h5 class="view-booking-document-heading" *ngIf="!isTruck">Shipping Information For
+                      <img class="flag-icon-20-12"
+                        src="../../../../assets/images/icons/flags/4x3/{{bookingDetails.PodImage}}.svg" alt="flag icon">
+                      {{bookingDetails.PodCode}}, {{bookingDetails.PodName}}
+                    </h5>
+                    <h5 class="view-booking-document-heading" *ngIf="isTruck">Shipping Information For
+                      <img class="flag-icon-20-12"
+                        src="../../../../assets/images/icons/flags/4x3/{{bookingDetails.PodImage}}.svg" alt="flag icon">
+                      {{bookingDetails?.PodCity}}, {{bookingDetails.PodCountry}}
+                    </h5>
+                    <div class="card rounded-top">
+                      <div class="card-body">
+                        <div class="card-title mt-3 mb-2">
+                          <h5><img class="icon-size-16 mr-2"
+                              src="../../../../../assets/images/icons/icon_upload.svg">Upload
+                            Documents</h5>
+                          <!-- <hr> -->
+                        </div>
+                        <ul class="list-group list-group-flush mt-4 rounded-top">
+                          <li *ngFor="let destinDoc of destinDocList"
+                            class="list-group-item d-flex justify-content-between"
+                            [ngClass]="{'active':destinDoc.DocumentID, 'rejected-doc': destinDoc.DocumentLastStatus.toLowerCase() === 're-upload'}">
+                            <div class="d-flex document-detail-left ml-3">
+                              <h6 class="mb-0" (click)="downloadAction(destinDoc)"
+                                [ngClass]="(destinDoc.DocumentFileName && destinDoc.IsDownloadable)?'pointer':''">
+                                <img
+                                  *ngIf="destinDoc.DocumentID && destinDoc.DocumentLastStatus.toLowerCase() !== 're-upload'"
+                                  src="../../../../assets/images/icons/Icons_Check.svg" alt="check icon"
+                                  class="icon-size-24 check-icon">
+                                <img
+                                  *ngIf="destinDoc.DocumentID && destinDoc.DocumentLastStatus.toLowerCase() === 're-upload'"
+                                  src="../../../../assets/images/icons/icon_close_red.svg" alt="check icon"
+                                  class="icon-size-16 delete-icon">
+                                <span
+                                  [ngClass]="(destinDoc.DocumentTypeDesc === 'Bill of Lading')?'':''">{{destinDoc.DocumentTypeDesc}}</span>
+                              </h6>
+                              <!-- <small *ngIf="destinDoc.DocumentTypeDesc === 'Bill of Lading'" class="text-muted">
+                                  <img src="../../../../../assets/images/icons/icon_info2 - grey.svg" width="16px"> This
+                                  document will be required
+                                  once the ship sails.</small> -->
+                              <p *ngIf="destinDoc.DocumentUploadDate">Uploaded on
+                                {{destinDoc.DocumentUploadDate | date : "d MMM, yyyy"}} {{destinDoc.DocumentUploadDate
+                                                        | date : "H:mm"}} (GMT)</p>
+                              <div class="d-flex view-booking-reasons"
+                                *ngIf="destinDoc.ReasonID && destinDoc.ReasonID > 0">
+                                <!-- <img src="../../../../../assets/images/icons/icon_info2 - grey.svg"
+                                    class="icon-size-16 mr-1" />
+                                  <small [ngbTooltip]="destinDoc.DocumentStausRemarks" placement="left" container="body"
+                                    class="text-muted" class="animated-info">
+                                    This document was rejected by the provider with the reason:
+                                    <span class="reason">{{destinDoc.DocumentStausRemarks}}</span>
+                                  </small> -->
+                                <img src="../../../../assets/images/icons/icon_comment.png"
+                                  class="icon-size-16 mr-2 mt-1" />
+                                <div class="animated-info text-muted ">
+                                  <span class="view-booking-reasons-name">{{destinDoc.ReasonName}}</span>
+
+                                  <p class="view-booking-reasons-desc">{{destinDoc.DocumentStausRemarks}}</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="d-flex document-detail-right">
+                              <span *ngIf="destinDoc?.DocumentLastStatus.toLowerCase() === 'approved'"
+                                class="badge pointer mr-2 mt-1"
+                                [ngClass]="destinDoc?.DocumentLastStatus.toLowerCase() === 'approved' ? 'hashmove-badge-secondary' : 'badge'">
+                                {{destinDoc.DocumentLastStatus}}
+                              </span>
+                              <span
+                                *ngIf="destinDoc?.DocumentLastStatus && destinDoc?.DocumentLastStatus.toLowerCase() !== 'approved'"
+                                class="badge pointer mr-2 mt-1"
+                                [ngClass]="[destinDoc.DocumentLastStatus === 'DRAFT' ? 'hashmove-badge-warning' : 'badge', destinDoc.DocumentLastStatus.toLowerCase() === 're-upload' ? 'hashmove-badge-danger' : 'badge']">
+                                <!-- destinDoc.DocumentLastStatus -->
+                                {{(destinDoc.DocumentLastStatus.toLowerCase() === 'draft') ? 'PENDING APPROVAL' : (destinDoc.DocumentLastStatus.toLowerCase()
+                                                        === 're-upload' ? 'REJECTED' : destinDoc.DocumentLastStatus)}}
+                              </span>
+                              <button
+                                *ngIf="!destinDoc.DocumentID && destinDoc.IsUploadable && destinDoc.DocumentLastStatus.toLowerCase() !== 'approved' && bookingDetails.BookingStatus.toLowerCase() !== 'completed'"
+                                class="btn btn-outline-primary hvr-sweep-to-right"
+                                [disabled]="bookingDetails.BookingStatus.toLowerCase() === 'cancelled' || bookingDetails.ShippingStatus.toLowerCase() === 'in-transit' || documentsRights.ObjRights === 'R'"
+                                (click)="uploadDoc(destinDoc)">Upload</button>
+                              <button
+                                *ngIf="destinDoc.DocumentID && destinDoc.IsUploadable && destinDoc.DocumentLastStatus.toLowerCase() !== 'approved' && bookingDetails.BookingStatus.toLowerCase() !== 'completed'"
+                                class="btn btn-outline-primary hvr-sweep-to-right" (click)="uploadDoc(destinDoc)"
+                                [disabled]="destinDoc.StatusAction && destinDoc.StatusAction === 'LOCKED' || (bookingDetails.BookingStatus.toLowerCase() === 'cancelled' || bookingDetails.ShippingStatus.toLowerCase() === 'in-transit' || documentsRights.ObjRights === 'R')">Re-Upload</button>
+                            </div>
+
+                          </li>
+                        </ul>
+                      </div>
+                      <!-- <div class="view-booking-document-title">
+                          <div class="flag-icon-20-12 d-inline-block mr-2">
+                            <img src="../../../../assets/images/icons/flags/4x3/{{bookingDetails.PolImage}}.svg" alt="flag icon">
+                          </div>
+                          <span *ngIf="!isTruck">Documents Required At {{bookingDetails.PolCode}}, {{bookingDetails.PolName}} Are:
+                          </span>
+                          <span *ngIf="isTruck">{{bookingDetails?.PolCity}}, {{bookingDetails.PolCountry}}</span>
+                          <hr class="hr-border">
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li *ngFor="let originDoc of originDocList" class="list-group-item d-flex justify-content-between align-items-center" [ngClass]="(originDoc.DocumentID)?'active':''">
+                            <div class="d-flex document-detail-left">
+                              <h6 class="mb-0" (click)="downloadAction(originDoc)" [ngClass]="(originDoc.DocumentFileName && originDoc.IsDownloadable)?'pointer':''">
+                                <img *ngIf="originDoc.DocumentID" src="../../../../assets/images/icons/Icons_Check.svg" alt="check icon" class="icon-size-24 check-icon"> {{originDoc.DocumentTypeDesc}}
+                              </h6>
+                              <p *ngIf="originDoc.DocumentUploadDate">Uploaded on {{originDoc.DocumentUploadDate | date :"d MMM, yyyy"}} {{originDoc.DocumentUploadDate
+                                | date : "H:mm"}}</p>
+                              <div class="d-flex mt-1" *ngIf="originDoc.ReasonID && originDoc.ReasonID > 0">
+                                <img src="../../../../../assets/images/icons/icon_info2 - grey.svg" class="icon-size-16 mr-1" />
+                                <small [ngbTooltip]="originDoc.DocumentStausRemarks" placement="left" container="body" class="text-muted" class="animated-info">
+                                  This document was rejected by the provider with the reason:
+                                  <span class="reason">{{originDoc.DocumentStausRemarks}}</span>
+                                </small>
+                              </div>
+                            </div>
+
+                            <div class="d-flex document-detail-right">
+                              <span *ngIf="originDoc?.DocumentLastStatus.toLowerCase() === 'approved'" class="badge pointer mr-2 mt-1" [ngClass]="originDoc?.DocumentLastStatus.toLowerCase() === 'approved' ? 'hashmove-badge-secondary' : 'badge'">
+                                {{originDoc.DocumentLastStatus}}
+                              </span>
+                              <span *ngIf="originDoc?.DocumentLastStatus && originDoc?.DocumentLastStatus.toLowerCase() !== 'approved'" class="badge pointer mr-2 mt-1"
+                                [ngClass]="[originDoc.DocumentLastStatus === 'DRAFT' ? 'hashmove-badge-warning' : 'badge', originDoc.DocumentLastStatus.toLowerCase() === 're-upload' ? 'hashmove-badge-danger' : 'badge']">
+                                {{(originDoc.DocumentLastStatus.toLowerCase() === 'draft') ? 'PENDING APPROVAL' : (originDoc.DocumentLastStatus.toLowerCase()
+                                === 're-upload' ? 'REJECTED' : originDoc.DocumentLastStatus)}}
+                              </span>
+                              <button *ngIf="!originDoc.DocumentID && originDoc.IsUploadable && bookingDetails.BookingStatus.toLowerCase() !== 'completed'"
+                                class="btn btn-outline-primary hvr-sweep-to-right pull-right" (click)="uploadDoc(originDoc)">Upload</button>
+                              <button *ngIf="originDoc.DocumentID && originDoc.IsUploadable && originDoc.DocumentLastStatus.toLowerCase() !== 'approved' && bookingDetails.BookingStatus.toLowerCase() !== 'completed'"
+                                class="btn btn-outline-primary hvr-sweep-to-right" (click)="uploadDoc(originDoc, 'reupload')"
+                                [disabled]="originDoc.StatusAction && originDoc.StatusAction === 'LOCKED'">
+                                Re-Upload
+                              </button>
+                            </div>
+
+                          </li>
+                        </ul> -->
+                      <!-- <div class="view-booking-document-title mt-0">
+                          <div class="flag-icon-20-12 d-inline-block mr-2">
+                            <img src="../../../../assets/images/icons/flags/4x3/{{bookingDetails.PodImage}}.svg" alt="flag icon">
+                          </div>
+                          <span *ngIf="!isTruck">Documents Required At {{bookingDetails.PodCode}}, {{bookingDetails.PodName}} Are:
+                          </span>
+                          <span *ngIf="isTruck">{{bookingDetails?.PodCity}}, {{bookingDetails.PodCountry}}</span>
+                          <hr class="hr-border">
+                        </div> -->
+
+                    </div>
+                    <div class="card mb-0 grey-background rounded-0"
+                      *ngIf="shipperInfoRights.ObjRights === 'R' || shipperInfoRights.ObjRights === 'RW'">
+                      <div class="card-body d-flex flex-column">
+                        <div class="card-title mb-3 mt-2 d-flex justify-content-between align-items-center">
+                          <h5 (click)="toggleInfoSection('destin')" class="pointer prevent-text-select">
+                            <img src="../../../../../assets/images/icons/icon_info2.svg" class="icon-size-16 mr-1"
+                              title="logo"> Supplier Information
+                            <i class="fa fa-caret-down" [ngClass]="destinToggleClass">
+                            </i>
+                          </h5>
+                          <span *ngIf="editSupDestToggler">
+                            <img src="../../../../../assets/images/icons/icon_device_edit.svg"
+                              class="icon-size-16 pointer mr-1" alt="edit" (click)="setSupDestInfo()">
+                          </span>
+                        </div>
+                        <div *ngIf="destinToggle">
+                          <div class="row" *ngIf="editSupDestToggler">
+                            <div class="ml-4 contact" [ngClass]="editSupDestToggler ? 'col-8' : 'col-8'">
+                              <h4 class="contact-name">{{bookingDetails.JsonShippingDestInfo.Name}}</h4>
+                              <div class="contact-address mb-3 mt-3 d-flex"
+                                [ngClass]="readMoreClass ? 'readMore animated fadeIn' : 'unread'">
+                                <img src="../../../../../assets/images/icons/Icons_Location.svg" alt="icon"
+                                  class="icon-size-16 mt-1">
+                                <span class="ml-2">{{bookingDetails.JsonShippingDestInfo.Address}}</span>
+                              </div>
+                              <a href="javascript:;" class="link-hover-1 vendor-details-readMore ml-4 detailsBtn"
+                                (click)="readMore()"
+                                *ngIf="bookingDetails.JsonShippingDestInfo.Address.length > 250">{{vendorAboutBtn}}</a>
+                              <div class="contact-info d-flex justify-content-between pt-1">
+                                <span class="mr-4">
+                                  <img src="../../../../assets/images/icons/mob-icon.svg" class="icon-size-16">
+                                  <span
+                                    class="ml-2">{{bookingDetails.JsonShippingDestInfo.PhoneCountryCode}}{{bookingDetails.JsonShippingDestInfo.PhoneNumber}}</span>
+                                </span>
+                                <span class="ml-3">
+                                  <img src="../../../../assets/images/icons/icon_email.svg" class="icon-size-16 ml-1">
+                                  <span class="ml-2">{{bookingDetails.JsonShippingDestInfo.Email}}</span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <form autocomplete="off" novalidate [formGroup]="SupInfoFormDest" class=" pt-2 pl-4 pb-3"
+                            *ngIf="!editSupDestToggler" (ngSubmit)="updateSupInfoDest()">
+                            <div class="row">
+                              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-12 text-right supplier-text">
+                                <div class="form-group">
+                                  <label class="mt-2">Name</label>
+                                </div>
+                              </div>
+                              <div class="col-xl-6 col-lg-8 col-md-8 col-sm-8 col-xs-12 pl-1">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" formControlName="name"
+                                    [ngClass]="(sup_dest_name_error)? 'fieldError': ''"
+                                    (focusout)="errorMessages('dest')" (focus)="sup_dest_name_error=false"
+                                    (keypress)="textValidation($event)" />
+                                  <span class="animated fadeIn" *ngIf="sup_dest_name_error">
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormDest.controls['name'].hasError('required') && (SupInfoFormDest.controls.name.dirty || SupInfoFormDest.controls.name.touched)">
+                                      This field is required!</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="!SupInfoFormDest.controls['name'].hasError('pattern') && SupInfoFormDest.controls['name'].hasError('minlength') && (SupInfoFormDest.controls.name.dirty || SupInfoFormDest.controls.name.touched)">
+                                      Name must be at least 2 characters long</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="!SupInfoFormDest.controls['name'].hasError('pattern') && SupInfoFormDest.controls['name'].hasError('maxlength') && (SupInfoFormDest.controls.name.dirty || SupInfoFormDest.controls.name.touched)">
+                                      Name should not exceed from 50 characters</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormDest.controls['name'].hasError('pattern') && (SupInfoFormDest.controls.name.dirty || SupInfoFormDest.controls.name.touched)">
+                                      Please enter valid information</p>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-12 text-right supplier-text">
+                                <div class="form-group">
+                                  <label class="mt-2">Address</label>
+                                </div>
+                              </div>
+                              <div class="col-xl-6 col-lg-8 col-md-8 col-sm-8 col-xs-12 pl-1">
+                                <div class="form-group">
+                                  <textarea class="form-control" formControlName="address" maxlength="500"
+                                    [ngClass]="(sup_dest_address_error)? 'fieldError': ''"
+                                    (focusout)="errorMessages('dest')"
+                                    (focus)="sup_dest_address_error=false"></textarea>
+                                  <span class="animated fadeIn" *ngIf="sup_dest_address_error">
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormDest.controls['address'].hasError('required') && (SupInfoFormDest.controls.address.dirty || SupInfoFormDest.controls.address.touched)">
+                                      This field is required!</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="!SupInfoFormDest.controls['address'].hasError('pattern') && SupInfoFormDest.controls['address'].hasError('minlength') && (SupInfoFormDest.controls.address.dirty || SupInfoFormDest.controls.address.touched)">
+                                      address must be at least 10 characters long</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="!SupInfoFormDest.controls['address'].hasError('pattern') && SupInfoFormDest.controls['address'].hasError('maxlength') && (SupInfoFormDest.controls.address.dirty || SupInfoFormDest.controls.address.touched)">
+                                      Name should not exceed from 250 characters</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormDest.controls['address'].hasError('pattern') && (SupInfoFormDest.controls.address.dirty || SupInfoFormDest.controls.address.touched)">
+                                      Please enter valid information</p>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-12 text-right supplier-text">
+                                <div class="form-group">
+                                  <label class="mt-2">Contact</label>
+                                </div>
+                              </div>
+                              <div class="col-xl-6 col-lg-8 col-md-8 col-sm-8 col-xs-12 pl-1">
+                                <div class="form-group select-number">
+                                  <div class="input-group" [ngClass]="(sup_dest_contact_error)? 'inputError': ''">
+                                    <div class="input-group-prepend">
+                                      <div class="input-group-text">
+                                        <div ngbDropdown class="contanct-dropdown">
+                                          <div class="pointer phone" id="phoneCode" ngbDropdownToggle
+                                            style="max-height: 28rem;">
+                                            <div class="d-inline-block mr-1" style="width:20px;height:20px;">
+                                              <img *ngIf="supFlagImgDest"
+                                                [src]="'../../../../assets/images/icons/flags/4x3/' + (supFlagImgDest | lowercase) + '.svg'"
+                                                alt="flags" class="img-responsive border"
+                                                style="max-width:100%; max-height:100%;">
+                                            </div>
+                                            <span>{{supDestphoneCode}}</span>
+                                          </div>
+                                          <div class="animated fadeIn country-section" ngbDropdownMenu
+                                            aria-labelledby="phoneCode">
+                                            <ng-scrollbar [trackX]="false"
+                                              style="margin-bottom: 0rem; min-height: 200px;">
+                                              <ul class="list-group">
+                                                <li class="list-group-item" *ngFor="let list of countryList"
+                                                  (click)="selectPhoneCode(list,'destination')">
+                                                  <div class="d-inline-block mr-1" style="width:20px;height:20px;">
+                                                    <img
+                                                      [src]="'../../../../assets/images/icons/flags/4x3/' + (list.code | lowercase) + '.svg'"
+                                                      alt="{{list.code + '-flags'}}"
+                                                      style="max-width:100%; max-height:100%;">
+                                                  </div>
+                                                  <span> {{list.desc[0].CountryPhoneCode}}</span>
+                                                </li>
+                                              </ul>
+                                            </ng-scrollbar>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <input type="text" class="form-control control-phone" maxlength="13"
+                                      placeholder="123456789" formControlName="contact"
+                                      [ngClass]="(sup_dest_contact_error)? 'fieldError': ''"
+                                      (focusout)="errorMessages('dest')" (focus)="sup_dest_contact_error=false"
+                                      (keypress)="NumberValid($event)" />
+                                  </div>
+                                  <span class="animated fadeIn" *ngIf="sup_dest_contact_error">
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormDest.controls['contact'].hasError('required') && (SupInfoFormDest.controls.contact.dirty || SupInfoFormDest.controls.contact.touched)">
+                                      This field is required!</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="!SupInfoFormDest.controls['contact'].hasError('pattern') && SupInfoFormDest.controls['contact'].hasError('minlength') && (SupInfoFormDest.controls.contact.dirty || SupInfoFormDest.controls.contact.touched)">
+                                      Phone
+                                      number should be minimum 7 digits</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="!SupInfoFormDest.controls['contact'].hasError('pattern') && SupInfoFormDest.controls['contact'].hasError('maxlength') && (SupInfoFormDest.controls.contact.dirty || SupInfoFormDest.controls.contact.touched)">
+                                      Phone
+                                      number should not exceed from 12 digits</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormDest.controls['contact'].hasError('pattern') && (SupInfoFormDest.controls.contact.dirty || SupInfoFormDest.controls.contact.touched)">
+                                      Please
+                                      enter valid information</p>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-12 text-right supplier-text">
+                                <div class="form-group">
+                                  <label class="mt-2">Email</label>
+                                </div>
+                              </div>
+                              <div class="col-xl-6 col-lg-8 col-md-8 col-sm-8 col-xs-12 pl-1">
+                                <div class="form-group">
+                                  <input class="form-control" placeholder="abc@email.com" type="email"
+                                    formControlName="email" [ngClass]="(sup_dest_email_error)? 'fieldError': ''"
+                                    (focusout)="errorMessages('dest')" (focus)="sup_dest_email_error=false" />
+                                  <span class="animated fadeIn" *ngIf="sup_dest_email_error">
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormDest.controls['email'].hasError('required') && (SupInfoFormDest.controls.email.dirty || SupInfoFormDest.controls.email.touched)">
+                                      This field is required!</p>
+                                    <p class="formError animated fadeIn"
+                                      *ngIf="SupInfoFormDest.controls['email'].hasError('pattern') && (SupInfoFormDest.controls.email.dirty || SupInfoFormDest.controls.email.touched)">
+                                      Please
+                                      enter valid information</p>
+                                  </span>
+                                </div>
+                                <div class="row mt-2 pl-5 pr-3">
+                                  <button class="col btn btn-outline-primary hvr-sweep-to-right" type="button"
+                                    (click)="resetForm('destin')">Reset</button>
+                                  <button [disabled]="this.SupInfoFormDest.invalid" type="submit"
+                                    class="col btn btn-primary hvr-sweep-to-right ml-3"
+                                    (click)="updateSupInfoDest()">Confirm</button>
+                                </div>
+                                <!-- <button [disabled]="this.SupInfoFormDest.invalid"
+                                  class="btn btn-primary hvr-sweep-to-right pull-right mt-2 pl-5 pr-5"
+                                  (click)="updateSupInfoDest()">Confirm</button> -->
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card grey-background rounded-bottom"
+                      *ngIf="bookingDetails.JsonAgentDestInfo && (shipperInfoRights.ObjRights === 'R' || shipperInfoRights.ObjRights === 'RW')">
+                      <div class="card-body">
+                        <div class="card-title mb-4 mt-3">
+                          <h5>
+                            <img src="../../../../../assets/images/icons/icon_info2.svg" class="icon-size-16"
+                              title="logo"> Agent Information
+                          </h5>
+                        </div>
+                        <div class="row">
+                          <div class="contact ml-4" [ngClass]="editSupDestToggler ? 'col-8' : 'col-8'">
+                            <h4 class="contact-name">{{bookingDetails?.JsonAgentDestInfo?.Name}}</h4>
+                            <div class="contact-address mb-3 d-flex"
+                              [ngClass]="JsonAgentDestInfoReadMoreClass ? 'readMore animated fadeIn' : 'unread'">
+                              <img src="../../../../../assets/images/icons/Icons_Location.svg" alt="icon"
+                                class="icon-size-16 mt-1">
+                              <span class="ml-2">{{bookingDetails?.JsonAgentDestInfo?.Address}}</span>
+                            </div>
+                            <a href="javascript:;" class="link-hover-1 vendor-details-readMore ml-4 detailsBtn"
+                              (click)="JsonAgentDestInfoReadMore()" *ngIf="bookingDetails?.JsonAgentDestInfo?.Address?.length >
+                                250">{{JsonAgentDestInfoBtn}}</a>
+                            <div class="contact-info d-flex justify-content-between">
+                              <span class="mr-4">
+                                <img src="../../../../assets/images/icons/mob-icon.svg" class="icon-size-16">
+                                <span
+                                  class="ml-2">{{bookingDetails?.JsonAgentDestInfo?.PhoneCountryCode}}{{bookingDetails?.JsonAgentDestInfo?.PhoneNumber}}</span>
+                              </span>
+                              <span class="ml-2">
+                                <img src="../../../../assets/images/icons/icon_email.svg" class="icon-size-16">
+                                <span class="ml-2">{{bookingDetails?.JsonAgentDestInfo?.Email}}</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <h5 class="view-booking-shipment-detail-heading mt-5 mb-3">Other Documents</h5>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="other-document border-0">
+                              <ngb-accordion [closeOthers]="true" #acc1="ngbAccordion">
+                                <span *ngFor="let document of additionalDocumentsCustomers; let doc_index = index">
+                                  <ngb-panel [id]="'static-' + doc_index " *ngIf="document?.DocumentID">
+                                    <ng-template ngbPanelTitle>
+                                      <div class="accordion" (click)="onDocumentClick(document,doc_index)"
+                                        [ngClass]="{'active':document.DocumentID, 'rejected-doc': document.DocumentLastStatus.toLowerCase() === 're-upload'}">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                          <div class="d-flex flex-column text-left">
+                                            <h2 class="accordion-title">
+                                              <img alt="check icon" class="icon-size-24 check-icon ng-star-inserted"
+                                                src="../../../../../assets/images/icons/Icons_Check.svg"
+                                                *ngIf="document?.DocumentID > 0 && document.DocumentLastStatus.toLowerCase() !== 're-upload'">
+                                              <img
+                                                *ngIf="document.DocumentID && document.DocumentLastStatus.toLowerCase() === 're-upload'"
+                                                src="../../../../assets/images/icons/icon_close_red.svg"
+                                                alt="check icon" class="icon-size-16 delete-icon">
+                                              <span class="docTitle"
+                                                (click)="acDownloadAction(document.DocumentFileName, acc1,'static-', doc_index, 'customer')">
+                                                {{document?.DocumentName}}
+                                              </span>
+                                              <!-- <span *ngIf="document.DocumentFileName" (click)="downloadAction(document.DocumentFileName, acc,'static-', doc_index)" class="fa fa-cloud-download"></span> -->
+                                            </h2>
+                                            <p class="accordion-time" *ngIf="document.DocumentUploadDate">
+                                              Uploaded on {{document.DocumentUploadDate | date : "d MMM, yyyy"}}
+                                              {{document.DocumentUploadDate | date : "H:mm"}} GMT
+                                            </p>
+                                            <div class="d-flex mt-1 view-booking-reasons"
+                                              *ngIf="document.ReasonID && document.ReasonID > 0">
+                                              <img src="../../../../assets/images/icons/icon_comment.png"
+                                                class="icon-size-16 mr-2 mt-1" />
+                                              <div class="animated-info">
+                                                <span class="view-booking-reasons-name">{{document.ReasonName}}</span>
+                                                <p class="view-booking-reasons-desc">{{document.DocumentStausRemarks}}
+                                                </p>
+                                              </div>
+                                            </div>
+                                            <!-- No Expiry Fields Available yet -->
+                                          </div>
+                                          <div class="d-flex align-items-center">
+                                            <span class="badge badge-pill hashmove-badge-danger mr-4 mt-2 mr-1"
+                                              *ngIf="document?.ExpiryStatusCode === 'EXPIRING-RED'">{{document?.ExpiryStatusMessage}}</span>
+                                            <span class="badge badge-pill hashmove-badge-warning mr-4 mt-2 mr-1"
+                                              *ngIf="document?.ExpiryStatusCode === 'EXPIRING-YEL'">{{document?.ExpiryStatusMessage}}</span>
+                                            <span class="badge badge-pill hashmove-badge-primary-grey mr-4 mt-2 mr-1"
+                                              *ngIf="document?.ExpiryStatusCode === 'EXPIRING-BLK'">{{document?.ExpiryStatusMessage}}</span>
+
+                                            <span *ngIf="document?.DocumentLastStatus.toLowerCase() === 'approved'"
+                                              class="badge pointer mr-2 mt-1 hashmove-badge-secondary"
+                                              [ngClass]="document?.DocumentLastStatus.toLowerCase() === 'approved' ? '' : 'badge'">
+                                              {{document.DocumentLastStatus}}
+                                            </span>
+                                            <span
+                                              *ngIf="document?.DocumentLastStatus && document?.DocumentLastStatus.toLowerCase() !== 'approved'"
+                                              class="badge pointer mr-2 mt-1"
+                                              [ngClass]="[document.DocumentLastStatus === 'DRAFT' ? 'hashmove-badge-warning' : 'badge', document.DocumentLastStatus.toLowerCase() === 're-upload' ? 'hashmove-badge-danger' : 'badge']">
+                                              {{(document.DocumentLastStatus.toLowerCase() === 'draft') ? 'PENDING APPROVAL' : (document.DocumentLastStatus.toLowerCase() === 're-upload' ? 'REJECTED' : document.DocumentLastStatus)}}
+                                            </span>
+                                            <a href="javascript:;"
+                                              class="btn btn-outline-primary pull-right hvr-sweep-to-right"
+                                              *ngIf="!document.ShowUpload && document.DocumentLastStatus.toLowerCase() !== 'approved'">
+                                              {{ (document.DocumentFileName) ? 'Upload Again' : 'Upload'}}
+                                            </a>
+                                          </div>
+                                        </div>
+                                        <hr class="">
+                                      </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                      <div class="row mt-4">
+                                        <div class="offset-2 col-8">
+                                          <div class="settings-documents-foam">
+                                            <div class="row">
+                                              <!-- <a href="{{'http://10.20.1.125:100' + document.DocumentFileName}}" target="_blank">asdasd</a> -->
+                                              <div class="col-12 mb-3 form-group"
+                                                *ngFor="let doc_control of document?.MetaInfoKeysDetail; let controlIndex = index">
+
+                                                <input *ngIf="doc_control.DataType.toLowerCase() === 'datetime'"
+                                                  type="text" class="form-control settings-documents-foam-field"
+                                                  name="{{doc_control.KeyName.toLowerCase()}}"
+                                                  [displayMonths]="displayMonths" [navigation]="navigation"
+                                                  onkeypress="return false" [outsideDays]="outsideDays"
+                                                  [showWeekNumbers]="showWeekNumbers" ngbDatepicker [minDate]="minDate"
+                                                  #d="ngbDatepicker" placeholder="{{doc_control.KeyNameDesc}}"
+                                                  (click)="d.toggle()"
+                                                  (dateSelect)="dateChangeEvent($event, controlIndex)"
+                                                  [(ngModel)]="doc_control.DateModel">
+
+                                                <input *ngIf="doc_control.DataType.toLowerCase() === 'text'" type="text"
+                                                  value="{{doc_control.KeyValue}}"
+                                                  class="form-control settings-documents-foam-field"
+                                                  name="{{doc_control.KeyName.toLowerCase()}}"
+                                                  [maxLength]="doc_control.FieldLength"
+                                                  (keypress)="onKeyPress($event, controlIndex)"
+                                                  placeholder="{{doc_control.KeyNameDesc}}"
+                                                  [required]="doc_control.isIsMandatory"
+                                                  [(ngModel)]="doc_control.KeyValue"
+                                                  (ngModelChange)="onDocInputChange($event)" />
+
+                                                <input *ngIf="doc_control.DataType.toLowerCase() === 'number'"
+                                                  type="number" value="{{doc_control.KeyValue}}"
+                                                  class="form-control settings-documents-foam-field"
+                                                  name="{{doc_control.KeyName.toLowerCase()}}"
+                                                  [maxLength]="doc_control.FieldLength"
+                                                  (keypress)="onKeyPress($event, controlIndex)"
+                                                  placeholder="{{doc_control.KeyNameDesc}}"
+                                                  [required]="doc_control.isIsMandatory"
+                                                  [(ngModel)]="doc_control.KeyValue"
+                                                  (ngModelChange)="onDocInputChange($event)" />
+                                              </div>
+                                            </div>
+                                            <div class="row">
+                                              <div class="col-12">
+                                                <!-- File Upload -->
+                                                <div class="uploader text-center">
+                                                  <app-drag-drop [existingFile]="document.DocumentName"
+                                                    [allowedExtension]="['pdf', 'jpg', 'jpeg', 'xlsx', 'xls', 'doc', 'docx', 'png', 'txt']"
+                                                    (FileDropEvent)="customDragCheck($event)"
+                                                    (InvalidFileEvent)="fileSelectFailedEvent($event)">
+                                                  </app-drag-drop>
+                                                  <button href="javascript:;" type=""
+                                                    [disabled]="bookingDetails.BookingStatus.toLowerCase() === 'cancelled'"
+                                                    class="btn btn-primary hvr-sweep-to-right mt-4 mb-2 text-uppercase w-100"
+                                                    (click)="uploadDocument(acc1,'prov-static-', doc_index, 'customer')">Upload</button>
+                                                  <a href="javascript:;" class="col-12 text-center uploader-cancel-btn"
+                                                    (click)="document.ShowUpload = false;acc1.toggle('static-' + doc_index );">Cancel</a>
+                                                  <!-- <app-loader-main *ngIf="loading"></app-loader-main> -->
+                                                </div>
+                                                <!--/ File Uploader -->
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </ng-template>
+                                  </ngb-panel>
+                                </span>
+                              </ngb-accordion>
+                            </div>
+                            <div class="row">
+                              <div class="col pl-4 pr-4">
+                                <a href="javascript:;" class="addAnother animated fadeIn"
+                                  (click)="addDocument('customer')">
+                                  <img src="../../../../assets/images/icons/icon_add.svg" width="16px" alt=""
+                                    class="mr-1 icon-size-16 mb-1">
+                                  Add Document
+                                </a>
+                              </div>
+                            </div>
+                            <div class="card-title mt-5" *ngIf="false">
+                              <h5>By Providers</h5>
+                              <hr />
+                            </div>
+                            <div class="document border-0" *ngIf="false">
+                              <ngb-accordion [closeOthers]="true" #acc2="ngbAccordion">
+                                <span *ngFor="let document of additionalDocumentsProviders; let doc_index = index">
+                                  <ngb-panel [id]="'static-' + doc_index " *ngIf="document?.DocumentID">
+                                    <ng-template ngbPanelTitle>
+                                      <div class="accordion" (click)="onDocumentClick(document,doc_index)"
+                                        [ngClass]="{'active':document.DocumentID, 'rejected-doc': document.DocumentLastStatus.toLowerCase() === 're-upload'}">
+                                        <div class="row">
+                                          <div class="col-xl-6 col-sm-12 text-left">
+                                            <h2 class="accordion-title">
+                                              <img alt="check icon" class="icon-size-24 check-icon ng-star-inserted"
+                                                src="../../../../../assets/images/icons/Icons_Check.svg"
+                                                *ngIf="document?.DocumentID > 0 && document.DocumentLastStatus.toLowerCase() !== 're-upload'">
+                                              <img
+                                                *ngIf="document.DocumentID && document.DocumentLastStatus.toLowerCase() === 're-upload'"
+                                                src="../../../../assets/images/icons/icon_close_red.svg"
+                                                alt="check icon" class="icon-size-16 delete-icon">
+                                              <span class="docTitle"
+                                                (click)="acDownloadAction(document.DocumentFileName, acc2,'static-', doc_index, 'provider')">{{document.DocumentTypeName}}</span>
+                                              <!-- <span *ngIf="document.DocumentFileName" (click)="downloadAction(document.DocumentFileName, acc,'static-', doc_index)" class="fa fa-cloud-download"></span> -->
+                                            </h2>
+                                            <p class="accordion-time"
+                                              *ngIf="additionalDocumentsProviders && document.DocumentUploadDate">
+                                              Uploaded on {{document.DocumentUploadDate | date : "d MMM, yyyy"}}
+                                              {{document.DocumentUploadDate | date:"H:mm"}} GMT
+                                            </p>
+                                            <div class="d-flex mt-1 view-booking-reasons"
+                                              *ngIf="document.ReasonID && document.ReasonID > 0">
+                                              <img src="../../../../assets/images/icons/icon_comment.png"
+                                                class="icon-size-16 mr-2 mt-1" />
+                                              <div class="animated-info">
+                                                <span class="view-booking-reasons-name">{{document.ReasonName}}</span>
+                                                <p class="view-booking-reasons-desc">{{document.DocumentStausRemarks}}
+                                                </p>
+                                              </div>
+                                            </div>
+                                            <!-- No Expiry Fields Available yet -->
+                                          </div>
+
+                                          <!-- <div class="col-xl-6 col-sm-12 text-right" [ngClass]="{'active': selectedItem === 'item3'}" (click)="selectedItem = 'item3'"> -->
+                                          <div class="col-xl-6 col-sm-12 text-right">
+                                            <span class="badge badge-pill hashmove-badge-danger mr-4 mt-2"
+                                              *ngIf="document?.ExpiryStatusCode === 'EXPIRING-RED'">{{document?.ExpiryStatusMessage}}</span>
+                                            <span class="badge badge-pill hashmove-badge-warning mr-4 mt-2"
+                                              *ngIf="document?.ExpiryStatusCode === 'EXPIRING-YEL'">{{document?.ExpiryStatusMessage}}</span>
+                                            <span class="badge badge-pill hashmove-badge-primary-grey mr-4 mt-2"
+                                              *ngIf="document?.ExpiryStatusCode === 'EXPIRING-BLK'">{{document?.ExpiryStatusMessage}}</span>
+                                            <!-- <a href="javascript:;"
+                                                class="btn btn-outline-primary pull-right col-5 hvr-sweep-to-right"
+                                                *ngIf="!document.ShowUpload">
+                                                {{ (document.DocumentFileName) ? 'Upload Again' : 'Upload'}}
+                                              </a> -->
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                      <div class="row">
+                                        <div class="col-12 card-wrapper">
+                                          <div class="settings-documents-foam">
+                                            <div class="row">
+                                              <!-- <a href="{{'http://10.20.1.125:100' + document.DocumentFileName}}" target="_blank">asdasd</a> -->
+                                              <div class="col-12 mb-3"
+                                                *ngFor="let doc_control of document?.MetaInfoKeysDetail; let controlIndex = index">
+
+                                                <input *ngIf="doc_control.DataType.toLowerCase() === 'datetime'"
+                                                  type="text" class="form-control settings-documents-foam-field"
+                                                  name="{{doc_control.KeyName.toLowerCase()}}"
+                                                  [displayMonths]="displayMonths" [navigation]="navigation"
+                                                  onkeypress="return false" [outsideDays]="outsideDays"
+                                                  [showWeekNumbers]="showWeekNumbers" ngbDatepicker [minDate]="minDate"
+                                                  #d="ngbDatepicker" placeholder="{{doc_control.KeyNameDesc}}"
+                                                  (click)="d.toggle()"
+                                                  (dateSelect)="dateChangeEvent($event, controlIndex)"
+                                                  [(ngModel)]="doc_control.DateModel">
+
+                                                <input *ngIf="doc_control.DataType.toLowerCase() === 'text'" type="text"
+                                                  value="{{doc_control.KeyValue}}"
+                                                  class="form-control settings-documents-foam-field"
+                                                  name="{{doc_control.KeyName.toLowerCase()}}"
+                                                  [maxLength]="doc_control.FieldLength"
+                                                  (keypress)="onKeyPress($event, controlIndex)"
+                                                  placeholder="{{doc_control.KeyNameDesc}}"
+                                                  [required]="doc_control.isIsMandatory"
+                                                  [(ngModel)]="doc_control.KeyValue">
+                                                (ngModelChange)="onDocInputChange($event)"
+
+                                                <input *ngIf="doc_control.DataType.toLowerCase() === 'number'"
+                                                  type="number" value="{{doc_control.KeyValue}}"
+                                                  class="form-control settings-documents-foam-field"
+                                                  name="{{doc_control.KeyName.toLowerCase()}}"
+                                                  [maxLength]="doc_control.FieldLength"
+                                                  (keypress)="onKeyPress($event, controlIndex)"
+                                                  placeholder="{{doc_control.KeyNameDesc}}"
+                                                  [required]="doc_control.isIsMandatory"
+                                                  [(ngModel)]="doc_control.KeyValue">
+                                                (ngModelChange)="onDocInputChange($event)"
+                                              </div>
+                                            </div>
+                                            <div class="row">
+                                              <div class="col-12">
+                                                <!-- File Upload -->
+                                                <div class="uploader">
+                                                  <!-- <app-drag-drop [existingFile]="document.DocumentName"
+                                                      [allowedExtension]="['pdf', 'jpg', 'jpeg', 'xlsx', 'xls', 'doc', 'docx', 'png', 'txt']"
+                                                      (FileDropEvent)="customDragCheck($event)"
+                                                      (InvalidFileEvent)="fileSelectFailedEvent($event)">
+                                                    </app-drag-drop> -->
+                                                  <!-- <button href="javascript:;" type=""
+                                                      class="btn btn-primary col-12 hvr-sweep-to-right mt-4 text-uppercase"
+                                                      (click)="uploadDocument(acc,'static-', doc_index, 'provider')">Upload</button>
+                                                    <a href="javascript:;" class="col-12 text-center uploader-cancel-btn"
+                                                      (click)="document.ShowUpload = false;acc.toggle('static-' + doc_index );">Cancel</a> -->
+                                                  <!-- <app-loader-main *ngIf="loading"></app-loader-main> -->
+                                                </div>
+                                                <!--/ File Uploader -->
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </ng-template>
+                                  </ngb-panel>
+                                </span>
+                              </ngb-accordion>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <p class="pull-right mt-2 doc-message">
+                  (supported types: pdf, jpg, jpeg, xlsx, doc, docx, png and txt. Maximum size per document: 10MB)
+                </p>
+              </div>
+            </div>
+            <!--/ document required -->
+          </div>
+          <div class="col-12" *ngIf="bookingDetails.ShippingModeCode === 'WAREHOUSE'">
+            <app-view-booking-card [booking]="bookingDetails"></app-view-booking-card>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-12 col-12 view-booking-shipment-detail-right pt-5 mt-1">
+        <div class="card border-bottom-0 map-card rounded-top">
+          <hashmove-map *ngIf="showMap" [disableControls]="true" [windowHeight]="'200px'" [enableDataService]="false"
+            [isPickUpDest]="true" [miniMapData]="miniMap"></hashmove-map>
+
+          <hashmove-map *ngIf="showWarehouseMap" [disableControls]="true" [windowHeight]="'200px'"
+            [enableDataService]="false" [isWareHouseMiniMap]="true" [wareHouseMiniMapData]="wareMiniMapData">
+          </hashmove-map>
+          <p *ngIf="!shouldMapOpen" style="color: red">Mismatched Cordinates</p>
+
+          <div class="card-body">
+            <div class="ports" *ngIf="bookingDetails.ShippingModeCode !== 'WAREHOUSE'">
+              <span class="d-block ports-title">Pick up</span>
+              <div class="icon flag-icon-20-12 align-top mr-2 pull-left">
+                <img src="../../../../assets/images/icons/flags/4x3/{{bookingDetails.PolImage}}.svg" alt="flag icon">
+              </div>
+              <div class="d-flex mt-2">
+                <label class="ports-label"
+                  *ngIf="bookingDetails.PolType === 'GROUND'">{{bookingDetails.PolInputAddress}}</label>
+                <label class="ports-label"
+                  *ngIf="bookingDetails.PolType !== 'GROUND'">{{bookingDetails.PolCode}}</label>
+                <small class="d-block" *ngIf="bookingDetails.PolType === 'GROUND'"
+                  [ngbTooltip]="bookingDetails.PolAddress" placement="bottom">{{bookingDetails.PolCountry}}</small>
+                <small class="d-block" *ngIf="bookingDetails.PolType !== 'GROUND'">{{bookingDetails.PolName}}</small>
+              </div>
+            </div>
+            <img alt="" *ngIf="bookingDetails.ShippingModeCode !== 'WAREHOUSE'" class="icon-size-16 ports-direction"
+              src="../../../../assets/images/icons/icon_route_dashboard_blue.svg">
+            <div class="ports" *ngIf="bookingDetails.ShippingModeCode !== 'WAREHOUSE'">
+              <span class="d-block ports-title">Destination</span>
+              <div class="icon flag-icon-20-12 align-top mr-2 pull-left">
+                <img src="../../../../assets/images/icons/flags/4x3/{{bookingDetails.PodImage}}.svg" alt="flag icon">
+              </div>
+              <div class="d-flex mt-2">
+                <label class="ports-label"
+                  *ngIf="bookingDetails.PodType === 'GROUND'">{{bookingDetails.PodInputAddress}}</label>
+                <label class="ports-label"
+                  *ngIf="bookingDetails.PodType !== 'GROUND'">{{bookingDetails.PodCode}}</label>
+                <!-- <small class="d-block">Dubai</small> -->
+                <small class="d-block" *ngIf="bookingDetails.PodType === 'GROUND'"
+                  [ngbTooltip]="bookingDetails.PodAddress" placement="bottom">{{bookingDetails.PodCountry}}</small>
+                <small class="d-block" *ngIf="bookingDetails.PodType !== 'GROUND'">{{bookingDetails.PodName}}</small>
+              </div>
+            </div>
+            <div *ngIf="bookingDetails.ShippingModeCode === 'WAREHOUSE'">
+              <div class="ports-warehouse">
+                <span class="d-block ports-title">Location</span>
+                <div class="icon flag-icon-20-12 align-top mr-2 pull-left">
+                  <img src="../../../../assets/images/icons/flags/4x3/{{bookingDetails.WHCountryCode | lowercase}}.svg"
+                    alt="flag icon">
+                </div>
+                <div class="d-flex mt-2">
+                  <label class="ports-label" style="font-weight: normal">{{bookingDetails.WHAddress}}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card rounded-0">
+          <div class="card-body">
+            <div class="inTheShipment billing-box">
+              <h5 class="card-title">
+                In {{(searchCriteria.searchMode === 'warehouse-lcl')?'this Booking':'the Shipment'}}
+              </h5>
+              <ul class="list-group list-group-flush mt-1">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <span class="d-flex h-100"
+                    [ngClass]="bookingDetails?.BookingDesc.length > 500 ? 'text-ecllipse': 'not-working'">
+                    {{bookingDetails?.BookingDesc}}
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Help & Support -->
+        <div class="card grey-background rounded-0"
+          *ngIf="searchCriteria.searchMode !== 'warehouse-lcl' && searchCriteria?.storageType !== 'full'">
+          <div class="card-body">
+            <div class="billing-box">
+              <h5 class="card-title">
+                Cargo Details
+              </h5>
+              <ul class="list-group list-group-flush mt-1">
+                <li class="list-group-item d-flex justify-content-between align-items-center" *ngIf="!isTruck">
+                  <div class="category">
+                    <span class="long-text">
+                      <img src="../../../../assets/images/icons/icon_container.svg" alt="umbrella-icon"
+                        class="icon-size-16 mr-2 mb-0" *ngIf="bookingDetails.ShippingModeCode !== 'WAREHOUSE'">
+                      <b>{{bookingDetails.ShippingCatName}}</b>
+                    </span>
+                  </div>
+                  <div class="catDetail w-50">
+                    <div class=""
+                      *ngIf="bookingDetails.ShippingModeCode !== 'WAREHOUSE' && bookingDetails.ShippingModeCode !== 'AIR'">
+                      <div class="amount-text text-truncate"
+                        ngbTooltip="{{contDetail.ContainerSpecDesc}} x {{contDetail.BookingContTypeQty}}"
+                        *ngFor="let contDetail of bookingDetails.BookingContainerDetail">
+                        {{contDetail.ContainerSpecDesc}} x {{contDetail.BookingContTypeQty}}
+                      </div>
+                    </div>
+                    <div class="amount-text text-truncate"
+                      ngbTooltip="{{searchCriteria.CBM}} cbm, {{searchCriteria.KG}} kg"
+                      *ngIf="bookingDetails.ShippingModeCode === 'WAREHOUSE'">
+                      {{searchCriteria.CBM}} cbm, {{searchCriteria.KG}} kg
+                    </div>
+                    <div class="amount-text text-truncate" ngbTooltip="{{searchCriteria.KG}} kg"
+                      *ngIf="bookingDetails.ShippingModeCode === 'AIR'">
+                      {{searchCriteria?.chargeableWeight}} kg
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <ul class="list-group list-group-flush mt-1" *ngIf="isTruck">
+                <li class="list-group-item d-flex justify-content-between align-items-center"
+                  *ngFor="let contDetail of bookingDetails.BookingContainerDetail">
+                  <div class="category">
+                    <span class="long-text">
+                      <b>{{contDetail.ContainerSpecShortName}}</b>
+                    </span>
+                  </div>
+                  <div class="catDetail w-50">
+                    <div class="amount-text text-truncate"
+                      ngbTooltip="{{contDetail.ContainerSpecDesc}} x {{contDetail.BookingContTypeQty}}">
+                      {{contDetail.ContainerSpecDesc}} x {{contDetail.BookingContTypeQty}}
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--/ Help & Support -->
+        <!-- Help & Support -->
+        <div class="card rounded-bottom grey-background">
+          <div class="card-body">
+            <div class="helpSupport" *ngIf="HelpDataLoaded">
+              <div class="helpSupport-head">
+                <img src="../../../../assets/images/icons/mob-icon.svg" alt="umbrella-icon">
+                <h5>Help &amp; Support</h5>
+              </div>
+              <div class="helpSupport-content">
+                <h4>Customer Support</h4>
+                <div class="address">
+                  <p class="address">
+                    {{helpSupport?.HMSupportAddress}}
+                  </p>
+                  <!-- <div class="helpLine">
+                      <p>
+                        Helpline : {{helpSupport?.HMSupportPhone}}
+                      </p>
+                    </div> -->
+                  <div class="dotted"></div>
+                </div>
+              </div>
+              <div class="helpSupport-footer">
+                <!-- <p>
+                    For complaints or issues regarding your order, visit our
+                    <a href="{{helpSupport?.HMSupportWebAdd}}" class="link-hover-1" target="_blank">Help Center</a> or send us an email at
+                    <a class="link-hover-1" href="{{'mailto:' + helpSupport?.HMSupportEmail}}">{{helpSupport?.HMSupportEmail}}</a>
+                  </p> -->
+                <p>
+                  For any issues with your booking, contact:
+                  <a class="link-hover-1"
+                    href="{{'mailto:' + helpSupport?.HMSupportEmail}}">{{helpSupport?.HMSupportEmail}}</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Help & Support -->
+      </div>
+    </div>
+    <!--/ shipping details -->
+  </div>
+
+</div>

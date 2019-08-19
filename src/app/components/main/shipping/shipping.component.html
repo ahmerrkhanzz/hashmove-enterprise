@@ -1,0 +1,864 @@
+<div class="animated shipping RightToLeftTabs shipping">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="ibox custom-tabs">
+        <div class="row">
+          <div class="col-10 custom-col-10">
+            <ngb-tabset [justify]="currentJustify" class="catTabs">
+              <ngb-tab *ngFor="let cat of selectedMode.ShippingCriteriaCat" class="">
+                <ng-template ngbTabTitle *ngIf="showMainCategory">
+                  <div class="shipping-category hvr-sweep-to-right">
+                    <div id="CatTitle"
+                      (click)="tabClick(cat.ShippingCatID, cat.ShippingCatCode, 'category', $event); subCatClick($event, cat)"
+                      [ngClass]="(cat.ShippingCatID === selectedCatId)? 'selectedCat' : ''">
+                      <img async defer [src]="'../../../assets/images/shipping/' + cat.ShippingCatImage"
+                        alt="cat-icons">
+                      <span class="text-truncate">{{cat.ShippingCatName}}</span>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template ngbTabContent>
+                  <ul class="nav nav-tabs nav-justified subcategory">
+                    <li class="nav-item" *ngFor="let subcat of subCategory; let i = index"
+                      [ngClass]="(subcat.ShippingSubCatID === this.selectedSubCatId) ? 'active' : ''">
+                      <a class="nav-link text-truncate hvr-sweep-to-right" href="javascript:;"
+                        id="{{subcat.ShippingSubCatID}}" (click)="subCatClick($event, subcat)">
+                        <img async defer [src]="'../../../assets/images/shipping/' + subcat.ShippingSubCatImage"
+                          *ngIf="subcat.ShippingSubCatImage" alt="subcat-icons">
+                        <img async defer src="../../../../assets/images/shipping/GeneralCargo.png"
+                          *ngIf="!subcat.ShippingSubCatImage" alt="subcat-icons">
+                        <span>{{subcat.ShippingSubCatName}}</span>
+                      </a>
+                    </li>
+                  </ul>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+            <div class="col-md-12">
+              <div class="container-tabs" [ngClass]="(hideLCL_FCL) ? 'air-active' : '' ">
+                <div class="delivery-info">
+                  <div class="pickup">
+                    <ng-template #rt let-r="result" let-t="term">
+                      <div class="icon-size-16 d-inline-block">
+                        <img async defer
+                          src="{{'../../../assets/images/icons/flags/4x3/' + (r?.imageName | lowercase) + '.svg'}}"
+                          width="16" style="max-width:100%; max-height:100%;">
+                      </div> {{r?.title}}
+                    </ng-template>
+                    <ng-template #rtc let-r="result" let-t="term">
+                      <div class="icon-size-16 d-inline-block">
+                        <img async defer
+                          src="{{'../../../assets/images/icons/flags/4x3/' + (r?.imageName | lowercase) + '.svg'}}"
+                          width="16" style="max-width:100%; max-height:100%;">
+                      </div> {{r?.title}}
+                    </ng-template>
+                    <label class="input-label" *ngIf="TransportMode?.toLowerCase() === 'air'">Origin</label>
+                    <div class="input-group" [ngClass]="{'selected' : pickup?.imageName}">
+                      <div class="input-group-prepend" *ngIf="pickup?.imageName">
+                        <span class="input-group-text">
+                          <img async defer
+                            src="../../../assets/images/icons/{{selectedModeCaption.strPickupParentIcon}}" alt="icon"
+                            class="img-responsive pickup-icon2" height="18px" />
+                        </span>
+                      </div>
+                      <input #pickupBox id="pickupBox" (focus)="onfocusremoveBlink($event)"
+                        [ngClass]="{'inputValid' : pickup && pickup?.title}" id="typeahead-basic" readonly
+                        ngbTooltip="{{pickup?.title}}" container="body" (click)="toggle('pickup')"
+                        placeholder="PICKUP LOCATION" type="text" class="form-control" [(ngModel)]="pickup.title"
+                        *ngIf="!singleField" />
+
+                      <input #pickupBox id="pickupBox" (focus)="onfocusremoveBlink($event)"
+                        [ngClass]="{'inputValid' : pickup && pickup?.title}" id="typeahead-basic"
+                        ngbTooltip="{{pickup?.title}}" container="body" placeholder="PICKUP FROM" type="text"
+                        class="form-control" [ngbTypeahead]="citySearch" [resultTemplate]="rt"
+                        [inputFormatter]="citiesFormatterPickup"
+                        *ngIf="singleField && customerSettings.isSeaCityRequired" />
+
+                      <input #pickupBox id="pickupBox" (focus)="onfocusremoveBlink($event)"
+                        [ngClass]="{'inputValid' : pickup && pickup?.title}" id="typeahead-basic"
+                        ngbTooltip="{{pickup?.title}}" container="body" placeholder="FROM PORT" type="text"
+                        class="form-control" [(ngModel)]="pickup" [ngbTypeahead]="search" [resultTemplate]="rt"
+                        [inputFormatter]="formatter" *ngIf="singleField && customerSettings.isSeaPortRequired" />
+
+                      <ng-container class="pac-card" id="pac-card"
+                        *ngIf="singleField && customerSettings.isSeaDoorRequired">
+                        <input #inpDoorPickupSea id="inpDoorPickupSea" placeholder="FROM DOOR" type="text"
+                          class="form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                          (click)="toggle2('doorPickUpSea', $event, 'showDoorPickupSea')" (keypress)="doorTodoor()" />
+                        <p class="portValid" *ngIf="portValidation">Enter valid port information</p>
+                      </ng-container>
+
+                      <div class="input-group-append" *ngIf="pickup?.imageName">
+                        <span class="input-group-text" class="icon-size-16" style="margin-top:-5px;">
+                          <img async defer
+                            src="{{'../../../assets/images/icons/flags/4x3/' + (pickup?.imageName | lowercase) + '.svg'}}"
+                            style="max-width:100%;max-height:100%;">
+                        </span>
+                      </div>
+                    </div>
+                    <div class="dropdown-pickup">
+                      <div class="dropdown" *ngIf="showPickupDropdown">
+                        <div class="dropdown-menu"
+                          (clickOutside)="showPickupDropdown = false;InputErrorValidate('port-pickup')"
+                          [exclude]="'#typeahead-basic'" aria-labelledby="dropdownMenuButton">
+                          <ul class="pickup-options" *ngIf="!show2">
+                            <li (click)="toggle2('portPickup', $event, 'showSeaPortPickup')"
+                              *ngIf="customerSettings.isSeaPortRequired">
+                              <img async defer src="../../../assets/images/icons/{{selectedModeCaption.strPickupIcon}}"
+                                alt="icon" class="img-responsive pickup-icon2" height="18px" />
+                              <a class="dropdown-item" href="javascript:;">
+                                <span class="pickup-heading">{{selectedModeCaption.strPickup}}</span>
+                              </a>
+                              <p>Picking up from port would mean you are responsible to get your cargo delivered to the
+                                port
+                                of departure.</p>
+                            </li>
+                            <li (click)="toggle2('doorPickUpSea', $event, 'showDoorPickupSea')"
+                              *ngIf="customerSettings.isSeaDoorRequired">
+                              <img async defer src="../../../assets/images/icons/Icons_Location.svg" alt="icon"
+                                class="img-responsive pickup-icon" />
+                              <a class="dropdown-item" href="javascript:;">FROM DOOR</a>
+                              <p>Picking up from door would include road transport from your warehouse.</p>
+                            </li>
+                            <li (click)="toggle2('cityPickUpSea', $event, 'showCityPickupSea')"
+                              *ngIf="customerSettings.isSeaCityRequired">
+                              <img async defer src="../../../assets/images/icons/Icons_Location.svg" alt="icon"
+                                class="img-responsive pickup-icon" />
+                              <a class="dropdown-item" href="javascript:;">FROM CITY</a>
+                              <p>Picking up from door would include road transport from your warehouse.</p>
+                            </li>
+                          </ul>
+                          <ul class="pickup-options search-pickup" *ngIf="show2">
+                            <li *ngIf="showSeaPortPickup">
+                              <img async defer src="../../../assets/images/icons/{{selectedModeCaption.strPickupIcon}}"
+                                alt="icon" class="img-responsive pickup-icon2" height="18px" />
+                              <a class="dropdown-item" href="javascript:;">
+                                <span class="pickup-heading">{{selectedModeCaption.strPickup}}</span>
+                              </a>
+                              <input #portPickup id="typeahead-basic" placeholder="Search for port of pickup"
+                                type="text" class="form-control" [(ngModel)]="pickup" [ngbTypeahead]="search"
+                                [resultTemplate]="rt" [inputFormatter]="formatter" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"
+                                (ngModelChange)="togglePortvalid('pickup', pickup)" />
+                              <p class="portValid" *ngIf="portValidation">Enter valid port information</p>
+                              <!-- <button class="btn btn-lg btn-outline-primary btn-block" (click)="toggle('selectPickup')">SELECT</button> -->
+                            </li>
+                            <li *ngIf="showDoorPickupSea" class="pac-card" id="pac-card">
+                              <img async defer src="../../../assets/images/icons/Icons_Location.svg" alt="icon"
+                                class="img-responsive pickup-icon2" height="18px" />
+                              <a class="dropdown-item" href="javascript:;">
+                                <span class="pickup-heading text-uppercase">From Door</span>
+                              </a>
+                              <input #inpDoorPickupSea id="inpDoorPickupSea"
+                                placeholder="Search for Door Pickup Location" type="text" class="form-control"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                (change)="togglePortvalid('pickup', pickup)" (keypress)="doorTodoor()" />
+                              <p class="portValid" *ngIf="portValidation">Enter valid port information</p>
+                              <!-- <button class="btn btn-lg btn-outline-primary btn-block" (click)="toggle('selectPickup')">SELECT</button> -->
+                            </li>
+
+                            <li *ngIf="showCityPickupSea">
+                              <img async defer src="../../../assets/images/icons/Icons_Location.svg" alt="icon"
+                                class="img-responsive pickup-icon2" height="18px" />
+                              <a class="dropdown-item" href="javascript:;">
+                                <span class="pickup-heading text-uppercase">From City</span>
+                              </a>
+                              <input #pickupBox id="typeahead-basic" (focus)="onfocusremoveBlink($event)"
+                                [ngClass]="{'inputValid' : pickup && pickup?.title}" id="typeahead-basic"
+                                ngbTooltip="{{pickup?.title}}" container="body" placeholder="FROM CITY" type="text"
+                                class="form-control" [(ngModel)]="pickup.title" [ngbTypeahead]="citySearch"
+                                (ngModelChange)="togglePortvalid('city', pickup)" [resultTemplate]="rtc"
+                                [inputFormatter]="citiesFormatterPickup" />
+                              <!-- <button class="btn btn-lg btn-outline-primary btn-block" (click)="toggle('selectPickup')">SELECT</button> -->
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="deliver">
+                    <ng-template #rt let-r="result" let-t="term">
+                      <div class="icon-size-16 d-inline-block">
+                        <img async defer
+                          src="{{'../../../assets/images/icons/flags/4x3/' + (r?.imageName | lowercase) + '.svg'}}"
+                          style="max-width: 100%; max-height:100%;">
+                      </div> {{r?.title}}
+                    </ng-template>
+                    <label class="input-label" *ngIf="TransportMode?.toLowerCase() === 'air'">Destination</label>
+                    <div class="input-group" [ngClass]="{'selected' : delivery?.imageName}">
+                      <div class="input-group-prepend" *ngIf="delivery?.imageName">
+                        <span class="input-group-text">
+                          <img async defer
+                            src="../../../assets/images/icons/{{selectedModeCaption.strDeliverParentIcon}}" alt="icon"
+                            class="img-responsive pickup-icon" />
+                        </span>
+                      </div>
+                      <input #deliverBox id="typeahead-basic2" readonly ngbTooltip="{{delivery?.title}}"
+                        container="body" (click)="toggle('deliver')" placeholder="DELIVERY LOCATION" type="text"
+                        class="form-control" [(ngModel)]="delivery.title" (focus)="onfocusremoveBlink($event)"
+                        [ngClass]="{'inputValid' : delivery && delivery?.title}" *ngIf="!singleField" />
+
+                      <input #deliverBox id="typeahead-basic2" ngbTooltip="{{delivery?.title}}" container="body"
+                        placeholder="DELIVER TO" type="text" class="form-control" (focus)="onfocusremoveBlink($event)"
+                        [ngClass]="{'inputValid' : delivery && delivery?.title}" [ngbTypeahead]="citySearch"
+                        [resultTemplate]="rt" [inputFormatter]="citiesFormatterDropoff"
+                        *ngIf="singleField && customerSettings.isSeaCityRequired" />
+
+                      <input #portDropOff id="typeahead-basic2" placeholder="TO PORT" type="text" class="form-control"
+                        ngbTooltip="{{delivery?.title}}" [(ngModel)]="delivery" [ngbTypeahead]="search"
+                        [resultTemplate]="rt" [inputFormatter]="formatter" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" *ngIf="singleField && customerSettings.isSeaPortRequired" />
+
+                      <input #inpDoorDeliverySea placeholder="TO DOOR" type="text" class="form-control"
+                        data-toggle="dropdown" aria-haspopup="true" autocorrect="off"
+                        (change)="togglePortvalid('delivery', delivery)" autocapitalize="off" spellcheck="off"
+                        aria-expanded="false" *ngIf="singleField && customerSettings.isSeaDoorRequired" />
+
+                      <div class="input-group-append" *ngIf="delivery?.imageName">
+                        <!-- <span class="input-group-text">
+                        </span> -->
+                        <div class="icon-size-16" style="margin-top:-5px;">
+                          <img async defer
+                            src="{{'../../../assets/images/icons/flags/4x3/' + (delivery?.imageName | lowercase) + '.svg'}}"
+                            style="max-width:100%; max-height:100%;">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dropdown-pickup">
+                      <div class="dropdown" *ngIf="showDeliveryDropdown">
+                        <div class="dropdown-menu"
+                          (clickOutside)="showDeliveryDropdown = false;InputErrorValidate('port-drop')"
+                          [exclude]="'#typeahead-basic2'" aria-labelledby="dropdownMenuButton">
+                          <ul class="pickup-options" *ngIf="!show2">
+                            <li (click)="toggle2('dropOff', $event,'showSeaPortDelivery')">
+                              <img async defer src="../../../assets/images/icons/{{selectedModeCaption.strDeliverIcon}}"
+                                alt="icon" class="img-responsive pickup-icon2" />
+                              <a class="dropdown-item" href="javascript:;">
+                                <span class="pickup-heading">{{selectedModeCaption.strDeliver}}</span>
+                              </a>
+                              <p>Deliver to port would mean you are responsible to get your cargo delivered to your
+                                warehouse.
+                              </p>
+                            </li>
+                            <li li (click)="toggle2('dropOff', $event,'showDoorDropSea')">
+                              <img async defer src="../../../assets/images/icons/Icons_Location.svg" alt="icon"
+                                class="img-responsive pickup-icon" />
+                              <a class="dropdown-item" href="javascript:;">DELIVERY AT DOOR</a>
+                              <p>Delivery to door would include road transport to your warehouse.</p>
+                            </li>
+                            <li li (click)="toggle2('dropOff', $event,'showSeaCityDelivery')">
+                              <img async defer src="../../../assets/images/icons/Icons_Location.svg" alt="icon"
+                                class="img-responsive pickup-icon" />
+                              <a class="dropdown-item" href="javascript:;">FROM CITY</a>
+                              <p>Delivery to city would include road transport to your warehouse.</p>
+                            </li>
+                          </ul>
+                          <ul class="pickup-options search-pickup" *ngIf="show2">
+                            <li *ngIf="showSeaPortDelivery">
+                              <img async defer src="../../../assets/images/icons/{{selectedModeCaption.strDeliverIcon}}"
+                                alt="icon" class="img-responsive pickup-icon2" />
+                              <a class="dropdown-item" href="javascript:;">
+                                <span class="pickup-heading">{{selectedModeCaption.strDeliver}}</span>
+                              </a>
+                              <input #portDropOff id="typeahead-basic2" placeholder="Search for port of deliver"
+                                type="text" class="form-control" [(ngModel)]="delivery" [ngbTypeahead]="search"
+                                [resultTemplate]="rt" [inputFormatter]="formatter" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"
+                                (ngModelChange)="togglePortvalid('delivery', delivery)" />
+                              <p class="portValid" *ngIf="portValidation">Enter valid port information</p>
+                            </li>
+                            <li *ngIf="showDoorDropSea">
+                              <img async defer src="../../../assets/images/icons/Icons_Location.svg" alt="icon"
+                                class="img-responsive pickup-icon2" />
+                              <a class="dropdown-item" href="javascript:;">
+                                <span class="pickup-heading text-uppercase">Delivery At Door</span>
+                              </a>
+                              <input #inpDoorDeliverySea placeholder="Search for Door Delivery Location" type="text"
+                                class="form-control" data-toggle="dropdown" aria-haspopup="true" autocorrect="off"
+                                (change)="togglePortvalid('delivery', delivery)" autocapitalize="off" spellcheck="off"
+                                aria-expanded="false" />
+                              <p class="portValid" *ngIf="portValidation">Enter valid port information</p>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <label class="input-label" *ngIf="TransportMode?.toLowerCase() === 'air'">DEPARTURE DATE
+                  </label>
+                  <div  class="input-group departure"
+                    [ngClass]="{dateIcon : pickupDate && pickupDate.year}">
+                    <input class="form-control" readonly id="hashDatepicker" #calenderField
+                      (click)="showbutton('single')" (dateSelect)="onDateSelect($event)" [(ngModel)]="pickupDate"
+                      placeholder="DEPARTURE (OPTIONAL)" name="dp" [displayMonths]="displayMonths"
+                      [navigation]="navigation" [showWeekNumbers]="showWeekNumbers" [autoClose]="false"
+                      [minDate]="minDate" [maxDate]="maxDate" ngbDatepicker #d="ngbDatepicker"
+                      (focus)="onfocusremoveBlink($event)" [ngClass]="{'inputValid' : pickupDate && pickupDate.year}">
+                  </div>
+                  <!-- <div *ngIf="TransportMode?.toLowerCase() === 'air'" class="input-group departure datePicker"
+                    [ngClass]="{dateIcon : pickupDate && pickupDate.year}">
+                    <input readonly diabled="true" id="dpicker" autocomplete="off" #calenderField class="form-control"
+                      placeholder="From - To" name="dp" [dayTemplate]="t" [outsideDays]="true" [navigation]="false"
+                      [autoClose]="false" [displayMonths]="2" ngbDatepicker #d="ngbDatepicker" placement="bottom"
+                      [minDate]="minDate" (click)="showbutton('double')"
+                      [ngClass]="{'inputValid' : fromDate && fromDate.year && toDate && toDate.year }"
+                      (focus)="onfocusremoveBlink($event)" />
+                    <ng-template #t let-date="date" let-focused="focused" container="body">
+                      <span class="custom-day"
+                        [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)"
+                        [class.faded]="isHovered(date) || isInside(date)" (click)="onDateSelection(date)"
+                        (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+                        {{ date.day }}
+                      </span>
+                    </ng-template>
+                  </div> -->
+                </div>
+                <ngb-tabset (tabChange)="tabChangeEvent($event)" [activeId]="activeContainerTabID" class="gradient-tabs">
+                  <ngb-tab id="fcl">
+                    <ng-template ngbTabTitle>
+                      <div class="title" placement="top"
+                        ngbTooltip="{{(TransportMode.toLowerCase()==='sea')?'Full Container Load':'Full Truck Load'}}">
+                        <svg id="3e0bd723-1f5e-404f-9c9e-f9fa6a56c26b" data-name="Layer 1"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                          *ngIf="TransportMode.toLowerCase() !=='truck'">
+                          <defs>
+                            <style>
+                              .\37 50c96f3-85fa-4da3-ae5f-980e0f5745ce {
+                                fill: #FFF;
+                              }
+                            </style>
+                          </defs>
+                          <g id="6744cc39-0259-4947-99c3-524da0baf146" data-name="container">
+                            <path id="a13d3843-8cbe-44ec-8bff-9c9271c255f7" data-name="&lt;Compound Path&gt;"
+                              class="container-svg 750c96f3-85fa-4da3-ae5f-980e0f5745ce"
+                              d="M22,10V22H2V10H22m2-2H0V24H24V8Z" />
+                            <rect id="3bc9a61b-e64a-4a26-a0db-69d1ce9d6b6e" data-name="&lt;Path&gt;"
+                              class="container-svg 750c96f3-85fa-4da3-ae5f-980e0f5745ce" x="5" y="11" width="2"
+                              height="10" />
+                            <rect id="15063ed6-0b45-423b-a60a-fb9e8a38780a" data-name="&lt;Path&gt;"
+                              class="container-svg 750c96f3-85fa-4da3-ae5f-980e0f5745ce" x="11" y="11" width="2"
+                              height="10" />
+                            <rect id="435b81d5-b0c3-4dda-b6bf-ec8fa8fd643e" data-name="&lt;Path&gt;"
+                              class="container-svg 750c96f3-85fa-4da3-ae5f-980e0f5745ce" x="17" y="11" width="2"
+                              height="10" />
+                            <rect id="0dc9424e-7fc7-46da-a1ac-89446f588598" data-name="&lt;Path&gt;"
+                              class="container-svg 750c96f3-85fa-4da3-ae5f-980e0f5745ce" x="5.229" y="5" width="7.543"
+                              height="2" transform="translate(-1.607 8.121) rotate(-45)" />
+                            <rect id="713c3bf1-8eef-4a1e-a553-96a0cf70b1ea" data-name="&lt;Path&gt;"
+                              class="container-svg 750c96f3-85fa-4da3-ae5f-980e0f5745ce" x="14" y="2.229" width="2"
+                              height="7.543" transform="translate(0.15 12.363) rotate(-44.995)" />
+                            <rect id="9e10ba48-acd1-4fa3-a431-1799e0b0691c" data-name="&lt;Path&gt;"
+                              class="container-svg 750c96f3-85fa-4da3-ae5f-980e0f5745ce" x="11" width="2" height="4" />
+                          </g>
+                        </svg>
+                        <svg id="f7905435-1486-49b3-baf9-4dca76d453f9" data-name="Layer 1"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                          *ngIf="TransportMode.toLowerCase() ==='truck'">
+                          <defs>
+                            <style>
+                              .a2024788-efba-4438-b0be-f26b285b4fd6 {
+                                fill: #fff;
+                              }
+                            </style>
+                          </defs>
+                          <title>Icons</title>
+                          <g id="d1bd0fc5-aee7-4161-bcfc-9917552a4e20" data-name="truck">
+                            <path id="3b886d42-d469-4fa8-a176-d1a6f9535320" data-name="&lt;Path&gt;"
+                              class="a2024788-efba-4438-b0be-f26b285b4fd6 container-svg"
+                              d="M21.5,14h-2c0-4-2.5-6.5-6.5-6.5v-2A8.138,8.138,0,0,1,21.5,14Z" />
+                            <g id="dece99b0-ccfe-46cd-9e08-09c04af070eb" data-name="&lt;Group&gt;">
+                              <path id="1e109160-3fc6-427d-a960-9408ecfded4d" data-name="&lt;Compound Path&gt;"
+                                class="a2024788-efba-4438-b0be-f26b285b4fd6 container-svg"
+                                d="M6,16a3.5,3.5,0,1,0,3.5,3.5A3.5,3.5,0,0,0,6,16Zm0,5.25A1.75,1.75,0,1,1,7.75,19.5,1.75,1.75,0,0,1,6,21.25Z" />
+                            </g>
+                            <g id="0a8baa5b-ca15-44f3-b7a0-e022331802c0" data-name="&lt;Group&gt;">
+                              <g id="c0230789-57cf-47bc-a80f-830d7c300074" data-name="&lt;Group&gt;">
+                                <path id="b3ca8f69-77be-4bef-880a-c916143eb129" data-name="&lt;Path&gt;"
+                                  class="a2024788-efba-4438-b0be-f26b285b4fd6 container-svg"
+                                  d="M14,3H3.24A3.24,3.24,0,0,0,0,6.24V19H4.331a1.739,1.739,0,0,1,3.337,0H14Z" />
+                              </g>
+                            </g>
+                            <g id="e2c8b36e-a3d6-4f64-aece-7314231b6800" data-name="&lt;Group&gt;">
+                              <path id="ab7af316-2d2b-4ee2-8291-e72c5310f1ec" data-name="&lt;Compound Path&gt;"
+                                class="a2024788-efba-4438-b0be-f26b285b4fd6 container-svg"
+                                d="M18,16a3.5,3.5,0,1,0,3.5,3.5A3.5,3.5,0,0,0,18,16Zm0,5.25a1.75,1.75,0,1,1,1.75-1.75A1.75,1.75,0,0,1,18,21.25Z" />
+                            </g>
+                            <g id="589008c7-8e5d-4302-9187-3d291cab846d" data-name="&lt;Group&gt;">
+                              <path id="08fec5ba-4e9f-4b7f-b673-94d24fdb6a92" data-name="&lt;Compound Path&gt;"
+                                class="a2024788-efba-4438-b0be-f26b285b4fd6 container-svg"
+                                d="M22,14v3H20.793a3.746,3.746,0,0,0-5.587,0H13.735l-.429-3H22m2-2H11l1,7h4.331a1.739,1.739,0,0,1,3.337,0H24V12Z" />
+                            </g>
+                          </g>
+                        </svg>
+
+                        <span>{{(TransportMode.toLowerCase()==='sea')?'FCL':'FTL'}}</span>
+                      </div>
+                    </ng-template>
+                    <ng-template ngbTabContent>
+                      <div class="container-main ml-1"
+                        *ngIf="TransportMode.toLowerCase() !=='truck' && FCLContainers && FCLContainers.length">
+                        <div class="containers-main d-flex justify-content-center align-items-center">
+                          <div class="card container-boxes"
+                            [ngClass]="{'container-boxes-parent' : noParent, 'selected-container' : container.selected}"
+                            (mouseenter)="zoom('', container, i) "
+                            *ngFor="let container of FCLContainers; let i = index"
+                            [ngClass]="{'active': container.selected > 0, 'four' : (FCLContainers.length >= 5 && FCLContainers.length <= 8)}">
+                            <span class="count-triangle" *ngIf="container.selected">
+                              <span>{{container.selected}}</span>
+                            </span>
+                            <div class="card-body">
+                              <p class="card-text">
+                                {{container.ContainerSpecDesc}}
+                              </p>
+                              <div class="image-container">
+                                <img async defer [src]="'../../../assets/images/icons/'+ container.ContainerSpecImage"
+                                  alt="container-icons" [ngClass]="'ContainerImg' + container.ContainterLength">
+                              </div>
+                              <div *ngIf="TransportMode.toLowerCase() !== 'truck'" class="containerInfo">
+                                <div class="container-size">
+                                  <label>Size</label>
+                                  <small>{{getContainerInfo(container).containerSize}}</small>
+                                </div>
+                                <!-- <span>|</span> -->
+                                <div class="container-weight">
+                                  <label>Max Weight</label>
+                                  <small
+                                    class="text-center">{{kFormatting(getContainerInfo(container).containerWeight)}}
+                                    Kg</small>
+                                </div>
+                              </div>
+                              <div class="truck-details" *ngIf="TransportMode.toLowerCase() === 'truck'">
+                                <p>
+                                  Max Loadable Weight
+                                  <br>
+                                  <span>{{(container.MaxGWT === container.MinGWT )?container.MaxGWT:container.MaxGWT + '
+                                    - ' + container.MinGWT}}</span>
+                                  <span>{{container.WeightUnit}}</span>
+                                </p>
+                                <div class="after-hover">
+                                  <div class="input-group">
+                                    <select cslass="custom-select my-1 mr-sm-2" class="form-control"
+                                      (change)="onTruckSizeSelect($event)">
+                                      <option value="null" selected>Select Size</option>
+                                      <option *ngFor="let subCont of container.ContainerSubDetail ; let ind = index"
+                                        [value]="subCont.ContainerSpecID + ';'+ i + ';' + ind">
+                                        <span>
+                                          <span style="float:left">{{subCont.ContainterLength}}
+                                            {{subCont.DimensionUnit}}</span>
+                                          <span style="float:right">MAX WEIGHT: {{subCont.MaxGrossWeight}}
+                                            {{subCont.WeightUnit}}
+                                          </span>
+                                        </span>
+                                      </option>
+                                    </select>
+                                  </div>
+                                  <div class="input-group mt-1">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text"
+                                        (click)="counter('minus', container.ContainerLoadType, container.ContainerSpecID, container.JsonContainerSpecProp, i)">
+                                        <i class="fa fa-minus"></i>
+                                      </span>
+                                    </div>
+                                    <input type="text" minlength="1" maxlength="4" class="form-control" name="counter"
+                                      [(ngModel)]="containerCount"
+                                      (ngModelChange)="onCounterModelChange($event, container, i)"
+                                      (keypress)="numericKeyPress($event)">
+                                    <div class="input-group-append">
+                                      <span class="input-group-text"
+                                        (click)="counter('plus', container.ContainerLoadType, container.ContainerSpecID, container.JsonContainerSpecProp, i)">
+                                        <i class="fa fa-plus"></i>
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <button class="btn btn-outline-primary btn-block btn-lg hvr-sweep-to-right"
+                                    (click)="submitLCLForm(i, container, $event)">ADD</button>
+                                </div>
+                              </div>
+                              <div class="counter" *ngIf="TransportMode.toLowerCase() !== 'truck'">
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"
+                                      (click)="counter('minus', container.ContainerLoadType, container.ContainerSpecID, null, container.JsonContainerSpecProp)">
+                                      <i class="fa fa-minus"></i>
+                                    </span>
+                                  </div>
+                                  <input type="text" minlength="1" maxlength="4" class="form-control" name="counter"
+                                    #inpContainerCount [(ngModel)]="containerCount"
+                                    (ngModelChange)="onCounterModelChange($event, container, i)"
+                                    (keypress)="numericKeyPress($event)">
+                                  <div class="input-group-append">
+                                    <span class="input-group-text"
+                                      (click)="counter('plus', container.ContainerLoadType, container.ContainerSpecID, null, container.JsonContainerSpecProp)">
+                                      <i class="fa fa-plus"></i>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <app-truck [trucks]="FCLContainers" (addContainerEvent)="onTruckAdd($event)"
+                        (removeContainerEvent)="removeContainers($event)"
+                        *ngIf="TransportMode.toLowerCase() ==='truck'"></app-truck>
+                    </ng-template>
+                  </ngb-tab>
+                  <ngb-tab id="lcl" [disabled]="TransportMode.toLowerCase()==='truck'">
+                    <ng-template ngbTabTitle>
+                      <div class="title" placement="top"
+                        ngbTooltip="{{(TransportMode.toLowerCase()==='sea')?'Less Than Container Load':'Less Than Truck Load'}}">
+                        <svg id="ee0cf102-a966-4a3f-95ef-2d85d2845fce" data-name="Layer 1"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                          <defs>
+                            <style>
+                              .\33 24b713b-d0fb-4a53-8548-411c4a22720a {
+                                fill: #738593;
+                              }
+                            </style>
+                          </defs>
+                          <g id="77a57afb-dc84-48f7-bcef-1ea8af6a0a74" data-name="box">
+                            <path id="b7ad858c-ef80-4b01-8e89-887b6e7eba38" data-name="&lt;Compound Path&gt;"
+                              class="container-svg 324b713b-d0fb-4a53-8548-411c4a22720a"
+                              d="M12,2.236l10,5v9.528l-10,5-10-5V7.236l10-5M12,0,0,6V18l12,6,12-6V6L12,0Z" />
+                            <polygon id="3d2841e7-73c0-49f4-a43e-30e1679abe1b" data-name="&lt;Path&gt;"
+                              class="container-svg 324b713b-d0fb-4a53-8548-411c4a22720a"
+                              points="12 12.504 0.5 7.316 1.334 5.496 12 10.307 22.666 5.496 23.5 7.316 12 12.504" />
+                            <rect id="221b7dca-da17-44bc-bf0a-eaf6705915cb" data-name="&lt;Path&gt;"
+                              class="container-svg 324b713b-d0fb-4a53-8548-411c4a22720a" x="11" y="11" width="2"
+                              height="12" />
+                          </g>
+                        </svg>
+                        <span>{{(TransportMode.toLowerCase()==='sea')?'LCL':'LTL'}}</span>
+                      </div>
+                    </ng-template>
+                    <ng-template ngbTabContent>
+                      <div *ngIf="TransportMode.toLowerCase() !=='air'">
+                        <div class="container-main lcl">
+                          <h5 class="heading" *ngIf="LCLContainers.length" (click)="closeLCLContainer()">
+                            Select Handling
+                            Unit
+                          </h5>
+                          <!-- [ngClass]="{'container-boxes-parent' : noParent}" -->
+                          <div class="containers-main d-flex justify-content-center align-items-center">
+                            <div class="card container-boxes" *ngFor="let container of LCLContainers; let i = index"
+                              [ngClass]="[(container.selected > 0)?'active':'', (activeContainerId >= 0 && activeContainerId === i) ? 'active-container' : '']"
+                              (click)="zoomLCLContainer(container, i, $event)">
+                              <span class="count-triangle" *ngIf="container.selected">
+                                <!-- <span>{{container.selected | number: '1.2-2'}}</span> -->
+                                <img src="../../../../assets/images/icons/Icons_Check_White.svg" alt="">
+                              </span>
+                              <div class="card-body">
+                                <div class="image-container">
+                                  <img async defer [src]="'../../../assets/images/icons/'+ container.ContainerSpecImage"
+                                    alt="container-icons" [ngClass]="'ContainerImg' + container.ContainterLength">
+                                </div>
+                                <!-- <div class="image-container-slow">
+                                                        <img async defer [src]="'../../../assets/images/icons/'+ container.ContainerSpecImage"
+                                                          alt="container-icons" [ngClass]="'ContainerImg' + container.ContainterLength">
+                                                      </div> -->
+                                <p class="card-text">
+                                  {{container.ContainerSpecDesc}}
+                                </p>
+                                <!-- <p class="card-text-slow">
+                                                        {{container.ContainerSpecDesc}}
+                                                      </p> -->
+                                <div class="lcl-counter counter">
+                                  <div class="switch-box">
+                                    <ui-switch [checked]="container.LClContainerInputs.toggle"
+                                      [(ngModel)]="container.LClContainerInputs.toggle"
+                                      (ngModelChange)="lclInputsChange('switch', $event, i)" size="small"
+                                      (change)="onFieldsChange($event, container)"></ui-switch>
+                                    <label for="">{{toggleLabel}}</label>
+                                  </div>
+                                  <!-- <form [formGroup]="lclForm"> -->
+                                  <div>
+                                    <div class="input-group" *ngIf="!container.LClContainerInputs.toggle">
+                                      <label class="form-control sr-only">Quantity</label>
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                          <i class="fa fa-minus"
+                                            (click)="counter('minus', container.ContainerLoadType, container.ContainerSpecID, i)"></i>
+                                        </span>
+                                      </div>
+                                      <input type="text" minlength="1" maxlength="3"
+                                        [(ngModel)]="container.LClContainerInputs.inpQuantity" name="quantity"
+                                        class="form-control quantity" name="counter"
+                                        (keydown)="onKeydown($event, i, quantity, container.LClContainerInputs.inpQuantity)"
+                                        (keypress)="onKeypress($event, quantity, 'quantity', container)"
+                                        (focus)="focusIn(container)" placeholder="0"
+                                        (ngModelChange)="lclInputsChange('quantity', $event, i)">
+                                      <div class="input-group-append">
+                                        <span class="input-group-text">
+                                          <i class="fa fa-plus"
+                                            (click)="counter('plus', container.ContainerLoadType, container.ContainerSpecID, i)"></i>
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div class="input-group" *ngIf="!container.LClContainerInputs.toggle">
+                                      <input type="number" [(ngModel)]="container.LClContainerInputs.inpLenght"
+                                        class="form-control" placeholder="L" min="0" step="1"
+                                        (keypress)="onKeypress($event, length, 'length', container)"
+                                        (focus)="focusIn(container)" aria-label="Text input with dropdown button"
+                                        (ngModelChange)="lclInputsChange('length', $event, i)">
+                                      <input type="number" [(ngModel)]="container.LClContainerInputs.inpWidth"
+                                        class="form-control inputbox2" min="0" step="1" placeholder="W"
+                                        aria-label="Text input with dropdown button"
+                                        (keypress)="onKeypress($event, width, 'width', container)"
+                                        (focus)="focusIn(container)"
+                                        (ngModelChange)="lclInputsChange('width', $event, i)">
+                                      <input type="number" [(ngModel)]="container.LClContainerInputs.inpHeight"
+                                        class="form-control inputbox2" min="0" step="1" placeholder="H"
+                                        aria-label="Text input with dropdown button"
+                                        (keypress)="onKeypress($event, height, 'height', container)"
+                                        (focus)="focusIn(container)"
+                                        (ngModelChange)="lclInputsChange('height', $event, i)">
+                                      <div class="input-group-append">
+                                        <select name="" class="form-control"
+                                          (change)="onUnitChange($event.target.value, 'length', container, i)"
+                                          class="form-control">
+                                          <option *ngFor="let unit of lengthUnits" value="{{unit.UnitTypeID}}"
+                                            [selected]="(unit.UnitTypeID === selectedLengthUnitID) ? true : false">
+                                            {{unit.UnitTypeShortName}}</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="input-group" *ngIf="!container.LClContainerInputs.toggle">
+                                      <input type="number" [(ngModel)]="container.LClContainerInputs.inpWeight"
+                                        class="form-control unit-weight" placeholder="Weight per item"
+                                        (keypress)="onKeypress($event, weight, 'weight', container)"
+                                        (focus)="focusIn(container)"
+                                        (ngModelChange)="lclInputsChange('weight', $event, i)">
+                                      <div class="input-group-append">
+                                        <select class="form-control"
+                                          (change)="onUnitChange($event.target.value, 'weight', container, i)"
+                                          name="weightUnit">
+                                          <option value="{{unit.UnitTypeID}}" *ngFor="let unit of weightUnits"
+                                            [selected]="(unit.UnitTypeID === selectedWeightUnitID) ? true : false">
+                                            {{unit.UnitTypeShortName}}
+                                          </option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="input-group" *ngIf="container.LClContainerInputs.toggle">
+                                      <input type="text" name="volume"
+                                        [(ngModel)]="container.LClContainerInputs.inpVolume"
+                                        (ngModelChange)="onTotalShpmentChange(lclFields.volume, container);lclInputsChange('volume', $event, i)"
+                                        placeholder="Volume"
+                                        (keypress)="onKeypress($event, volume, 'volume', container)"
+                                        (focus)="focusIn(container)" class="form-control unit-weight"
+                                        (focusout)="unitFocusOut(i, container)">
+                                      <div class="input-group-append">
+                                        <select name="" class="form-control"
+                                          (change)="onUnitChange($event.target.value, 'volume', container, i)"
+                                          name="volumeUnit">
+                                          <option value="{{unit.UnitTypeID}}" *ngFor="let unit of volumeUnits"
+                                            [selected]="(unit.UnitTypeID === selectedVolumeUnitID) ? true : false">
+                                            {{unit.UnitTypeShortName}}
+                                          </option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="lcl-errors">
+                                      <p class="text-danger" *ngIf="formValidation2.invalid">
+                                        {{formValidation2.message}}
+                                      </p>
+                                    </div>
+
+                                    <div class="input-group" *ngIf="container.LClContainerInputs.toggle">
+                                      <input type="number" name="totalWeight"
+                                        [(ngModel)]="container.LClContainerInputs.inpTotalWeight"
+                                        (keypress)="onKeypress($event, totalWeight, 'totalWeight', container)"
+                                        (focus)="focusIn(container)" class="form-control unit-weight"
+                                        (focusout)="unitFocusOut(i, container)" class="form-control unit-weight"
+                                        placeholder="Total Weight"
+                                        (ngModelChange)="lclInputsChange('totalWeight', $event, i)">
+                                      <div class="input-group-append">
+                                        <select class="form-control"
+                                          (change)="onUnitChange($event.target.value, 'totalWeight', container, i)"
+                                          name="totalWeightUnit">
+                                          <option value="{{unit.UnitTypeID}}"
+                                            [selected]="(unit.UnitTypeID === selectedWeightUnitID) ? true : false"
+                                            *ngFor="let unit of weightUnits">
+                                            {{unit.UnitTypeShortName}}
+                                          </option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="lcl-errors">
+                                      <p class="text-danger" *ngIf="formValidation.invalid">
+                                        {{formValidation.message}}
+                                      </p>
+                                    </div>
+                                    <button class="btn btn-outline-primary btn-block btn-lg hvr-sweep-to-right"
+                                      *ngIf="!container.LClContainerInputs.toggle"
+                                      (click)="submitLCLForm(i, container, $event)">ADD</button>
+                                  </div>
+                                  <div *ngIf="container.LClContainerInputs.toggle">
+                                    <div class="lcl-counter-volume"
+                                      *ngIf="(TransportMode === 'AIR' &&  container.LClContainerInputs.volumetricWeight > container.LClContainerInputs.inpTotalWeight)">
+                                      <label for="" class="d-flex">Volumetric Weight:
+                                        <ng-template #tipContent2 let-greeting="greeting">
+                                          <div class="custom-tooltip1">
+                                            Volumetric Weight = Volume in CBM / 0.006
+                                            <br /> Volumetric Weight = {{shipmentVolumetricWeight}}
+                                          </div>
+                                        </ng-template>
+                                        <div class="volumentric ml-1" placement="top" container="body"
+                                          [ngbTooltip]="tipContent2" #t2="ngbTooltip"
+                                          (click)="toggleWithGreeting(t2, '')" (mouseover)="ngAdToolTipClass()"
+                                          (mouseenter)="ngAdToolTipClass()">
+                                          <img src="../../../../../assets/images/icons/icon_info2 - grey.svg"
+                                            width="16px">
+                                        </div>
+                                      </label>
+                                      <input type="text" class="form-control" name="totalVolumetricWeight"
+                                        [(ngModel)]="shipmentVolumetricWeight" disabled>
+                                    </div>
+                                  </div>
+                                  <div *ngIf="!container.LClContainerInputs.toggle">
+                                    <h4 *ngIf="LCLSinglePackages.length">ADDED PALLETE </h4>
+                                    <ng-scrollbar [trackX]="false" [compact]="true" class="scrollConfig">
+                                      <div class="overflow-y-hide selected-container-count"
+                                        *ngIf="LCLSinglePackages.length">
+                                        <div class="addedpallete"
+                                          *ngFor="let item of LCLSinglePackages; let idx = index">
+                                          <div class="addedpallete-text">
+                                            <ng-template #tipContent let-greeting="greeting">
+                                              <div class="custom-tooltip1">
+                                                Volumetric Weight = L (m) * W(m) * H(m) * Quantity / 0.006
+                                                <br /> Volumetric Weight = {{item.volumetricWeight | number: '1.2-2'}}
+                                                kg
+                                              </div>
+                                            </ng-template>
+                                            <div
+                                              *ngIf="TransportMode === 'AIR' && item.volumetricWeight > item.contRequestedWeight"
+                                              class="volumentric" placement="top" container="body"
+                                              [ngbTooltip]="tipContent" #t1="ngbTooltip"
+                                              (click)="toggleWithGreeting(t1, '')" (mouseover)="ngAdToolTipClass()"
+                                              (mouseenter)="ngAdToolTipClass()">
+                                              <img src="../../../../../assets/images/icons/icon_info2 - grey.svg"
+                                                width="16px">
+                                            </div>
+                                            <div>
+                                              <p>
+                                                {{item.quantity}} x {{item.weight | number: '1.2-2'}}
+                                                {{item.weightUnit}}
+                                              </p>
+                                              <p>{{item.length}} x {{item.width}} x {{item.height}} {{item.lengthUnit}}
+                                              </p>
+                                            </div>
+                                          </div>
+                                          <div class="addedpallete-img"
+                                            (click)="removeSelectedUnits($event, container, idx, item)">
+                                            <img async defer
+                                              src="../../../../../assets/images/icons/icon_delete_lcl.svg">
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </ng-scrollbar>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="lcl-no-results" *ngIf="!LCLContainers.length">
+                            <p>No Data Found</p>
+                          </div>
+                        </div>
+                        <div class="total-calculation" (click)="closeLCLContainer()">
+                          <p class="total-cbm mt-3" *ngIf="totalShipment > 0 || totalVolumetricWeight > 0">
+                            <span class="pr-0" *ngIf="TransportMode === 'AIR'">
+                              Total Chargeable Weight:
+                              <span class="text-dark"> {{totalVolumetricWeight | number: '1.0-0'}} KG</span>
+                            </span>
+                            <span class="pr-0" *ngIf="TransportMode === 'SEA'">
+                              Total Shipment:
+                              <span class="text-dark"> {{totalShipment}} CBM</span>
+                            </span>
+                            <!-- <br> -->
+                            <span class="text-dark" *ngIf="totalShipment < 1">
+                              <img src="../../../../assets/images/icons/icon_info_yellow.svg" width="16" height="16"
+                                alt="">
+                              Minimum shipment charges for 1 cbm will be apply
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                      <app-air-search *ngIf="TransportMode.toLowerCase() ==='air' && airInpData"
+                        [airInpData]="airInpData" (onInputChange)="onAirInputChange($event)"></app-air-search>
+                    </ng-template>
+                  </ngb-tab>
+                </ngb-tabset>
+                <div class="search" (click)="closeLCLContainer()">
+                  <!-- <div *ngIf="loading" class="mx-1 col btn btn-primary">
+                    <i class="fa fa-spinner fa-spin"></i>
+                  </div> -->
+                  <button class="btn btn-lg btn-primary hvr-sweep-to-right mt-5" *ngIf="activeContainerTabID === 'fcl'"
+                    (click)="calculateResult($event)"
+                    [disabled]="!delivery?.title || !pickup?.title || SearchCriteriaContainerDetail.length < 1">
+                    Find Best Rates
+                  </button>
+
+                  <button class="btn btn-lg btn-primary hvr-sweep-to-right mt-5" *ngIf="activeContainerTabID === 'lcl'"
+                    (click)="calculateLCLResult()" [disabled]="isSearchInValid()">
+                    Find Best Rates
+                  </button>
+
+                  <!-- <button class="btn btn-lg btn-primary hvr-sweep-to-right mt-5" *ngIf="activeContainerTabID === 'fcl'"
+                    (click)="calculateResult($event, 'notify')"
+                    [disabled]="!delivery?.title || !pickup?.title || SearchCriteriaContainerDetail.length < 1">
+                    Notify
+                  </button>
+
+                  <button class="btn btn-lg btn-primary hvr-sweep-to-right mt-5" *ngIf="activeContainerTabID === 'lcl'"
+                    (click)="calculateLCLResult('notify')"
+                    [disabled]="!delivery?.title || !pickup?.title || SearchCriteriaContainerDetail.length < 1">
+                    Notify
+                  </button> -->
+
+                  <div class="search-calculator" [hidden]="true" [ngbTooltip]="'Coming Soon'">
+                    <svg id="78875c62-933a-4478-96f1-2b74912556c9" data-name="Layer 1"
+                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <defs>
+                        <style>
+                          .d1ea073d-7587-402f-8888-ef5fdf952973 {
+                            fill: #738593;
+                          }
+
+                          .\35 31c2d2f-6f3b-4dea-a0e3-d26425d55d54 {
+                            fill: #fff;
+                          }
+                        </style>
+                      </defs>
+                      <title>Icons</title>
+                      <g id="d2d6c45f-034c-46e6-ac29-677a5382189c" data-name="load">
+                        <polygon class="d1ea073d-7587-402f-8888-ef5fdf952973" points="20 20 4 20 8 10 16 10 20 20" />
+                        <path class="d1ea073d-7587-402f-8888-ef5fdf952973"
+                          d="M12,6a1,1,0,1,1-1,1,1,1,0,0,1,1-1m0-2a3,3,0,1,0,3,3,3,3,0,0,0-3-3Z" />
+                        <circle class="531c2d2f-6f3b-4dea-a0e3-d26425d55d54" cx="12" cy="15" r="2.5" />
+                      </g>
+                    </svg>
+                    <strong>LOAD CALCULATOR</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-2 custom-col-2 custom-tabs-right">
+            <ul class="nav nav-pills">
+              <li class="nav-item" *ngFor="let tab of shippingArray; let i = index">
+                <!-- <a class="nav-link hvr-sweep-to-bottom" href="javascript:;" placement="left" ngbTooltip="Coming Soon" [ngClass]="(i === 0) ? 'active' : 'disabled'"> -->
+                <a class="nav-link hvr-sweep-to-bottom" href="javascript:;" placement="left"
+                  [ngClass]="(tab.isActive) ? 'active' : 'disabled'" (click)="onShippingModeClick(tab, i, true)">
+                  <img async defer [src]="'../../../assets/images/icons/'+ tab.ShippingModeImage" alt="">
+                  <span>{{tab.ShippingModeName}}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-loader-main *ngIf="loading"></app-loader-main>
+</div>

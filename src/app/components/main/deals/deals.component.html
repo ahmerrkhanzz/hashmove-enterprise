@@ -1,0 +1,97 @@
+
+
+<div class="row" [ngClass]="((page === 'home') || (page === 'search') ? 'mt-5' : 'mt-2')">
+  <div class="col-md-12">
+    <h4 class="title" *ngIf="page === 'home'">Deals of the Week</h4>
+    <h4 class="vendor-title" *ngIf="page === 'search'">Deals by {{selectedProvider?.ProviderName}}</h4>
+    <div class="row">
+      <ng-container *ngFor="let deal of deals">
+        <div class="col-12 col-sm-12 col-xl-6" *ngIf="deal.isNew">
+          <div class="card new-deal" [ngClass]="deal.class">
+            <div class="card-icon" [ngClass]="deal.mode">
+              <img src="../../../../assets/images/icons/icons_cargo_ship_white.svg" *ngIf="deal.mode === 'sea'" alt=""
+                class="move">
+              <img src="../../../../assets/images/icons/icon_plane_white.svg" *ngIf="deal.mode === 'air'" alt="" class="move">
+            </div>
+            <div class="card-body">
+              <div class="card-body-image">
+                <img src="../../../../assets/images/deals/{{deal.banner}}.jpg" alt="deals-img" class="card-deal-image">
+              </div>
+              <div class="card-title card-timing">
+                Leaving {{deal.day}}D : {{deal.hour}}H : {{deal.min}}M
+                <span class="badge badge-pill badge-success" *ngIf="deal.isNew">New</span>
+              </div>
+              <div class="card-pickup">
+                {{deal.pickup}}
+              </div>
+              <div class="card-destination big">
+                {{deal.destination}}
+              </div>
+              <div class="card-pricing big">
+                <h2>
+                  <small>{{deal.currency}}</small>
+                  {{deal.price | number: '1.0-0'}}
+                </h2>
+              </div>
+              <!-- <div class="card-icon" [ngClass]="deal.mode">
+                <img src="../../../../assets/images/ship.png" *ngIf="deal.mode === 'sea'" alt="">
+                <img src="../../../../assets/images/icons/icon_plane_white.svg" *ngIf="deal.mode === 'air'" alt="">
+              </div> -->
+              <div class="card-logo">
+                <img [src]="deal.provider" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngFor="let deal of deals">
+        <div class="col-12 col-sm-6 col-xl-3" *ngIf="!deal.isNew">
+          <div class="card" [ngClass]="deal.class">
+            <div class="card-icon" [ngClass]="deal.mode">
+              <img src="../../../../assets/images/icons/icons_cargo_ship_white.svg" *ngIf="deal.mode === 'sea'" alt=""
+                class="move">
+              <img src="../../../../assets/images/icons/icon_plane_white.svg" *ngIf="deal.mode === 'air'" alt="" class="move">
+            </div>
+            <div class="card-body">
+              <div class="card-body-image">
+                <img src="../../../../assets/images/deals/{{deal.banner}}.jpg" alt="deals-img" class="card-deal-image">
+              </div>
+              <div class="card-title card-timing">
+                Leaving
+                <span class="time">{{deal.day}}D : {{deal.hour}}H : {{deal.min}}M</span>
+                <span class="badge badge-pill badge-success" *ngIf="deal.isNew">New</span>
+              </div>
+              <div class="card-pickup">
+                {{deal.pickup}}
+              </div>
+              <div class="card-destination">
+                {{deal.destination}}
+              </div>
+              <div class="card-pricing">
+                <h2>
+                  <small>{{deal.currency}}</small>
+                  {{deal.price | number: '1.0-0'}}
+                </h2>
+              </div>
+              <!-- <div class="card-icon" [ngClass]="deal.mode">
+                <img src="../../../../assets/images/ship.png" *ngIf="deal.mode === 'sea'" alt="">
+                <img src="../../../../assets/images/icons/icon_plane_white.svg" *ngIf="deal.mode === 'air'" alt="">
+              </div> -->
+              <div class="card-logo">
+                <img [src]="deal.provider" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="row" *ngIf="page === 'home'">
+      <div class="col-sm-4 mx-auto text-center">
+        <button class="btn btn-outline-primary btn-lg all-deals btn-block hvr-sweep-to-right hvr-icon-wobble-horizontal">Show
+          all 700+ Deals
+          <i class="fa fa-angle-right hvr-icon"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

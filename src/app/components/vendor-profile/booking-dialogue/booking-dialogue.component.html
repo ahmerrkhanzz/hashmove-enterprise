@@ -1,0 +1,7 @@
+<div class="booking-modal">
+  <div class="modal-body">
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()"> Close </button>
+    <app-warehousing *ngIf="type === 'warehouse'" [type]="'vendor'"></app-warehousing>
+    <app-shipping *ngIf="type === 'shipping'" [type]="'vendor'"></app-shipping>
+  </div>
+</div>

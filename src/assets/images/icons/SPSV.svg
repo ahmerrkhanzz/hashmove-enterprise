@@ -1,0 +1,16 @@
+
+<svg id="8e60371e-2a55-4ef7-9829-9207bf57c118" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .\31 22634cb-4bda-4e0b-88d0-1fa76835372b {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g id="6f1b7941-4f16-4e1a-935e-708cc0804bf5" data-name="clock2">
+    <rect id="29f63fb8-69ca-4033-8e35-5cc2ba534766" data-name="&lt;Path&gt;" class="122634cb-4bda-4e0b-88d0-1fa76835372b" x="11" y="4" width="2" height="9"/>
+    <rect id="81921b3f-d263-44d1-a6bb-f19a57cc885e" data-name="&lt;Path&gt;" class="122634cb-4bda-4e0b-88d0-1fa76835372b" x="12" y="11" width="6" height="2"/>
+    <path id="f418e1f2-d357-4112-8922-e3bb7e7d8c53" data-name="&lt;Compound Path&gt;" class="122634cb-4bda-4e0b-88d0-1fa76835372b" d="M22,2V16a6.007,6.007,0,0,1-6,6H2V8A6.007,6.007,0,0,1,8,2H22m2-2H8A8,8,0,0,0,0,8V24H16a8,8,0,0,0,8-8V0Z"/>
+  </g>
+</svg>

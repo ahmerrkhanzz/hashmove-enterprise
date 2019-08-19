@@ -1,0 +1,514 @@
+<div class="animated RightToLeftTabs warehouse">
+  <div class="horizontal-tabs">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card border-0">
+          <ngb-tabset [justify]="currentJustify" class="warehouse-catTabs" [activeId]="activeCat">
+            <ngb-tab *ngFor="let cat of warehousingCategories" [id]="cat.ShippingCatID">
+              <ng-template ngbTabTitle>
+                <div class="category d-flex justify-content-center align-items-center"
+                  (click)="tabClick(cat); subCatClick(cat)">
+                  <div class="category-title">
+                    <img alt="cat-icons" [src]="'../../../../assets/images/shipping/' + cat.ShippingCatImage">
+                    <span class="text-truncate">{{cat.ShippingCatName}}</span>
+                  </div>
+                </div>
+              </ng-template>
+              <ng-template ngbTabContent>
+                <ul class="nav nav-tabs nav-justified warehouse-catTabs-sub">
+                  <li class="nav-item" *ngFor="let subcat of warehousingSubCategories; let i = index"
+                    [ngClass]="(subcat.ShippingSubCatID === this.selectedSubCatId) ? 'active' : ''">
+                    <a class="nav-link text-truncate hvr-sweep-to-right" href="javascript:;"
+                      id="{{subcat.ShippingSubCatID}}" (click)="subCatClick(subcat)">
+                      <img async defer [src]="'../../../assets/images/shipping/' + subcat.ShippingSubCatImage"
+                        *ngIf="subcat.ShippingSubCatImage" alt="subcat-icons">
+                      <img async defer src="../../../../assets/images/shipping/GeneralCargo.png"
+                        *ngIf="!subcat.ShippingSubCatImage" alt="subcat-icons">
+                      <span>{{subcat.ShippingSubCatName}}</span>
+                    </a>
+                  </li>
+                </ul>
+              </ng-template>
+            </ngb-tab>
+          </ngb-tabset>
+          <div class="card-body">
+            <div class="gradient-tabs">
+              <ngb-tabset [activeId]="warehouseTabId" (tabChange)="onWarehouseTabChange($event)">
+                <ngb-tab id="shared_warehouse">
+                  <ng-template ngbTabTitle>
+                    <div class="title" placement="top">
+                      <span>Shared Warehouse</span>
+                    </div>
+                  </ng-template>
+                  <ng-template ngbTabContent>
+                    <div class="fadeIn animated" style="z-index: 99999;position: relative;">
+                      <div class="form-row warehouse-search mt-4">
+                        <div class="col">
+                          <ng-template #rt let-r="result" let-t="term">
+                            <div class="d-inline-block icon-size-16 mr-2">
+                              <img
+                                src="{{'../../../../assets/images/icons/flags/4x3/' + (r.imageName | lowercase) + '.svg'}}"
+                                style="max-width:100%;max-height:100%;">
+                            </div>
+                            {{r.title}}
+                          </ng-template>
+                          <div class="input-group-text" *ngIf="!city.imageName">
+                            <img src="../../../../assets/images/icons/Icons_Location.svg"
+                              style="max-width:22px;max-height:16px;">
+                          </div>
+                          <div class="input-group-text" *ngIf="city.imageName">
+                            <img
+                              src="{{'../../../../assets/images/icons/flags/4x3/' + (city.imageName | lowercase) + '.svg'}}"
+                              style="max-width:22px;max-height:16px;">
+                          </div>
+                          <input ngbTypeahead #elCity id="typeahead-basic" [ngClass]="city.imageName ? 'hasImage' : ''"
+                            name="location" type="text" class="form-control hasImage" (keyup)="onCitySelect($event, rt)"
+                            [ngbTypeahead]="search2" [inputFormatter]="formatter" [resultTemplate]="rt"
+                            placeholder="City" />
+                          <div class="card ports-loader" *ngIf="isCitySearching">
+                            <div class="card-body d-flex justify-content-center">
+                              <img src="../../../../assets/images/loader.gif" alt="loader">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="form-group departure datePicker"
+                            [ngClass]="{dateIcon : storeFrom && storeFrom.year}">
+                            <div class="input-group-text" *ngIf="!storeFrom">
+                              <img src="../../../../assets/images/icons/Icons_Calendar.svg"
+                                style="max-width:22px;max-height:16px;">
+                            </div>
+                            <input class="form-control hasImage" readonly [autoClose]="false" id="hashDatepicker"
+                              [(ngModel)]="storeFrom" placeholder="RENT FROM" name="dp" [displayMonths]="displayMonths"
+                              [navigation]="navigation" [showWeekNumbers]="showWeekNumbers" [minDate]="minDate"
+                              [maxDate]="maxDate" ngbDatepicker #d="ngbDatepicker">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="form-group departure-from datePicker"
+                            [ngClass]="{dateIcon : storeUntil && storeUntil.year}">
+                            <div class="input-group-text" *ngIf="!storeUntil">
+                              <img src="../../../../assets/images/icons/Icons_Calendar.svg"
+                                style="max-width:22px;max-height:16px;">
+                            </div>
+                            <input class="form-control hasImage" [autoClose]="false" readonly id="hashDatepicker2"
+                              [(ngModel)]="storeUntil" placeholder="RENT UNTIL" name="dp"
+                              [displayMonths]="displayMonths" [navigation]="navigation"
+                              [showWeekNumbers]="showWeekNumbers" [minDate]="minDate" [maxDate]="maxDate" ngbDatepicker
+                              #d2="ngbDatepicker" (click)="d2.toggle()">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <ngb-tabset (tabChange)="tabChangeEvent($event)" [justify]="currentJustify"
+                            class="warehouse-bottomTabs" [activeId]="subWarehouseTabID">
+                            <ngb-tab id="by_unit">
+                              <ng-template ngbTabTitle>
+                                <div class="tab">
+                                  <!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32"
+                                    style="enable-background:new 0 0 32 32;" xml:space="preserve">
+                                    <style type="text/css">
+                                      .st0 {
+                                        fill: #abb6be;
+                                      }
+
+                                      .st1 {
+                                        fill: #FFFFFF;
+                                      }
+
+                                      .st2 {
+                                        fill: none;
+                                        stroke: #abb6be;
+                                        stroke-width: 3;
+                                        stroke-miterlimit: 10;
+                                      }
+                                    </style>
+                                    <g>
+                                      <rect x="4.75" y="4.75"
+                                        transform="matrix(0.7071 0.7071 -0.7071 0.7071 16 -6.6274)" class="st0"
+                                        width="22.5" height="22.5" />
+
+                                      <rect x="5.5" y="5.5"
+                                        transform="matrix(-9.941344e-09 1 -1 -9.941344e-09 32 -7.297966e-07)"
+                                        class="st1" width="21" height="21" />
+                                      <line class="st2" x1="16" y1="4.87" x2="16" y2="27.13" />
+                                      <line class="st2" x1="27.13" y1="16" x2="4.87" y2="16" />
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                  </svg>
+                                  <span>By Unit</span>
+                                </div>
+                              </ng-template>
+                              <ng-template ngbTabContent>
+                                <!-- Form Unit -->
+                                <div class="form-row mt-4">
+                                  <div class="col d-flex input-dropdown">
+                                    <div class="input-group">
+                                      <input type="number" min="0" step="1" (focusout)="unitFocusOut()"
+                                        [(ngModel)]="warehouseData.length" (keypress)="onKeypress($event)"
+                                        (keyup)="onKeyUp($event, 'length')" class="form-control border-right"
+                                        placeholder="L" (ngModelChange)="modelChange($event)">
+                                      <input type="number" (focusout)="unitFocusOut()"
+                                        (keyup)="onKeyUp($event, 'width')" [(ngModel)]="warehouseData.width"
+                                        (keypress)="onKeypress($event)" class="form-control border-right" min="0"
+                                        step="1" placeholder="W" (ngModelChange)="modelChange($event)">
+                                      <input type="number" min="0" step="1" (keyup)="onKeyUp($event, 'height')"
+                                        (focusout)="unitFocusOut()" [(ngModel)]="warehouseData.height"
+                                        (keypress)="onKeypress($event)" class="form-control border-right"
+                                        placeholder="H" (ngModelChange)="modelChange($event)">
+                                      <div class="input-group-append">
+                                        <select #elVolume name="" class="form-control"
+                                          (change)="onUnitChange($event.target.value, 'length')">
+                                          <option *ngFor="let unit of lengthUnits" value="{{unit.UnitTypeID}}"
+                                            [selected]="(unit.UnitTypeID === selectedLengthUnitID) ? true : false">
+                                            {{unit.UnitTypeShortName}}</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col input-counter">
+                                    <div class="input-group">
+                                      <label class="form-control sr-only">Quantity</label>
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                          <i class="fa fa-minus" (click)="counter('minus', $event)"></i>
+                                        </span>
+                                      </div>
+                                      <input type="number" min="0" step="1" [(ngModel)]="warehouseData.quantity"
+                                        (focusout)="unitFocusOut()" minlength="1" maxlength="3"
+                                        (keyup)="onKeyUp($event, 'quantity')"
+                                        class="form-control quantity text-center p-0" name="counter" placeholder="0"
+                                        (ngModelChange)="modelChange($event)"
+                                        (keypress)="onKeypress($event, 'quantity')">
+                                      <div class="input-group-append">
+                                        <span class="input-group-text">
+                                          <i class="fa fa-plus" (click)="counter('plus', $event)"></i>
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col d-flex input-dropdown">
+                                    <div class="input-group">
+                                      <input type="number" min="0" step="1" (keyup)="onKeyUp($event, 'weight')"
+                                        (keypress)="onKeypress($event)" (focusout)="unitFocusOut()"
+                                        [(ngModel)]="warehouseData.weight" class="form-control"
+                                        placeholder="Unit Weight" (ngModelChange)="modelChange($event)">
+                                      <div class="input-group-append">
+                                        <select #elWeight class="form-control" name="weightUnit"
+                                          (change)="onUnitChange($event.target.value, 'weight')">
+                                          <option value="{{unit.UnitTypeID}}" *ngFor="let unit of weightUnits"
+                                            [selected]="(unit.UnitTypeID === selectedWeightUnitID) ? true : false">
+                                            {{unit.UnitTypeShortName}}
+                                          </option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!--/ Form Unit -->
+                              </ng-template>
+                            </ngb-tab>
+                            <ngb-tab id="by_vol_weight">
+                              <ng-template ngbTabTitle>
+                                <div class="tab">
+                                  <svg id="daf2a9d0-ed1e-40c3-8dc2-534f350396d2" data-name="Layer 1"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <defs>
+                                      <style>
+                                        .bf3de19e-df40-4e76-a7cd-2f9395b9693a {
+                                          fill: #abb6be;
+                                        }
+                                      </style>
+                                    </defs>
+                                    <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                                      points="16 10 10 16 16 16 16 10" />
+                                    <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="0 6 6 0 0 0 0 6" />
+                                    <rect class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" x="7.317" y="-2.63" width="1.367"
+                                      height="21.261" transform="translate(-3.314 8) rotate(-45)" />
+                                    <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                                      points="2 14 2 9 0 9 0 16 7 16 7 14 2 14" />
+                                    <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                                      points="14 2 14 6 16 6 16 0 10 0 10 2 14 2" />
+                                  </svg>
+                                  <span>By Volume Weight</span>
+                                </div>
+                              </ng-template>
+                              <ng-template ngbTabContent>
+                                <!-- Total Weight Unit -->
+                                <div class="form-row mt-4">
+                                  <div class="col-4 d-flex input-dropdown">
+                                    <div class="input-group">
+                                      <input type="number" min="0" step="1" (keyup)="onKeyUp($event, 'volume')"
+                                        (keypress)="onKeypress($event)" (ngModelChange)="modelChange($event)"
+                                        (focusout)="unitFocusOut()" [(ngModel)]="warehouseData.volume"
+                                        class="form-control" placeholder="Volume">
+                                      <div class="input-group-append">
+                                        <select #elVolTotal name="" class="form-control" name="volumeUnit"
+                                          (change)="onUnitChange($event.target.value, 'volume')">
+                                          <option value="{{unit.UnitTypeID}}" *ngFor="let unit of volumeUnits"
+                                            [selected]="(unit.UnitTypeID === selectedVolumeUnitID) ? true : false">
+                                            {{unit.UnitTypeShortName}}
+                                          </option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-4 d-flex input-dropdown">
+                                    <div class="input-group">
+                                      <input type="number" min="0" step="1" (keyup)="onKeyUp($event, 'totalWeight')"
+                                        (keypress)="onKeypress($event)" (ngModelChange)="modelChange($event)"
+                                        (focusout)="unitFocusOut()" [(ngModel)]="warehouseData.totalWeight"
+                                        class="form-control" placeholder="Total Weight">
+                                      <div class="input-group-append">
+                                        <select #elWeightTotal class="form-control" name="weightUnit"
+                                          (change)="onUnitChange($event.target.value, 'totalWeight')">
+                                          <option value="{{unit.UnitTypeID}}" *ngFor="let unit of weightUnits"
+                                            [selected]="(unit.UnitTypeID === selectedWeightUnitID) ? true : false">
+                                            {{unit.UnitTypeShortName}}
+                                          </option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!--/ Total Weight Unit -->
+                              </ng-template>
+                            </ngb-tab>
+                            <ngb-tab id="by_area">
+                              <ng-template ngbTabTitle>
+                                <div class="tab">
+                                  <svg id="daf2a9d0-ed1e-40c3-8dc2-534f350396d2" data-name="Layer 1"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <defs>
+                                      <style>
+                                        .bf3de19e-df40-4e76-a7cd-2f9395b9693a {
+                                          fill: #abb6be;
+                                        }
+                                      </style>
+                                    </defs>
+                                    <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                                      points="16 10 10 16 16 16 16 10" />
+                                    <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="0 6 6 0 0 0 0 6" />
+                                    <rect class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" x="7.317" y="-2.63" width="1.367"
+                                      height="21.261" transform="translate(-3.314 8) rotate(-45)" />
+                                    <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                                      points="2 14 2 9 0 9 0 16 7 16 7 14 2 14" />
+                                    <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                                      points="14 2 14 6 16 6 16 0 10 0 10 2 14 2" />
+                                  </svg>
+                                  <span>By Area</span>
+                                </div>
+                              </ng-template>
+                              <ng-template ngbTabContent>
+                                <!-- Area Required Unit -->
+                                <div class="form-row mt-4">
+                                  <div class="col-4 d-flex input-dropdown">
+                                    <div class="input-group">
+                                      <input type="number" min="0" step="1" (keyup)="onKeyUp($event, 'area')"
+                                        (keypress)="onKeypress($event)" (ngModelChange)="modelChange($event)"
+                                        (focusout)="unitFocusOut()" [(ngModel)]="warehouseData.area"
+                                        class="form-control" placeholder="Total Area Required">
+                                      <div class="input-group-append">
+                                        <select #elArea class="form-control" name="areaUnit"
+                                          (change)="onUnitChange($event.target.value, 'area')">
+                                          <option value="{{unit.UnitTypeID}}" *ngFor="let unit of areaUnits"
+                                            [selected]="(unit.UnitTypeID === selectedAreaUnitID) ? true : false">
+                                            {{unit.UnitTypeShortName}}
+                                          </option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-4 d-flex input-dropdown">
+                                    <div class="input-group">
+                                      <input type="number" min="0" step="1" (keyup)="onKeyUp($event, 'totalWeight')"
+                                        (keypress)="onKeypress($event)" (ngModelChange)="modelChange($event)"
+                                        (focusout)="unitFocusOut()" [(ngModel)]="warehouseData.totalWeight"
+                                        class="form-control" placeholder="Total Weight">
+                                      <div class="input-group-append">
+                                        <select #elWeightTotal class="form-control" name="weightUnit"
+                                          (change)="onUnitChange($event.target.value, 'totalWeight')">
+                                          <option value="{{unit.UnitTypeID}}" *ngFor="let unit of weightUnits"
+                                            [selected]="(unit.UnitTypeID === selectedWeightUnitID) ? true : false">
+                                            {{unit.UnitTypeShortName}}
+                                          </option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!--/ Area Required Unit -->
+                              </ng-template>
+                            </ngb-tab>
+                          </ngb-tabset>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab id="full_warehouse">
+                  <ng-template ngbTabTitle>
+                    <div class="title" placement="top">
+                      <span>Full Warehouse</span>
+                    </div>
+                  </ng-template>
+                  <ng-template ngbTabContent>
+                    <div class="fadeIn animated" style="position: relative;z-index:99999;">
+                      <div class="form-row warehouse-search mt-4 mb-5">
+                        <div class="col">
+                          <ng-template #rt let-r="result" let-t="term">
+                            <div class="d-inline-block icon-size-16 mr-2">
+                              <img
+                                src="{{'../../../../assets/images/icons/flags/4x3/' + (r.imageName | lowercase) + '.svg'}}"
+                                style="max-width:100%;max-height:100%;">
+                            </div>
+                            {{r.title}}
+                          </ng-template>
+                          <div class="input-group-text" *ngIf="!city.imageName">
+                            <img src="../../../../assets/images/icons/Icons_Location.svg"
+                              style="max-width:22px;max-height:16px;">
+                          </div>
+                          <div class="input-group-text" *ngIf="city.imageName">
+                            <img
+                              src="{{'../../../../assets/images/icons/flags/4x3/' + (city.imageName | lowercase) + '.svg'}}"
+                              style="max-width:22px;max-height:16px;">
+                          </div>
+                          <input #elCity id="typeahead-basic" [ngClass]="city.imageName ? 'hasImage' : ''"
+                            name="location" type="text" class="form-control hasImage" (keyup)="onCitySelect($event, rt)"
+                            [ngbTypeahead]="search2" [inputFormatter]="formatter" [resultTemplate]="rt"
+                            placeholder="City" />
+                          <div class="card ports-loader" *ngIf="isCitySearching">
+                            <div class="card-body d-flex justify-content-center">
+                              <img src="../../../../assets/images/loader.gif" alt="loader">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="input-group">
+                            <div ngbDropdown class="d-inline-block w-100 custom-dropdown">
+                              <button class="btn btn-outline-primary w-100" id="dropdownBasic1" ngbDropdownToggle>
+                                <!-- <img src="" alt=""> -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-18 mr-3"
+                                  id="daf2a9d0-ed1e-40c3-8dc2-534f350396d2" data-name="Layer 1" viewBox="0 0 16 16">
+                                  <defs>
+                                    <style>
+                                      .bf3de19e-df40-4e76-a7cd-2f9395b9693a {
+                                        fill: #738593;
+                                      }
+                                    </style>
+                                  </defs>
+                                  <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                                    points="16 10 10 16 16 16 16 10" />
+                                  <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="0 6 6 0 0 0 0 6" />
+                                  <rect class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" x="7.317" y="-2.63" width="1.367"
+                                    height="21.261" transform="translate(-3.314 8) rotate(-45)" />
+                                  <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                                    points="2 14 2 9 0 9 0 16 7 16 7 14 2 14" />
+                                  <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                                    points="14 2 14 6 16 6 16 0 10 0 10 2 14 2" />
+                                </svg>
+                                <span class="text-truncate"
+                                  [innerHTML]="(selected_srch_spce_req?.codeValDesc)?selected_srch_spce_req?.codeValDesc:'APPROX SPACE REQUIRED'"></span>
+                              </button>
+                              <div ngbDropdownMenu aria-labelledby="dropdownBasic1"
+                                class="w-100 custom-dropdown-item-main"
+                                [ngClass]="(srch_spce_req?.length) > 7 ? 'scrolling': 'no-scrolling'">
+                                <div slimScroll [options]="opts" [scrollEvents]="scrollEvents">
+                                  <div style="max-width: 100%;max-height:180px;">
+                                    <button class="dropdown-item"
+                                      *ngFor="let searchOption of srch_spce_req ; let ind = index; trackBy: trackByFn"
+                                      (click)="onDropDownEvent('srch_spce_req', searchOption)">
+                                      <span class="meter" [innerHTML]="searchOption.codeValDesc"></span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col">
+                          <div class="input-group">
+                            <div ngbDropdown class="d-inline-block w-100 custom-dropdown">
+                              <button class="btn btn-outline-primary w-100" id="dropdownBasic1" ngbDropdownToggle>
+                                <img src="../../../../assets/images/icons/Icons_Calendar.svg" class="mr-3"
+                                  style="max-width:22px;max-height:16px;">
+                                <span
+                                  class="text-truncate">{{(selected_srch_lease_term?.codeValDesc)?selected_srch_lease_term?.codeValDesc:'MINIMUM LEASE TERM'}}</span>
+                              </button>
+                              <div ngbDropdownMenu aria-labelledby="dropdownBasic1"
+                                class="w-100 custom-dropdown-item-main"
+                                [ngClass]="(srch_lease_term?.length) > 6 ? 'scrolling': 'no-scrolling'">
+                                <div slimScroll [options]="opts" [scrollEvents]="scrollEvents">
+                                  <div style="max-width: 100%;max-height:180px;">
+                                    <button class="dropdown-item"
+                                      *ngFor="let searchOption of srch_lease_term ; let ind = index; trackBy: trackByFn"
+                                      (click)="onDropDownEvent('srch_lease_term', searchOption)">
+                                      <span class="meter">{{searchOption.codeValDesc}}</span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col mb-5 mt-5"></div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+              </ngb-tabset>
+            </div>
+            <div class="row warehouse-total">
+              <div class="col-12">
+                <div class="total-calculation">
+                  <p class="total-cbm" *ngIf="totalCBM > 0">
+                    <span class="pr-5">
+                      Total Size:
+                      <span class="text-dark">
+                        <span *ngIf="this.totalArea > 0" class="mr-1">{{totalArea}} ft
+                          <sup>2</sup>, </span>
+                        <span class="mr-1">{{totalCBM}} cbm</span>
+                        <span *ngIf="totalWeight > 0">, {{totalWeight}} kg</span>
+                      </span>
+                    </span>
+                  </p>
+                  <p class="total-cbm" *ngIf="totalArea && subWarehouseTabID === 'by_area'" >
+                    <span class="pr-5">
+                      Total Size:
+                      <span class="text-dark">
+                        <span *ngIf="this.totalArea > 0" class="mr-1">{{totalArea}} ft
+                          <sup>2</sup>, </span>
+                        <span *ngIf="totalWeight > 0">{{totalWeight}} kg</span>
+                      </span>
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div class="text-center justify-content-center col-12 search mt-4">
+                <button class="btn btn-lg btn-primary hvr-sweep-to-right col-xl-6 col-md-6 col-sm-12"
+                  (click)="calculateWarehouseResult()" [disabled]="!isSearchInValid()">
+                  Find Best Rates
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

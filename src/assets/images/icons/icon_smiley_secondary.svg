@@ -1,0 +1,16 @@
+<svg id="45df5f48-efa1-4c91-9b6b-38be642249ad" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .\32 0f57744-2b64-4e6e-a6f6-539a60c14a90 {
+        fill: #02bdb6;
+      }
+    </style>
+  </defs>
+  
+  <g id="136141a3-649c-46ac-859b-cc1d45a99a01" data-name="smile">
+    <path class="20f57744-2b64-4e6e-a6f6-539a60c14a90" d="M12,4a8,8,0,1,1-8,8,8.009,8.009,0,0,1,8-8m0-2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Z"/>
+    <path class="20f57744-2b64-4e6e-a6f6-539a60c14a90" d="M12,18h0a4,4,0,0,1-4-4h8A4,4,0,0,1,12,18Z"/>
+    <circle class="20f57744-2b64-4e6e-a6f6-539a60c14a90" cx="9.5" cy="9.5" r="1.5"/>
+    <circle class="20f57744-2b64-4e6e-a6f6-539a60c14a90" cx="14.5" cy="9.5" r="1.5"/>
+  </g>
+</svg>

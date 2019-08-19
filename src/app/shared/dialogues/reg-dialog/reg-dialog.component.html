@@ -1,0 +1,471 @@
+<!-- User Registration Modal -->
+<div class="Registration">
+  <div class="user-modal animated fadeIn">
+    <div class="modal-header">
+      <h4 class="user-modal-title">Create Your New Account!</h4>
+
+      <a *ngIf="!hideLogin" href="javascript:;" class="have-an-account hvr-icon-wobble-horizontal" (click)="login()">
+        <span class="already-account">
+          Already Have An Account?
+          <i class="fa fa-angle-right hvr-icon" aria-hidden="true"></i>
+        </span>
+      </a>
+      <a class="pointer crossIcon" (click)="closeModal(false)">
+        <img src="../../../../assets/images/icons/icon_close.svg" alt="close">
+      </a>
+    </div>
+    <div class="modal-body">
+      <div class="tabs-section">
+
+        <div class="tabs-label" *ngIf="!creationCorporateType">
+          <label class="text-transform account-type-title">Select Your Account Type</label>
+        </div>
+        <ngb-tabset [justify]="currentJustify" #regTab="ngbTabset" [activeId]="activeIdString">
+          <ngb-tab *ngIf="!creationCorporateType" id="tab-individual">
+            <ng-template ngbTabTitle>
+              <div (click)="Account('individual')">
+                <svg id="2771e574-2d09-4aba-b5bd-49e61b7f0a16" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24" width="25px">
+                  <defs>
+                    <style>
+                      .\34 564af40-94b0-4cf1-8c08-648f046447c0 {
+                        fill: #738593;
+                      }
+                    </style>
+                  </defs>
+                  <title>Icons</title>
+                  <g id="52a0f7ba-4810-466a-b1e0-a0e9404824d8" data-name="user">
+                    <path class="4564af40-94b0-4cf1-8c08-648f046447c0" d="M9,14h6a6,6,0,0,1,6,5.923A12,12,0,1,0,3,19.923,6,6,0,0,1,9,14ZM12,4A4,4,0,1,1,8,8,4,4,0,0,1,12,4Z" />
+                  </g>
+                </svg>
+                INDIVIDUAL
+              </div>
+            </ng-template>
+            <ng-template ngbTabContent>
+              <form class="form-component" autocomplete="off" novalidate [formGroup]="userForm" (ngSubmit)="userRegistration(userForm.value)">
+                <!-- input row -->
+                <div class="form-row">
+                  <div class="col-xl-6 col-lg-12 col-md-12 form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" [ngClass]="(firstNameError)? 'fieldError': ''" (focusout)="errorMessages()"
+                      (focus)="firstNameError=false" (keypress)="textValidation($event)" placeholder="Your first name"
+                      formControlName="firstName">
+                    <span class="animated fadeIn" *ngIf="firstNameError">
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['firstName'].hasError('required') && (userForm.controls.firstName.dirty || userForm.controls.firstName.touched)">{{requiredFields}}</p>
+                      <p class="formError animated fadeIn" *ngIf="!userForm.controls['firstName'].hasError('pattern') && userForm.controls['firstName'].hasError('minlength') && (userForm.controls.firstName.dirty || userForm.controls.firstName.touched)">First
+                        name must be at least 2 characters long</p>
+                      <p class="formError animated fadeIn" *ngIf="!userForm.controls['firstName'].hasError('pattern') && userForm.controls['firstName'].hasError('maxlength') && (userForm.controls.firstName.dirty || userForm.controls.firstName.touched)">First
+                        name should not exceed from 50 characters</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['firstName'].hasError('pattern') && (userForm.controls.firstName.dirty || userForm.controls.firstName.touched)">Please
+                        enter valid information</p>
+
+                    </span>
+                  </div>
+                  <div class="col-xl-6 col-lg-12 col-md-12 form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" [ngClass]="(lastNameError)? 'fieldError': ''" (focusout)="errorMessages()"
+                      (focus)="lastNameError= false" (keypress)="textValidation($event)" placeholder="Your last name"
+                      formControlName="lastName">
+                    <span class="animated fadeIn" *ngIf="lastNameError">
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['lastName'].hasError('required') && (userForm.controls.lastName.dirty || userForm.controls.lastName.touched)">{{requiredFields}}</p>
+                      <p class="formError animated fadeIn" *ngIf="!userForm.controls['lastName'].hasError('pattern') &&  userForm.controls['lastName'].hasError('minlength') && (userForm.controls.lastName.dirty || userForm.controls.lastName.touched)">Last
+                        name must be at least 2 characters long</p>
+                      <p class="formError animated fadeIn" *ngIf="!userForm.controls['lastName'].hasError('pattern') && userForm.controls['lastName'].hasError('maxlength') && (userForm.controls.lastName.dirty || userForm.controls.lastName.touched)">Last
+                        name should not exceed from 50 characters</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['lastName'].hasError('pattern') && (userForm.controls.lastName.dirty || userForm.controls.lastName.touched)">Please
+                        enter valid information</p>
+                    </span>
+                  </div>
+                </div>
+                <!--/ input row -->
+                <!-- input row -->
+                <div class="form-row">
+                  <div class="col-xl-6 col-lg-12 col-md-12 icon-input form-group">
+                    <label>City</label>
+                    <div class="input-group-prepend">
+                      <div class="input-group-text" *ngIf="!city.imageName">
+                        <img src="../../../../assets/images/icons/flags/4x3/ae.svg" style="max-width:22px;max-height:16px;">
+                      </div>
+                      <div class="input-group-text" *ngIf="city.imageName">
+                        <img src="{{'../../../../assets/images/icons/flags/4x3/' + (city.imageName | lowercase) + '.svg'}}"
+                          style="max-width:22px;max-height:16px;">
+                      </div>
+                      <input type="text" autocomplete="nope" id="typeahead-basic" (keypress)="spaceHandler($event)"
+                        [ngClass]="(cityError || cityValidation)? 'fieldError': ''" class="form-control" placeholder="Your city"
+                        name="city" formControlName="city" [ngbTypeahead]="search" [resultTemplate]="rt"
+                        [inputFormatter]="formatter" data-toggle="dropdown" (focus)="checkCity('focus'); cityError=false"
+                        (focusout)="checkCity('focusOut')" (ngModelChange)="flag(city,'city')" aria-haspopup="true"
+                        aria-expanded="false">
+                    </div>
+                    <p class="formError animated fadeIn" *ngIf="cityValidation">{{cityValidation}}</p>
+                    <span class="animated fadeIn" *ngIf="!cityValidation && cityError">
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['city'].hasError('required') && (userForm.controls.city.dirty || userForm.controls.city.touched)">{{requiredFields}}</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['city'].hasError('minlength') && (userForm.controls.city.dirty || userForm.controls.city.touched)">City
+                        name must be at least 3 characters long</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['city'].hasError('maxlength') && (userForm.controls.city.dirty || userForm.controls.city.touched)">City
+                        name should not exceed from 25 characters</p>
+                    </span>
+                  </div>
+                  <ng-template #rt let-r="result" let-t="term">
+                    <div class="d-inline-block icon-size-16 mr-2">
+                      <img src="{{'../../../../assets/images/icons/flags/4x3/' + (r.imageName | lowercase) + '.svg'}}"
+                        style="max-width:100%;max-height:100%;">
+                    </div>
+                    {{r.title}}
+                  </ng-template>
+                  <div class="col-xl-6 col-lg-12 col-md-12 icon-input select-number form-group">
+                    <label>Contact</label>
+                    <div class="input-group-prepend">
+                      <div ngbDropdown>
+                        <div class="pointer phone" id="phoneCode" ngbDropdownToggle>
+                          <div class="d-inline-block" style="width:20px;height:16px;margin-right: 10px">
+                            <img *ngIf="!city.imageName && !selectedImage" [src]="'../../../../assets/images/icons/flags/4x3/ae.svg'"
+                              alt="flags" class="img-responsive" style="max-width:100%;max-height:100%;">
+                            <img *ngIf="city.imageName && !selectedImage" [src]="'../../../../assets/images/icons/flags/4x3/' + (city.imageName | lowercase) + '.svg'"
+                              alt="flags" class="img-responsive" style="max-width:100%;max-height:100%;">
+                            <img *ngIf="selectedImage" [src]="'../../../../assets/images/icons/flags/4x3/' + (selectedImage | lowercase) + '.svg'"
+                              alt="flags" class=" img-responsive" style="max-width:100%;max-height:100%;">
+                          </div>
+                          <span>{{countryPCode}}</span>
+                        </div>
+                        <div class="animated fadeIn country-section" ngbDropdownMenu aria-labelledby="phoneCode">
+                          <ul class="list-group" [perfectScrollbar]="config">
+                            <li class="list-group-item" *ngFor="let list of countryList" (click)="flag(list,'country')">
+                              <div class="d-inline-block" style="width:20px;height:14px;">
+                                <img [src]="'../../../../assets/images/icons/flags/4x3/' + (list.code | lowercase) + '.svg'"
+                                  alt="{{list.code + '-flag'}}" style="max-width:100%;max-height:100%;">
+                              </div>
+                              <!-- <img [src]="'../../../../assets/images/icons/flags/4x3/' + (list.code | lowercase) + '.svg'" alt="{{list.code + '-flag'}}" style="max-width:100%;"> -->
+                              <span> {{list.desc[0].CountryPhoneCode}}</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+
+                      <input type="text" [ngClass]="(contactError)? 'fieldError': ''" (focusout)="errorMessages()"
+                        (focus)="contactError=false" class="form-control" maxlength="12" placeholder="123456789"
+                        (keypress)="NumberValid($event)" formControlName="phone">
+                    </div>
+                    <span class="animated fadeIn" *ngIf="contactError">
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['phone'].hasError('required') && (userForm.controls.phone.dirty || userForm.controls.phone.touched)">{{requiredFields}}</p>
+                      <p class="formError animated fadeIn" *ngIf="!userForm.controls['phone'].hasError('pattern') && userForm.controls['phone'].hasError('minlength') && (userForm.controls.phone.dirty || userForm.controls.phone.touched)">Phone
+                        number should be minimum 7 digits</p>
+                      <p class="formError animated fadeIn" *ngIf="!userForm.controls['phone'].hasError('pattern') && userForm.controls['phone'].hasError('maxlength') && (userForm.controls.phone.dirty || userForm.controls.phone.touched)">Phone
+                        number should not exceed from 12 digits</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['phone'].hasError('pattern') && (userForm.controls.phone.dirty || userForm.controls.phone.touched)">Please
+                        enter valid information</p>
+                    </span>
+                  </div>
+                </div>
+                <!--/ input row -->
+
+                <!-- input row -->
+                <div class="form-row">
+                  <div class="col-xl-6 col-lg-12 col-md-12 form-group">
+                    <label>Email</label>
+                    <input type="email" [ngClass]="(emailError)? 'fieldError': ''" (keypress)="emailPassSpaceHandler($event)"
+                      (focusout)="errorMessages()" (focus)="emailError=false" autocomplete="nope" class="form-control"
+                      placeholder="john@company.com" formControlName="email" [autocomplete]="false" />
+                    <span class="animated fadeIn" *ngIf="emailError">
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['email'].hasError('required') && (userForm.controls.email.dirty || userForm.controls.email.touched)">{{requiredFields}}</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['email'].hasError('pattern') && (userForm.controls.email.dirty || userForm.controls.email.touched)">Please
+                        enter valid information</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['email'].hasError('maxlength') && (userForm.controls.email.dirty || userForm.controls.email.touched)">Email
+                        should not exceed from 320 characters</p>
+                    </span>
+                  </div>
+                  <div class="col-xl-6 col-lg-12 col-md-12 password form-group">
+                    <label>Password</label>
+                    <i class="fa fa-eye pointer" aria-hidden="true" [ngClass]="colorEye" (click)=confirmPassword($event)></i>
+                    <input type="password" [ngClass]="(passwordError)? 'fieldError': ''" autocomplete="new-password"
+                      (focusout)="errorMessages()" (focus)="passwordError=false" (keypress)="emailPassSpaceHandler($event)"
+                      class="form-control" placeholder="Enter your unique password" formControlName="password">
+                    <span class="animated fadeIn" *ngIf="passwordError">
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['password'].hasError('required') && (userForm.controls.password.dirty || userForm.controls.password.touched)">{{requiredFields}}</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['password'].hasError('minlength') && (userForm.controls.password.dirty || userForm.controls.password.touched)">Password
+                        must be at least 6 characters long</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['password'].hasError('maxlength') && (userForm.controls.password.dirty || userForm.controls.password.touched)">Password
+                        should not exceed from 15 characters</p>
+                    </span>
+                  </div>
+                </div>
+                <!--/ input row -->
+
+                <!-- input row -->
+                <div class="form-row">
+                  <div class="col-xl-6 col-lg-12 col-md-12 form-group">
+                    <label>How did you hear about us?</label>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" [ngClass]="(userForm.controls['howHearAboutUs'].hasError('required') && userForm.controls.howHearAboutUs.touched)? 'fieldError': ''"
+                      class="form-control" formControlName="howHearAboutUs">
+                      <option value="" selected="selected">Please Select</option>
+                      <option *ngFor="let hear of hearList; let i = index" [value]="hear.codeVal">{{hear.codeValShortDesc}}</option>
+                    </select>
+                    <p class="formError animated fadeIn" *ngIf="userForm.controls['howHearAboutUs'].hasError('required') && (userForm.controls.howHearAboutUs.dirty || userForm.controls.howHearAboutUs.touched)">{{requiredFields}}</p>
+                  </div>
+                </div>
+                <!--/ input row -->
+                <!-- input row -->
+                <div class="form-row">
+                  <div class="terms-condition col-12">
+                    <div class="switch-box">
+                      <ui-switch size="small" [checked]="term" (change)="term = !term"></ui-switch>
+                      <label for="switch" (click)="term = !term" class="termCondition"></label>
+                      <div>I agree to the <a href="https://www.hashmove.com/terms-of-use.html" target="_blank" >Terms
+                          and Conditions</a> and <a href="https://www.hashmove.com/privacy-policy.html" target="_blank"
+                          >Privacy Policy</a></div>
+                    </div>
+                    <button *ngIf="!isSubmitting" type="submit" class="btn btn-primary pull-right" [disabled]="userForm.invalid || !term || cityValidation || cityValid"
+                      [ngClass]="(userForm.invalid || !term || cityValidation || cityValid)?'':'hvr-sweep-to-right'">Create
+                      Account</button>
+                    <button *ngIf="isSubmitting" class="btn btn-primary pull-right" disabled><i class="fa fa-spinner fa-spin"></i></button>
+                  </div>
+                </div>
+                <!--/ input row -->
+              </form>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="tab-corporate">
+            <ng-template ngbTabTitle>
+              <div (click)="Account('corporate')">
+                <svg id="81c835b1-2593-4425-bc14-547dc07e1484" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24" width="20px">
+                  <defs>
+                    <style>
+                      .d7ef9b3a-c716-481d-87a3-42203215455a {
+                        fill: #738593;
+                      }
+
+                      .b28b3d66-d9dc-4a79-a6c3-9b8b629bcc82 {
+                        fill: #fff;
+                      }
+
+                    </style>
+                  </defs>
+                  <g>
+                    <rect class="d7ef9b3a-c716-481d-87a3-42203215455a" y="6" width="10" height="18" />
+                    <path class="d7ef9b3a-c716-481d-87a3-42203215455a" d="M24,24H8V0H24ZM10,22H22V2H10Z" />
+                    <rect class="b28b3d66-d9dc-4a79-a6c3-9b8b629bcc82" x="2" y="9" width="5" height="2" />
+                    <rect class="b28b3d66-d9dc-4a79-a6c3-9b8b629bcc82" x="2" y="14" width="5" height="2" />
+                    <rect class="b28b3d66-d9dc-4a79-a6c3-9b8b629bcc82" x="2" y="19" width="5" height="2" />
+                    <rect class="d7ef9b3a-c716-481d-87a3-42203215455a" x="17" y="4.5" width="3" height="3" />
+                    <rect class="d7ef9b3a-c716-481d-87a3-42203215455a" x="12" y="9.5" width="3" height="3" />
+                    <rect class="d7ef9b3a-c716-481d-87a3-42203215455a" x="17" y="9.5" width="3" height="3" />
+                    <rect class="d7ef9b3a-c716-481d-87a3-42203215455a" x="12" y="14.5" width="3" height="3" />
+                    <rect class="d7ef9b3a-c716-481d-87a3-42203215455a" x="17" y="14.5" width="3" height="3" />
+                  </g>
+                </svg>
+                CORPORATE
+              </div>
+            </ng-template>
+            <ng-template ngbTabContent>
+              <form class="form-component" autocomplete="off" novalidate [formGroup]="userForm" (ngSubmit)="userRegistration(userForm.value)">
+                <!-- input row -->
+                <div class="form-row">
+                  <div class="col-xl-6 col-lg-12 col-md-12 form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" [ngClass]="(firstNameError)? 'fieldError': ''" (focusout)="errorMessages()"
+                      (focus)="firstNameError=false" (keypress)="textValidation($event)" placeholder="Your first name"
+                      formControlName="firstName">
+                    <span class="animated fadeIn" *ngIf="firstNameError">
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['firstName'].hasError('required') && (userForm.controls.firstName.dirty || userForm.controls.firstName.touched)">{{requiredFields}}</p>
+                      <p class="formError animated fadeIn" *ngIf="!userForm.controls['firstName'].hasError('pattern') && userForm.controls['firstName'].hasError('minlength') && (userForm.controls.firstName.dirty || userForm.controls.firstName.touched)">First
+                        name must be at least 2 characters long</p>
+                      <p class="formError animated fadeIn" *ngIf="!userForm.controls['firstName'].hasError('pattern') && userForm.controls['firstName'].hasError('maxlength') && (userForm.controls.firstName.dirty || userForm.controls.firstName.touched)">First
+                        name should not exceed from 50 characters</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['firstName'].hasError('pattern') && (userForm.controls.firstName.dirty || userForm.controls.firstName.touched)">Please
+                        enter valid information</p>
+                    </span>
+                  </div>
+                  <div class="col-xl-6 col-lg-12 col-md-12 form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" [ngClass]="(lastNameError)? 'fieldError': ''" (focusout)="errorMessages()"
+                      (focus)="lastNameError=false" (keypress)="textValidation($event)" placeholder="Your last name"
+                      formControlName="lastName">
+
+                    <span class="animated fadeIn" *ngIf="lastNameError">
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['lastName'].hasError('required') && (userForm.controls.lastName.dirty || userForm.controls.lastName.touched)">{{requiredFields}}</p>
+                      <p class="formError animated fadeIn" *ngIf="!userForm.controls['lastName'].hasError('pattern') && userForm.controls['lastName'].hasError('minlength') && (userForm.controls.lastName.dirty || userForm.controls.lastName.touched)">Last
+                        name must be at least 2 characters long</p>
+                      <p class="formError animated fadeIn" *ngIf="!userForm.controls['lastName'].hasError('pattern') && userForm.controls['lastName'].hasError('maxlength') && (userForm.controls.lastName.dirty || userForm.controls.lastName.touched)">Last
+                        name should not exceed from 50 characters</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['lastName'].hasError('pattern') && (userForm.controls.lastName.dirty || userForm.controls.lastName.touched)">Please
+                        enter valid information</p>
+                    </span>
+                  </div>
+                </div>
+                <!--/ input row -->
+                <!-- input row -->
+                <div class="form-row">
+                  <div class="col-xl-6 col-lg-12 col-md-12 icon-input form-group">
+                    <label>City</label>
+                    <div class="input-group-prepend">
+                      <div class="input-group-text" *ngIf="!city.imageName">
+                        <img src="../../../../assets/images/icons/flags/4x3/ae.svg" style="max-width:22px;max-height:16px;">
+                      </div>
+                      <div class="input-group-text" *ngIf="city.imageName">
+                        <img src="{{'../../../../assets/images/icons/flags/4x3/' + (city.imageName | lowercase) + '.svg'}}"
+                          style="max-width:22px;max-height:16px;">
+                      </div>
+                      <input type="text" autocomplete="nope" id="typeahead-basic" (keypress)="spaceHandler($event)"
+                        [ngClass]="(cityError || cityValidation)? 'fieldError': ''" class="form-control" placeholder="Your city"
+                        name="city" formControlName="city" [ngbTypeahead]="search" [resultTemplate]="rt"
+                        [inputFormatter]="formatter" data-toggle="dropdown" (focus)="checkCity('focus'); cityError=false"
+                        (focusout)="checkCity('focusOut')" (ngModelChange)="flag(city,'city')" aria-haspopup="true"
+                        aria-expanded="false">
+                    </div>
+                    <p class="formError animated fadeIn" *ngIf="cityValidation">{{cityValidation}}</p>
+                    <span class="animated fadeIn" *ngIf="!cityValidation && cityError">
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['city'].hasError('required') && (userForm.controls.city.dirty || userForm.controls.city.touched)">{{requiredFields}}</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['city'].hasError('minlength') && (userForm.controls.city.dirty || userForm.controls.city.touched)">City
+                        name must be at least 3 characters long</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['city'].hasError('maxlength') && (userForm.controls.city.dirty || userForm.controls.city.touched)">City
+                        name should not exceed from 25 characters</p>
+                    </span>
+                  </div>
+                  <ng-template #rt let-r="result" let-t="term">
+                    <div class="d-inline-block icon-size-16 mr-2">
+                      <img src="{{'../../../../assets/images/icons/flags/4x3/' + (r.imageName | lowercase) + '.svg'}}"
+                        style="max-width: 100%;max-height:100%;">
+                    </div>
+                    {{r.title}}
+                  </ng-template>
+                  <div class="col-xl-6 col-lg-12 col-md-12 icon-input select-number form-group">
+                    <label>Contact</label>
+                    <div class="input-group-prepend">
+                      <div ngbDropdown>
+                        <div class="pointer phone" id="phoneCode" ngbDropdownToggle>
+                          <div class="d-inline-block" style="width:20px;height:16px;margin-right: 10px">
+                            <img *ngIf="!city.imageName && !selectedImage" [src]="'../../../../assets/images/icons/flags/4x3/ae.svg'"
+                              alt="flags" class="img-responsive" style="max-width:100%;max-height:100%;">
+                            <img *ngIf="city.imageName && !selectedImage" [src]="'../../../../assets/images/icons/flags/4x3/' + (city.imageName | lowercase) + '.svg'"
+                              alt="flags" class="img-responsive" style="max-width:100%;max-height:100%;">
+                            <img *ngIf="selectedImage" [src]="'../../../../assets/images/icons/flags/4x3/' + (selectedImage | lowercase) + '.svg'"
+                              alt="flags" class="img-responsive" style="max-width:100%;max-height:100%;">
+                          </div>
+                          <span>{{countryPCode}}</span>
+                        </div>
+                        <div class="animated fadeIn country-section" ngbDropdownMenu aria-labelledby="phoneCode">
+                          <ul class="list-group" [perfectScrollbar]="config">
+                            <li class="list-group-item" *ngFor="let list of countryList" (click)="flag(list,'country')">
+                              <div class="d-inline-block" style="width:20px;height:14px;">
+                                <img [src]="'../../../../assets/images/icons/flags/4x3/' + (list.code | lowercase) + '.svg'"
+                                  alt="{{list.code + '-flag'}}" style="max-width:100%;max-height:100%;">
+                              </div>
+                              <!-- <img [src]="'../../../../assets/images/icons/flags/4x3/' + (list.code | lowercase) + '.svg'" alt="{{list.code + '-flag'}}" style="max-width:100%;"> -->
+                              <span> {{list.desc[0].CountryPhoneCode}}</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control" [ngClass]="(contactError)? 'fieldError': ''" (focusout)="errorMessages()"
+                        (focus)="contactError=false" maxlength="12" placeholder="123456789" (keypress)="NumberValid($event)"
+                        formControlName="phone">
+                    </div>
+                    <span class="animated fadeIn" *ngIf="contactError">
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['phone'].hasError('required') && (userForm.controls.phone.dirty || userForm.controls.phone.touched)">{{requiredFields}}</p>
+                      <p class="formError animated fadeIn" *ngIf="!userForm.controls['phone'].hasError('pattern') && userForm.controls['phone'].hasError('minlength') && (userForm.controls.phone.dirty || userForm.controls.phone.touched)">Phone
+                        number should be minimum 7 digits</p>
+                      <p class="formError animated fadeIn" *ngIf="!userForm.controls['phone'].hasError('pattern') && userForm.controls['phone'].hasError('maxlength') && (userForm.controls.phone.dirty || userForm.controls.phone.touched)">Phone
+                        number should not exceed from 12 digits</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['phone'].hasError('pattern') && (userForm.controls.phone.dirty || userForm.controls.phone.touched)">Please
+                        enter valid information</p>
+                    </span>
+                  </div>
+                </div>
+                <!--/ input row -->
+                <!-- input row -->
+                <div class="form-row">
+                  <div class="col-xl-6 col-lg-12 col-md-12 form-group">
+                    <label>Email</label>
+                    <input type="email" autocomplete="nope" (focusout)="errorMessages()" (keypress)="emailPassSpaceHandler($event)"
+                      (focus)="emailError=false" [ngClass]="(emailError)? 'fieldError': ''" class="form-control"
+                      placeholder="john@company.com" formControlName="email" [autocomplete]="false" />
+                    <span class="animated fadeIn" *ngIf="emailError">
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['email'].hasError('required') && (userForm.controls.email.dirty || userForm.controls.email.touched)">{{requiredFields}}</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['email'].hasError('pattern') && (userForm.controls.email.dirty || userForm.controls.email.touched)">Please
+                        enter valid information</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['email'].hasError('maxlength') && (userForm.controls.email.dirty || userForm.controls.email.touched)">Email
+                        should not exceed from 320 characters</p>
+                    </span>
+                  </div>
+                  <div class="col-xl-6 col-lg-12 col-md-12 password form-group">
+                    <label>Password</label>
+                    <i class="fa fa-eye pointer" aria-hidden="true" [ngClass]="colorEye" (click)=confirmPassword($event)></i>
+                    <input type="password" (focusout)="errorMessages()" (focus)="passwordError=false" (keypress)="emailPassSpaceHandler($event)"
+                      autocomplete="new-password" [ngClass]="(passwordError)? 'fieldError': ''" class="form-control"
+                      placeholder="Enter your unique password" formControlName="password">
+                    <span class="animated fadeIn" *ngIf="passwordError">
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['password'].hasError('required') && (userForm.controls.password.dirty || userForm.controls.password.touched)">{{requiredFields}}</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['password'].hasError('minlength') && (userForm.controls.password.dirty || userForm.controls.password.touched)">Password
+                        must be at least 6 characters long</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['password'].hasError('maxlength') && (userForm.controls.password.dirty || userForm.controls.password.touched)">Password
+                        should not exceed from 15 characters</p>
+                    </span>
+                  </div>
+                </div>
+                <!--/ input row -->
+                <!-- input row -->
+                <div class="form-row">
+                  <div class="col-xl-6 col-lg-12 col-md-12 form-group">
+                    <label>Company Name</label>
+                    <input type="text" autocomplete="nope" id="typeahead-basic2" [(ngModel)]="company" [ngClass]="(companyError)? 'fieldError': ''"
+                      class="form-control company" (focusout)="errorMessages()" [ngbTypeahead]="companyPredic"
+                      [resultTemplate]="crt" placement="top" [inputFormatter]="companyFormater" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false" (focus)="companyError=false" placeholder="Your company name"
+                      formControlName="company" (keypress)="spaceHandler($event)">
+                    <span class="animated fadeIn" *ngIf="companyError">
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['company'].hasError('required') && (userForm.controls.company.dirty || userForm.controls.company.touched)">{{requiredFields}}</p>
+                      <p class="formError animated fadeIn" *ngIf="!userForm.controls['company'].hasError('pattern') && userForm.controls['company'].hasError('minlength') && (userForm.controls.company.dirty || userForm.controls.company.touched)">Company
+                        name must be at least 3 characters long</p>
+                      <p class="formError animated fadeIn" *ngIf="!userForm.controls['company'].hasError('pattern') && userForm.controls['company'].hasError('maxlength') && (userForm.controls.company.dirty || userForm.controls.company.touched)">Company
+                        name should not exceed from 50 characters</p>
+                      <p class="formError animated fadeIn" *ngIf="userForm.controls['company'].hasError('pattern') && (userForm.controls.company.dirty || userForm.controls.company.touched)">Please
+                        enter valid information</p>
+                    </span>
+                    <ng-template #crt let-cr="result" let-t="term">
+                      {{cr.title}}
+                    </ng-template>
+                  </div>
+                  <div class="col-xl-6 col-lg-12 col-md-12 form-group">
+                    <label>How did you hear about us?</label>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" [ngClass]="(userForm.controls['howHearAboutUs'].hasError('required') && userForm.controls.howHearAboutUs.touched)? 'fieldError': ''"
+                      class="form-control" formControlName="howHearAboutUs">
+                      <option value="" selected="selected">Please Select</option>
+                      <option *ngFor="let hear of hearList; let i = index" [value]="hear.codeVal">{{hear.codeValShortDesc}}</option>
+                    </select>
+                    <p class="formError animated fadeIn" *ngIf="userForm.controls['howHearAboutUs'].hasError('required') && (userForm.controls.howHearAboutUs.dirty || userForm.controls.howHearAboutUs.touched)">{{requiredFields}}</p>
+                  </div>
+                </div>
+                <!--/ input row -->
+                <!-- input row -->
+                <div class="form-row">
+                  <div class="terms-condition col-12">
+                    <div class="switch-box">
+                      <ui-switch size="small" [checked]="term" (change)="term = !term"></ui-switch>
+                      <label for="switch" (click)="term = !term" class="termCondition"></label>
+                      <div>I agree to the <a href="https://www.hashmove.com/terms-of-use.html" target="_blank" >Terms
+                          and Conditions</a> and <a href="https://www.hashmove.com/privacy-policy.html" target="_blank"
+                          >Privacy Policy</a></div>
+                    </div>
+                    <button *ngIf="!isSubmitting" type="submit" class="btn btn-primary btn-register pull-right" [disabled]="userForm.invalid || !term || cityValidation || cityValid"
+                      [ngClass]="(userForm.invalid || !term || cityValidation || cityValid)?'':'hvr-sweep-to-right'">Create
+                      Account</button>
+                    <button *ngIf="isSubmitting" class="btn btn-primary pull-right" disabled>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-spinner fa-spin"></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </button>
+                  </div>
+                </div>
+                <!--/ input row -->
+              </form>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
+    </div>
+    <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+      </div> -->
+  </div>
+</div>
+<!-- User Registration Modal -->

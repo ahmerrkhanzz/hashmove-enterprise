@@ -1,0 +1,20 @@
+<svg id="17f5b310-5508-485b-8001-dbaf3458113b" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .be7dd154-90ee-45f6-a47e-11a6c4eceb87 {
+        fill: #738593;
+      }
+
+      .dd12900e-6340-4a89-b921-0b1d5cffc735 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  
+  <g id="40ee8fd5-e28d-4347-b10e-66f9984b7564" data-name="calendar2">
+    <path id="6d9cbed9-97a5-4544-9814-99b685f0d436" data-name="&lt;Compound Path&gt;" class="be7dd154-90ee-45f6-a47e-11a6c4eceb87" d="M15,2H3.8A2.8,2.8,0,0,0,1,4.8V16H12.2A2.8,2.8,0,0,0,15,13.2V2Z"/>
+    <path class="dd12900e-6340-4a89-b921-0b1d5cffc735" d="M4,4h9a0,0,0,0,1,0,0v6a0,0,0,0,1,0,0H3a0,0,0,0,1,0,0V5A1,1,0,0,1,4,4Z"/>
+    <rect id="7d4ed2c6-f916-40cf-acce-d794196da080" data-name="&lt;Path&gt;" class="be7dd154-90ee-45f6-a47e-11a6c4eceb87" x="5" width="2" height="5"/>
+    <rect id="a37c2eb5-9844-41fa-8d51-9b1b7c64de14" data-name="&lt;Path&gt;" class="be7dd154-90ee-45f6-a47e-11a6c4eceb87" x="9" width="2" height="5"/>
+  </g>
+</svg>

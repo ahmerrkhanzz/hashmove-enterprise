@@ -1,0 +1,325 @@
+@import "../../../../assets/scss/_variables.scss";
+$unactive-tab1: #ececec;
+$unactive-tab2: $white-color;
+$unactive-container-tab: #a5b2ba;
+$not-account: #3f5165;
+
+.modal-dialog.modal-lg {
+    max-width: 45% !important;
+}
+
+/*-- animation css --*/
+
+.gradient-border {
+    --borderWidth: 5px;
+    background: $white-color;
+    position: relative;
+    border-radius: var(--borderWidth);
+}
+
+.gradient-border:after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    height: calc(100% + var(--borderWidth) * 1);
+    width: calc(100% + var(--borderWidth) * 1);
+    background: linear-gradient(-60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    border-radius: calc(20 * var(--borderWidth));
+    z-index: -1;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+    margin-left: 2px;
+    margin-top: 2px;
+}
+
+@keyframes animatedgradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/*-- animation css --*/
+
+.UserLogin {
+    margin-top: 1.95rem !important;
+    width: 376px;
+    margin: 3rem auto;
+    box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.2);
+
+    .user-modal {
+        .modal-header {
+            padding: 15px 32px;
+            background: $modal-header-background;
+            display: flex;
+
+            h4 {
+                margin: 0px;
+                font-size: $font-size-large + 0.375rem;
+                margin-top: 4px;
+                font-weight: $font-weight-mid;
+                font-family: $font-pragmatica;
+            }
+
+            .have-an-account {
+                font-size: $font-size-base;
+                font-family: $font-proxima;
+                color: $dark-grey-blue;
+                width: 100%;
+                text-align: right;
+                font-weight: $font-proxima-weight-semibold;
+                text-transform: uppercase;
+                padding-top: 8px;
+                letter-spacing: 1px;
+                padding-top: 8px;
+                float: left !important;
+
+                i.fa.fa-angle-right {
+                    font-weight: 600;
+                    padding-left: 10px;
+                }
+            }
+
+            a.crossIcon {
+                position: absolute;
+                right: 8px;
+                top: 4px;
+                width: 14px;
+                height: 14px;
+
+                img {
+                    width: 100%
+                }
+            }
+        }
+
+        .modal-body {
+            padding: 16px 32px;
+            background: $white-color;
+
+            .user-profile-main {
+                border: 0px solid #ccc;
+                display: inline-block;
+                border-radius: 50%;
+                width: 80px;
+                height: 80px;
+                padding: 1px;
+                margin-top: 30px;
+                text-align: center;
+                margin: 0 auto;
+                display: block;
+
+                img {
+                    border-radius: 100%;
+                    margin: 0px -0.5px;
+                    object-fit: cover;
+                    width: 100%;
+                }
+            }
+
+            .username {
+                font-size: $font-size-large + 0.25rem;
+                color: $text-color-default;
+                font-weight: $font-weight-mid;
+                font-family: $font-pragmatica;
+                text-align: center;
+                margin: 22px 0;
+            }
+
+            .tabs-label {
+                label {
+                    font-size: $font-size-medium;
+                    word-spacing: 2px;
+                    margin-bottom: 10px;
+                    text-transform: uppercase;
+                    text-shadow: 1px 0px $dark-grey-blue;
+                    color: $dark-grey-blue;
+                    text-shadow: 0px 1px $dark-grey-blue;
+                    font-weight: 500;
+                }
+            }
+
+            .form-component {
+                margin: 18px 0px;
+
+                .form-group {
+                    margin-bottom: 15px;
+
+                    label {
+                        font-size: $font-size-large;
+                        font-family: $font-proxima;
+                        font-weight: 300;
+                        margin-bottom: 10px;
+                        text-shadow: 0px 1px #2b2b2b;
+                    }
+
+                    i.fa.fa-eye {
+                        position: absolute;
+                        bottom: 16px;
+                        right: 30px;
+                        font-size: 16px;
+                        color: $text-color-default;
+
+                        &.black {
+                            color: $text-color-default
+                        }
+
+                        &.grey {
+                            color: #afafaf;
+                        }
+                    }
+
+                    input {
+                        height: 48px;
+                        border: 1px solid $input-border;
+                        color: $text-color-default;
+                        font-size: $font-size-medium;
+                        padding-left: 15px;
+                        font-weight: 100;
+                        padding-right: 35px;
+                    }
+
+                    input:focus {
+                        border-color: $primary-color;
+                        transition: ease-in .8s;
+                    }
+
+                    .icon-input {
+                        .input-group-prepend {
+                            .input-group-text {
+                                background: $white-color;
+                                border-right: 0px;
+                                border-radius: 0px;
+                                border-top-left-radius: 5px;
+                                border-bottom-left-radius: 5px;
+                            }
+
+                            input {
+                                border-left: 0px;
+                                border-top-left-radius: 0px;
+                                padding-left: 5px;
+                                border-bottom-left-radius: 0px;
+                            }
+                        }
+
+                        .number-select {
+                            font-weight: 500;
+                            color: $text-color-default;
+                            text-shadow: 1px 0px $text-color-default;
+                            padding: 0px;
+                            border-right: 0px;
+                            outline: 0px !important;
+                        }
+                    }
+                }
+
+                .login-btn {
+                    padding: 0px;
+                    margin-top: 33px;
+                    margin-bottom: 25px;
+
+                    .btn {
+                        font-size: 17px;
+                        padding: 12px 50px;
+                        margin-top: -10px;
+                        margin-bottom: 18px;
+                        color: $white-color;
+                        background: $secondary-color;
+                        text-transform: uppercase;
+                        border-radius: 2px;
+                        border: 0; // &:before {
+
+                        //   border: $secondary-color solid 6px;
+                        // }
+                        &.full-width-btn {
+                            width: 100%;
+                        }
+
+                        &:disabled {
+                            // @extend .btn:active;
+                            cursor: not-allowed;
+                            border: 0;
+                            background: $btn-disable-background !important;
+                            color: $btn-disable-color !important;
+                            border-radius: 2px;
+
+                            &:before {
+                                background: $btn-disable-background !important;
+                                color: $btn-disable-color !important;
+                            }
+
+                            //opacity: 0.2;
+                        }
+
+                        i.fa-spinner {
+                            position: absolute;
+                            right: 10px;
+                            top: 16px;
+                        }
+                    }
+
+                    .forgot-password {
+                        font-size: $font-size-base;
+                        font-family: $font-proxima;
+                        font-weight: $font-proxima-weight-semibold;
+                        color: $dark-grey-blue;
+                        text-align: center;
+                        text-transform: uppercase;
+                        line-height: 1.803;
+
+                        i.fa.fa-angle-right {
+                            font-weight: 600;
+                            padding-left: 10px;
+                        }
+
+                        img {
+                            height: 14px;
+                            width: auto;
+                            margin-bottom: 3px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .not-your-account-main {
+            background: #ebeef0;
+            padding: 10px;
+            border: 0.1em dashed #cbd2df;
+            margin-top: 25px;
+
+            a {
+                color: $not-account;
+                font-size: 14px;
+                text-shadow: 0px 1px $not-account;
+                font-weight: 500;
+                padding-left: 15px;
+                cursor: pointer;
+                width: 100%;
+                display: block;
+
+                i {
+                    font-size: 16px;
+                    padding-top: 1px;
+                }
+            }
+        }
+    }
+
+    .user-invalid {
+        border-color: $danger-color !important;
+    }
+
+    .invalid-error {
+        color: $danger-color;
+        position: absolute !important
+    }
+}

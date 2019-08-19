@@ -1,0 +1,15 @@
+<svg id="4ab5c0d2-8335-4d66-8d1d-b8052d67c9e1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .\31 1c30261-44fb-4595-ae2b-05f28ca42df9 {
+        fill: #00a1df;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g id="b00a259f-d75e-4f7a-b2c9-15fa49092552" data-name="message">
+    <path id="5be10f74-879b-4b75-bfff-b3d1f25cde23" data-name="&lt;Path&gt;" class="11c30261-44fb-4595-ae2b-05f28ca42df9" d="M18,15v3H6V6h4V4H6A2,2,0,0,0,4,6V20H18a2,2,0,0,0,2-2V15Z"/>
+    <rect id="8539eca2-3d86-47cc-929f-d2ab176308ab" data-name="&lt;Path&gt;" class="11c30261-44fb-4595-ae2b-05f28ca42df9" x="2.101" y="11" width="19.799" height="2" transform="translate(-4.971 12) rotate(-45)"/>
+    <path id="e78cf8a6-1487-44c7-b969-b83214f1bd5e" data-name="&lt;Path&gt;" class="11c30261-44fb-4595-ae2b-05f28ca42df9" d="M13,4l4.986.014a2,2,0,0,1,2.014,2V11"/>
+  </g>
+</svg>

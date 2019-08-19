@@ -1,0 +1,354 @@
+<!-- Search Card For Thank You Page -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="hash-search warehousing">
+      <div class="shipping-news">
+        <!-- <h5 class="warehousing-title mb-3">Order Summary</h5> -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <div class="warehousing-header">
+              <div class="row">
+                <div class="col-sm " [ngClass]="searchCriteria?.storageType === 'shared'? 'col-xl-3 col-lg-3 col-md-3 col-12':''">
+                  <i class="icon mr-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-16"
+                      id="4a12fca4-e18c-475e-bd3e-22cd7e281a70" data-name="Layer 1" viewBox="0 0 16 16">
+                      <defs>
+                        <style>
+                          .\33 949e7c5-f605-4c5e-87a9-b12329243bbe {
+                            fill: #738593;
+                          }
+
+                          .\38 d48c0e3-bd07-43c0-8228-4127926f0f37 {
+                            fill: #fff;
+                          }
+                        </style>
+                      </defs>
+                      <g id="8158930b-cef2-4edb-b5e1-ba3f6425e989" data-name="calendar2">
+                        <path id="faf814a2-64c6-47f5-af64-79a811794184" data-name="&lt;Compound Path&gt;"
+                          class="3949e7c5-f605-4c5e-87a9-b12329243bbe"
+                          d="M15,2H3.8A2.8,2.8,0,0,0,1,4.8V16H12.2A2.8,2.8,0,0,0,15,13.2V2Z" />
+                        <path class="8d48c0e3-bd07-43c0-8228-4127926f0f37"
+                          d="M4,4h9a0,0,0,0,1,0,0v6a0,0,0,0,1,0,0H3a0,0,0,0,1,0,0V5A1,1,0,0,1,4,4Z" />
+                        <rect id="2b57c6dd-e369-4754-b6e3-53be44a39248" data-name="&lt;Path&gt;"
+                          class="3949e7c5-f605-4c5e-87a9-b12329243bbe" x="5" width="2" height="5" />
+                        <rect id="2f608205-02c1-4439-8b66-12ac37428e6c" data-name="&lt;Path&gt;"
+                          class="3949e7c5-f605-4c5e-87a9-b12329243bbe" x="9" width="2" height="5" />
+                      </g>
+                    </svg>
+                  </i>
+                  <span
+                    class="lable">{{(searchCriteria?.storageType === 'full')?'Minimum Lease Term':'Booked From'}}</span>
+                  <h4 class="ml-4" *ngIf="(data?.bookedFrom || searchCriteria?.minimumLeaseTermString); else nanTemp">
+                    {{(searchCriteria?.storageType === 'full')?searchCriteria.minimumLeaseTermString:data.bookedFrom | date : "d MMM, yyyy"}}
+                  </h4>
+                  <ng-template #nanTemp>
+                    <h4 class="ml-4">N/A</h4>
+                  </ng-template>
+                </div>
+                <div class="col-sm" [ngClass]="searchCriteria?.storageType === 'shared'? 'col-xl-3 col-lg-3 col-md-3 col-12':''"
+                  *ngIf="searchCriteria?.storageType === 'shared' || searchCriteria?.storageType === 'dedicated'">
+                  <div>
+                    <i class="icon mr-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-16"
+                        id="4a12fca4-e18c-475e-bd3e-22cd7e281a70" data-name="Layer 1" viewBox="0 0 16 16">
+                        <defs>
+                          <style>
+                            .\33 949e7c5-f605-4c5e-87a9-b12329243bbe {
+                              fill: #738593;
+                            }
+
+                            .\38 d48c0e3-bd07-43c0-8228-4127926f0f37 {
+                              fill: #fff;
+                            }
+                          </style>
+                        </defs>
+                        <g id="8158930b-cef2-4edb-b5e1-ba3f6425e989" data-name="calendar2">
+                          <path id="faf814a2-64c6-47f5-af64-79a811794184" data-name="&lt;Compound Path&gt;"
+                            class="3949e7c5-f605-4c5e-87a9-b12329243bbe"
+                            d="M15,2H3.8A2.8,2.8,0,0,0,1,4.8V16H12.2A2.8,2.8,0,0,0,15,13.2V2Z" />
+                          <path class="8d48c0e3-bd07-43c0-8228-4127926f0f37"
+                            d="M4,4h9a0,0,0,0,1,0,0v6a0,0,0,0,1,0,0H3a0,0,0,0,1,0,0V5A1,1,0,0,1,4,4Z" />
+                          <rect id="2b57c6dd-e369-4754-b6e3-53be44a39248" data-name="&lt;Path&gt;"
+                            class="3949e7c5-f605-4c5e-87a9-b12329243bbe" x="5" width="2" height="5" />
+                          <rect id="2f608205-02c1-4439-8b66-12ac37428e6c" data-name="&lt;Path&gt;"
+                            class="3949e7c5-f605-4c5e-87a9-b12329243bbe" x="9" width="2" height="5" />
+                        </g>
+                      </svg>
+                    </i>
+                    <span class="lable">Booked Till</span>
+                    <h4 class="ml-4" *ngIf="data?.bookedUntil; else nanTemp">{{data.bookedUntil | date : "d MMM, yyyy"}}
+                    </h4>
+                  </div>
+                </div>
+                <div class="col-sm" [ngClass]="searchCriteria?.storageType === 'shared'? 'col-xl-3 col-lg-3 col-md-3 col-12':''">
+                  <span>
+                    <i class="icon mr-2">
+                      <svg class="icon-size-14"
+                        *ngIf="searchCriteria.storageType === 'full' || searchCriteria.searchBy !=='by_pallet'"
+                        id="daf2a9d0-ed1e-40c3-8dc2-534f350396d2" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 16">
+                        <defs>
+                          <style>
+                            .bf3de19e-df40-4e76-a7cd-2f9395b9693a {
+                              fill: #738593;
+                            }
+                          </style>
+                        </defs>
+                        <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="16 10 10 16 16 16 16 10" />
+                        <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="0 6 6 0 0 0 0 6" />
+                        <rect class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" x="7.317" y="-2.63" width="1.367"
+                          height="21.261" transform="translate(-3.314 8) rotate(-45)" />
+                        <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                          points="2 14 2 9 0 9 0 16 7 16 7 14 2 14" />
+                        <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                          points="14 2 14 6 16 6 16 0 10 0 10 2 14 2" />
+                      </svg>
+                      <svg class="icon-size-14"
+                        *ngIf="searchCriteria.storageType !== 'full' && searchCriteria.searchBy ==='by_pallet'"
+                        id="91048642-36e2-4f45-83ab-8ceede306ae3" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24">
+                        <defs>
+                          <style>
+                            .\37 e0e4eda-9161-4ec8-8239-38bcf2454e29 {
+                              fill: #738593;
+                            }
+                          </style>
+                        </defs>
+                        <title></title>
+                        <g id="c213bd94-fff4-4595-8851-249fa7716951" data-name="RMdIWM.tif">
+                          <path class="7e0e4eda-9161-4ec8-8239-38bcf2454e29"
+                            d="M.013,22.963V18.728c0-.572.02-1.145,0-1.716a21.784,21.784,0,0,1,.4-3.931c.374-2.717.772-5.431,1.161-8.145.185-1.3.373-2.591.561-3.9H21.855c.1.708.206,1.414.307,2.121q.544,3.81,1.09,7.62c.237,1.655.519,3.306.7,4.968a26.438,26.438,0,0,1,.025,2.774q0,2.058,0,4.117v.33H17.991V21.01H6.014v1.953Zm21.945-1.992V17.019H2.031V20.96H4.02V19.011H19.99v1.96Zm-5.037-5.987L16.049,3.04h-3.03V14.984Zm-5.95,0V3.037H7.941L7.069,14.986ZM18.05,3.032l.87,11.947h2.9c-.573-4-1.142-7.969-1.712-11.947ZM5.067,14.98,5.94,3.034H3.884L2.174,14.98Z" />
+                        </g>
+                      </svg>
+                    </i>
+                    <span
+                      class="lable">{{(searchCriteria?.storageType === 'shared' || searchCriteria?.storageType === 'dedicated')?'Booked Space':'Approx Space Required'}}</span>
+                    <h4 class="ml-4"
+                      *ngIf="searchCriteria?.storageType === 'shared' || searchCriteria?.storageType === 'dedicated'">
+                      {{data.bookedSpace | number : '1.0-0'}}
+                      <span
+                        *ngIf="((searchCriteria.searchBy ==='by_unit' || searchCriteria.searchBy ==='by_vol_weight') && (searchCriteria?.storageType === 'shared' || searchCriteria?.storageType === 'dedicated'));else elseShared2">CBM</span>
+                      <ng-template #elseShared2>
+                        <span *ngIf="searchCriteria.searchBy === 'by_area'">
+                          ft<sup>2</sup>
+                        </span>
+                        <span *ngIf="searchCriteria.searchBy === 'by_pallet'">
+                          PLT
+                        </span>
+                      </ng-template>
+                    </h4>
+                    <h4 class="ml-4" *ngIf="searchCriteria?.storageType === 'full'"
+                      [innerHTML]="searchCriteria.spaceReqString"> </h4>
+                  </span>
+                </div>
+                <div class="col-sm" [ngClass]="searchCriteria?.storageType === 'shared'? 'col-xl-3 col-lg-3 col-md-3 col-12 pr-0':''">
+                  <div>
+                    <i class="icon mr-2">
+                      <svg class="icon-size-16" id="50bc1bd9-6260-46ce-abc5-3554b4ea74d1" data-name="Layer 1"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <defs>
+                          <style>
+                            .\38 e809ae0-7b37-42e6-a85e-f361f1832f6d {
+                              fill: #fff;
+                            }
+
+                            .\31 c3de07a-0567-419f-859c-c2a6f340c18e {
+                              fill: #738593;
+                            }
+                          </style>
+                        </defs>
+                        <title>Icons</title>
+                        <g id="43a13e74-76be-4e7c-a77a-222e086eb1dd" data-name="warehouse">
+                          <g id="95598593-0b07-4049-99d8-9dde2c91ee8c" data-name="&lt;Group&gt;">
+                            <path id="543a1ef8-9d63-4e8e-a43c-e33c391bf8c7" data-name="&lt;Path&gt;"
+                              class="8e809ae0-7b37-42e6-a85e-f361f1832f6d" d="M22,23v-.555A3.959,3.959,0,0,1,20,23Z" />
+                            <path id="76a7b445-ba52-4a5d-a2dc-da158acee007" data-name="&lt;Path&gt;"
+                              class="8e809ae0-7b37-42e6-a85e-f361f1832f6d" d="M2,23H4a3.959,3.959,0,0,1-2-.555Z" />
+                          </g>
+                          <path id="e1fcf746-792d-4354-8bc6-17314b2a5e3d" data-name="&lt;Compound Path&gt;"
+                            class="1c3de07a-0567-419f-859c-c2a6f340c18e"
+                            d="M22.148,6.457,12,1,1.852,6.457A4,4,0,0,0,0,9.832V19a3.983,3.983,0,0,0,2,3.445V10H22V22.445A3.983,3.983,0,0,0,24,19V9.832A4,4,0,0,0,22.148,6.457ZM15,7H9V5h6Z" />
+                          <rect id="4f261f44-20ec-4ea9-90c5-9c79149c2390" data-name="&lt;Path&gt;"
+                            class="1c3de07a-0567-419f-859c-c2a6f340c18e" x="10" y="18" width="4" height="4" />
+                          <rect id="f420b0a4-076a-4ee1-91c5-b7e42da4e2e9" data-name="&lt;Path&gt;"
+                            class="1c3de07a-0567-419f-859c-c2a6f340c18e" x="5" y="18" width="4" height="4" />
+                          <rect id="8970c0b2-6fdc-4ebc-8cc6-3d4ad3f8c163" data-name="&lt;Path&gt;"
+                            class="1c3de07a-0567-419f-859c-c2a6f340c18e" x="5" y="12" width="4" height="4" />
+                          <rect id="7ba11457-86cf-4719-b707-7dd0b08eb954" data-name="&lt;Path&gt;"
+                            class="1c3de07a-0567-419f-859c-c2a6f340c18e" x="10" y="12" width="4" height="4" />
+                          <rect id="e6df87d8-dd93-41a6-9184-dc1ac2ad8c81" data-name="&lt;Path&gt;"
+                            class="1c3de07a-0567-419f-859c-c2a6f340c18e" x="15" y="18" width="4" height="4" />
+                        </g>
+                      </svg>
+                    </i>
+                    <span class="lable">Warehouse Type</span>
+                    <h4 class="ml-4 text-capitalize">
+                      {{searchCriteria?.storageType}}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row mt-1">
+              <div class="col-sm-12 mt-1">
+                <div class="shipping-news-company mt-0 mb-2 ">
+                  <div class="logo pointer">
+                    <div class="gallery-section" *ngIf="data?.WHParsedMedia">
+                      <div class="images-carousel" *ngFor="let image of data.WHParsedMedia; let i=index">
+                        <img [src]="image.thumb" (click)="open(i, data.WHParsedMedia)" />
+                        <div class="gallery-section-item d-flex justify-content-center align-items-center"
+                          (click)="open(i, data.WHParsedMedia)">
+                          <img src="../../../../assets/images/icons/icon_pictures.svg" alt="" class="icon-size-14 mr-1">
+                          {{data.WHParsedMedia.length}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h5 class="card-title">
+                  {{data?.WHName}}
+                  <div class="warehousing-provider-icon">
+                    <img src="{{getProviderImage(data.ProviderImage)}}" alt="">
+                  </div>
+                </h5>
+                <div class="warehousing-content">
+                  <ul class="list-group">
+                    <li class="list-group-item flex-column">
+                      <span>
+                        <img src="../../../../assets/images/icons/Icons_Location-grey.svg" alt="icon"
+                          class="icon-size-16 mr-2">
+                        {{data.WHAddress}}
+                      </span>
+                      <!-- <span>
+                        {{data.ProviderName}}
+                      </span> -->
+                    </li>
+                  </ul>
+                  <span>
+                    <i class="icon mr-2">
+                      <svg class="icon-size-14"
+                        *ngIf="(searchCriteria.storageType === 'shared' || searchCriteria.storageType === 'dedicated' || searchCriteria.storageType === 'full') && searchCriteria.searchBy !=='by_pallet'"
+                        id="daf2a9d0-ed1e-40c3-8dc2-534f350396d2" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 16">
+                        <defs>
+                          <style>
+                            .bf3de19e-df40-4e76-a7cd-2f9395b9693a {
+                              fill: #738593;
+                            }
+                          </style>
+                        </defs>
+                        <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="16 10 10 16 16 16 16 10" />
+                        <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="0 6 6 0 0 0 0 6" />
+                        <rect class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" x="7.317" y="-2.63" width="1.367"
+                          height="21.261" transform="translate(-3.314 8) rotate(-45)" />
+                        <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                          points="2 14 2 9 0 9 0 16 7 16 7 14 2 14" />
+                        <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                          points="14 2 14 6 16 6 16 0 10 0 10 2 14 2" />
+                      </svg>
+                      <svg class="icon-size-14"
+                        *ngIf="(searchCriteria.storageType === 'shared' || searchCriteria.storageType === 'dedicated') && searchCriteria.searchBy ==='by_pallet'"
+                        id="91048642-36e2-4f45-83ab-8ceede306ae3" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24">
+                        <defs>
+                          <style>
+                            .\37 e0e4eda-9161-4ec8-8239-38bcf2454e29 {
+                              fill: #738593;
+                            }
+                          </style>
+                        </defs>
+                        <title></title>
+                        <g id="c213bd94-fff4-4595-8851-249fa7716951" data-name="RMdIWM.tif">
+                          <path class="7e0e4eda-9161-4ec8-8239-38bcf2454e29"
+                            d="M.013,22.963V18.728c0-.572.02-1.145,0-1.716a21.784,21.784,0,0,1,.4-3.931c.374-2.717.772-5.431,1.161-8.145.185-1.3.373-2.591.561-3.9H21.855c.1.708.206,1.414.307,2.121q.544,3.81,1.09,7.62c.237,1.655.519,3.306.7,4.968a26.438,26.438,0,0,1,.025,2.774q0,2.058,0,4.117v.33H17.991V21.01H6.014v1.953Zm21.945-1.992V17.019H2.031V20.96H4.02V19.011H19.99v1.96Zm-5.037-5.987L16.049,3.04h-3.03V14.984Zm-5.95,0V3.037H7.941L7.069,14.986ZM18.05,3.032l.87,11.947h2.9c-.573-4-1.142-7.969-1.712-11.947ZM5.067,14.98,5.94,3.034H3.884L2.174,14.98Z" />
+                        </g>
+                      </svg>
+                    </i>
+                    <span class="sqft ml-1">{{data.space | number : '1.0-0'}} <span
+                        *ngIf="((searchCriteria.searchBy ==='by_unit' || searchCriteria.searchBy ==='by_vol_weight') && (searchCriteria?.storageType === 'shared' || searchCriteria?.storageType === 'dedicated') );else elseShared">CBM</span></span>
+                    <ng-template #elseShared>
+                      <span *ngIf="searchCriteria.searchBy === 'by_area'">
+                        ft<sup>2</sup>
+                      </span>
+                      <span *ngIf="searchCriteria.searchBy === 'by_pallet'">
+                        PLT
+                      </span>
+                    </ng-template>
+
+                  </span>
+                  <span class="sqft">
+                    <!-- <img src="../../../../assets/images/icons/description_icon.png" alt="icon" class="icon-size-16 mr-2"> -->
+                    {{wareHouseDesc}}
+                  </span>
+                  <div class="icons mt-2">
+                    <span class="hvr-icon-pulse-shrink" placement="top" ngbTooltip="Bonded Warehouse">
+                      <img *ngIf="data.IsBondedWarehouse"
+                        src="../../../../assets/images/icons/icon_bond_warehouse_green.svg" alt="" class="hvr-icon">
+                      <img *ngIf="!data.IsBondedWarehouse"
+                        src="../../../../assets/images/icons/icon_bond_warehouse_grey_D.svg" alt="" class="hvr-icon">
+                    </span>
+                    <!-- <span class="hvr-icon-pulse-shrink" placement="top" ngbTooltip="Temp. Controlled">
+                      <img *ngIf="data.IsTempratureControlled" src="../../../../assets/images/icons/Weight-Icon_1.svg"
+                        alt="footer icon" class="hvr-icon">
+                      <img *ngIf="!data.IsTempratureControlled"
+                        src="../../../../assets/images/icons/Weight-Icon_Grey.svg" alt="footer icon" class="hvr-icon">
+                    </span> -->
+                    <span class="hvr-icon-pulse-shrink" placement="top" ngbTooltip="Transport Available">
+                      <img *ngIf="data.IsTransportAvailable"
+                        src="../../../../assets/images/icons/Icons_Cargo Truck_orange.svg" alt="footer icon"
+                        class="hvr-icon">
+                      <img *ngIf="!data.IsTransportAvailable"
+                        src="../../../../assets/images/icons/icons_cargo_truck_grey.svg" alt="footer icon"
+                        class="hvr-icon">
+                    </span>
+                  </div>
+                  <button
+                    class="btn btn-outline-primary hvr-sweep-to-right text-uppercase pull-left col-lg-4 col-md-4 col-sm-12 mt-3"
+                    placement="bottom" [ngbPopover]="contact">Contact</button>
+                  <ng-template #contact>
+                    <div class="contact-popup fadeIn animated">
+                      <a href="{{'mailto:' + data.email}}">
+                        <img src="../../../../assets/images/icons/icon_email.svg" alt="mail_Icon"
+                          class="icon-size-16 mt-1 mr-1">
+                        <span>{{data.email}}</span>
+                      </a>
+                      <p>
+                        <img src="../../../../assets/images/icons/mob-icon.svg" alt="Contact_Icon" class="icon-size-16">
+                        <strong style="vertical-align: middle;">{{data.phone}}</strong>
+                      </p>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="card-footer text-muted"> -->
+          <!-- <div class="icons">
+              <span class="hvr-icon-pulse-shrink" placement="top" ngbTooltip="Bonded Warehouse">
+                <img *ngIf="data.IsBondedWarehouse" src="../../../../assets/images/icons/icon_bond_warehouse_green.svg"
+                  alt="" class="hvr-icon">
+                <img *ngIf="!data.IsBondedWarehouse"
+                  src="../../../../assets/images/icons/icon_bond_warehouse_grey_D.svg" alt="" class="hvr-icon">
+              </span>
+              <span class="hvr-icon-pulse-shrink" placement="top" ngbTooltip="Temp. Controlled">
+                <img *ngIf="data.IsTempratureControlled" src="../../../../assets/images/icons/Weight-Icon_1.svg"
+                  alt="footer icon" class="hvr-icon">
+                <img *ngIf="!data.IsTempratureControlled" src="../../../../assets/images/icons/Weight-Icon_Grey.svg"
+                  alt="footer icon" class="hvr-icon">
+              </span>
+              <span class="hvr-icon-pulse-shrink" placement="top" ngbTooltip="Transport Available">
+                <img *ngIf="data.IsTransportAvailable"
+                  src="../../../../assets/images/icons/Icons_Cargo Truck_orange.svg" alt="footer icon" class="hvr-icon">
+                <img *ngIf="!data.IsTransportAvailable" src="../../../../assets/images/icons/icons_cargo_truck_grey.svg"
+                  alt="footer icon" class="hvr-icon">
+              </span>
+            </div> -->
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

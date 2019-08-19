@@ -1,0 +1,41 @@
+<svg id="daadc353-b3d9-43e2-a7d7-b2636f9cc8c5" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
+  <defs>
+    <style>
+      .\30 9729411-ae3d-4e50-9b4d-f4606092c840 {
+        fill: #e7edf2;
+      }
+
+      .\31 b5e7d08-b3cd-4bfa-b333-09438b01219c {
+        fill: #00a2df;
+      }
+
+      .e879e959-203a-49ce-b722-34a0172ce967 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  
+  <g id="149b6445-fd9e-465c-89e6-555c5dd4d5e4" data-name="credit_card">
+    <g>
+      <g>
+        <rect class="09729411-ae3d-4e50-9b4d-f4606092c840" width="34" height="24" rx="4" ry="4"/>
+        <path class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" d="M30,2a2,2,0,0,1,2,2V20a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2H30m0-2H4A4,4,0,0,0,0,4V20a4,4,0,0,0,4,4H30a4,4,0,0,0,4-4V4a4,4,0,0,0-4-4Z"/>
+      </g>
+      <rect class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" x="2" y="5" width="30" height="2"/>
+      <rect class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" x="2" y="10" width="30" height="2"/>
+      <rect class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" x="5" y="15" width="7" height="2"/>
+      <rect class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" x="14" y="15" width="7" height="2"/>
+    </g>
+    <g>
+      <rect class="e879e959-203a-49ce-b722-34a0172ce967" x="10" y="20" width="34" height="24" rx="4" ry="4"/>
+      <path class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" d="M40,22a2,2,0,0,1,2,2V40a2,2,0,0,1-2,2H14a2,2,0,0,1-2-2V24a2,2,0,0,1,2-2H40m0-2H14a4,4,0,0,0-4,4V40a4,4,0,0,0,4,4H40a4,4,0,0,0,4-4V24a4,4,0,0,0-4-4Z"/>
+    </g>
+    <rect class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" x="15" y="36" width="6" height="2"/>
+    <rect class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" x="24" y="36" width="6" height="2"/>
+    <rect class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" x="33" y="36" width="6" height="2"/>
+    <g>
+      <rect class="e879e959-203a-49ce-b722-34a0172ce967" x="31" y="24" width="8" height="8" rx="3" ry="3"/>
+      <path class="1b5e7d08-b3cd-4bfa-b333-09438b01219c" d="M36,26a1,1,0,0,1,1,1v2a1,1,0,0,1-1,1H34a1,1,0,0,1-1-1V27a1,1,0,0,1,1-1h2m0-2H34a3,3,0,0,0-3,3v2a3,3,0,0,0,3,3h2a3,3,0,0,0,3-3V27a3,3,0,0,0-3-3Z"/>
+    </g>
+  </g>
+</svg>

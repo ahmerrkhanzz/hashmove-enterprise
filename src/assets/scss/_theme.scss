@@ -1,0 +1,24 @@
+// default colors
+.theme-wrapper {
+  --customerPrimaryColor: #0082d6;
+  --customerSecondaryColor: #daecf9;
+  --customerForeColorPrimary: #fff;
+  --customerForeColorSecondary: #000;
+  --customerFooterColor: #1a1c27;
+  --customerFooterTextColor: #97a5b1;
+  --customerPrimaryGradientColor: #0082d6;
+  --customerSecondarGradientColor: #3fbefc;
+  --customerPrimaryLogoWidth: 80px;
+}
+// pass variables into a sass map
+$variables: (
+  --customerPrimaryColor: var(--customerPrimaryColor),
+  --customerSecondaryColor: var(--customerSecondaryColor),
+  --customerForeColorPrimary: var(--customerForeColorPrimary),
+  --customerForeColorSecondary: var(--customerForeColorSecondary),
+  --customerFooterColor: var(--customerFooterColor),
+  --customerFooterTextColor: var(--customerFooterTextColor),
+  --customerPrimaryGradientColor: var(--customerPrimaryGradientColor),
+  --customerSecondarGradientColor: var(--customerSecondarGradientColor),
+  --customerPrimaryLogoWidth: var(--customerPrimaryLogoWidth)
+);

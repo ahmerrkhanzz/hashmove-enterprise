@@ -1,0 +1,21 @@
+<svg id="2ca0f22c-9f87-428b-85fb-56eb3566c927" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .\36 64adcd6-2892-489d-81b0-8ed15b7ccdfc {
+        fill: #738593;
+      }
+
+      .eb42b8cd-3006-4868-b338-1c04c4f8e9e6 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title>Icons</title>
+  <g id="8dea8b08-79dd-47e7-8c5c-cbb81406e0c6" data-name="custom_clearance">
+    <path class="664adcd6-2892-489d-81b0-8ed15b7ccdfc" d="M16,18A6,6,0,1,1,18,6.349V4H10A4,4,0,0,0,6,8V20H18V17.651A5.976,5.976,0,0,1,16,18Z"/>
+    <g id="43a771eb-a2db-4b76-80ae-85ef0044530e" data-name="&lt;Group&gt;">
+      <polygon id="f493052d-d81a-4502-beaa-70163315793d" data-name="&lt;Path&gt;" class="eb42b8cd-3006-4868-b338-1c04c4f8e9e6" points="18.469 9 15.2 12.098 13.531 10.516 12 11.967 15.2 15 20 10.451 18.469 9"/>
+      <polygon id="8dfd3b91-c6ca-4d9e-887f-d7d45694dd99" data-name="&lt;Path&gt;" class="664adcd6-2892-489d-81b0-8ed15b7ccdfc" points="18.469 9 15.2 12.098 13.531 10.516 12 11.967 15.2 15 20 10.451 18.469 9"/>
+    </g>
+  </g>
+</svg>

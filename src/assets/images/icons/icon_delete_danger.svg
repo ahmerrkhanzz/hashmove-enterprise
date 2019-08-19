@@ -1,0 +1,15 @@
+<svg id="317c8c47-17e2-4e96-9063-97bc9a32118b" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .a2933809-f108-463d-a7d6-9972aa735edc {
+        fill: #d9232e;
+      }
+    </style>
+  </defs>
+  
+  <g id="9ddd7984-9517-4e7f-881d-6292000e8e8a" data-name="delete">
+    <rect class="a2933809-f108-463d-a7d6-9972aa735edc" y="2" width="16" height="2"/>
+    <rect class="a2933809-f108-463d-a7d6-9972aa735edc" x="5" width="6" height="2"/>
+    <path class="a2933809-f108-463d-a7d6-9972aa735edc" d="M2,5v9a2,2,0,0,0,2,2h8a2,2,0,0,0,2-2V5Zm5,9H5V7H7Zm4,0H9V7h2Z"/>
+  </g>
+</svg>

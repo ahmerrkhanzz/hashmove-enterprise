@@ -1,0 +1,105 @@
+<!-- order Summary - Start -->
+<div class="billing-box">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">
+        <img src="../../../../assets/images/icons/icon_summary.svg" alt="umbrella-icon"> Order Summary
+      </h5>
+      <!-- <h6>Freight Surcharges</h6> -->
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="long-text">
+            <span *ngIf="searchCriteria.pickupPortType !== 'GROUND'">Port of Loading</span>
+            <span *ngIf="searchCriteria.pickupPortType === 'GROUND'">Pickup From</span>
+          </div>
+          <div class="amount-text">
+            <span>{{searchCriteria.pickupPortName}} {{(searchCriteria.pickupPortType === 'GROUND')?'('+bookingDetails.PolCountry
+                + ')':''}}
+            </span>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="long-text">
+            <span *ngIf="searchCriteria.deliveryPortType !== 'GROUND'">Port of Destination</span>
+            <span *ngIf="searchCriteria.deliveryPortType === 'GROUND'">Delivery To</span>
+          </div>
+          <div class="amount-text">
+            <span>{{searchCriteria.deliveryPortName}}
+              {{(searchCriteria.deliveryPortType === 'GROUND')?'('+bookingDetails.PodCountry + ')':''}}
+            </span>
+          </div>
+        </li>
+      </ul>
+      <hr>
+      <!-- <h6>Additional Charges</h6> -->
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span class="long-text">Supplier</span>
+          <span class="amount-text">{{bookingDetails.ProviderName}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{orderLabel.label}}
+          <span *ngIf="containterQty > 0 && !(searchCriteria.searchMode === 'truck-ftl')">
+            {{containterQty}} x {{searchCriteria.containerLoad}} {{(containterQty>1)?'Containers':'Container'}}
+          </span>
+          <span *ngIf="containterQty > 0 && searchCriteria.searchMode === 'truck-ftl'">
+            {{searchCriteria.containerLoad}} {{containterQty}} x {{(containterQty>1)?'Trucks':'Truck'}}
+          </span>
+          <span *ngIf="totalChargeableWeight > 0 && orderLabel.unit === 'KG'">
+            {{totalChargeableWeight | number : '1.2-2'}} {{orderLabel.unit}}
+            <span *ngIf="searchCriteria.searchMode === 'sea-lcl'">({{searchCriteria.containerLoad}})</span>
+            <!-- <span *ngIf="searchCriteria.searchMode === 'air-lcl'">(AIR)</span> -->
+          </span>
+          <span *ngIf="totalCBM > 0 && orderLabel.unit === 'CBM'">
+            {{totalCBM}} {{orderLabel.unit}} ({{searchCriteria.containerLoad}})
+          </span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+          *ngIf="searchCriteria.searchMode === 'sea-fcl' && bookingDetails?.EtdUtc">
+          <span class="long-text">Vessel Number</span>
+          <span class="amount-text" *ngIf="bookingDetails?.VesselCode">{{bookingDetails.VesselCode}}</span>
+          <!-- <span class="amount-text" *ngIf="selectedCarrier?.VesselCode">{{selectedCarrier.VesselCode}}</span> -->
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+          *ngIf="searchCriteria?.searchMode !== 'sea-lcl' && searchCriteria?.searchMode !== 'air-lcl' && dateToShow?.length > 1 && bookingDetails?.EtdUtc">
+          <span class="long-text">Departure Date</span>
+          <span class="amount-text"
+            *ngIf="transportMode.includes('sea') || searchCriteria.searchMode === 'truck-ftl'">{{dateToShow | date : "d MMM yyyy"}}</span>
+          <span class="amount-text"
+            *ngIf="transportMode.includes('air') ">{{dateToShow | date : "d MMM yyyy HH:mm"}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+          *ngIf="searchCriteria.searchMode === 'air-lcl'">
+          <span class="long-text">CARGO READINESS DATE</span>
+          <span class="amount-text">{{searchCriteria?.pickupDate | date : "d MMM yyyy"}} -
+            {{searchCriteria?.pickupDateTo | date : "d MMM yyyy"}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span class="long-text">TOTAL (PAYABLE TO FREIGHT FORWARDER)</span>
+          <span class="amount-text">{{bookingDetails.CurrencyCode}} {{totalAmount | number:'1.2-2'}}</span>
+        </li>
+      </ul>
+      <hr>
+      <!-- <h6>Additional Charges</h6> -->
+      <ul class="list-group list-group-flush">
+        <li *ngIf="isInsured" class="list-group-item d-flex justify-content-between align-items-center">
+          <span class="long-text">Insurance</span>
+          <span class="amount-text">{{(isInsured)?'YES':'No'}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+          *ngIf="searchCriteria.searchMode === 'sea-fcl' || searchCriteria.searchMode === 'truck-ftl'">
+          <span class="long-text">Tracking</span>
+          <span class="amount-text">{{(isTracking)?'YES':'No'}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+          *ngIf="searchCriteria.searchMode === 'sea-fcl' || searchCriteria.searchMode === 'truck-ftl'">
+          <span class="long-text">Quality</span>
+          <span class="amount-text">{{(isQality)?'YES':'No'}}</span>
+        </li>
+      </ul>
+    </div>
+    <!-- order Section - End -->
+
+  </div>
+  <!--/ leftSide -->
+</div>

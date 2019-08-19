@@ -1,0 +1,19 @@
+@import "../../../../assets/scss/_variables";
+.cancel-booking {
+  label {
+    font-size: $font-size-large;
+    color: $text-color-default;
+    font-family: $font-proxima;
+    font-weight: $font-weight-mid;
+  }
+  input,
+  select {
+    color: $text-color-default;
+    margin-bottom: 0.875rem;
+    font-size: $font-size-medium;
+    font-weight: $font-weight-light;
+    font-family: $font-proxima;
+    outline: 0 !important;
+    resize: none;
+  }
+}

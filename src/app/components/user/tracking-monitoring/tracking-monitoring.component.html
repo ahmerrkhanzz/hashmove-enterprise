@@ -1,0 +1,165 @@
+<div class="tracking-monitoring">
+  <!-- status 2 -->
+  <div class="status2">
+    <div class="row mt-1 mb-4">
+      <div class="col-xl-5 col-md-5 col-sm-12 border-right">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <label class="card-subtitle mb-2">From</label>
+                <div class="d-block">
+                  <img src="../../../../assets/images/icons/flags/4x3/{{data.PolCode.split(' ')[0] | lowercase}}.svg" class="flag-icon-20-14 mr-2 pull-left border">
+                  <div class="d-flex flex-column">
+                    <h6 class="card-title mb-0">{{data.PolCode}}</h6>
+                    <p class="card-text">{{data.PolName}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <label class="card-subtitle mb-2">To</label>
+                <div class="d-block">
+                  <img src="../../../../assets/images/icons/flags/4x3/{{data.PodCode.split(' ')[0] | lowercase}}.svg" class="flag-icon-20-14 mr-2 pull-left border">
+                  <div class="d-flex flex-column">
+                    <h6 class="card-title mb-0">{{data.PodCode}}</h6>
+                    <p class="card-text">{{data.PodName}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-3 col-sm-6 col-xs-6 border-right">
+        <div class="card">
+          <div class="card-body">
+            <label class="card-subtitle mb-2">Est. Transit Time</label>
+            <div class="d-block">
+              <img src="../../../../assets/images/icons/Icons_Calendar.svg" class="icon-size-16 mr-2 pull-left">
+              <h6 class="card-title mb-0 text-capitalize">{{data.EtaInDays}} {{(data.EtaInDays > 1)?'Days':'Day'}}
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <label class="card-subtitle mb-2">Cargo Details</label>
+            <div class="d-block">
+              <img src="../../../../assets/images/icons/icon_container.svg" class="icon-size-16 mr-2 pull-left">
+              <h6 class="card-title mb-0 text-capitalize">{{data.ShippingCatName}}</h6>
+              <div class="catDetail ml-4">
+                <div style="max-height: 180px;">
+                  <ng-scrollbar [trackX]="false" [compact]="true" #scrollRef>
+                    <span class="amount-text w-100 d-block" *ngFor="let contDetail of data.BookingContainerDetail">
+                      {{contDetail.ContainerSpecDesc}} x {{contDetail.BookingContTypeQty}}
+                    </span>
+                  </ng-scrollbar>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ status 2 -->
+  <div class="row my-shipment" *ngIf="!isContDtl && searchCriteria.searchMode !== 'truck-ftl' && shouldTrackingOpen">
+    <div *ngIf="data?.VesselName?.length > 1" class="col-xl-12">
+      <h5 class="d-block">Track Shipment</h5>
+      <div class="row border rounded">
+        <div class="col-sm-4 p-0">
+          <div class="card">
+            <div *ngIf="trackingData" class="card-body google-map">
+              <div class="my-shipment-location">
+                <ul class="list-group" *ngIf="data.BookingRouteMapInfo" [ngClass]="viewDetailStatus ? 'BookingRouteMapInfo':'list-group'">
+                  <ng-scrollbar [trackX]="false" [trackX]="true" [compact]="true" #scrollRef>
+                    <li *ngFor="let port of data.BookingRouteMapInfo.RouteInfo; let lastIndex = last;let fistIndex = first" class="list-group-item pr-0"
+                      [ngClass]="[(port.IsPassed)?'selected':'', port === data.BookingRouteMapInfo.RouteInfo[0] ? 'portStart': '']">
+                      <div class="port-icon">
+                        <img src="../../../../assets/images/icons/icon_route_map_start_blue.svg" alt="mode" class="icon-size-12 location-start-icon"
+                          *ngIf="port.IsPassed">
+                        <img src="../../../../assets/images/icons/icon_route_map_start.svg" alt="mode" class="icon-size-12 location-start-icon" *ngIf="!port.IsPassed">
+                        <i class="fa fa-circle" aria-hidden="true"></i>
+                      </div>
+                      <div class="port">
+                        <label>{{port.RouteDesc}}</label>
+                        <small *ngIf="!lastIndex">
+                          Departed on
+                          <span *ngIf="port?.DateUtc?.length > 1">{{ port.DateUtc |date: 'dd MMM yyyy'}}</span>
+                          <span *ngIf="!port?.DateUtc || !(port?.DateUtc?.length > 1)">N/A</span>
+                        </small>
+                        <small *ngIf="lastIndex">
+                          Arrived on
+                          <span *ngIf="port?.DateUtc?.length > 1">{{ port.DateUtc |date: 'dd MMM yyyy'}}</span>
+                          <span *ngIf="!port?.DateUtc || !(port?.DateUtc?.length > 1)">N/A</span>
+                        </small>
+                      </div>
+                    </li>
+                  </ng-scrollbar>
+                </ul>
+                <!-- <button class="view-btn d-flex justify-content-center text-uppercase align-items-center pointer" (click)="viewDetail($event)"
+                  [ngClass]="viewDetailStatus ? 'booking-info-icon':'view-btn'">
+                  View Details
+                  <img src="../../../../assets/images/icons/icon_arrow_down.svg" class="icon-size-8 ml-2">
+                </button> -->
+              </div>
+            </div>
+            <div *ngIf="!trackingData" style="height: 34.375rem">
+              <!-- <app-loader-main></app-loader-main> -->
+            </div>
+          </div>
+        </div>
+        <div class="col p-0">
+          <hashmove-map [windowHeight]="'34.375rem'" [enableDataService]="false" [isViewBookingData]="true" [bookingRouteMapInfo]="data.BookingRouteMapInfo"
+            [trackingData]="trackingData" [isTracking]="true">
+          </hashmove-map>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!trackingData" style="height: 605px !important">
+      <!-- <app-loader-main></app-loader-main> -->
+    </div>
+  </div>
+
+  <!-- tracking overview -->
+  <div *ngIf="isMonitoring">
+    <div class="monit" *ngIf="monitorData">
+      <div>
+        <app-tracking-overview [monitorData]="monitorData" [isContDtl]="isContDtl" [container]="container">
+        </app-tracking-overview>
+      </div>
+      <!-- <div *ngIf="!monitorData">
+     <app-loader-main></app-loader-main>
+  </div> -->
+      <br>
+
+      <!-- Alert -->
+      <!-- <div  class="tracking-info-alert">
+        <div class="row">
+          <div class="col-12">
+            <div class="alert alert-warning hvr-icon-wobble-horizontal pointer w-100 d-flex">
+              <img src="../../../../assets/images/icons/air-lcl-white.svg" alt="air-icon" class="icon-size-24 svg-color">
+              <div class="alert-message">
+                <marquee scrolldelay="10">Air Freight on this route is also available (starting at 12,506.00)</marquee>
+              </div>
+              <a href="javascript:;">
+                <i class="fa fa-angle-right hvr-icon"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <!--/ Alert -->
+      <app-view-booking-table *ngIf="!isContDtl && monitorData" [type]="'a'" [monitorData]="monitorData" (onContainerDtlClicl)="onContainerClick($event)"></app-view-booking-table>
+      <app-view-booking-table *ngIf="isContDtl && monitorData" [type]="'b'" [secContainers]="containerList">
+      </app-view-booking-table>
+
+    </div>
+    <div *ngIf="!monitorData" style="height: 855px !important;">
+      <!-- <app-loader-main></app-loader-main> -->
+    </div>
+  </div>
+  <!--/ tracking overview -->
+</div>

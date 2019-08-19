@@ -1,0 +1,135 @@
+<div class="thankyou mt-4 mb-4">
+  <div class="container">
+    <!-- row-->
+    <div class="row">
+      <div class="col-md-12 thankyou-message">
+        <!-- image section -->
+        <div class="thankyou-img-section">
+          <!-- image -->
+          <div class="thankyou-bob-icon text-center">
+            <img src="../../../../assets/images/icons/order_completed.svg" alt="Bob" />
+          </div>
+          <!--/ image -->
+          <div class="thankyou-message">
+            <h2 class="message">Thank You for your booking {{firstName}}!</h2>
+            <span class="booking-id">Your booking # is {{bookingRef?.BookingNo}}</span>
+            <!-- view booking btn -->
+            <div class="form-group hvr-icon-forward pointer">
+              <a class="view-booking hvr-icon link-hover-1" (click)="viewBookingDetails(bookingRef.BookingID, bookingRef.UserID, TransportMode)">View
+                Booking</a>
+              <svg id="352d0c50-7c07-4e3f-bbbe-436de05a27a9" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16" class="view-booking-arrow-icon hvr-icon">
+                <defs>
+                  <style>
+                    .\37 cf7675f-474b-4c42-b99a-eaa5ceb6a11b {
+                      fill: #02bdb6;
+                    }
+                  </style>
+                </defs>
+                <path class="7cf7675f-474b-4c42-b99a-eaa5ceb6a11b" d="M5.293,4.66a.969.969,0,0,1,0-1.375h0a.98.98,0,0,1,1.382,0l3.355,3.34.67.666a1,1,0,0,1,0,1.417L6.674,12.715a.98.98,0,0,1-1.382,0h0a.969.969,0,0,1,0-1.375L8.648,8Z" />
+              </svg>
+            </div>
+            <!--/ view booking btn -->
+          </div>
+        </div>
+        <!--/ image section -->
+      </div>
+    </div>
+    <!--/ row-->
+
+
+    <!-- row-->
+    <div class="row justify-content-md-center">
+      <!-- leftSide -->
+      <div class="col-xl-7 col-md-12">
+        <!-- Confirmation -->
+        <div class="confirmation">
+          <div class="alert alert-danger" *ngIf="searchCriteria.searchMode !== 'warehouse-lcl'">
+            <div class="confirmation-message" *ngIf="searchCriteria.containerLoad.toLowerCase() === 'fcl' || searchCriteria.searchMode === 'truck-ftl'">
+              <h5>
+                Your Booking is Confirmed
+              </h5>
+              <p class="col p-0 pr-4">Thank you for your order {{firstName}} {{lastName}}, your booking to ship
+                {{(searchCriteria.containerLoad.toLowerCase() === 'fcl' || searchCriteria.searchMode ===
+                'truck-ftl')?orderSummary.ContainerCount:totalCBM |
+                number:
+                '1.2-2'}}
+                x {{orderSummary.ContainerLoad}}
+                <span *ngIf="searchCriteria.searchMode === 'sea-fcl'">{{(orderSummary.ContainerCount > 1)?'containers':'container'}}</span>
+                <span *ngIf="searchCriteria.searchMode === 'truck-ftl'">{{(orderSummary.ContainerCount > 1)?'trucks':'truck'}}</span>
+                <span *ngIf="orderSummary.ContainerLoad === 'FCL' || searchCriteria.searchMode === 'truck-ftl'">
+                  is confirmed with {{(searchCriteria.searchMode ===
+                  'truck-ftl')?orderSummary.ProviderName:orderSummary.CarrierName}} <span *ngIf="orderSummary?.EtdUtc?.length > 1">for
+                  {{orderSummary.EtdLcl
+                  | date: 'dd MMM, yyyy'}}.</span>
+                </span>
+              </p>
+            </div>
+            <div class="confirmation-message" *ngIf="searchCriteria.containerLoad.toLowerCase() === 'lcl'">
+              <h5>
+                Your Booking is Confirmed
+              </h5>
+              <p class="col p-0 pr-4">
+                Thank you for your order {{firstName}} {{lastName}}, your booking to ship
+                {{(searchCriteria.searchMode
+                === 'sea-lcl') ? totalCBM : searchCriteria?.chargeableWeight | number:'1.2-2'}}
+                <span *ngIf="searchCriteria.searchMode === 'sea-lcl'">cbm (LCL)</span>
+                <span *ngIf="searchCriteria.searchMode === 'air-lcl'">kg</span>
+                by {{searchCriteria.TransportMode}} is confirmed.
+              </p>
+            </div>
+          </div>
+          <!--/ Confirmation -->
+
+          <!-- order Summary - Start -->
+          <app-order-summary *ngIf="searchCriteria.searchMode !== 'warehouse-lcl'"></app-order-summary>
+          <app-view-booking-card [searchCriteria]="searchCriteria" *ngIf="searchCriteria.searchMode === 'warehouse-lcl'"></app-view-booking-card>
+
+          <div class="thankyou-insurance" [hidden]="true">
+            <app-booking-optional [stage]="'thankyou'"></app-booking-optional>
+          </div>
+          <!-- rightSide -->
+          <div class="helpSupport" *ngIf="HelpDataLoaded && helpSupport">
+            <div class="helpSupport-img">
+              <img src="../../../../assets/images/call_icon.png" alt="">
+            </div>
+            <div class="helpSupport-head">
+              <img src="../../../../assets/images/icons/mob-icon.svg" alt="umbrella-icon">
+              <h5>Help &amp; Support</h5>
+            </div>
+            <div class="helpSupport-content">
+              <h5>Customer Support</h5>
+              <div  class="address">
+                <p class="address">
+                  {{helpSupport?.HMSupportAddress}}
+                </p>
+                <!-- <div class="helpLine">
+                  <p>
+                    Helpline : {{helpSupport?.HMSupportPhone}}
+                  </p>
+                </div>
+                <div class="dotted"></div> -->
+              </div>
+            </div>
+            <div class="helpSupport-footer">
+              <p>
+                <!-- For complaints or issues regarding your order, visit our
+                <br>
+                <a href="{{helpSupport?.HMSupportWebAdd}}" class="link-hover-1" target="_blank">Help Center</a> or
+                send
+                us an email at
+                <a class="link-hover-1" href="{{'mailto:' + helpSupport[0].HMSupportEmail}}">{{helpSupport[0].HMSupportEmail}}</a>
+              </p> -->
+                <p>
+                For any issues with your booking, contact:
+                <a class="link-hover-1" href="{{'mailto:' + helpSupport?.HMSupportEmail}}">{{helpSupport?.HMSupportEmail}}</a>
+                </p>
+            </div>
+          </div>
+          <!--/ rightSide -->
+          <!--/ row-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

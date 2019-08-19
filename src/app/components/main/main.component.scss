@@ -1,0 +1,131 @@
+@import "../../../assets/scss/_variables.scss";
+$extralargeDesktop: "(max-width: 1680px)";
+.homepage {
+  .home-banner-area {
+    width: 100%;
+    background-size: cover;
+    margin: 0rem;
+    padding: 0rem;
+    position: relative;
+    .banner{
+      height: 100%;
+      width: 100%;
+      background-size: cover;
+      background-repeat:no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .container{
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+      }
+    }
+  }
+  
+  .main-banner-tabs {
+    // margin-top: -37.5rem !important;
+    cursor: pointer;
+    .banner-tabs {
+      background-color: #007870;
+      width: 190px;
+      height: 100%;
+      padding: 1.125rem 0;
+      float: right;
+      position: relative;
+      right: -10px;
+      z-index: 11;
+      /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+      -webkit-border-radius: 6px;
+      /* Firefox 1-3.6 */
+      -moz-border-radius: 6px;
+      /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+      border-radius: 6px;
+      .v-btn {
+        background-color: $color-white;
+        width: 201px;
+        height: 64px;
+        font-family: $font-proxima;
+        font-weight: $font-weight-normal; //padding: 1.25rem 0.625rem 0.875rem 1.25rem;
+        padding: 1.25rem 0.75rem;
+        border: 0px solid #aeaeae;
+        font-size: $font-size-base + .25rem;
+        color: #243748;
+        left: -31px;
+        position: relative;
+        // top: 1.25rem;
+        margin-bottom: 0.425em;
+        transition: all 0.5s ease;
+        /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+        -webkit-border-radius: 4px;
+        /* Firefox 1-3.6 */
+        -moz-border-radius: 4px;
+        /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+        border-radius: 2px;
+        img {
+          margin-right: 5px;
+          position: relative;
+          top: -1px;
+          width: 24px;
+          float: left;
+        }
+        span {
+          position: relative;
+          top: 2px;
+          user-select: none;
+          float: left;
+        }
+        &.active {
+          color: $btn-default-sky-blue;
+          left: -25px !important;
+        }
+      }
+      .v-btn:hover {
+        color: $btn-default-sky-blue;
+        width: 201px;
+        left: -25px;
+      }
+    }
+    span {
+      position: relative;
+      top: 2px;
+      user-select: none;
+    }
+    &.active {
+      color: $btn-default-sky-blue;
+      left: -25px !important;
+    }
+  }
+  .v-btn:hover {
+    color: $btn-default-sky-blue;
+    width: 201px;
+    left: -25px;
+  }
+  &-bookings{
+    overflow: hidden;
+    h4{
+      font-family: $font-pragmatica;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+    h5{
+      font-family: $font-pragmatica;
+      margin-bottom: 1rem;
+      margin-top: 2.5rem;
+    }
+  }
+}
+
+.main-container-box {
+  width: 100%;
+}
+@media #{$extralargeDesktop} {
+  .container-tabs {
+    .nav-tabs {
+      width: 27% !important;
+    }
+    .delivery-info {
+      width: 73%;
+    }
+  }
+}

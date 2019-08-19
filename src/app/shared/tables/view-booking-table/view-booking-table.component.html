@@ -1,0 +1,141 @@
+<table *ngIf="type === 'a'" class="table tracking-table">
+  <thead>
+    <tr>
+      <th scope="col">Container No.</th>
+      <th scope="col">Sensor ID</th>
+      <th scope="col">Container size</th>
+      <th scope="col">Coordinates</th>
+      <th scope="col">Temp &#176;C</th>
+      <th scope="col" colspan="2">Humidity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Table Row -->
+    <tr *ngFor="let container of containerList | paginate: config">
+      <td>{{container?.ContainerNo}}</td>
+      <td>{{container?.SensorID}}</td>
+      <td>{{container?.ContainerSize}}</td>
+      <td>{{container?.GCoordinates}}</td>
+      <td>{{container?.TotalTemp | number : '1.2-2'}} &#176;C
+        <span class="badge hashmove-badge-danger">{{container?.TotalTempCount | number : '1.2-2'}}</span>
+      </td>
+      <td>{{container?.TotalHumid | number : '1.2-2'}}
+        <span class="badge hashmove-badge-danger">{{container?.TotalHumidCount | number : '1.2-2'}}</span>
+      </td>
+      <td>
+        <a (click)="onDtlClick(container)" href="javascript:;" class="hvr-icon-forward">
+          <img src="../../../../../assets/images/icons/icon_arrow_right.svg" class="icon-size-16 hvr-icon">
+        </a>
+      </td>
+    </tr>
+    <!--/ Table Row -->
+  </tbody>
+</table>
+
+
+<table *ngIf="type === 'b'" class="table tracking-table">
+  <thead>
+    <tr>
+      <th scope="col">Events</th>
+      <th scope="col">Time (utc)</th>
+      <th scope="col">Coordinators</th>
+      <th scope="col">Temp &#176;C</th>
+      <th scope="col">Humidity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let container of secContainers | paginate: config">
+      <td>Alert</td>
+      <td>{{((container?.HumidityDateTimeUTC)?container?.HumidityDateTimeUTC :container?.TemperatureDateTimeUTC) | date:'EE,dd
+        MMM yyy HH:mm'}}</td>
+      <td>{{container?.GCoordinates}}</td>
+      <td>
+        <!-- <button [hidden]="!container?.Temperature || container?.Temperature === null || container?.Temperature === undefined"
+          type="button" class="btn btn-danger ml-3" [ngbPopover]="popContent1" popoverTitle="Temp &#176;C Dropped"></button> -->
+        <div class="bilink-circle ml-3">
+          <div class="circle pointer" [hidden]="!container?.Temperature || container?.Temperature === null || container?.Temperature === undefined"
+            [ngbPopover]="popContent1" popoverTitle="Temp &#176;C Dropped" triggers="mouseenter:mouseleave"></div>
+        </div>
+        <ng-template #popContent1>
+          <div class="row">
+            <div class="col">
+              <div class="d-flex justify-content-start w-100 text-left">
+                <div class="mr-5">
+                  <h6 class="popover-detail-title">Temp &#176;C Recorded</h6>
+                  <p class="popover-detail-value">{{container?.Temperature | number : '1.2-2'}}</p>
+                </div>
+                <div class="">
+                  <h6 class="popover-detail-title">Ideal Range &#176;C</h6>
+                  <p *ngIf="container?.AlertMin" class="popover-detail-value pull-left mr-2">{{container?.AlertMin}} to {{container?.AlertMax}}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="d-flex text-left">
+                <div class="mr-5">
+                  <h6 class="popover-detail-title">Action taken</h6>
+                  <p *ngIf="container?.ActionEmail" class="popover-detail-value ">
+                    <img src="../../../../assets/images/icons/icon_email_blue.svg" alt="" class="icon-size-16 mr-2"> {{container?.ActionEmail}}
+                  </p>
+                  <p *ngIf="container?.ActionSMS" class="popover-detail-value ">
+                    <img src="../../../../assets/images/icons/mob-icon-blue.svg" alt="" class="icon-size-16 mr-2"> {{container?.ActionSMS}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </td>
+      <td>
+        <!-- <button [hidden]="!container?.Humidity || container?.Humidity === null || container?.Humidity === undefined" type="button"
+          class="btn btn-danger ml-3" [ngbPopover]="popContent2" popoverTitle="Humidity Dropped"></button> -->
+          <div class="bilink-circle ml-3">
+            <div class="circle pointer" [hidden]="!container?.Humidity || container?.Humidity === null || container?.Humidity === undefined"
+                      [ngbPopover]="popContent2" popoverTitle="Humidity Dropped" triggers="mouseenter:mouseleave"></div>
+          </div>
+        <ng-template #popContent2>
+          <div class="row">
+            <div class="col">
+              <div class="d-flex justify-content-start w-100 text-left">
+                <div class="mr-5">
+                  <h6 class="popover-detail-title">Humidity Recorded</h6>
+                  <p class="popover-detail-value">{{container?.Humidity | number : '1.2-2'}}</p>
+                </div>
+                <div class="">
+                  <h6 class="popover-detail-title">Ideal Range</h6>
+                  <p *ngIf="container?.AlertMin" class="popover-detail-value pull-left mr-2">{{container?.AlertMin}} to {{container?.AlertMax}}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="d-flex text-left">
+                <div class="mr-5">
+                  <h6 class="popover-detail-title">Action taken</h6>
+                  <p *ngIf="container?.ActionEmail" class="popover-detail-value ">
+                    <img src="../../../../assets/images/icons/icon_email_blue.svg" alt="" class="icon-size-16 mr-2"> {{container?.ActionEmail}}
+                  </p>
+                  <p *ngIf="container?.ActionSMS" class="popover-detail-value ">
+                    <img src="../../../../assets/images/icons/mob-icon-blue.svg" alt="" class="icon-size-16 mr-2"> {{container?.ActionSMS}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <div class="col-12">
+    <div class="d-flex justify-content-end" *ngIf="getTotalPages() > 1">
+      <p class="pager-info mr-3">Page {{config.currentPage}} of {{getTotalPages()}}</p>
+      <pagination-controls [id]="config.id" [maxSize]="7" [directionLinks]="true" [autoHide]="false" [previousLabel]="labels.previousLabel"
+        [nextLabel]="labels.nextLabel" [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel" [screenReaderPageLabel]="labels.screenReaderPageLabel"
+        [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel" (pageChange)="onPageChange($event)"></pagination-controls>
+    </div>
+  </div>
+</div>

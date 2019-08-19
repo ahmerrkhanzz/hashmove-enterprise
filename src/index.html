@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>hashmove</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link href="favicon.ico" rel="icon" type="image/x-icon">
+  <!-- <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="./assets/scss/_loader.css">
+  <link rel="stylesheet" href="https://use.typekit.net/gwn1jtf.css">
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ31Nq5gJ_cCvENKL79eeC6x4zBv9oOGU&libraries=geometry,places"></script>
+  <!-- <script src="./app_constants.js"></script> -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <style>
+    .edge .banner .animated-svg {
+      display: none;
+    }
+
+    .edge .bannerbg {
+      background-image: url("./assets/images/bg-img.jpg") !important;
+      background-repeat: no-repeat;
+      background-position: center -180px !important;
+      background-size: cover;
+      height: 636px;
+    }
+
+
+    @media only screen and (min-width:1920px) {
+      .edge .bannerbg {
+        background-position: center -150px !important;
+      }
+    }
+
+    @media only screen and (max-width:1600px) {
+      .edge .bannerbg {
+        background-position: center -10px !important;
+      }
+    }
+
+    @media only screen and (max-width:1440px) {
+      .edge .bannerbg {
+        background-position: center 0px !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="customer-portal">
+  <div class="overlay">
+    <div class="loading">
+      <img src="./assets/images/loader.gif" alt="loader">
+    </div>
+  </div>
+
+  <app-root id="preloader2"></app-root>
+
+  <!-- <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+  <script type="text/javascript">
+    AOS.init({
+      duration: 4000,
+    });
+    // add class on body
+    const HTMLScroll = document.querySelector('html');
+
+    function addClass() {
+      HTMLScroll.classList.add('scrolled');
+      if (HTMLScroll.scrollTop > 0) {
+        HTMLScroll.classList.add('scrolled');
+      } else {
+        HTMLScroll.classList.remove('scrolled');
+      }
+    }
+    window.addEventListener('scroll', addClass);
+
+  </script> -->
+</body>
+
+</html>

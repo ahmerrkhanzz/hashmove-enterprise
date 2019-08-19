@@ -1,0 +1,26 @@
+<app-search-header name="search" [page]="'vendor'" *ngIf="showSearchHeader"></app-search-header>
+<div class="container">
+  <div class="row">
+    <div class="col-12 vendor mt-4">
+      <div class="row">
+        <div class="col-xl-8 col-md-12 col-sm-12">
+          <app-vendor-info [info]="providerResponse" [type]="'vendor'"></app-vendor-info>
+          <app-vendor-details [details]="providerResponse"></app-vendor-details>
+        </div>
+        <div class="col-xl-4 col-md-12 col-sm-12">
+          <app-vendor-services [services]="providerResponse"></app-vendor-services>
+        </div>
+      </div>
+      <app-search-results></app-search-results>
+      <hr class="w-100">
+      <div class="vendor-title mt-4">
+        <h6>
+          Deals by {{providerResponse?.ProviderName}}
+        </h6>
+      </div>
+      <!-- Deals Removed By Sales:HM-6269 -->
+      <!-- <app-deals [page]="'vendor'"></app-deals> -->
+      <app-vendor-feedback [reviews]="providerReviews" [total]="providerResponse"></app-vendor-feedback>
+    </div>
+  </div>
+</div>

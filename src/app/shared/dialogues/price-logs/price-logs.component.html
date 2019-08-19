@@ -1,0 +1,33 @@
+<div class="view-price-log">
+  <div class="user-modal animated fadeIn">
+    <div class="modal-header">
+      <h5 class="user-modal-title mb-2 mt-2">[Log] {{data.booking.HashMoveBookingNum}}</h5>
+      <a class="pointer crossIcon">
+        <img src="../../../../assets/images/icons/icon_close.svg" width="16px" alt="close"
+          (click)="_activeModal.close()">
+      </a>
+    </div>
+    <div class="modal-body">
+      <div class="list">
+        <ng-scrollbar class="history-scroll" style="height:415px;max-height:415px;">
+          <ul class="list-group">
+
+
+            <li class="list-group-item d-flex flex-column" *ngFor="let log of logs; let i = index;">
+              <label class="mb-0">{{log.LogStatusTitle}}</label>
+              <label class="mb-0 activity" *ngIf="log.Price > 0">{{log.CurrencyCode}}
+                {{log.Price | number: '1.2-2'}}</label>
+              <small>on {{log.CreatedDateTime | date: 'dd MMM, yyyy
+                  HH:mm a'}} (GMT)
+                <!-- from Dubai, UAE -->
+              </small>
+              <small class="comments" *ngIf="log.Comments">{{log.Comments}}</small>
+            </li>
+          </ul>
+        </ng-scrollbar>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openBackDropCustomLogClass(content)">View Log dialog</button> -->

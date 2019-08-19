@@ -1,0 +1,14 @@
+<div class="user-modal animated fadeIn">
+  <div class="modal-header">
+    <h4 class="confirm-modal-title">Save Booking</h4>
+    <a class="pointer crossIcon" (click)="closeModal('close')">
+      <img src="../../../../assets/images/icons/icon_close.svg" alt="close">
+    </a>
+  </div>
+  <div class="modal-body">
+    <p class="text-center">Are you sure you want to save the booking and discard payments?</p>
+    <div class="text-center">
+      <button class="col btn btn-primary hvr-sweep-to-right" (click)="onConfirmClick($event)">Yes, save as draft</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,216 @@
+<div class="search-sidebar2 mt-4 pt-1">
+  <h2 class="heading-leftsidebar mt-2 mb-3">
+    <img src="../../../../../assets/images/icons/icon_filter.svg" alt="filter icon" class="icon-size-16 mb-1 mr-2">
+    Filter your results
+  </h2>
+  <div class="leftSearchBar">
+    <!-- search-filter -->
+    <div class="widgets">
+      <div class="widgets-box range-slider">
+        <!-- widget header -->
+        <div class="widgets-heading" (click)="toggleRange()">
+          <h3>Price Range
+            <i class="fa fa-caret-down" [ngClass]="buttonRange"></i>
+            <br>
+            <small>({{currencyCode}} {{tempPriceMinMax[0]}} - {{currencyCode}} {{tempPriceMinMax[1]}} )</small>
+          </h3>
+        </div>
+        <div class="OtherSection range">
+          <div class="widget-content" *ngIf="showRange" [@enterAnimation]>
+            <ion-range-slider #advancedSliderElement type="double" [step]="0.0001" [from]="priceRange[0]" [to]="priceRange[1]"
+              [min]="tempPriceMinMax[0]" [max]="tempPriceMinMax[1]" grid="false" grid_num="2" decorate_both="false"
+              from_shadow="false" (onChange)="onPriceRangeSelectedChange($event)" (onFinish)="onPriceRangeChange(priceRange, $event)"></ion-range-slider>
+
+            <div class="row OtherSectionDays">
+              <div class="col-md-6 price-from">
+                <p class="text-truncate" placement="top" ngbTooltip="{{currencyCode}} {{minPriceRange | number: '1.2-2'}}">{{currencyCode}}
+                  {{minPriceRange | number: '1.2-2'}}</p>
+              </div>
+              <div class="col-md-6 price-to">
+                <p class="text-truncate" placement="top" ngbTooltip="{{currencyCode}} {{maxPriceRange | number: '1.2-2'}}">{{currencyCode}}
+                  {{maxPriceRange | number: '1.2-2'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- widget Content -->
+      </div>
+    </div>
+
+    <!-- POL -->
+    <div class="widgets" *ngIf="searchCriteria.pickupPortType === 'GROUND'">
+      <div class="widgets-box">
+        <div class="widgets-heading" (click)="toggleOrigin()">
+          <h3>Port of Origin
+            <i class="fa fa-caret-down" [ngClass]="buttonMoreOrigin"></i>
+          </h3>
+        </div>
+        <div class="OtherSection">
+          <div class="widget-content credit" *ngIf="showOrigin" [@enterAnimation]>
+            <div class="check-boxes-main">
+              <div *ngFor="let port of originListView; let cIndex=index">
+                <input id={{port.PolSeaCode}} type="checkbox" [checked]="port.isChecked" (change)="originFilter(cIndex)">
+                <label for={{port.PolSeaCode}}>
+                  <span></span>{{port.PolSeaCode}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ POL -->
+
+    <!-- POD -->
+    <div class="widgets" *ngIf="searchCriteria.deliveryPortType === 'GROUND'">
+      <div class="widgets-box">
+        <div class="widgets-heading" (click)="toggleDestination()">
+          <h3>Port of Desitnation
+            <i class="fa fa-caret-down" [ngClass]="buttonMoreDestination"></i>
+          </h3>
+        </div>
+        <div class="OtherSection">
+          <div class="widget-content credit" *ngIf="showDestination" [@enterAnimation]>
+            <div class="check-boxes-main">
+              <div *ngFor="let port of destinationListView;  let cIndex=index">
+                <input id={{port.PodSeaCode}} type="checkbox" [checked]="port.isChecked" (change)="desinationFilter(cIndex)">
+                <label for={{port.PodSeaCode}}>
+                  <span></span>{{port.PodSeaCode}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ POD -->
+
+    <!-- freight forwarder -->
+    <div class="widgets">
+      <div class="widgets-box">
+        <!-- widget header -->
+        <div class="widgets-heading" (click)="toggleFreight()">
+          <h3>Freight Forwarders
+            <!-- icon dropdown -->
+            <i class="fa fa-caret-down" [ngClass]="buttonToggleFreight">
+            </i>
+            <!-- icon dropdown -->
+          </h3>
+        </div>
+        <!-- widget header -->
+        <!-- widget-content -->
+        <div class="OtherSection">
+          <div class="widget-content" *ngIf="showToggleFreight" [@enterAnimation]>
+            <!-- Search Input -->
+            <div class="custom-search-input">
+              <div class="input-group col-md-12">
+                <input class="search-query form-control" placeholder="Search" type="text" name="providerSearchInput"
+                  [(ngModel)]="providerSearchInput" (ngModelChange)="providerModelChange($event)">
+                <span class="input-group-btn">
+                  <button class="search-btn" type="button">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+            <!--/ Search Input -->
+
+            <div [ngClass]="isActive ? '' : 'check-boxes-main'">
+              <div *ngFor="let provider of providerList | filter :'ProviderName' : providerSearchInput;  let cIndex=index">
+                <div *ngIf="!showMoreProvider">
+                  <div *ngIf="cIndex < providerlimit">
+                    <input id={{provider.ProviderName}} type="checkbox" [checked]="provider.isChecked" (change)="provideFilter(provider.pIndex)">
+                    <label for={{provider.ProviderName}}>
+                      <span></span>{{provider.ProviderName}}
+                    </label>
+                  </div>
+                </div>
+                <div *ngIf="showMoreProvider">
+                  <input id={{provider.ProviderName}} type="checkbox" [checked]="provider.isChecked" (change)="provideFilter(provider.pIndex)">
+                  <label for={{provider.ProviderName}}>
+                    <span></span>{{provider.ProviderName}}
+                  </label>
+                </div>
+              </div>
+              <!--/ More Check boxes -->
+            </div>
+
+            <!-- More Check boxes -->
+            <div class="more-checkboxes" *ngIf="providerCount > providerlimit">
+              <a href=" javascript:; " (click)="toggleProviderChange() ">
+                <span *ngIf="!showMoreProvider">+{{providerCount - providerlimit}} More</span>
+                <span *ngIf="showMoreProvider">Show Less</span>
+              </a>
+            </div>
+            <!--/ More Check boxes -->
+          </div>
+
+        </div>
+        <!--/ widget-content -->
+      </div>
+      <!--/ widget-content -->
+    </div>
+    <!--/ freight forwarder -->
+
+    <!-- Credit -->
+    <!-- <div class="widgets">
+      <div class="widgets-box">
+        <div class="widgets-heading" (click)="toggleCredit()">
+          <h3>Credit
+            <i class="fa fa-caret-down" [ngClass]="buttonMore"></i>
+          </h3>
+        </div>
+        <div class="OtherSection">
+          <div class="widget-content credit" *ngIf="showMoreShip" [@enterAnimation]>
+            <div class="check-boxes-main">
+              <div *ngFor="let provider of paymentList;  let cIndex=index">
+                <input id={{provider.CreditDays}} type="checkbox" [checked]="provider.isChecked" (change)="paymentFilter(cIndex)">
+                <label for={{provider.CreditDays}}>
+                  <span></span>{{provider.strCreditDays}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Credit -->
+
+    <!-- Experience -->
+    <div class="widgets">
+      <div class="widgets-box">
+        <div class="widgets-heading" (click)="toggleExperience()">
+          <h3>
+            Experience
+            <!-- icon dropdown -->
+            <i class="fa fa-caret-down" [ngClass]="buttonToggleExperience">
+            </i>
+            <!-- icon dropdown -->
+          </h3>
+        </div>
+        <div class="OtherSection">
+          <div class="widget-content MoreSection" *ngIf="showToggleExperience" [@enterAnimation]>
+            <div class="check-boxes-main">
+              <input id="5years" type="checkbox" [checked]="isFiveChecked" (change)="onExperienceChange(5)" />
+              <label for='5years'>
+                <span></span>
+                < 5 years </label> <input id='10years' type='checkbox' [checked]="isTenChecked" (change)="onExperienceChange(10)" />
+                <label for='10years'>
+                  <span></span> 5-10 years
+                </label>
+                <input id='20years' type='checkbox' [checked]="isTwentyChecked" (change)="onExperienceChange(20)" />
+                <label for='20years'>
+                  <span></span> 10-20 years
+                </label>
+                <input id='moreYears' type='checkbox' [checked]="isMoreChecked" (change)="onExperienceChange(30)" />
+                <label for='moreYears'>
+                  <span></span> > 20 years
+                </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Experience -->
+  </div>
+</div>

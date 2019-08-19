@@ -1,0 +1,101 @@
+@import "../../../../assets/scss/_variables";
+.results-header {
+  // background-color: var(--customerPrimaryColor);
+  background-image: linear-gradient(to right, var(--customerPrimaryGradientColor) 0%, var(--customerSecondarGradientColor) 100%);
+  box-shadow: 0px 0px 80px 0px rgba(51, 59, 69, 0.1);
+  border-top: 1px solid $inner-background-color;
+  padding: 0.75rem 0;
+  position: sticky;
+  top: -1px;
+  z-index: 2;
+  .route {
+    font-family: $font-proxima;
+    .nav-item {
+      border-right: 1px solid $grey-border;
+      font-size: $font-size-medium;
+      font-family: $font-proxima;
+      font-weight: $font-weight-normal;
+      padding-right: 1rem;
+      padding-left: 1.9rem;
+      color: var(--customerSecondaryColor);
+      svg {
+        width: 22px;
+        height: 22px;
+        vertical-align: bottom;
+        margin-right: 0.5rem;
+      }
+      &.icons {
+        img {
+          width: 24px;
+          height: 24px;
+          vertical-align: bottom;
+          margin-right: 0.5rem;
+        }
+      }
+
+      &:last-child {
+        border: none;
+      }
+      &:first-child {
+        padding-left: 0;
+      }
+      // span {
+      //   margin-right: 0.85rem;
+      // }
+    }
+    &-destination {
+      font-family: $font-proxima;
+      display: inline-block;
+      font-size: $font-size-medium;
+      font-weight: $font-proxima-weight-semibold;
+      img {
+        display: inline-block;
+        width: 18px;
+        height: 12px;
+        margin-right: 0.6rem;
+        margin-bottom:0.2rem;
+      }
+    }
+    &-arrows {
+      margin-left: 0.5em;
+      margin-right: 0.45em;
+      display: inline-block;
+      width: 2rem;
+      text-align: center;
+      img {
+        margin-right: 1rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        vertical-align: top;
+      }
+    }
+  }
+  .actions {
+    text-align: right;
+    a {
+      display: inline-block;
+      font-size: $font-size-large;
+      font-family: $font-proxima;
+      font-weight: 500;
+      &.text-success {
+        color: var(--customerSecondaryColor) !important;
+        &:hover {
+          color: var(--customerSecondaryColor) !important;
+        }
+      }
+      &.text-default {
+        color: #b1e4fd;
+        margin-left: 1.5rem;
+        margin-right: 0.5rem;
+        &:hover {
+          color: var(--customerSecondaryColor) !important;
+        }
+      }
+    }
+  }
+
+  &.scrolled {
+    border-bottom: 2px solid $primary-color;
+    box-shadow: 0px 0px 46px #9c9c9c91;
+  }
+}

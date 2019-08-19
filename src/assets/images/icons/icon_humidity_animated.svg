@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="138 138 24 24" enable-background="new 138 138 24 24" xml:space="preserve">
+	 <defs>
+<style>
+    .st0 {
+      fill: none;
+      stroke: #738593;
+      stroke-width: 2;
+      stroke-miterlimit: 2;
+    }
+    .st1 {
+      fill: #04abff;
+      stroke: #04abff;
+      stroke-width: 1;
+      stroke-miterlimit: 1;
+    }
+
+    .fill {
+      animation-name: fillAction;
+      animation-iteration-count: infinite;
+      animation-timing-function: cubic-bezier(.2, .6, .8, .4);
+      animation-duration: 5s;
+      animation-fill-mode: forwards;
+    }
+    #waveShape {
+      animation-name: waveAction;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      animation-duration: 0.4s;
+      fill: #00a2df;
+    }
+    @keyframes fillAction {
+      0% {
+        transform: translate(0, 20px);
+      }
+      100% {
+        transform: translate(0, 0px);
+      }
+    }
+    @keyframes waveAction {
+      0% {
+        transform: translate(-5px, 0);
+      }
+      100% {
+        transform: translate(5px, 0);
+      }
+    }
+  </style>
+</defs>
+<defs>
+      <clipPath id="drop">
+        <path d="M150,139.498c0,0-7.158,8.133-7.158,14.305c0,3.706,3.212,6.699,7.158,6.699c3.946,0,7.158-3.005,7.158-6.699
+		C157.17,147.631,150.012,139.498,150,139.498z"/>
+      </clipPath>
+    </defs>
+<g clip-path="url(#drop)">
+	<g class="fill">
+		<path id="waveShape" fill="#04ACFF" d="M162,162v-23.8c0,0-0.048-0.008-0.088-0.008c0,0-2.04-0.184-3.24-0.192
+			c-1.2,0-3.248,0.192-3.248,0.192c-0.984,0.088-2.424,0.144-2.552,0.152c-0.16-0.008-1.576-0.064-2.56-0.152
+			c0,0-2.064-0.184-3.264-0.192c-1.2,0-3.264,0.192-3.264,0.192c-0.984,0.088-2.432,0.144-2.56,0.152
+			c-0.16-0.008-1.6-0.064-2.576-0.152c0,0-0.248-0.024-0.648-0.056V162H162z"/>
+	</g>
+</g>
+<g>
+	<path class="st0" d="M150,139.498c0,0-7.158,8.133-7.158,14.305c0,3.706,3.212,6.699,7.158,6.699c3.946,0,7.158-3.005,7.158-6.699
+		C157.17,147.631,150.012,139.498,150,139.498z"/>
+</g>
+</svg>

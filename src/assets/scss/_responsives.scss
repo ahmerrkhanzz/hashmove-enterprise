@@ -1,0 +1,908 @@
+/*==============  Responsive Media Queries ====================*/
+
+/*-- using for Initiative Detail Page --*/
+
+$FullHDlargeDesktop: "(max-width: 1920px)";
+$extralargeDesktop: "(max-width: 1680px)";
+$extralargeDesktop-1600: "(max-width:1600px)";
+$largeDesktop1400: "(max-width: 1400px)";
+$largeDesktop: "(max-width: 1440px)";
+$mediumDesktop: "(max-width: 1366px)";
+$smallDesktop: "(max-width: 1280px)";
+$tablet: "(max-width: 991px)";
+$tablet-1024: "(max-width: 1024px)";
+$mobile: "(max-width: 768px)";
+$mobile-landscape: "(max-width: 667px)";
+$smallMob: "(max-width: 480px)";
+$smallMob-360: "(max-width: 360px)";
+/*-- using for Initiative Detail Page --*/
+
+/*==============  Full HD Large Desktop 1920x1080 Full HD Display ====================*/
+
+@media #{$FullHDlargeDesktop} {
+  html {
+    // font-size: $base-font-size + 4 !important;
+    body {
+      .homepage {
+        .main-container-box {
+          .container-tabs {
+            &.air-active {
+              .delivery-info {
+                max-width: 100% !important;
+              }
+            }
+          }
+        }
+        .main-banner-tabs {
+          .banner-tabs {
+            .v-btn.active {
+              left: -26px !important;
+            }
+          }
+        }
+      }
+      .logout {
+        .knowledge {
+          right: -8.8rem;
+          .container:after {
+            left: 90% !important;
+          }
+        }
+        .tools {
+          right: 0 !important;
+          .container:after {
+            left: 79.5% !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*==============  Large Desktop 1680x900 HD+ Display ====================*/
+
+@media #{$extralargeDesktop} {
+  html {
+    body {
+      .homepage {
+        .main-banner-tabs {
+          .banner-tabs {
+            .v-btn.active {
+              left: -26px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*==============  Large Desktop 1440 ====================*/
+
+@media #{$largeDesktop} {
+  html {
+    body {
+      .air-info-tooltip {
+        left: 4.2rem !important;
+        .arrow {
+          left: calc(8% - 0.4rem) !important;
+        }
+      }
+    }
+  }
+}
+
+/*==============  Large Desktop 1400 ====================*/
+
+@media #{$largeDesktop1400} {
+  html {
+    body {
+      .homepage {
+        .air-info-tooltip {
+          left: 3.2rem !important;
+          .arrow {
+            left: calc(8% - 0.4rem) !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*==============  Medium Desktop max-width: 1366px ====================*/
+
+@media #{$mediumDesktop} {
+  html {
+    .modal-open {
+      .modal {
+        overflow-y: auto !important;
+        &.small-modal {
+          overflow: hidden !important;
+        }
+      }
+    }
+    body {
+      .container {
+        max-width: 1350px !important;
+      }
+      .video-open {
+        max-width: 1300px !important;
+      }
+      .container {
+        padding: 0 40px !important;
+      }
+      .tools {
+        .container:after {
+          left: 76.5% !important;
+        }
+      }
+      .knowledge,
+      .tools {
+        width: 1260px !important;
+      }
+      .knowledge {
+        &-container {
+          height: 535px !important;
+          .card {
+            height: 535px !important;
+          }
+        }
+      }
+      .homepage[_ngcontent-c5] {
+        .shippingRightAnimation {
+          position: relative;
+          top: 60px;
+        }
+      }
+      .main-footer {
+        .ibox {
+          .container {
+            padding: 1rem 3rem 0 !important;
+          }
+        }
+      }
+      .air-info-tooltip {
+        left: 2.1rem !important;
+        .arrow {
+          left: calc(9.5% - 0.4rem) !important;
+        }
+      }
+      .view-booking-shipment-detail-btn {
+        min-width: 120px;
+      }
+      .booking-modal {
+        .modal-content {
+          position: relative;
+          top: 100px;
+        }
+      }
+      .hash-cards {
+        .shipping-highlights {
+          .sort-filter {
+            .sortFilter.flag-dropdown {
+              left: -760% !important;
+            }
+          }
+        }
+      }
+      .currency-filter {
+        .sort-filter {
+          .sortFilter.flag-dropdown {
+            left: -760% !important;
+          }
+        }
+      }
+      .user-dashboard {
+        .billing-section {
+          .currency-filter {
+            .sort-filter {
+              .sortFilter.flag-dropdown {
+                left: -1190% !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*========END======  Medium Desktop max-width: 1366px ====================*/
+
+/*==============  Desktop max-width: 1280px ====================*/
+
+@media #{$smallDesktop} {
+  html {
+    font-size: $root-font-size - 0.125rem !important;
+    body {
+      .airline-alert {
+        .alert {
+          padding: 0.7rem 1.25rem !important;
+        }
+      }
+      .tools {
+        right: 7px !important;
+        width: 1187px !important;
+        .container:after {
+          left: 77.8% !important;
+        }
+      }
+      .logout {
+        .knowledge {
+          .container:after {
+            left: 89.8% !important;
+          }
+        }
+        .tools {
+          right: 38px !important;
+          .container:after {
+            left: 80.5% !important;
+          }
+        }
+        .cd-dropdown-trigger {
+          .fa {
+            top: 7px;
+          }
+        }
+      }
+      .knowledge,
+      .tools {
+        width: 1192px !important;
+      }
+      &-container {
+        height: 435px !important;
+        .card {
+          height: 435px !important;
+          .card {
+            height: 435px !important;
+          }
+        }
+      }
+      .hash-cards {
+        .shipping-alert {
+          .alert.alert-warning:after {
+            border-top: 18px solid transparent;
+            border-bottom: 16px solid transparent;
+            border-left: 12px solid #b96169;
+          }
+        }
+      }
+      .container-tabs {
+        .delivery-info {
+          .form-control {
+            height: 4rem;
+          }
+        }
+      }
+      .we-do-section,
+      .we-do-section-right-side {
+        height: 495px !important;
+      }
+      .we-do-section-right-side {
+        .img-responsive {
+          padding-right: 0;
+          img {
+            min-width: 390px;
+            min-height: 500px;
+          }
+        }
+      }
+      .usp-section {
+        .usp-box {
+          .usp-menu {
+            .usp-subcontent-3:before,
+            .usp-subcontent-4:before,
+            .usp-subcontent-5:before,
+            .usp-subcontent-6:before {
+              left: 31rem !important;
+            }
+          }
+        }
+      }
+    }
+    .banner-heading {
+      font-size: 6rem !important;
+    }
+    .main-container-box {
+      .nav-tabs .nav-item .nav-link svg {
+        width: 21px !important;
+      }
+      .justify-content-start .nav-item .nav-link span {
+        margin-right: 0.3rem !important;
+      }
+    }
+    .main-banner-tabs {
+      right: 1.6rem !important;
+    }
+    .custom-tabs-right .nav-pills li a.nav-link {
+      padding: 1.6rem 1.125rem !important;
+    }
+  }
+}
+
+/*==============  Tablet max-width:1024px ====================*/
+
+@media #{$tablet-1024} {
+  html {
+    font-size: $root-font-size !important;
+    body {
+      header ul.menu .h-bell {
+        margin-top: 2px;
+      }
+      .mobile-nav {
+        font-size: 24px !important;
+      }
+      .main-container-box {
+        .container-tabs {
+          .delivery-info {
+            width: 71.8% !important;
+          }
+          .nav-tabs .nav-item .nav-link svg {
+            width: 21px !important;
+          }
+          .justify-content-start .nav-item .nav-link span {
+            margin-right: 0.3rem !important;
+          }
+          .container-boxes {
+            width: 24.5% !important;
+            &.zoom {
+              width: 100% !important;
+            }
+          }
+        }
+      }
+      .custom-tabs-right .nav-pills li a.nav-link {
+        padding: 1.2rem 0.5rem !important;
+      }
+      .container-main {
+        max-height: 341px !important;
+        overflow-y: auto !important;
+      }
+      .custom-col {
+        &-2 {
+          max-width: 11% !important;
+          padding: 0 0.5rem 0 0 !important;
+        }
+        &-10 {
+          max-width: 88.333333% !important;
+        }
+      }
+      .homepage {
+        .home-banner-area {
+          .banner {
+            .container {
+              flex-direction: column !important;
+            }
+          }
+          .main-banner-tabs {
+            .banner-tabs {
+              float: none !important;
+              width: auto !important;
+              display: flex;
+              right: 0;
+              left: 0;
+              padding: 0.75rem !important;
+              .v-btn {
+                left: 0 !important;
+                margin-bottom: 0 !important;
+                &.active {
+                  left: 0 !important;
+                }
+              }
+            }
+          }
+          .main-container-box {
+            .ibox.custom-tabs {
+              .row {
+                display: flex !important;
+                flex-direction: column-reverse !important;
+                .custom-col-10,
+                .custom-col-2 {
+                  max-width: 100% !important;
+                  padding: 0 15px !important;
+                }
+                .custom-tabs-right {
+                  .nav-pills {
+                    flex: auto;
+                    display: flex;
+                    li {
+                      display: flex;
+                      flex-grow: 1;
+                      text-align: center;
+                      max-width: 100%;
+                      margin-bottom: 0px;
+                      .nav-link {
+                        display: flex;
+                        flex-direction: row;
+                        padding: 0rem 15px !important;
+                        img {
+                          width: 60px;
+                          height: auto;
+                          margin: 0;
+                          margin-right: 10px;
+                        }
+                        span {
+                          top: 0px !important;
+                        }
+                      }
+                    }
+                  }
+                }
+                .catTabs {
+                  .nav-item {
+                    .nav-link {
+                      div#CatTitle {
+                        padding: 0.45rem 0.25rem;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .banner-heading {
+        top: 200px !important;
+        font-size: 5rem !important;
+      }
+      .we-do-section-left-side {
+        h2 {
+          font-size: 2.2rem !important;
+        }
+      }
+      .we-do-section-left-side {
+        br {
+          display: none;
+        }
+      }
+      .we-do-section,
+      .we-do-section-right-side {
+        height: 405px !important;
+        img {
+          min-width: 100% !important;
+          min-height: 100% !important;
+        }
+      }
+      .mini-footer {
+        .ibox {
+          .container {
+            padding: 0 3rem !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*==============  Tablet max-width:768 ====================*/
+
+@media #{$mobile} {
+  html {
+    body {
+      header {
+        .mobile-nav {
+          i.fa.fa-bars {
+            margin-top: 5px;
+            margin-right: 10px;
+            font-size: 22px;
+          }
+        }
+      }
+      .banner-heading {
+        font-size: 4rem !important;
+      }
+      .we-do-section {
+        height: auto !important;
+        .we-do-section-left-side {
+          margin-top: 2rem !important;
+          margin-bottom: 2rem !important;
+        }
+        .we-do-section-right-side {
+          display: none;
+        }
+      }
+      /* shipping modal */
+      /* shipping modal */
+      .main-banner-tabs {
+        right: 7.2rem !important;
+        .banner-tabs {
+          width: 65px !important;
+          .v-btn {
+            width: 70px !important;
+            text-align: center;
+            span {
+              display: none;
+            }
+          }
+        }
+      }
+      .main-container-box {
+        .container-tabs {
+          .delivery-info {
+            width: 100% !important;
+          }
+          .nav-tabs {
+            padding: 1rem 30% 0.5rem;
+            float: none !important;
+            max-width: 100% !important;
+            .nav-item .nav-link svg {
+              width: 21px !important;
+            }
+          }
+          .justify-content-start .nav-item .nav-link span {
+            margin-right: 0.3rem !important;
+          }
+          .container-boxes {
+            width: 32.5% !important;
+            &.zoom {
+              width: 200px !important;
+              top: 19rem !important;
+              position: fixed !important;
+              left: 10rem !important;
+            }
+          }
+          .search .btn {
+            width: 40% !important;
+          }
+        }
+      }
+      .custom-tabs-right .nav-pills li a.nav-link {
+        padding: 2.2rem 0.5rem !important;
+      }
+      .container-main {
+        max-height: 341px !important;
+        overflow-y: auto !important;
+      }
+      .custom-col {
+        &-2 {
+          max-width: 14% !important;
+          padding: 0 0.5rem 0 0 !important;
+        }
+        &-10 {
+          max-width: 85.5% !important;
+        }
+      }
+      .mini-footer {
+        .ibox {
+          .container {
+            .col-md-4.col-sm-12 {
+              margin-bottom: 1rem;
+            }
+            .col-md-4.col-sm-12:nth-child(2) {
+              margin-bottom: 0;
+            }
+            .providers-links {
+              margin-bottom: 1rem;
+            }
+          }
+        }
+        .input-group {
+          width: 100%;
+          margin-bottom: 1.5rem;
+        }
+        .input-group {
+          input.form-control {
+            width: 100%;
+          }
+          &-prepend {
+            width: 100%;
+            button.btn {
+              width: 100% !important;
+            }
+          }
+        }
+      }
+      .end-footer {
+        .col-md-12 {
+          div {
+            float: none;
+          }
+        }
+      }
+      .hash-cards {
+        .shipping-best {
+          .best-route,
+          .routing {
+            min-width: 100%;
+            max-width: 100%;
+            p {
+              top: 0px;
+            }
+          }
+        }
+      }
+      .search-result-route {
+        .best-route {
+          min-width: 100%;
+          max-width: 100%;
+          .best {
+            margin: 0;
+          }
+        }
+        .routing {
+          min-width: 100%;
+          max-width: 100%;
+          padding-top: 0;
+          p {
+            margin: 0;
+          }
+        }
+      }
+      .Registration {
+        .user-modal {
+          .modal-header {
+            display: block !important;
+          }
+          .modal-body {
+            padding: 25px 20px;
+            .tabs-section {
+              ul.nav.nav-tabs {
+                display: block;
+                li.nav-item {
+                  .nav-link.active:after {
+                    margin: -4px !important;
+                    width: 103%;
+                  }
+                  &:first-child {
+                    margin-bottom: 10px;
+                  }
+                }
+              }
+            }
+            .terms-condition {
+              .switch-box {
+                height: 50px;
+              }
+              .btn {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+      .ng-scrollbar.-vertical {
+        display: none;
+      }
+      .view-booking-shipment-detail-btn {
+        width: 100%;
+      }
+      .view-booking-top-btn {
+        text-align: left !important;
+      }
+      .view-booking {
+        .media {
+          .align-self-start {
+            margin-bottom: 5px;
+          }
+        }
+        .details {
+          margin-top: 15px;
+        }
+      }
+      .dashboard-main {
+        .user {
+          &-search {
+            width: 100%;
+            min-width: 100%;
+            margin-bottom: 20px;
+          }
+        }
+      }
+      .we-do-section {
+        height: auto !important;
+        .we-do-section-right-side {
+          display: none;
+        }
+        .video-open {
+          position: relative !important;
+        }
+      }
+      .deals-box {
+        top: 9px;
+        height: 200px;
+        margin-bottom: 40px;
+      }
+      .payment {
+        padding: 15px;
+        .tab-content {
+          padding: 15px;
+        }
+      }
+      .vendor-details {
+        .tab-content {
+          .gallery-section {
+            .images-carousel {
+              flex: 0 0 30% !important;
+              max-width: 30% !important;
+            }
+          }
+        }
+      }
+      .vendor-services {
+        .affiliation-logo {
+          .col-2 {
+            img {
+              height: 100%;
+              padding: 5px;
+            }
+          }
+        }
+      }
+      .dashboard-main {
+        .user-dashboard-leftsidebar {
+          width: 100%;
+        }
+        .user-dashboard {
+          .summary-section-boxes {
+            .summarybox.booking-summary {
+              border-right: 0;
+            }
+          }
+        }
+      }
+      .booking-card {
+        .card {
+          &-header-icon {
+            position: relative !important;
+            text-align: center;
+            height: 46px;
+            &:before {
+              content: " ";
+              width: 100% !important;
+              height: 35px;
+              border-radius: 0;
+            }
+            img.icon-size-24 {
+              top: 6px !important;
+              left: 0 !important;
+            }
+          }
+          &-header {
+            padding-left: 1rem !important;
+            .booking-card-status {
+              margin-top: 12px;
+              text-align: left !important;
+              .actions {
+                justify-content: flex-start;
+              }
+              label {
+                &:first-child {
+                  margin: 0 !important;
+                }
+              }
+            }
+          }
+          &-body {
+            .border-right {
+              border: 0px !important;
+              border-bottom: 1px solid #e9e9e9 !important;
+            }
+            .booking-detail {
+              padding: 0 !important;
+              margin: 1rem 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  .usp-sub-megamenu {
+    margin-left: auto;
+    margin-right: auto;
+    &:before {
+      left: 50% !important;
+    }
+  }
+}
+
+/* Mobile Landscape 640px */
+
+@media #{$mobile-landscape} {
+  .catTabs .nav-item .nav-link,
+  .subcategory .nav-item .nav-link {
+    span {
+      display: none;
+    }
+  }
+  .main-container-box {
+    right: 8.3rem !important;
+    .container-tabs {
+      .delivery-info {
+        width: 100% !important;
+      }
+      .nav-tabs {
+        padding: 1rem 26% 0.5rem;
+      }
+      .container-boxes {
+        width: 31.5% !important;
+        &.zoom {
+          top: 19rem !important;
+        }
+        .absolute-body {
+          padding: 0.5rem !important;
+        }
+      }
+      .search .btn {
+        width: 30% !important;
+      }
+    }
+  }
+  .custom-col {
+    &-2 {
+      max-width: 14% !important;
+      padding: 0 0.5rem 0 0 !important;
+    }
+    &-10 {
+      max-width: 85.5% !important;
+    }
+  }
+}
+
+/* Mobile Landscape 640px */
+
+/*==============  Mobile max-width:480 ====================*/
+
+@media #{$smallMob} {
+  html {
+    font-size: $root-font-size - 0.125rem !important;
+    body {
+      .container {
+        padding: 0 15px !important;
+      }
+      .banner-heading {
+        width: 93%;
+        font-size: 3.5rem !important;
+      }
+      .vendor-details {
+        .tab-content {
+          .gallery-section {
+            .images-carousel {
+              flex: 0 0 100% !important;
+              max-width: 100% !important;
+            }
+          }
+        }
+      }
+      .user-table {
+        tr {
+          td {
+            width: 100%;
+            display: block;
+          }
+        }
+      }
+      .shipping-info {
+        width: 100% !important;
+      }
+      .shipping-dates,
+      .shipping-info,
+      .shipping-price {
+        width: 100% !important;
+        .routes {
+          text-align: center;
+        }
+      }
+      .shipping-dates,
+      .shipping-price {
+        text-align: center;
+        margin-top: 30px;
+        border: 0;
+      }
+    }
+  }
+  .main-banner-tabs {
+    display: none;
+  }
+  .banner-heading {
+    text-align: center;
+  }
+  .main-container-box .container-tabs .justify-content-start {
+    justify-content: center !important;
+  }
+  .usp-sub-megamenu {
+    width: 100% !important;
+  }
+}
+
+/*==============  Responsive Media Queries ====================*/

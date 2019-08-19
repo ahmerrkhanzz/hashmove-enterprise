@@ -1,0 +1,144 @@
+@import "../../../../assets/scss/_variables";
+$TabActiveColor: $active-text-color;
+.vendor-details {
+  /deep/ .nav-tabs {
+    padding: 0;
+    justify-content: space-between;
+    margin-top: 1rem;
+    .nav-item {
+      flex: auto;
+      .nav-link {
+        position: relative;
+        color: #b5b9bc;
+        font-size: $base-font-size + 2;
+        text-align: center;
+        text-transform: uppercase;
+        border-top-left-radius: 0rem;
+        border-top-right-radius: 0rem;
+        font-weight: $font-weight-mid;
+        background: transparent;
+        border: 0;
+        padding: 0.5rem 0rem;
+        div.tab-title {
+          font-family: $font-proxima;
+          font-weight: $font-weight-mid;
+          font-size: $font-size-medium; //    border-right: 1px solid $grey-border;
+        }
+      }
+      & {
+        .nav-link.active {
+          background: transparent;
+          color: $TabActiveColor;
+          border: 0;
+          border-bottom: 2px solid $TabActiveColor;
+          &.disabled {
+            color: #b5b9bc !important;
+            background: transparent !important;
+            border: none !important;
+            .tab-title {
+              &:before {
+                visibility: hidden !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /deep/ .tab-content {
+    overflow: hidden;
+    .gallery-section {
+      display: flex;
+      flex-flow: row wrap;
+      width: 100%;
+      padding: 0 8px;
+      .images-carousel {
+        cursor: pointer;
+        margin: 0.5rem 0.5rem;
+        height: 154px;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        flex: 0 0 23%;
+        max-width: 23%;
+        border: 1px solid $input-border;
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          transition: all 0.5s ease;
+        }
+        &:hover {
+          transition: all 0.5s ease;
+          img {
+            transform: scale(1.09);
+          }
+        }
+      }
+      &.vendor-certificate {
+        .images-carousel {
+          img {
+            object-fit: contain;
+          }
+        }
+      }
+    }
+    .vendor-certificate {
+      .list-group {
+        flex-direction: inherit;
+        &-item {
+          background: transparent;
+          cursor: pointer;
+          border: 0;
+        }
+      }
+    }
+  }
+  .about {
+    .detail {
+      font-size: $font-size-large + 0.125rem;
+      font-family: $font-proxima;
+      font-weight: $font-weight-normal;
+      color: $secondary-text-color;
+      line-height: 1.778;
+      // &.unread {
+      //   height: 200px;
+      //   overflow: hidden;
+      // }
+    }
+    .activeBtn {
+      display: block !important;
+    }
+    .slimscroll-wrapper {
+      height: auto !important;
+    }
+  }
+  // /deep/ .scrollActive {
+  //   ng-scrollbar-y {
+  //     display: block !important;
+  //     .ng-scrollbar {
+  //       // display: block !important;
+  //       &-thumb{
+  //         height: 98.4727px;
+  //       }
+  //     }
+  //   }
+  //   .ng-scrollbar {
+  //     height: 100%;
+  //     overflow: auto;
+  //   }
+  // }
+  // /deep/ .scrollHide {
+  //   ng-scrollbar-y {
+  //     .ng-scrollbar {
+  //       display: none !important;
+  //     }
+  //   }
+  // }
+  .readMore {
+    max-height: 350px;
+  }
+  &-readMore,
+  &-lessBtn {
+    color: $primary-color;
+  }
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 19.637 24" enable-background="new 0 0 19.637 24" xml:space="preserve">
+<defs>
+		<style>
+		<!-- @keyframes bounce {
+			0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+			40% {transform: translateY(-12px);}
+			60% {transform: translateY(-5px);}
+		}
+		.bounce{
+			animation:bounce 2s ease-in infinite;
+		} -->
+		</style>
+	</defs>
+
+
+	<g class="bounce">
+		<path fill="#FFFFFF" stroke="#2978D9" stroke-miterlimit="10" d="M9.819,1.083c-4.934,0-8.933,4.116-8.933,9.193
+			s8.933,12.642,8.933,12.642s8.932-7.564,8.932-12.642S14.751,1.083,9.819,1.083z M9.82,12.91c-2.01,0-3.641-1.631-3.641-3.641
+			c0-2.01,1.631-3.64,3.641-3.64s3.64,1.63,3.64,3.64C13.46,11.279,11.83,12.91,9.82,12.91z"/>
+	</g>
+	<g id="XMLID_1_" class="bounce">
+		<g>
+			<circle fill="#D5EBEF" cx="9.82" cy="9.27" r="3.64"/>
+		</g>
+		<g>
+			<circle fill="none" stroke="#2978D9" stroke-miterlimit="10" cx="9.82" cy="9.27" r="3.64"/>
+		</g>
+	</g>
+</svg>

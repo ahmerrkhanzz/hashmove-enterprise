@@ -1,0 +1,33 @@
+<div class="termsAndCondition animated fadeIn">
+  <div class="modal-header">
+    <h4 class="confirm-modal-title" id="modal-basic-title">Terms & Conditions</h4>
+  </div>
+  <div class="modal-body">
+    <ng-scrollbar [trackX]="false">
+      <div class="list mb-4" style="max-height:400px;">
+        <div [innerHTML]="messageData?.data?.termsCondition"></div>
+      </div>
+    </ng-scrollbar>
+    <div class="row mt-4" *ngIf="messageData?.data.action === 'action'">
+      <div class="col">
+        <button type="button" class="btn btn-primary hvr-sweep-to-right w-100 disable" (click)="onConfirmClick('deny')">
+          I don't accept the terms & conditions
+        </button>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary hvr-sweep-to-right w-100" (click)="onConfirmClick('accept')">
+          I accept the terms & conditions
+        </button>
+      </div>
+    </div>
+    <div class="row mt-4" *ngIf="messageData?.data.action === 'view'">
+      <div class="col text-center">
+        <button class="btn btn-primary hvr-sweep-to-right w-25" (click)="onConfirmClick('close')">
+          Close
+        </button>
+      </div>
+    </div>
+    <div class="text-center">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<app-search-header name="search"></app-search-header>
+<div class="container grey-bg" *ngIf="showResult">
+
+  <div class="row mt-4" *ngIf="isCarrier">
+    <div class="col-xl-8 col-md-12 col-sm-12">
+      <app-vendor-info [info]="providerResponse" [type]="'search'"></app-vendor-info>
+      <app-vendor-details [details]="providerResponse"></app-vendor-details>
+    </div>
+    <div class="col-xl-4 col-md-12 col-sm-12">
+      <app-vendor-services [services]="providerResponse"></app-vendor-services>
+    </div>
+  </div>
+  <hr *ngIf="isCarrier">
+  <div class="row">
+    <div class="col-xl-3 col-md-12 col-sm-12 mt-3 inner-left-sidebar">
+      <div class="leftSideBar">
+        <app-hash-filters-sidebar *ngIf="isCarrier" [searchResult]="mainsearchResult"></app-hash-filters-sidebar>
+        <app-hash-filters-forwarder-sidebar *ngIf="!isCarrier" [providersResult]="mainProvidersearchResult">
+        </app-hash-filters-forwarder-sidebar>
+      </div>
+    </div>
+    <div class="col-xl-9 col-md-12 col-sm-12 mt-4 pt-1 right-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<div class="container grey-bg no-search-container" *ngIf="showNoResult">
+  <div class="row">
+    <div class="col-xl-3 col-md-12  col-sm-12 inner-left-sidebar"></div>
+    <div class="col-xl-9 col-md-12 col-sm-12 inner-page-right-content-area">
+      <div class="row">
+        <app-no-searchresult *ngIf="!isFetchingData" class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9"></app-no-searchresult>
+        <app-fetching-searchresult *ngIf="isFetchingData" class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9"></app-fetching-searchresult>
+        <app-right-sidebar class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3 filters"></app-right-sidebar>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="isCarrier && showResult">
+  <div class="row">
+    <div class="col-12">
+      <!-- <hr> -->
+      <!-- Deals Removed By Sales:HM-6269 -->
+      <!-- <app-deals [page]="'search'"></app-deals> -->
+      <app-vendor-feedback [reviews]="providerReviews" [total]="providerResponse"></app-vendor-feedback>
+    </div>
+  </div>
+</div>
